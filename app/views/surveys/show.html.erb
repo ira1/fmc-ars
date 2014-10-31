@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Respondentid:</strong>
+  <%= @survey.respondentid %>
+</p>
+
+<p>
+  <strong>Batch:</strong>
+  <%= @survey.batch %>
+</p>
+
+<p>
+  <strong>Full time:</strong>
+  <%= @survey.full_time %>
+</p>
+
+<p>
+  <strong>Age:</strong>
+  <%= @survey.age %>
+</p>
+
+<%= link_to 'Edit', edit_survey_path(@survey) %> |
+<%= link_to 'Back', surveys_path %>

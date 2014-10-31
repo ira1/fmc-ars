@@ -1,0 +1,90 @@
+<%#
+
+ FTCLAIM SHOW
+
+%>
+<div id="facets">
+	<h1>Facets</h2>
+	<p>N = <%= @sample_size %> musicians
+	based on current choices</p>
+	<%= form_tag ({controller: "ftclaim", action: "show"}) do %>
+    	<div id="role_facet">
+			<h2>Musician Type</h2>
+			<%= radio_button_tag("role", "ALL", (@role == "ALL" )) %>
+			<%= label_tag("role_ALL", "All types")%><br/>
+			<%= radio_button_tag("role", "COMPOSER", (@role == "COMPOSER" )) %>
+			<%= label_tag("role_COMPOSER", "Composer")%><br/>
+			<%= radio_button_tag("role", "RECORDING", (@role == "RECORDING" )) %>
+			<%= label_tag("role_RECORDING", "Recording artist")%><br/>
+			<%= radio_button_tag("role", "SALARIED", (@role == "SALARIED" )) %>
+			<%= label_tag("role_SALARIED", "Salaried player")%><br/>
+			<%= radio_button_tag("role", "PERFORMER", (@role == "PERFORMER" )) %>
+			<%= label_tag("role_PERFORMER", "Performer")%><br/>
+			<%= radio_button_tag("role", "SESSION", (@role == "SESSION" )) %>
+			<%= label_tag("role_SESSION", "Session musician/freelancer")%><br/>
+		</div>
+		<div id="genre_facet">
+	 		<h2>Main-$ Genre</h2>
+			<%= radio_button_tag("mgenre", "ALL", (@mgenre == "ALL" )) %>
+			<%= label_tag("mgenre_ALL", "All genres")%><br/>
+			<%= radio_button_tag("mgenre", 1, (@mgenre == "1")) %>
+			<%= label_tag("mgenre_1", "Classical")%><br/>
+			<%= radio_button_tag("mgenre", 2, (@mgenre == "2")) %>
+			<%= label_tag("mgenre_2","Jazz")%><br/>
+			<%= radio_button_tag("mgenre", 3, (@mgenre == "3")) %>
+			<%= label_tag("mgenre_3","Rock/Alt-Rock/Indie")%><br/>
+			<%= radio_button_tag("mgenre", 4, (@mgenre == "4")) %>
+			<%= label_tag("mgenre_4","Country/Americana/Bluegrass")%><br/>
+			<%= radio_button_tag("mgenre", 0, (@mgenre == "0") ) %>
+			<%= label_tag("mgenre_0", "All Other Genres")%><br/>
+		</div> <%# genre %>
+		<div id="fulltime_facet">
+			<h2>Full Time Musicians</h2>
+			<%= check_box_tag("ft")%>
+			<%= label_tag("ft", "F/T musicians only")%>
+		</div>
+		<div id="education_facet">
+			<h2>Music Education</h2>
+			<%= check_box_tag("trained")%>
+			<%= label_tag("trained", "Trained musicians only")%>
+		</div>
+		<div id="career_facet">
+			<h2>Career Level (Yrs as FT Musician)</h2>
+			<%= radio_button_tag("careerexp", "ALL", (@careerexp == "ALL" )) %>
+			<%= label_tag("careerexp_ALL", "All full-time musicians")%><br/>
+			<%= radio_button_tag("careerexp", "1", (@careerexp == "1" )) %>
+			<%= label_tag("careerexp_1", "Emerging (<16 yrs)")%><br/>
+			<%= radio_button_tag("careerexp", "2", (@careerexp == "2" )) %>
+			<%= label_tag("careerexp_2", "Established (16-30 yrs)")%><br/>
+			<%= radio_button_tag("careerexp", "3", (@careerexp == "3" )) %>
+			<%= label_tag("careerexp_2", " Old School (>30 yrs)")%><br/>
+		</div>
+		<div id="emi_facet">
+			<h2>Gross Estimated Music Income (EMI)</h2>
+			<%= radio_button_tag("emigroup", "ALL", (@emigroup == "ALL" )) %>
+			<%= label_tag("emigroup_ALL", "All reported income levels")%><br/>
+			<%= radio_button_tag("emigroup", "1", (@emigroup == "1" )) %>
+			<%= label_tag("emigroup_1", "$1 to $24,999")%><br/>
+			<%= radio_button_tag("emigroup", "2", (@emigroup == "2" )) %>
+			<%= label_tag("emigroup_2", "$25,000 to $$74,999")%><br/>
+			<%= radio_button_tag("emigroup", "3", (@emigroup == "3" )) %>
+			<%= label_tag("emigroup_3", "$75,000 or more")%><br/>
+		</div>
+		<div id="gender_facet">
+			<h2>Gender</h2>
+			<%= check_box_tag("male", "male", true)%>
+			<%= label_tag("male", "Male")%><br/>
+			<%= check_box_tag("female", "femaile", true)%>
+			<%= label_tag("female", "Female")%>
+			
+		</div>
+		<%= submit_tag () %>
+	<% end %> <%# form_tag %>
+	
+</div>
+<p><br/></p>
+
+<%# 
+  FTCLAIM 
+%>
+<div><%= render "theoutput"%></div>

@@ -1,0 +1,86 @@
+class CreateSurveytests < ActiveRecord::Migration
+  def change
+    create_table :surveytests do |t|
+      t.string :respondentid
+      t.float :age
+      t.integer :age_group
+      t.integer :experience_group
+      t.string :hours_group
+      t.string :integer
+      t.boolean :member_pro
+      t.boolean :member_music_org
+      t.integer :genre_group_1
+      t.integer :money_genre_group_1
+      t.string :pie_song
+      t.string :integer
+      t.integer :pie_salary
+      t.integer :pie_live
+      t.integer :pie_record
+      t.integer :pie_session
+      t.integer :pie_merch
+      t.integer :pie_teach
+      t.integer :pie_other
+      t.integer :compose_inc_direction
+      t.integer :salary_inc_direction
+      t.integer :perform_inc_direction
+      t.integer :record_inc_direction
+      t.integer :session_inc_direction
+      t.integer :merch_inc_direction
+      t.integer :teach_inc_direction
+      t.boolean :rev_youtube
+      t.boolean :rev_webads
+      t.boolean :rev_fanfund
+      t.boolean :rev_fanclub
+      t.boolean :rev_persona
+      t.boolean :rev_endorse
+      t.boolean :rev_acting
+      t.boolean :rev_corp
+      t.boolean :rev_sample
+      t.boolean :rev_honoraria
+      t.boolean :rev_grants
+      t.boolean :rev_produce
+      t.boolean :rev_pubadvance
+      t.boolean :ascaplus
+      t.boolean :aarc
+      t.boolean :afm_2
+      t.boolean :afm_srsp
+      t.boolean :afm_aftra
+      t.boolean :aftra_csp
+      t.boolean :label_settle
+      t.float :music_inc_share_pct
+      t.string :income_strata
+      t.integer :income_strata_group
+      t.integer :emi
+      t.boolean :full_time
+      t.integer :seasoning_group
+      t.integer :path_group
+      t.boolean :role_compose
+      t.boolean :role_record
+      t.boolean :role_perform
+      t.boolean :role_session
+      t.boolean :role_teach
+      t.integer :freq_commercial_radio
+      t.integer :freq_noncommercial_radio
+      t.integer :freq_internet_radio
+      t.integer :freq_satellite_radio
+      t.integer :freq_cable_radio
+      t.integer :comfort_net_produce
+      t.integer :comfort_net_promote
+      t.integer :comfort_net_distribute
+      t.integer :comfort_net_collaborate
+      t.integer :comfort_net_fanconnect
+      t.string :gender
+      t.integer :gender_group
+      t.integer :edu_level_group
+      t.boolean :music_school
+      t.string :zip
+      t.integer :credits_compose_life
+      t.integer :credits_record_life
+      t.integer :credits_show_life
+      t.integer :credits_session_life
+      t.integer :shows_last_year
+
+      t.timestamps
+    end
+  end
+end

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  respondentid: MyString
+  batch: 1
+  full_time: false
+  age: 1.5
+
+two:
+  respondentid: MyString
+  batch: 1
+  full_time: false
+  age: 1.5
