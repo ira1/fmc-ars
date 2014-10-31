@@ -38,3 +38,6 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+# For enabling static asset serving on Heroku
+gem 'rails_12factor', group: :production
+
