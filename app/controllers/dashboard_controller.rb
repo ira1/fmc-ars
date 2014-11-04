@@ -33,7 +33,9 @@ class DashboardController < ApplicationController
     # Career Level facet
     #
     @careerexp = params.has_key?(:careerexp) ? params[:careerexp] : "ALL"
-    logger.info{"careerexp #{params.has_key?(:careerexp)} and is #{@careerexp}"}
+    #logger.info{"careerexp #{params.has_key?(:careerexp)} and is #{@careerexp}"}
+    
+    
     #
     #  TODO Refactor into FTClaim method
     #

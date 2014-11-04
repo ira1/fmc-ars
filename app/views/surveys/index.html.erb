@@ -4,9 +4,84 @@
   <thead>
     <tr>
       <th>Respondentid</th>
-      <th>Batch</th>
-      <th>Full time</th>
+      <th>Birth year</th>
       <th>Age</th>
+      <th>Age group</th>
+      <th>Experience group</th>
+      <th>Hours group</th>
+      <th>Member pro</th>
+      <th>Member music org</th>
+      <th>Genre group 1</th>
+      <th>Money genre group 1</th>
+      <th>Pie song</th>
+      <th>Pie salary</th>
+      <th>Pie live</th>
+      <th>Pie record</th>
+      <th>Pie session</th>
+      <th>Pie merch</th>
+      <th>Pie teach</th>
+      <th>Pie other</th>
+      <th>Compose inc direction</th>
+      <th>Salary inc direction</th>
+      <th>Perform inc direction</th>
+      <th>Record inc direction</th>
+      <th>Session inc direction</th>
+      <th>Merch inc direction</th>
+      <th>Teach inc direction</th>
+      <th>Rev youtube</th>
+      <th>Rev webads</th>
+      <th>Rev fanfund</th>
+      <th>Rev fanclub</th>
+      <th>Rev persona</th>
+      <th>Rev endorse</th>
+      <th>Rev acting</th>
+      <th>Rev corp</th>
+      <th>Rev sample</th>
+      <th>Rev honoraria</th>
+      <th>Rev grants</th>
+      <th>Rev produce</th>
+      <th>Rev pubadvance</th>
+      <th>Ascaplus</th>
+      <th>Aarc</th>
+      <th>Afm 2</th>
+      <th>Afm srsp</th>
+      <th>Afm aftra</th>
+      <th>Aftra csp</th>
+      <th>Label settle</th>
+      <th>Music inc share pct</th>
+      <th>Income strata</th>
+      <th>Income strata group</th>
+      <th>Emi</th>
+      <th>Full time</th>
+      <th>Seasoning group</th>
+      <th>Path group</th>
+      <th>Role composer</th>
+      <th>Role recording</th>
+      <th>Role performer</th>
+      <th>Role session</th>
+      <th>Role teacher</th>
+      <th>Freq commercial radio</th>
+      <th>Freq noncommercial radio</th>
+      <th>Freq internet radio</th>
+      <th>Freq satellite radio</th>
+      <th>Freq cable radio</th>
+      <th>Comfort net produce</th>
+      <th>Comfort net promote</th>
+      <th>Comfort net distribute</th>
+      <th>Comfort net collaborate</th>
+      <th>Comfort net fanconnect</th>
+      <th>Gender</th>
+      <th>Gender group</th>
+      <th>Edu level group</th>
+      <th>Music school</th>
+      <th>Zip</th>
+      <th>Credits compositions life</th>
+      <th>Credits recordings life</th>
+      <th>Shows last year</th>
+      <th>Credits sessions life</th>
+      <th>Batch</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,9 +90,84 @@
     <% @surveys.each do |survey| %>
       <tr>
         <td><%= survey.respondentid %></td>
-        <td><%= survey.batch %></td>
-        <td><%= survey.full_time %></td>
+        <td><%= survey.birth_year %></td>
         <td><%= survey.age %></td>
+        <td><%= survey.age_group %></td>
+        <td><%= survey.experience_group %></td>
+        <td><%= survey.hours_group %></td>
+        <td><%= survey.member_pro %></td>
+        <td><%= survey.member_music_org %></td>
+        <td><%= survey.genre_group_1 %></td>
+        <td><%= survey.money_genre_group_1 %></td>
+        <td><%= survey.pie_song %></td>
+        <td><%= survey.pie_salary %></td>
+        <td><%= survey.pie_live %></td>
+        <td><%= survey.pie_record %></td>
+        <td><%= survey.pie_session %></td>
+        <td><%= survey.pie_merch %></td>
+        <td><%= survey.pie_teach %></td>
+        <td><%= survey.pie_other %></td>
+        <td><%= survey.compose_inc_direction %></td>
+        <td><%= survey.salary_inc_direction %></td>
+        <td><%= survey.perform_inc_direction %></td>
+        <td><%= survey.record_inc_direction %></td>
+        <td><%= survey.session_inc_direction %></td>
+        <td><%= survey.merch_inc_direction %></td>
+        <td><%= survey.teach_inc_direction %></td>
+        <td><%= survey.rev_youtube %></td>
+        <td><%= survey.rev_webads %></td>
+        <td><%= survey.rev_fanfund %></td>
+        <td><%= survey.rev_fanclub %></td>
+        <td><%= survey.rev_persona %></td>
+        <td><%= survey.rev_endorse %></td>
+        <td><%= survey.rev_acting %></td>
+        <td><%= survey.rev_corp %></td>
+        <td><%= survey.rev_sample %></td>
+        <td><%= survey.rev_honoraria %></td>
+        <td><%= survey.rev_grants %></td>
+        <td><%= survey.rev_produce %></td>
+        <td><%= survey.rev_pubadvance %></td>
+        <td><%= survey.ascaplus %></td>
+        <td><%= survey.aarc %></td>
+        <td><%= survey.afm_2 %></td>
+        <td><%= survey.afm_srsp %></td>
+        <td><%= survey.afm_aftra %></td>
+        <td><%= survey.aftra_csp %></td>
+        <td><%= survey.label_settle %></td>
+        <td><%= survey.music_inc_share_pct %></td>
+        <td><%= survey.income_strata %></td>
+        <td><%= survey.income_strata_group %></td>
+        <td><%= survey.emi %></td>
+        <td><%= survey.full_time %></td>
+        <td><%= survey.seasoning_group %></td>
+        <td><%= survey.path_group %></td>
+        <td><%= survey.role_composer %></td>
+        <td><%= survey.role_recording %></td>
+        <td><%= survey.role_performer %></td>
+        <td><%= survey.role_session %></td>
+        <td><%= survey.role_teacher %></td>
+        <td><%= survey.freq_commercial_radio %></td>
+        <td><%= survey.freq_noncommercial_radio %></td>
+        <td><%= survey.freq_internet_radio %></td>
+        <td><%= survey.freq_satellite_radio %></td>
+        <td><%= survey.freq_cable_radio %></td>
+        <td><%= survey.comfort_net_produce %></td>
+        <td><%= survey.comfort_net_promote %></td>
+        <td><%= survey.comfort_net_distribute %></td>
+        <td><%= survey.comfort_net_collaborate %></td>
+        <td><%= survey.comfort_net_fanconnect %></td>
+        <td><%= survey.gender %></td>
+        <td><%= survey.gender_group %></td>
+        <td><%= survey.edu_level_group %></td>
+        <td><%= survey.music_school %></td>
+        <td><%= survey.zip %></td>
+        <td><%= survey.credits_compositions_life %></td>
+        <td><%= survey.credits_recordings_life %></td>
+        <td><%= survey.shows_last_year %></td>
+        <td><%= survey.credits_sessions_life %></td>
+        <td><%= survey.batch %></td>
+        <td><%= survey.latitude %></td>
+        <td><%= survey.longitude %></td>
         <td><%= link_to 'Show', survey %></td>
         <td><%= link_to 'Edit', edit_survey_path(survey) %></td>
         <td><%= link_to 'Destroy', survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>

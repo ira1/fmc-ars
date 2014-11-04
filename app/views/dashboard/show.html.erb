@@ -9,7 +9,7 @@
 			 
 					<!-- Branding -->
 					<div class="six columns alpha logospace sixteen omega">
-						<a href="http://money.futureofmusic.org/" title="Artist Revenue Streams">
+						<a href="http://money.futureofmusic.org/" title="Artist Revenue Streams">.
 							<h1 id="logo" style="margin-top: 40px; margin-bottom: 30px;">
 						    		    		
 			        			<img id="logotype" src="http://money.futureofmusic.org/wordpress/wp-content/uploads/2012/02/ARSprojectheader940x70.png" alt="Artist Revenue Streams" />
@@ -175,13 +175,17 @@
   FTCLAIM 
 %>
 
-<div id="aboutthisgroup">
-	<span class="output_title">About This Group</span><br/>
-	538 (10%) have more than 15 years of experience.<br/>
-	15% are a member of at least one music organization.<br/>
-	10% claimed > 50 lifetime composition credits.<br/>
-	10% claimed > 50 shows last year.<br/>
-	10% claimed > 50 lifetime session credits.<br/>
+	<div id="aboutthisgroup" class="textual_output">
+		<span class="output_title" title="Characteristics of this selected group of survey respondents">About This Group</span><br/>
+		<ul class="textual_output">
+			<li title="15 or more years of experience"><strong>[xx%] are experienced</strong></li>
+			<li title="A union, trade association, PRO or service organization"><strong>[xx%] belong to a music organization</strong><li>
+		<li title="Of those respondents who took the long path through the survey"><strong>Musical credits</strong></li>
+			<li>[xx%] had more than 50 composing credits</li>
+			<li>[xx%] had more than 50 recording credits</li>
+			<li>[xx%] had more than 50 session credits</li>
+			<li>[xx%] played more than 50 shows in the prior 12 months</li>
+	</ul>
 </div>
 <p></p>
 <div id="ftclaim"><%=render "ftclaim/theoutput"%></div>
