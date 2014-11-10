@@ -9,7 +9,7 @@ class DashboardController < ApplicationController
     #
     @mgenre = (params.has_key?(:mgenre)) ? params[:mgenre] : "ALL"
     if @mgenre != "ALL"
-        @sample = @sample.where(:primary_genre_group => params[:mgenre] )
+        @sample = @sample.where(:genre_group_1 => params[:mgenre] )
     end
     #
     # Musician Type facet

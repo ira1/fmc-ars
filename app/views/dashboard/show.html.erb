@@ -95,17 +95,22 @@
 		<p>
 		<div id="genre_facet">
 	 		<h6>Main-$ Genre</h6>
-			<%= radio_button_tag("mgenre", "ALL", (@mgenre == "ALL" )) %>
+			<%= radio_button_tag("mgenre", "ALL", (params[:mgenre] == "ALL" )) %>
 			<%= label_tag("mgenre_ALL", "All genres")%><br/>
-			<%= radio_button_tag("mgenre", 1, (@mgenre == "1")) %>
+			
+			<%= radio_button_tag("mgenre", 1, (params[:mgenre] == "1")) %>
 			<%= label_tag("mgenre_1", "Classical")%><br/>
-			<%= radio_button_tag("mgenre", 2, (@mgenre == "2")) %>
+			
+			<%= radio_button_tag("mgenre", 2, (params[:mgenre] == "2")) %>
 			<%= label_tag("mgenre_2","Jazz")%><br/>
-			<%= radio_button_tag("mgenre", 3, (@mgenre == "3")) %>
+			
+			<%= radio_button_tag("mgenre", 3, (params[:mgenre] == "3")) %>
 			<%= label_tag("mgenre_3","Rock/Alt-Rock/Indie")%><br/>
-			<%= radio_button_tag("mgenre", 4, (@mgenre == "4")) %>
+			
+			<%= radio_button_tag("mgenre", 4, (params[:mgenre] == "4")) %>
 			<%= label_tag("mgenre_4","Country/Americana/Bluegrass")%><br/>
-			<%= radio_button_tag("mgenre", 0, (@mgenre == "0") ) %>
+			
+			<%= radio_button_tag("mgenre", 0, (params[:mgenre] == "0") ) %>
 			<%= label_tag("mgenre_0", "All Other Genres")%><br/>
 		</div> <%# genre %>
 	</p><p>
