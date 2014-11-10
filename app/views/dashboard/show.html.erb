@@ -144,19 +144,6 @@
 			<%= label_tag("careerexp_2", " Old School (More than 30 yrs)")%><br/>
 		</div>
 	</p><p>
-<%#		<div id="emi_facet">
-			<h2>Gross Estimated Music Income (EMI)</h2>
-			<%= radio_button_tag("emigroup", "ALL", (@emigroup == "ALL" )) % >
-			<%= label_tag("emigroup_ALL", "All reported income levels")% ><br/>
-			<%= radio_button_tag("emigroup", "1", (@emigroup == "1" )) % >
-			<%= label_tag("emigroup_1", "$1 to $24,999")% ><br/>
-			<%= radio_button_tag("emigroup", "2", (@emigroup == "2" )) % >
-			<%= label_tag("emigroup_2", "$25,000 to $$74,999")% ><br/>
-			<%= radio_button_tag("emigroup", "3", (@emigroup == "3" )) % >
-			<%= label_tag("emigroup_3", "$75,000 or more")% ><br/>
-		</div>
-		<p></p>
-%>
 		<div id="gender_facet">
 			<h6>Gender</h6>
 			<%= hidden_field_tag :gender_male, "false", :id => "gend1" %>
@@ -176,6 +163,21 @@
 			<%= label_tag(:gender_unanswered, "Did not answer")%>			
 		</div>
 		<p></p>
+		<div id="emi_facet">
+			<h6>Gross Estimated Music Income (EMI)</h6>
+			<%= radio_button_tag("emigroup", "ALL", true) %>
+			<%= label_tag("emigroup_ALL", "All income levels")%><br/>
+			
+			<%= radio_button_tag("emigroup", "1", (params[:emigroup] == "1" )) %>
+			<%= label_tag("emigroup_1", "$1 to $24,999")%><br/>
+			
+			<%= radio_button_tag("emigroup", "2", (params[:emigroup] == "2" )) %>
+			<%= label_tag("emigroup_2", "$25,000 to $$74,999")%><br/>
+			
+			<%= radio_button_tag("emigroup", "3", (params[:emigroup] == "3" ))%>
+			<%= label_tag("emigroup_3", "$75,000 or more") %><br/>
+		</div>
+				<p></p>
 		<%= submit_tag () %>
 	<% end %> <%# form_tag %>
 <br/>	
