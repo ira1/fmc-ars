@@ -41,3 +41,6 @@ gem 'spring',        group: :development
 # For enabling static asset serving on Heroku
 gem 'rails_12factor', group: :production
 
+# Add Highcharts
+gem 'highcharts-rails', '~> 4.0.4'
+
