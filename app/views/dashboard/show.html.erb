@@ -88,9 +88,9 @@
 			<%= check_box_tag(:role_session, :true, "false"!=params[:role_session]) %>
 			<%= label_tag(:role_session, "Session musician/freelancer")%><br/>
 
-			<%= hidden_field_tag :role_missing, "false", :id => "dummy6" %>
-			<%= check_box_tag(:role_missing, :true, "false"!=params[:role_missing]) %>
-			<%= label_tag(:role_missing, "Did not answer")%><br/>
+<%#			<%= hidden_field_tag :role_missing, "false", :id => "dummy6" % >
+			<%= check_box_tag(:role_missing, :true, "false"!=params[:role_missing]) % >
+			<%= label_tag(:role_missing, "Did not answer")% ><br/> %>
 		</div>
 		<p>
 		<div id="genre_facet">
@@ -125,7 +125,7 @@
 			<h6>Music education</h6>
 			<%= hidden_field_tag :trained, "false", :id => "train1" %>
 			<%= check_box_tag(:trained, "true", "true"==params[:trained])%>
-			<%= label_tag(:trained, "Attended a music industry school or conservatory")%>
+			<%= label_tag(:trained, "Received formal training", :title=>"Attended a music industry school or conservatory")%>
 		</div>
 	</p><p>
 		<div id="career_facet">
@@ -198,7 +198,7 @@
 		<span class="output_title">About This Group</span><span style="text-align:right;" title="Characteristics of this selected group of survey respondents"><%= image_tag "help_icon.png", :size => "16x16" %></span><br>
 		<ul class="textual_output">
 			<li title="15 or more years of experience"><strong>[xx%] are experienced</strong></li>
-			<li title="A union, trade association, PRO or service organization"><strong>[xx%] belong to a music organization</strong><li>
+<%#			<li title="A union, trade association, PRO or service organization"><strong>[xx%] belong to a music organization</strong><li>%>
 		<li title="Of those respondents who took the long path through the survey"><strong>Musical credits</strong></li>
 			<li>[xx%] had more than 50 composing credits</li>
 			<li>[xx%] had more than 50 recording credits</li>
@@ -213,7 +213,9 @@
 </div>
 </div> <%# container %>
 </div> <%# super-container %>
-<%# = debug(params) %>
+ url: <%= params[:role_session]%><br>
+ false != <% :true!= params[:role_session] %> .
+ <%= debug(params) %>
 <!-- Super Container - SubFooter Space -->
 <div class="super-container full-width" id="section-sub-footer">
 

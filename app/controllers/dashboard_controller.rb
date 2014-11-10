@@ -4,13 +4,40 @@ class DashboardController < ApplicationController
     @sample = Survey
 
     # TODO Protect from SQL injection attack/sanitize params
-    # 
+    
+    if params.has_key?(:musician_type)
+      # TODO make this more resilient against typos in param values
+      params[:role_session] = params[:role_performer] = params[:role_salaried] = params[:role_recording] = params[:role_composer]= "false"
+      case params[:musician_type]
+      when "COMPOSER"
+        params[:role_composer] = "true"
+      #      @sample = @sample.where(role_composer: true)
+      when "RECORDING"
+        params[:role_recording] = "true"
+        #      @sample = @sample.where(role_recording: true)      
+      when "SALARIED"
+        params[:role_salaried] = "true"
+        #      @sample = @sample.where(role_salaried: true)
+      when "PERFORMER"
+        params[:role_performer] = "true"
+        #      @sample = @sample.where(role_performer: true)
+      when "SESSION"
+        params[:role_session] = "true"
+        #      @sample = @sample.where(role_session: true)
+        #else
+        #single_mode = false;
+      end    
+    end
+    
+    #
+    #
     # Main-$ genre facet (MGenre)
     #
     @mgenre = (params.has_key?(:mgenre)) ? params[:mgenre] : "ALL"
     if @mgenre != "ALL"
         @sample = @sample.where(:genre_group_1 => params[:mgenre] )
     end
+    #
     #
     # Musician Type facet
     #
@@ -68,21 +95,7 @@ class DashboardController < ApplicationController
     if 0<facetroles then
         @sample = @sample.where(roleclause)
     end
-    
- 
-#    when "COMPOSER"
-#      @sample = @sample.where(role_composer: true)
-#    when "RECORDING"
-#      @sample = @sample.where(role_recording: true)      
-#    when "SALARIED"
-#      @sample = @sample.where(role_salaried: true)
-#    when "PERFORMER"
-#      @sample = @sample.where(role_performer: true)
-#    when "SESSION"
-#      @sample = @sample.where(role_session: true)
-    # else
-      # else stmts
-#    end
+    #
     #
     # Career Level facet
     #
