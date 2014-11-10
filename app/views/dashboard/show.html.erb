@@ -95,7 +95,7 @@
 		<p>
 		<div id="genre_facet">
 	 		<h6>Main money-generating genre</h6>
-			<%= radio_button_tag("mgenre", "ALL", (params[:mgenre] == "ALL" )) %>
+			<%= radio_button_tag("mgenre", "ALL", true) %>
 			<%= label_tag("mgenre_ALL", "All genres")%><br/>
 			
 			<%= radio_button_tag("mgenre", 1, (params[:mgenre] == "1")) %>
