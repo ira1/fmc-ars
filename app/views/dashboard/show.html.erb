@@ -65,7 +65,7 @@
  <div style="clear:both;display:block;overflow:hidden;visibility:hidden;width:0;height:0;"></div>
 	<%= form_tag ({controller: "dashboard", action: "show"}) do %>
     	<div id="role_facet">
-			<h6>Musician Type</h6> 
+			<h6>Musician type</h6> 
 <%#			<%= check_box_tag("role", "ALL", (@role == "ALL" )) % > %>
 <%#			<%= label_tag("role_ALL", "All types")% ><br/> %>
 			<%= hidden_field_tag :role_composer, "false", :id => "dummy1" %>
@@ -94,7 +94,7 @@
 		</div>
 		<p>
 		<div id="genre_facet">
-	 		<h6>Main-$ Genre</h6>
+	 		<h6>Main money-generating genre</h6>
 			<%= radio_button_tag("mgenre", "ALL", (params[:mgenre] == "ALL" )) %>
 			<%= label_tag("mgenre_ALL", "All genres")%><br/>
 			
@@ -111,23 +111,24 @@
 			<%= label_tag("mgenre_4","Country/Americana/Bluegrass")%><br/>
 			
 			<%= radio_button_tag("mgenre", 0, (params[:mgenre] == "0") ) %>
-			<%= label_tag("mgenre_0", "All Other Genres")%><br/>
+			<%= label_tag("mgenre_0", "All other genres")%><br/>
 		</div> <%# genre %>
 	</p><p>
 		<div id="fulltime_facet">
-			<h6>Full Time Musicians</h6>
-			<%= check_box_tag("ft")%>
-			<%= label_tag("ft", "F/T musicians only")%>
+			<h6>Full time musicians</h6>
+			<%= hidden_field_tag :ft, "false", :id => "ft1" %>
+			<%= check_box_tag(:ft, "true", "true" == params[:ft]) %>
+			<%= label_tag(:ft, "Full-time musicians only")%>
 		</div>
 	</p><p>
 		<div id="education_facet">
-			<h6>Music Education</h6>
+			<h6>Music education</h6>
 			<%= check_box_tag("trained")%>
 			<%= label_tag("trained", "Trained musicians only")%>
 		</div>
 	</p><p>
 		<div id="career_facet">
-			<h6>Career Experience</h6>
+			<h6>Career experience</h6>
 			<%# TODO Remove this debug<p>careerexp == <% @careerexp </p> %>
 			<%= radio_button_tag("careerexp", "ALL", (@careerexp == "ALL" )) %>
 			<%= label_tag("careerexp_ALL", "All musicians")%><br/>
