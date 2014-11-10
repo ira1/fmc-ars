@@ -149,14 +149,21 @@
 %>
 		<div id="gender_facet">
 			<h6>Gender</h6>
-			<%= check_box_tag("male", "male", true)%>
-			<%= label_tag("male", "Male")%><br>
-			<%= check_box_tag("female", "female", true)%>
-			<%= label_tag("female", "Female")%><br>
-			<%= check_box_tag("transgender", "transgender", true)%>
-			<%= label_tag("transgender", "Transgender")%><br>
-			<%= check_box_tag("unanswered", "unanswered", true)%>
-			<%= label_tag("unanswered", "Did not answer")%>			
+			<%= hidden_field_tag :gender_male, "false", :id => "gend1" %>
+			<%= check_box_tag(:gender_male, "true", "false"!=params[:gender_male])%>
+			<%= label_tag(:gender_male, "Male")%><br>
+
+			<%= hidden_field_tag :gender_female, "false", :id => "gend2" %>
+			<%= check_box_tag(:gender_female, "true", "false"!=params[:gender_female])%>
+			<%= label_tag(:gender_female, "Female")%><br>
+
+			<%= hidden_field_tag :gender_transgender, "false", :id => "gend3" %>
+			<%= check_box_tag(:gender_transgender, "true", "false"!=params[:gender_transgender])%>
+			<%= label_tag(:gender_transgender, "Transgender")%><br>
+
+			<%= hidden_field_tag :gender_unanswered, "false", :id => "gend4" %>
+			<%= check_box_tag(:gender_unanswered, "true", "false"!=params[:gender_unanswered])%>
+			<%= label_tag(:gender_unanswered, "Did not answer")%>			
 		</div>
 		<p></p>
 		<%= submit_tag () %>
