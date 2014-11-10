@@ -131,17 +131,17 @@
 		<div id="career_facet">
 			<h6>Career experience</h6>
 
-			<%= radio_button_tag("career_exp", "ALL", true ) %>
+			<%= radio_button_tag("careerexp", "ALL", true ) %>
 			<%= label_tag("careerexp_ALL", "All musicians")%><br/>
 
-			<%= radio_button_tag("career_exp", "1", (params[:career_exp] == "1" )) %>
+			<%= radio_button_tag("careerexp", "1", (params[:careerexp] == "1" )) %>
 			<%= label_tag("careerexp_1", "Emerging (Less than 16 yrs)")%><br/>
 
-			<%= radio_button_tag("career_exp", "2", (params[:career_exp] == "2" )) %>
+			<%= radio_button_tag("careerexp", "2", (params[:careerexp] == "2" )) %>
 			<%= label_tag("careerexp_2", "Established (16 to 30 yrs)")%><br/>
 
-			<%= radio_button_tag("career_exp", "3", (params[:career_exp] == "3" )) %>
-			<%= label_tag("careerexp_2", " Old School (More than 30 yrs)")%><br/>
+			<%= radio_button_tag("careerexp", "3", (params[:careerexp] == "3" )) %>
+			<%= label_tag("careerexp_3", " Old School (More than 30 yrs)")%><br/>
 		</div>
 	</p><p>
 		<div id="gender_facet">
