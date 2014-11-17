@@ -116,11 +116,19 @@ class DashboardController < ApplicationController
     end
     
     #
-    # Full time?
+    # Full time? (may contain nulls)
     #
     if "true"==params[:ft] then
       @sample = @sample.where("full_time = true")
     end
+    
+    #
+    # Went to music school or conservatory
+    #
+    if "true"==params[:trained] then
+      @sample = @sample.where("music_school = true")
+    end
+    
     #################### Outputs ######################
     
     #
