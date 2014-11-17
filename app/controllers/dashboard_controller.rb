@@ -129,6 +129,36 @@ class DashboardController < ApplicationController
       @sample = @sample.where("music_school = true")
     end
     
+    #
+    # Gender one of M,F,T or null
+    #
+    genderclause=""
+    if params.has_key?(:gender_male) && "true"==params[:gender_male] then
+      genderclause << "gender = 'M'"
+    end
+    if params.has_key?(:gender_female) && "true"==params[:gender_female] then
+      if genderclause.length > 0 then
+        genderclause << " OR "
+      end
+      genderclause << "gender = 'F'"
+    end
+    if params.has_key?(:gender_transgender) && "true"==params[:gender_transgender] then
+      if genderclause.length > 0 then
+        genderclause << " OR "
+      end
+      genderclause << "gender = 'T'"
+    end
+    if params.has_key?(:gender_unanswered) && "true"==params[:gender_unanswered] then
+      if genderclause.length > 0 then
+        genderclause << " OR "
+      end
+      genderclause << "gender is null or gender =''"
+    end
+    
+    if genderclause.length > 0 then
+      @sample = @sample.where(genderclause)
+    end
+    
     #################### Outputs ######################
     
     #
