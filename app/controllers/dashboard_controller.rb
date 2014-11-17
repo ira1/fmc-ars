@@ -9,6 +9,9 @@ class DashboardController < ApplicationController
     # TODO Test for version=1.0
     #
     
+    
+    ################### FILTERS ###################
+    
     #
     # Main-$ genre facet (MGenre)
     #
@@ -111,6 +114,14 @@ class DashboardController < ApplicationController
     if ("ALL" != @careerexp)
       @sample = @sample.where("experience_group_consolidated = ?", params[:careerexp])
     end
+    
+    #
+    # Full time?
+    #
+    if "true"==params[:ft] then
+      @sample = @sample.where("full_time = true")
+    end
+    #################### Outputs ######################
     
     #
     # AnnInc 
