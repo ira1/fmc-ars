@@ -5,6 +5,21 @@ class DashboardController < ApplicationController
 
     # TODO Protect from SQL injection attack/sanitize params
     
+    #
+    # TODO Test for version=1.0
+    #
+    
+    #
+    # Main-$ genre facet (MGenre)
+    #
+    @mgenre = (params.has_key?(:mgenre)) ? params[:mgenre] : "ALL"
+    if @mgenre != "ALL"
+        @sample = @sample.where(:genre_group_1 => params[:mgenre] )
+    end
+
+    #
+    #  if musician_type param is set assign/override the role parameter appropriately
+    #
     if params.has_key?(:musician_type)
       # TODO make this more resilient against typos in param values
       params[:role_session] = params[:role_performer] = params[:role_salaried] = params[:role_recording] = params[:role_composer]= "false"
@@ -31,22 +46,14 @@ class DashboardController < ApplicationController
     
     #
     #
-    # Main-$ genre facet (MGenre)
-    #
-    @mgenre = (params.has_key?(:mgenre)) ? params[:mgenre] : "ALL"
-    if @mgenre != "ALL"
-        @sample = @sample.where(:genre_group_1 => params[:mgenre] )
-    end
-    #
-    #
-    # Musician Type facet
+    #  ProcessRole parameters 
     #
     facetroles=0
     roleclause=""
-    if ("true"==params[:role_missing]) then 
-         roleclause = "(role_composer is null AND role_recording is null AND role_salaried is null AND role_performer is null AND role_session is null)"
-         facetroles+=1
-    end
+    #if ("true"==params[:role_missing]) then 
+    #     roleclause = "(role_composer is null AND role_recording is null AND role_salaried is null AND role_performer is null AND role_session is null)"
+    #     facetroles+=1
+    #end
     if ( "true"==params[:role_composer] ) then 
       if 0!=facetroles
         roleclause += " OR role_composer=true"
@@ -101,6 +108,9 @@ class DashboardController < ApplicationController
     #
     @careerexp = params.has_key?(:careerexp) ? params[:careerexp] : "ALL"
     #logger.info{"careerexp #{params.has_key?(:careerexp)} and is #{@careerexp}"}
+    if ("ALL" != @careerexp)
+      @sample = @sample.where("experience_group_consolidated = ?", params[:careerexp])
+    end
     
     #
     # AnnInc 
