@@ -111,8 +111,13 @@ class DashboardController < ApplicationController
     #
     @careerexp = params.has_key?(:careerexp) ? params[:careerexp] : "ALL"
     #logger.info{"careerexp #{params.has_key?(:careerexp)} and is #{@careerexp}"}
-    if ("ALL" != @careerexp)
-      @sample = @sample.where("experience_group_consolidated = ?", params[:careerexp])
+    case @careerexp
+    when  "1" 
+      @sample = @sample.where("experience_group < 4")
+    when "2"
+      @sample = @sample.where("experience_group > 3 and experience_group < 7")
+    when "3"
+      @sample = @sample.where("experience_group > 6")
     end
     
     #
@@ -162,11 +167,16 @@ class DashboardController < ApplicationController
     #################### Outputs ######################
     
     #
+    # Shared by all Outputs
+    #
+    @NCount = @sample.count
+    
+    #
     # AnnInc 
     # TODO Refactor into AnnInc method & Model
     #
-    @AvgEMI = @sample.average(:EMI)
-    @EMISampleSize = @sample.count(:EMI)
+    @AvgEMI = @sample.average(:emi)
+    @EMISampleSize = @sample.count(:emi)
     @AvgEMI ||= 0 # if nil (or false) set to 0
     
     #
@@ -183,6 +193,19 @@ class DashboardController < ApplicationController
     #
     #  TODO Refactor into AboutGroupClaim method
     #
-    
+    # experience_group should have no nulls
+     @AboutPctExperienced = 100*@sample.where("experience_group > 3").count/@sample.count
+     #
+     @AboutCompositionsNCount = @sample.count(:credits_compositions_life)
+     @AboutCompositionsPctAnswered = (0==@NCount) ? 0 : (@AboutCompositionsNCount / @NCount)
+     @AboutPctOver50Compositions = (0==@AboutCompositionsNCount) ? 0 :100*@sample.where("credits_compositions_life > 50").count/@AboutCompositionsNCount
+     #
+     @AboutRecordingsNCount = @sample.count(:credits_recordings_life)
+     @AboutRecordingsPctAnswered = (0==@NCount) ? 0 : (@AboutRecordingsNCount / @NCount)
+     @AboutPctOver50Recordings = (0==@AboutRecordingsNCount) ? 0 : 100*@sample.where("credits_recordings_life > 50").count/@AboutRecordingsNCount
+     #
+     @AboutShowsNCount = @sample.count(:shows_last_year)
+     @AboutShowsPctAnswered = (0==@NCount) ? 0 : (@AboutShowsNCount / @NCount)
+     @AboutPctOver50Shows = (0==@AboutShowsNCount) ? 0 : 100*@sample.where("shows_last_year > 50").count/@AboutShowsNCount
   end
 end

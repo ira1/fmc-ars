@@ -193,22 +193,25 @@
 <%# 
   FTCLAIM 
 %>
-
-	<div id="aboutthisgroup" class="textual_output">
-		<span class="output_title">About This Group</span><span style="text-align:right;" title="Characteristics of this selected group of survey respondents"><%= image_tag "help_icon.png", :size => "16x16" %></span><br>
-		<ul class="textual_output">
-			<li title="15 or more years of experience"><strong>[xx%] are experienced</strong></li>
-<%#			<li title="A union, trade association, PRO or service organization"><strong>[xx%] belong to a music organization</strong><li>%>
-		<li title="Of those respondents who took the long path through the survey"><strong>Musical credits</strong></li>
-			<li>[xx%] had more than 50 composing credits</li>
-			<li>[xx%] had more than 50 recording credits</li>
-<%#>			<li>[xx%] had more than 50 session credits</li> %>
-			<li>[xx%] played more than 50 shows in the prior 12 months</li>
-	</ul>
-</div>
 <p></p>
 <div id="ftclaim"><%=render "ftclaim/theoutput"%></div>
 <p></p>
+<%#
+  Annual Income
+%>
+	<div id="aboutthisgroup" class="textual_output">
+		<span class="output_title">About This Group</span><span style="text-align:right;" title="Characteristics of this selected group of survey respondents"><%= image_tag "help_icon.png", :size => "16x16" %></span><br>
+		<ul class="textual_output">
+			<li><strong><%= @AboutPctExperienced %>% have 16 or more years of experience</strong></li>
+<%#			<li title="A union, trade association, PRO or service organization"><strong>[xx%] belong to a music organization</strong><li>%>
+		<%# l i title="Of those respondents who took the long path through the survey">< s trong>Musical credits</strong></li> %>
+			<li><%= @AboutPctOver50Compositions %>% had more than 50 composing credits. 
+				<span title="Only <%= @AboutCompositionsPctAnswered %>% of respondents answered this question">(N=<%= @AboutCompositionsNCount %>)</span></li>
+			<li><%= @AboutPctOver50Recordings %>% had more than 50 recording credits <span title="Only <%= @AboutRecordingsPctAnswered %>% of of respondents answered this question">(N=<%= @AboutRecordingsNCount %>)</span></li>
+<%#>			<li>[xx%] had more than 50 session credits</li> %>
+			<li><%= @AboutPctOver50Shows %>% played more than 50 shows in the prior 12 months<span title="Only <%= @AboutShowsPctAnswered %>% of of respondents answered this question"> (N=<%=@AboutShowsNCount%>)</span></li>
+	</ul>
+</div>
 </div>
 </div>
 </div> <%# container %>
@@ -244,7 +247,7 @@ $(function () {
             text: 'Gross estimated music income: <%= number_to_currency(@AvgEMI) %> '
         },
 		subtitle:{
-			text: "Allocation of music-related income by category over past 12 months, and perceived changes in income over prior 5 years. N=<%= @EMI_sample_count %>."
+			text: "Allocation of music-related income by category over past 12 months, and perceived changes in income over prior 5 years. N=<%= @EMISampleSize %>."
 		},
         xAxis: {
             categories: ['Live performance', 'Teaching', 'Salaried player', 'Session work ', 'Compositions ', 'Sound recordings ', 'Merchandise and branding', 'Other' ]
