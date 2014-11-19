@@ -139,25 +139,25 @@ class DashboardController < ApplicationController
     #
     genderclause=""
     if params.has_key?(:gender_male) && "true"==params[:gender_male] then
-      genderclause << "gender = 'M'"
+      genderclause << "gender_group = 'M'"
     end
     if params.has_key?(:gender_female) && "true"==params[:gender_female] then
       if genderclause.length > 0 then
         genderclause << " OR "
       end
-      genderclause << "gender = 'F'"
+      genderclause << "gender_group = 'F'"
     end
     if params.has_key?(:gender_transgender) && "true"==params[:gender_transgender] then
       if genderclause.length > 0 then
         genderclause << " OR "
       end
-      genderclause << "gender = 'T'"
+      genderclause << "gender_group = 'T'"
     end
     if params.has_key?(:gender_unanswered) && "true"==params[:gender_unanswered] then
       if genderclause.length > 0 then
         genderclause << " OR "
       end
-      genderclause << "gender is null or gender =''"
+      genderclause << "gender_group is null or gender_group =''"
     end
     
     if genderclause.length > 0 then
