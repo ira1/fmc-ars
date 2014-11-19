@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :imp_surveys
+
   resources :surveytests
 
   get 'dashboard/show'

@@ -1,0 +1,1137 @@
+<%= form_for(@imp_survey) do |f| %>
+  <% if @imp_survey.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@imp_survey.errors.count, "error") %> prohibited this imp_survey from being saved:</h2>
+
+      <ul>
+      <% @imp_survey.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :respondentid %><br>
+    <%= f.text_field :respondentid %>
+  </div>
+  <div class="field">
+    <%= f.label :collectorid %><br>
+    <%= f.text_field :collectorid %>
+  </div>
+  <div class="field">
+    <%= f.label :startdate %><br>
+    <%= f.text_field :startdate %>
+  </div>
+  <div class="field">
+    <%= f.label :enddate %><br>
+    <%= f.text_field :enddate %>
+  </div>
+  <div class="field">
+    <%= f.label :completetime %><br>
+    <%= f.text_field :completetime %>
+  </div>
+  <div class="field">
+    <%= f.label :ipaddress %><br>
+    <%= f.text_field :ipaddress %>
+  </div>
+  <div class="field">
+    <%= f.label :consent %><br>
+    <%= f.text_field :consent %>
+  </div>
+  <div class="field">
+    <%= f.label :birth_year %><br>
+    <%= f.number_field :birth_year %>
+  </div>
+  <div class="field">
+    <%= f.label :age %><br>
+    <%= f.text_field :age %>
+  </div>
+  <div class="field">
+    <%= f.label :age_group %><br>
+    <%= f.number_field :age_group %>
+  </div>
+  <div class="field">
+    <%= f.label :citizen %><br>
+    <%= f.text_field :citizen %>
+  </div>
+  <div class="field">
+    <%= f.label :experience %><br>
+    <%= f.text_field :experience %>
+  </div>
+  <div class="field">
+    <%= f.label :experience_group %><br>
+    <%= f.number_field :experience_group %>
+  </div>
+  <div class="field">
+    <%= f.label :hours %><br>
+    <%= f.text_field :hours %>
+  </div>
+  <div class="field">
+    <%= f.label :hours_group %><br>
+    <%= f.number_field :hours_group %>
+  </div>
+  <div class="field">
+    <%= f.label :perspective %><br>
+    <%= f.text_field :perspective %>
+  </div>
+  <div class="field">
+    <%= f.label :ascap %><br>
+    <%= f.text_field :ascap %>
+  </div>
+  <div class="field">
+    <%= f.label :bmi %><br>
+    <%= f.text_field :bmi %>
+  </div>
+  <div class="field">
+    <%= f.label :sesac %><br>
+    <%= f.text_field :sesac %>
+  </div>
+  <div class="field">
+    <%= f.label :soundexchange %><br>
+    <%= f.text_field :soundexchange %>
+  </div>
+  <div class="field">
+    <%= f.label :no_pro %><br>
+    <%= f.text_field :no_pro %>
+  </div>
+  <div class="field">
+    <%= f.label :member_pro %><br>
+    <%= f.check_box :member_pro %>
+  </div>
+  <div class="field">
+    <%= f.label :foreign_pro %><br>
+    <%= f.text_field :foreign_pro %>
+  </div>
+  <div class="field">
+    <%= f.label :afm %><br>
+    <%= f.text_field :afm %>
+  </div>
+  <div class="field">
+    <%= f.label :aftra %><br>
+    <%= f.text_field :aftra %>
+  </div>
+  <div class="field">
+    <%= f.label :agma %><br>
+    <%= f.text_field :agma %>
+  </div>
+  <div class="field">
+    <%= f.label :sag %><br>
+    <%= f.text_field :sag %>
+  </div>
+  <div class="field">
+    <%= f.label :naras %><br>
+    <%= f.text_field :naras %>
+  </div>
+  <div class="field">
+    <%= f.label :songguild %><br>
+    <%= f.text_field :songguild %>
+  </div>
+  <div class="field">
+    <%= f.label :nsai %><br>
+    <%= f.text_field :nsai %>
+  </div>
+  <div class="field">
+    <%= f.label :countryma %><br>
+    <%= f.text_field :countryma %>
+  </div>
+  <div class="field">
+    <%= f.label :acf %><br>
+    <%= f.text_field :acf %>
+  </div>
+  <div class="field">
+    <%= f.label :amc %><br>
+    <%= f.text_field :amc %>
+  </div>
+  <div class="field">
+    <%= f.label :mtc %><br>
+    <%= f.text_field :mtc %>
+  </div>
+  <div class="field">
+    <%= f.label :chamberma %><br>
+    <%= f.text_field :chamberma %>
+  </div>
+  <div class="field">
+    <%= f.label :jen %><br>
+    <%= f.text_field :jen %>
+  </div>
+  <div class="field">
+    <%= f.label :aaj %><br>
+    <%= f.text_field :aaj %>
+  </div>
+  <div class="field">
+    <%= f.label :jazzcorner %><br>
+    <%= f.text_field :jazzcorner %>
+  </div>
+  <div class="field">
+    <%= f.label :ama %><br>
+    <%= f.text_field :ama %>
+  </div>
+  <div class="field">
+    <%= f.label :ema %><br>
+    <%= f.text_field :ema %>
+  </div>
+  <div class="field">
+    <%= f.label :folkalliance %><br>
+    <%= f.text_field :folkalliance %>
+  </div>
+  <div class="field">
+    <%= f.label :jpf %><br>
+    <%= f.text_field :jpf %>
+  </div>
+  <div class="field">
+    <%= f.label :gma %><br>
+    <%= f.text_field :gma %>
+  </div>
+  <div class="field">
+    <%= f.label :ibma %><br>
+    <%= f.text_field :ibma %>
+  </div>
+  <div class="field">
+    <%= f.label :fracatlas %><br>
+    <%= f.text_field :fracatlas %>
+  </div>
+  <div class="field">
+    <%= f.label :napama %><br>
+    <%= f.text_field :napama %>
+  </div>
+  <div class="field">
+    <%= f.label :apap %><br>
+    <%= f.text_field :apap %>
+  </div>
+  <div class="field">
+    <%= f.label :no_music_org %><br>
+    <%= f.text_field :no_music_org %>
+  </div>
+  <div class="field">
+    <%= f.label :member_music_org %><br>
+    <%= f.check_box :member_music_org %>
+  </div>
+  <div class="field">
+    <%= f.label :other_music_org %><br>
+    <%= f.text_field :other_music_org %>
+  </div>
+  <div class="field">
+    <%= f.label :genre1 %><br>
+    <%= f.text_field :genre1 %>
+  </div>
+  <div class="field">
+    <%= f.label :primary_genre_consolidated %><br>
+    <%= f.text_field :primary_genre_consolidated %>
+  </div>
+  <div class="field">
+    <%= f.label :genre_group_1 %><br>
+    <%= f.number_field :genre_group_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :genre2 %><br>
+    <%= f.text_field :genre2 %>
+  </div>
+  <div class="field">
+    <%= f.label :genre3 %><br>
+    <%= f.text_field :genre3 %>
+  </div>
+  <div class="field">
+    <%= f.label :other_genre %><br>
+    <%= f.text_field :other_genre %>
+  </div>
+  <div class="field">
+    <%= f.label :moneygenre1 %><br>
+    <%= f.text_field :moneygenre1 %>
+  </div>
+  <div class="field">
+    <%= f.label :moneygenre_consolidated %><br>
+    <%= f.text_field :moneygenre_consolidated %>
+  </div>
+  <div class="field">
+    <%= f.label :money_genre_group_1 %><br>
+    <%= f.number_field :money_genre_group_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :moneygenre2 %><br>
+    <%= f.text_field :moneygenre2 %>
+  </div>
+  <div class="field">
+    <%= f.label :cowriter %><br>
+    <%= f.text_field :cowriter %>
+  </div>
+  <div class="field">
+    <%= f.label :band %><br>
+    <%= f.text_field :band %>
+  </div>
+  <div class="field">
+    <%= f.label :producer %><br>
+    <%= f.text_field :producer %>
+  </div>
+  <div class="field">
+    <%= f.label :label %><br>
+    <%= f.text_field :label %>
+  </div>
+  <div class="field">
+    <%= f.label :publisher %><br>
+    <%= f.text_field :publisher %>
+  </div>
+  <div class="field">
+    <%= f.label :bizmanager %><br>
+    <%= f.text_field :bizmanager %>
+  </div>
+  <div class="field">
+    <%= f.label :booking %><br>
+    <%= f.text_field :booking %>
+  </div>
+  <div class="field">
+    <%= f.label :tourmanager %><br>
+    <%= f.text_field :tourmanager %>
+  </div>
+  <div class="field">
+    <%= f.label :soundperson %><br>
+    <%= f.text_field :soundperson %>
+  </div>
+  <div class="field">
+    <%= f.label :roadcrew %><br>
+    <%= f.text_field :roadcrew %>
+  </div>
+  <div class="field">
+    <%= f.label :publicist %><br>
+    <%= f.text_field :publicist %>
+  </div>
+  <div class="field">
+    <%= f.label :fanstreetteam %><br>
+    <%= f.text_field :fanstreetteam %>
+  </div>
+  <div class="field">
+    <%= f.label :webmaster %><br>
+    <%= f.text_field :webmaster %>
+  </div>
+  <div class="field">
+    <%= f.label :graphicdesign %><br>
+    <%= f.text_field :graphicdesign %>
+  </div>
+  <div class="field">
+    <%= f.label :accountant %><br>
+    <%= f.text_field :accountant %>
+  </div>
+  <div class="field">
+    <%= f.label :attorney %><br>
+    <%= f.text_field :attorney %>
+  </div>
+  <div class="field">
+    <%= f.label :other_team_member %><br>
+    <%= f.text_field :other_team_member %>
+  </div>
+  <div class="field">
+    <%= f.label :pie_song %><br>
+    <%= f.number_field :pie_song %>
+  </div>
+  <div class="field">
+    <%= f.label :pie_salary %><br>
+    <%= f.number_field :pie_salary %>
+  </div>
+  <div class="field">
+    <%= f.label :pie_live %><br>
+    <%= f.number_field :pie_live %>
+  </div>
+  <div class="field">
+    <%= f.label :pie_record %><br>
+    <%= f.number_field :pie_record %>
+  </div>
+  <div class="field">
+    <%= f.label :pie_session %><br>
+    <%= f.number_field :pie_session %>
+  </div>
+  <div class="field">
+    <%= f.label :pie_merch %><br>
+    <%= f.number_field :pie_merch %>
+  </div>
+  <div class="field">
+    <%= f.label :pie_teach %><br>
+    <%= f.number_field :pie_teach %>
+  </div>
+  <div class="field">
+    <%= f.label :pie_other %><br>
+    <%= f.number_field :pie_other %>
+  </div>
+  <div class="field">
+    <%= f.label :pie_total %><br>
+    <%= f.text_field :pie_total %>
+  </div>
+  <div class="field">
+    <%= f.label :change_song %><br>
+    <%= f.text_field :change_song %>
+  </div>
+  <div class="field">
+    <%= f.label :compose_inc_direction %><br>
+    <%= f.number_field :compose_inc_direction %>
+  </div>
+  <div class="field">
+    <%= f.label :change_salary %><br>
+    <%= f.text_field :change_salary %>
+  </div>
+  <div class="field">
+    <%= f.label :salary_inc_direction %><br>
+    <%= f.number_field :salary_inc_direction %>
+  </div>
+  <div class="field">
+    <%= f.label :change_live %><br>
+    <%= f.text_field :change_live %>
+  </div>
+  <div class="field">
+    <%= f.label :perform_inc_direction %><br>
+    <%= f.number_field :perform_inc_direction %>
+  </div>
+  <div class="field">
+    <%= f.label :change_record %><br>
+    <%= f.text_field :change_record %>
+  </div>
+  <div class="field">
+    <%= f.label :record_inc_direction %><br>
+    <%= f.number_field :record_inc_direction %>
+  </div>
+  <div class="field">
+    <%= f.label :change_session %><br>
+    <%= f.text_field :change_session %>
+  </div>
+  <div class="field">
+    <%= f.label :session_inc_direction %><br>
+    <%= f.number_field :session_inc_direction %>
+  </div>
+  <div class="field">
+    <%= f.label :change_merch %><br>
+    <%= f.text_field :change_merch %>
+  </div>
+  <div class="field">
+    <%= f.label :merch_inc_direction %><br>
+    <%= f.number_field :merch_inc_direction %>
+  </div>
+  <div class="field">
+    <%= f.label :change_teach %><br>
+    <%= f.text_field :change_teach %>
+  </div>
+  <div class="field">
+    <%= f.label :teach_inc_direction %><br>
+    <%= f.number_field :teach_inc_direction %>
+  </div>
+  <div class="field">
+    <%= f.label :rev_youtube %><br>
+    <%= f.check_box :rev_youtube %>
+  </div>
+  <div class="field">
+    <%= f.label :rev_webads %><br>
+    <%= f.check_box :rev_webads %>
+  </div>
+  <div class="field">
+    <%= f.label :rev_fanfund %><br>
+    <%= f.check_box :rev_fanfund %>
+  </div>
+  <div class="field">
+    <%= f.label :rev_fanclub %><br>
+    <%= f.check_box :rev_fanclub %>
+  </div>
+  <div class="field">
+    <%= f.label :rev_persona %><br>
+    <%= f.check_box :rev_persona %>
+  </div>
+  <div class="field">
+    <%= f.label :rev_endorse %><br>
+    <%= f.check_box :rev_endorse %>
+  </div>
+  <div class="field">
+    <%= f.label :rev_acting %><br>
+    <%= f.check_box :rev_acting %>
+  </div>
+  <div class="field">
+    <%= f.label :rev_corp %><br>
+    <%= f.check_box :rev_corp %>
+  </div>
+  <div class="field">
+    <%= f.label :rev_sample %><br>
+    <%= f.check_box :rev_sample %>
+  </div>
+  <div class="field">
+    <%= f.label :rev_honoraria %><br>
+    <%= f.check_box :rev_honoraria %>
+  </div>
+  <div class="field">
+    <%= f.label :rev_grants %><br>
+    <%= f.check_box :rev_grants %>
+  </div>
+  <div class="field">
+    <%= f.label :rev_produce %><br>
+    <%= f.check_box :rev_produce %>
+  </div>
+  <div class="field">
+    <%= f.label :rev_pubadvance %><br>
+    <%= f.check_box :rev_pubadvance %>
+  </div>
+  <div class="field">
+    <%= f.label :ascaplus %><br>
+    <%= f.check_box :ascaplus %>
+  </div>
+  <div class="field">
+    <%= f.label :aarc %><br>
+    <%= f.check_box :aarc %>
+  </div>
+  <div class="field">
+    <%= f.label :afm_2 %><br>
+    <%= f.check_box :afm_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :afm_srsp %><br>
+    <%= f.check_box :afm_srsp %>
+  </div>
+  <div class="field">
+    <%= f.label :afm_aftra %><br>
+    <%= f.check_box :afm_aftra %>
+  </div>
+  <div class="field">
+    <%= f.label :aftra_csp %><br>
+    <%= f.check_box :aftra_csp %>
+  </div>
+  <div class="field">
+    <%= f.label :label_settle %><br>
+    <%= f.check_box :label_settle %>
+  </div>
+  <div class="field">
+    <%= f.label :income %><br>
+    <%= f.text_field :income %>
+  </div>
+  <div class="field">
+    <%= f.label :midrange_income %><br>
+    <%= f.text_field :midrange_income %>
+  </div>
+  <div class="field">
+    <%= f.label :music_inc_share_pct %><br>
+    <%= f.text_field :music_inc_share_pct %>
+  </div>
+  <div class="field">
+    <%= f.label :income_strata %><br>
+    <%= f.text_field :income_strata %>
+  </div>
+  <div class="field">
+    <%= f.label :income_strata_group %><br>
+    <%= f.number_field :income_strata_group %>
+  </div>
+  <div class="field">
+    <%= f.label :emi %><br>
+    <%= f.number_field :emi %>
+  </div>
+  <div class="field">
+    <%= f.label :full_time %><br>
+    <%= f.check_box :full_time %>
+  </div>
+  <div class="field">
+    <%= f.label :seasoning_group %><br>
+    <%= f.number_field :seasoning_group %>
+  </div>
+  <div class="field">
+    <%= f.label :path %><br>
+    <%= f.text_field :path %>
+  </div>
+  <div class="field">
+    <%= f.label :path_group %><br>
+    <%= f.number_field :path_group %>
+  </div>
+  <div class="field">
+    <%= f.label :short_role_music %><br>
+    <%= f.text_field :short_role_music %>
+  </div>
+  <div class="field">
+    <%= f.label :short_role_lyrics %><br>
+    <%= f.text_field :short_role_lyrics %>
+  </div>
+  <div class="field">
+    <%= f.label :short_role_composer %><br>
+    <%= f.text_field :short_role_composer %>
+  </div>
+  <div class="field">
+    <%= f.label :short_role_recording %><br>
+    <%= f.text_field :short_role_recording %>
+  </div>
+  <div class="field">
+    <%= f.label :short_role_record %><br>
+    <%= f.text_field :short_role_record %>
+  </div>
+  <div class="field">
+    <%= f.label :short_role_perform_desc %><br>
+    <%= f.text_field :short_role_perform_desc %>
+  </div>
+  <div class="field">
+    <%= f.label :short_role_perform %><br>
+    <%= f.text_field :short_role_perform %>
+  </div>
+  <div class="field">
+    <%= f.label :short_role_orchestra_desc %><br>
+    <%= f.text_field :short_role_orchestra_desc %>
+  </div>
+  <div class="field">
+    <%= f.label :short_role_orchestra %><br>
+    <%= f.text_field :short_role_orchestra %>
+  </div>
+  <div class="field">
+    <%= f.label :short_role_session_desc %><br>
+    <%= f.text_field :short_role_session_desc %>
+  </div>
+  <div class="field">
+    <%= f.label :short_role_session %><br>
+    <%= f.text_field :short_role_session %>
+  </div>
+  <div class="field">
+    <%= f.label :short_role_teach_desc %><br>
+    <%= f.text_field :short_role_teach_desc %>
+  </div>
+  <div class="field">
+    <%= f.label :short_role_teach %><br>
+    <%= f.text_field :short_role_teach %>
+  </div>
+  <div class="field">
+    <%= f.label :short_role_admin_desc %><br>
+    <%= f.text_field :short_role_admin_desc %>
+  </div>
+  <div class="field">
+    <%= f.label :short_role_admin %><br>
+    <%= f.text_field :short_role_admin %>
+  </div>
+  <div class="field">
+    <%= f.label :short_moneyrole %><br>
+    <%= f.text_field :short_moneyrole %>
+  </div>
+  <div class="field">
+    <%= f.label :med_moneyrole %><br>
+    <%= f.text_field :med_moneyrole %>
+  </div>
+  <div class="field">
+    <%= f.label :long_composer %><br>
+    <%= f.text_field :long_composer %>
+  </div>
+  <div class="field">
+    <%= f.label :long_recordings %><br>
+    <%= f.text_field :long_recordings %>
+  </div>
+  <div class="field">
+    <%= f.label :long_liveperformance %><br>
+    <%= f.text_field :long_liveperformance %>
+  </div>
+  <div class="field">
+    <%= f.label :long_session %><br>
+    <%= f.text_field :long_session %>
+  </div>
+  <div class="field">
+    <%= f.label :long_teacher %><br>
+    <%= f.text_field :long_teacher %>
+  </div>
+  <div class="field">
+    <%= f.label :role_composer %><br>
+    <%= f.check_box :role_composer %>
+  </div>
+  <div class="field">
+    <%= f.label :role_recording %><br>
+    <%= f.check_box :role_recording %>
+  </div>
+  <div class="field">
+    <%= f.label :role_performer %><br>
+    <%= f.check_box :role_performer %>
+  </div>
+  <div class="field">
+    <%= f.label :role_session %><br>
+    <%= f.check_box :role_session %>
+  </div>
+  <div class="field">
+    <%= f.label :role_teacher %><br>
+    <%= f.check_box :role_teacher %>
+  </div>
+  <div class="field">
+    <%= f.label :other_inc_streams %><br>
+    <%= f.text_field :other_inc_streams %>
+  </div>
+  <div class="field">
+    <%= f.label :other_dec_streams %><br>
+    <%= f.text_field :other_dec_streams %>
+  </div>
+  <div class="field">
+    <%= f.label :confirm_perspective %><br>
+    <%= f.text_field :confirm_perspective %>
+  </div>
+  <div class="field">
+    <%= f.label :radio_com %><br>
+    <%= f.text_field :radio_com %>
+  </div>
+  <div class="field">
+    <%= f.label :freq_commercial_radio %><br>
+    <%= f.number_field :freq_commercial_radio %>
+  </div>
+  <div class="field">
+    <%= f.label :radio_noncom %><br>
+    <%= f.text_field :radio_noncom %>
+  </div>
+  <div class="field">
+    <%= f.label :freq_noncommercial_radio %><br>
+    <%= f.number_field :freq_noncommercial_radio %>
+  </div>
+  <div class="field">
+    <%= f.label :radio_internet %><br>
+    <%= f.text_field :radio_internet %>
+  </div>
+  <div class="field">
+    <%= f.label :freq_internet_radio %><br>
+    <%= f.number_field :freq_internet_radio %>
+  </div>
+  <div class="field">
+    <%= f.label :radio_satellite %><br>
+    <%= f.text_field :radio_satellite %>
+  </div>
+  <div class="field">
+    <%= f.label :freq_satellite_radio %><br>
+    <%= f.number_field :freq_satellite_radio %>
+  </div>
+  <div class="field">
+    <%= f.label :radio_cable %><br>
+    <%= f.text_field :radio_cable %>
+  </div>
+  <div class="field">
+    <%= f.label :freq_cable_radio %><br>
+    <%= f.number_field :freq_cable_radio %>
+  </div>
+  <div class="field">
+    <%= f.label :web_produce %><br>
+    <%= f.text_field :web_produce %>
+  </div>
+  <div class="field">
+    <%= f.label :comfort_net_produce %><br>
+    <%= f.number_field :comfort_net_produce %>
+  </div>
+  <div class="field">
+    <%= f.label :web_promote %><br>
+    <%= f.text_field :web_promote %>
+  </div>
+  <div class="field">
+    <%= f.label :comfort_net_promote %><br>
+    <%= f.number_field :comfort_net_promote %>
+  </div>
+  <div class="field">
+    <%= f.label :web_distro %><br>
+    <%= f.text_field :web_distro %>
+  </div>
+  <div class="field">
+    <%= f.label :comfort_net_distribute %><br>
+    <%= f.number_field :comfort_net_distribute %>
+  </div>
+  <div class="field">
+    <%= f.label :web_collab %><br>
+    <%= f.text_field :web_collab %>
+  </div>
+  <div class="field">
+    <%= f.label :comfort_net_collaborate %><br>
+    <%= f.number_field :comfort_net_collaborate %>
+  </div>
+  <div class="field">
+    <%= f.label :web_fans %><br>
+    <%= f.text_field :web_fans %>
+  </div>
+  <div class="field">
+    <%= f.label :comfort_net_fanconnect %><br>
+    <%= f.number_field :comfort_net_fanconnect %>
+  </div>
+  <div class="field">
+    <%= f.label :ableton %><br>
+    <%= f.text_field :ableton %>
+  </div>
+  <div class="field">
+    <%= f.label :garageband %><br>
+    <%= f.text_field :garageband %>
+  </div>
+  <div class="field">
+    <%= f.label :digitalperformer %><br>
+    <%= f.text_field :digitalperformer %>
+  </div>
+  <div class="field">
+    <%= f.label :finale %><br>
+    <%= f.text_field :finale %>
+  </div>
+  <div class="field">
+    <%= f.label :logic %><br>
+    <%= f.text_field :logic %>
+  </div>
+  <div class="field">
+    <%= f.label :maximuspe %><br>
+    <%= f.text_field :maximuspe %>
+  </div>
+  <div class="field">
+    <%= f.label :prop_reason %><br>
+    <%= f.text_field :prop_reason %>
+  </div>
+  <div class="field">
+    <%= f.label :prop_record %><br>
+    <%= f.text_field :prop_record %>
+  </div>
+  <div class="field">
+    <%= f.label :pro_tools %><br>
+    <%= f.text_field :pro_tools %>
+  </div>
+  <div class="field">
+    <%= f.label :sibelius %><br>
+    <%= f.text_field :sibelius %>
+  </div>
+  <div class="field">
+    <%= f.label :virtual_dj %><br>
+    <%= f.text_field :virtual_dj %>
+  </div>
+  <div class="field">
+    <%= f.label :other_software %><br>
+    <%= f.text_field :other_software %>
+  </div>
+  <div class="field">
+    <%= f.label :webblog %><br>
+    <%= f.text_field :webblog %>
+  </div>
+  <div class="field">
+    <%= f.label :bandcamp %><br>
+    <%= f.text_field :bandcamp %>
+  </div>
+  <div class="field">
+    <%= f.label :bandletter %><br>
+    <%= f.text_field :bandletter %>
+  </div>
+  <div class="field">
+    <%= f.label :bandzoogle %><br>
+    <%= f.text_field :bandzoogle %>
+  </div>
+  <div class="field">
+    <%= f.label :cash_music %><br>
+    <%= f.text_field :cash_music %>
+  </div>
+  <div class="field">
+    <%= f.label :cdbaby %><br>
+    <%= f.text_field :cdbaby %>
+  </div>
+  <div class="field">
+    <%= f.label :facebook %><br>
+    <%= f.text_field :facebook %>
+  </div>
+  <div class="field">
+    <%= f.label :fanbridge %><br>
+    <%= f.text_field :fanbridge %>
+  </div>
+  <div class="field">
+    <%= f.label :flickr %><br>
+    <%= f.text_field :flickr %>
+  </div>
+  <div class="field">
+    <%= f.label :foursquare %><br>
+    <%= f.text_field :foursquare %>
+  </div>
+  <div class="field">
+    <%= f.label :mailchimp %><br>
+    <%= f.text_field :mailchimp %>
+  </div>
+  <div class="field">
+    <%= f.label :myspace %><br>
+    <%= f.text_field :myspace %>
+  </div>
+  <div class="field">
+    <%= f.label :nextbigsound %><br>
+    <%= f.text_field :nextbigsound %>
+  </div>
+  <div class="field">
+    <%= f.label :nimbit %><br>
+    <%= f.text_field :nimbit %>
+  </div>
+  <div class="field">
+    <%= f.label :reverbnation %><br>
+    <%= f.text_field :reverbnation %>
+  </div>
+  <div class="field">
+    <%= f.label :rootmusic %><br>
+    <%= f.text_field :rootmusic %>
+  </div>
+  <div class="field">
+    <%= f.label :rumblefish %><br>
+    <%= f.text_field :rumblefish %>
+  </div>
+  <div class="field">
+    <%= f.label :songkick %><br>
+    <%= f.text_field :songkick %>
+  </div>
+  <div class="field">
+    <%= f.label :sonicbids %><br>
+    <%= f.text_field :sonicbids %>
+  </div>
+  <div class="field">
+    <%= f.label :soundcloud %><br>
+    <%= f.text_field :soundcloud %>
+  </div>
+  <div class="field">
+    <%= f.label :taxi %><br>
+    <%= f.text_field :taxi %>
+  </div>
+  <div class="field">
+    <%= f.label :topspin %><br>
+    <%= f.text_field :topspin %>
+  </div>
+  <div class="field">
+    <%= f.label :tumblr %><br>
+    <%= f.text_field :tumblr %>
+  </div>
+  <div class="field">
+    <%= f.label :tunecore %><br>
+    <%= f.text_field :tunecore %>
+  </div>
+  <div class="field">
+    <%= f.label :twitter %><br>
+    <%= f.text_field :twitter %>
+  </div>
+  <div class="field">
+    <%= f.label :youtube %><br>
+    <%= f.text_field :youtube %>
+  </div>
+  <div class="field">
+    <%= f.label :other_web_dist %><br>
+    <%= f.text_field :other_web_dist %>
+  </div>
+  <div class="field">
+    <%= f.label :tech_money %><br>
+    <%= f.text_field :tech_money %>
+  </div>
+  <div class="field">
+    <%= f.label :tech_self %><br>
+    <%= f.text_field :tech_self %>
+  </div>
+  <div class="field">
+    <%= f.label :tech_collab %><br>
+    <%= f.text_field :tech_collab %>
+  </div>
+  <div class="field">
+    <%= f.label :tech_fans %><br>
+    <%= f.text_field :tech_fans %>
+  </div>
+  <div class="field">
+    <%= f.label :tech_merits %><br>
+    <%= f.text_field :tech_merits %>
+  </div>
+  <div class="field">
+    <%= f.label :tech_compete %><br>
+    <%= f.text_field :tech_compete %>
+  </div>
+  <div class="field">
+    <%= f.label :tech_promo %><br>
+    <%= f.text_field :tech_promo %>
+  </div>
+  <div class="field">
+    <%= f.label :tech_devalue %><br>
+    <%= f.text_field :tech_devalue %>
+  </div>
+  <div class="field">
+    <%= f.label :tech_piracy %><br>
+    <%= f.text_field :tech_piracy %>
+  </div>
+  <div class="field">
+    <%= f.label :tech_control %><br>
+    <%= f.text_field :tech_control %>
+  </div>
+  <div class="field">
+    <%= f.label :time_compose %><br>
+    <%= f.text_field :time_compose %>
+  </div>
+  <div class="field">
+    <%= f.label :time_perform %><br>
+    <%= f.text_field :time_perform %>
+  </div>
+  <div class="field">
+    <%= f.label :time_record %><br>
+    <%= f.text_field :time_record %>
+  </div>
+  <div class="field">
+    <%= f.label :time_collab %><br>
+    <%= f.text_field :time_collab %>
+  </div>
+  <div class="field">
+    <%= f.label :time_session %><br>
+    <%= f.text_field :time_session %>
+  </div>
+  <div class="field">
+    <%= f.label :time_teach %><br>
+    <%= f.text_field :time_teach %>
+  </div>
+  <div class="field">
+    <%= f.label :time_socnet %><br>
+    <%= f.text_field :time_socnet %>
+  </div>
+  <div class="field">
+    <%= f.label :time_manage %><br>
+    <%= f.text_field :time_manage %>
+  </div>
+  <div class="field">
+    <%= f.label :time_account %><br>
+    <%= f.text_field :time_account %>
+  </div>
+  <div class="field">
+    <%= f.label :time_fundraise %><br>
+    <%= f.text_field :time_fundraise %>
+  </div>
+  <div class="field">
+    <%= f.label :learn_about_survey %><br>
+    <%= f.text_field :learn_about_survey %>
+  </div>
+  <div class="field">
+    <%= f.label :survey_source %><br>
+    <%= f.text_field :survey_source %>
+  </div>
+  <div class="field">
+    <%= f.label :gender %><br>
+    <%= f.text_field :gender %>
+  </div>
+  <div class="field">
+    <%= f.label :gender_group %><br>
+    <%= f.number_field :gender_group %>
+  </div>
+  <div class="field">
+    <%= f.label :race_ethnicity %><br>
+    <%= f.text_field :race_ethnicity %>
+  </div>
+  <div class="field">
+    <%= f.label :education_level %><br>
+    <%= f.text_field :education_level %>
+  </div>
+  <div class="field">
+    <%= f.label :edu_level_group %><br>
+    <%= f.number_field :edu_level_group %>
+  </div>
+  <div class="field">
+    <%= f.label :music_school %><br>
+    <%= f.check_box :music_school %>
+  </div>
+  <div class="field">
+    <%= f.label :music_degree %><br>
+    <%= f.text_field :music_degree %>
+  </div>
+  <div class="field">
+    <%= f.label :specific_degree %><br>
+    <%= f.text_field :specific_degree %>
+  </div>
+  <div class="field">
+    <%= f.label :health_ins %><br>
+    <%= f.text_field :health_ins %>
+  </div>
+  <div class="field">
+    <%= f.label :pension %><br>
+    <%= f.text_field :pension %>
+  </div>
+  <div class="field">
+    <%= f.label :zip %><br>
+    <%= f.text_field :zip %>
+  </div>
+  <div class="field">
+    <%= f.label :msa %><br>
+    <%= f.text_field :msa %>
+  </div>
+  <div class="field">
+    <%= f.label :msa_code %><br>
+    <%= f.text_field :msa_code %>
+  </div>
+  <div class="field">
+    <%= f.label :med_compcred12mos %><br>
+    <%= f.text_field :med_compcred12mos %>
+  </div>
+  <div class="field">
+    <%= f.label :med_compcredcareer %><br>
+    <%= f.text_field :med_compcredcareer %>
+  </div>
+  <div class="field">
+    <%= f.label :med_comp_credits_lifetime %><br>
+    <%= f.text_field :med_comp_credits_lifetime %>
+  </div>
+  <div class="field">
+    <%= f.label :med_reccred12mos %><br>
+    <%= f.text_field :med_reccred12mos %>
+  </div>
+  <div class="field">
+    <%= f.label :med_reccredcareer %><br>
+    <%= f.text_field :med_reccredcareer %>
+  </div>
+  <div class="field">
+    <%= f.label :med_recording_credits_lifetime %><br>
+    <%= f.text_field :med_recording_credits_lifetime %>
+  </div>
+  <div class="field">
+    <%= f.label :med_numshows %><br>
+    <%= f.text_field :med_numshows %>
+  </div>
+  <div class="field">
+    <%= f.label :med_shows_12months %><br>
+    <%= f.text_field :med_shows_12months %>
+  </div>
+  <div class="field">
+    <%= f.label :med_sesscred12mos %><br>
+    <%= f.text_field :med_sesscred12mos %>
+  </div>
+  <div class="field">
+    <%= f.label :med_sesscredcareer %><br>
+    <%= f.text_field :med_sesscredcareer %>
+  </div>
+  <div class="field">
+    <%= f.label :med_session_credits_lifetime %><br>
+    <%= f.text_field :med_session_credits_lifetime %>
+  </div>
+  <div class="field">
+    <%= f.label :long_compcred12mos %><br>
+    <%= f.text_field :long_compcred12mos %>
+  </div>
+  <div class="field">
+    <%= f.label :long_compcredcareer %><br>
+    <%= f.text_field :long_compcredcareer %>
+  </div>
+  <div class="field">
+    <%= f.label :long_composition_credits_lifetime %><br>
+    <%= f.text_field :long_composition_credits_lifetime %>
+  </div>
+  <div class="field">
+    <%= f.label :long_reccred12mos %><br>
+    <%= f.text_field :long_reccred12mos %>
+  </div>
+  <div class="field">
+    <%= f.label :long_reccredcareer %><br>
+    <%= f.text_field :long_reccredcareer %>
+  </div>
+  <div class="field">
+    <%= f.label :long_recording_credits_lifetime %><br>
+    <%= f.text_field :long_recording_credits_lifetime %>
+  </div>
+  <div class="field">
+    <%= f.label :long_numshows %><br>
+    <%= f.text_field :long_numshows %>
+  </div>
+  <div class="field">
+    <%= f.label :long_shows_last_year %><br>
+    <%= f.text_field :long_shows_last_year %>
+  </div>
+  <div class="field">
+    <%= f.label :long_sesscred12mos %><br>
+    <%= f.text_field :long_sesscred12mos %>
+  </div>
+  <div class="field">
+    <%= f.label :long_sesscredcareer %><br>
+    <%= f.text_field :long_sesscredcareer %>
+  </div>
+  <div class="field">
+    <%= f.label :long_session_credits_lifetime %><br>
+    <%= f.text_field :long_session_credits_lifetime %>
+  </div>
+  <div class="field">
+    <%= f.label :credits_compositions_life %><br>
+    <%= f.number_field :credits_compositions_life %>
+  </div>
+  <div class="field">
+    <%= f.label :credits_recordings_life %><br>
+    <%= f.number_field :credits_recordings_life %>
+  </div>
+  <div class="field">
+    <%= f.label :shows_last_year %><br>
+    <%= f.number_field :shows_last_year %>
+  </div>
+  <div class="field">
+    <%= f.label :credits_sessions_life %><br>
+    <%= f.number_field :credits_sessions_life %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
