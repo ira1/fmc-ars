@@ -164,6 +164,10 @@ class DashboardController < ApplicationController
       @sample = @sample.where(genderclause)
     end
     
+    #
+    # TODO EMI filter
+    #
+    
     #################### Outputs ######################
     
     #
@@ -197,15 +201,15 @@ class DashboardController < ApplicationController
      @AboutPctExperienced = 100*@sample.where("experience_group > 3").count/@sample.count
      #
      @AboutCompositionsNCount = @sample.count(:credits_compositions_life)
-     @AboutCompositionsPctAnswered = (0==@NCount) ? 0 : (@AboutCompositionsNCount / @NCount)
-     @AboutPctOver50Compositions = (0==@AboutCompositionsNCount) ? 0 :100*@sample.where("credits_compositions_life > 50").count/@AboutCompositionsNCount
+     @AboutCompositionsPctAnswered = (0==@NCount) ? 0 : (100 * @AboutCompositionsNCount / @NCount)
+     @AboutPctOver50Compositions = (0==@AboutCompositionsNCount) ? 0 :100*@sample.where("credits_compositions_life > 1").count/@AboutCompositionsNCount
      #
      @AboutRecordingsNCount = @sample.count(:credits_recordings_life)
-     @AboutRecordingsPctAnswered = (0==@NCount) ? 0 : (@AboutRecordingsNCount / @NCount)
-     @AboutPctOver50Recordings = (0==@AboutRecordingsNCount) ? 0 : 100*@sample.where("credits_recordings_life > 50").count/@AboutRecordingsNCount
+     @AboutRecordingsPctAnswered = (0==@NCount) ? 0 : (100 * @AboutRecordingsNCount / @NCount)
+     @AboutPctOver50Recordings = (0==@AboutRecordingsNCount) ? 0 : 100*@sample.where("credits_recordings_life > 1").count/@AboutRecordingsNCount
      #
      @AboutShowsNCount = @sample.count(:shows_last_year)
-     @AboutShowsPctAnswered = (0==@NCount) ? 0 : (@AboutShowsNCount / @NCount)
-     @AboutPctOver50Shows = (0==@AboutShowsNCount) ? 0 : 100*@sample.where("shows_last_year > 50").count/@AboutShowsNCount
+     @AboutShowsPctAnswered = (0==@NCount) ? 0 : (100 * @AboutShowsNCount / @NCount)
+     @AboutPctOver50Shows = (0==@AboutShowsNCount) ? 0 : 100*@sample.where("shows_last_year > 1").count/@AboutShowsNCount
   end
 end

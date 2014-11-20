@@ -185,19 +185,19 @@
 <p><br/></p>
 <div id="outputs">
 	<%#
-		Annual Income Chart
+			Annual Income Chart
 	%>
 
 	<div id="AnnInc" style="width:100%; height:400px;"></div>
 
 <%# 
-  FTCLAIM 
+			FTCLAIM 
 %>
 <p></p>
 <div id="ftclaim"><%=render "ftclaim/theoutput"%></div>
 <p></p>
 <%#
-  Annual Income
+			About This Group
 %>
 	<div id="aboutthisgroup" class="textual_output">
 		<span class="output_title">About This Group</span><span style="text-align:right;" title="Characteristics of this selected group of survey respondents"><%= image_tag "help_icon.png", :size => "16x16" %></span><br>
@@ -206,10 +206,10 @@
 <%#			<li title="A union, trade association, PRO or service organization"><strong>[xx%] belong to a music organization</strong><li>%>
 		<%# l i title="Of those respondents who took the long path through the survey">< s trong>Musical credits</strong></li> %>
 			<li><%= @AboutPctOver50Compositions %>% had more than 50 composing credits. 
-				<span title="Only <%= @AboutCompositionsPctAnswered %>% of respondents answered this question">(N=<%= @AboutCompositionsNCount %>)</span></li>
-			<li><%= @AboutPctOver50Recordings %>% had more than 50 recording credits <span title="Only <%= @AboutRecordingsPctAnswered %>% of of respondents answered this question">(N=<%= @AboutRecordingsNCount %>)</span></li>
+				<span title="Only <%= @AboutCompositionsPctAnswered %>% of respondents in filtered sample answered this question">(N=<%= @AboutCompositionsNCount %>)</span></li>
+			<li><%= @AboutPctOver50Recordings %>% had more than 50 recording credits <span title="Only <%= @AboutRecordingsPctAnswered %>% of respondents in filtered sample answered this question">(N=<%= @AboutRecordingsNCount %>)</span></li>
 <%#>			<li>[xx%] had more than 50 session credits</li> %>
-			<li><%= @AboutPctOver50Shows %>% played more than 50 shows in the prior 12 months<span title="Only <%= @AboutShowsPctAnswered %>% of of respondents answered this question"> (N=<%=@AboutShowsNCount%>)</span></li>
+			<li><%= @AboutPctOver50Shows %>% played more than 50 shows in the prior 12 months<span title="Only <%= @AboutShowsPctAnswered %>% of respondents in filtered sample answered this question"> (N=<%=@AboutShowsNCount%>)</span></li>
 	</ul>
 </div>
 </div>
