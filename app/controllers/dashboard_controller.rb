@@ -168,6 +168,17 @@ class DashboardController < ApplicationController
     # TODO EMI filter
     #
     
+    @emigroup = params.has_key?(:emigroup) ? params[:emigroup] : "ALL"
+    case @emigroup
+    when  "1" 
+      @sample = @sample.where("emi < 25000")
+    when "2"
+      @sample = @sample.where("emi >= 25000 and emi < 75000")
+    when "3"
+      @sample = @sample.where("emi >= 75000")
+    end
+    
+    
     #################### Outputs ######################
     
     #
