@@ -1,4 +1,15 @@
 class DashboardController < ApplicationController
+
+  # TODO strip whitespace for length test
+  #
+  def AppendClauseOr(clause,phrase)
+    if 0<clause.length then
+      clause << " OR "
+    end
+    clause << phrase
+    return clause
+  end
+  
   def show
 
     @sample = Survey
@@ -6,7 +17,7 @@ class DashboardController < ApplicationController
     # TODO Protect from SQL injection attack/sanitize params
     
     #
-    # TODO Test for version=1.0
+    # TODO Test for version=1.0 & changenum
     #
     
     
@@ -24,23 +35,20 @@ class DashboardController < ApplicationController
     #  if musician_type param is set assign/override the role parameter appropriately
     #
     if params.has_key?(:musician_type)
-      # TODO make this more resilient against typos in param values
-      params[:role_session] = params[:role_performer] = params[:role_salaried] = params[:role_recording] = params[:role_composer]= "false"
-      case params[:musician_type]
+      params[:role_session] = params[:role_performer] = params[:role_salaried] = params[:role_recording] = params[:role_composer]= params[:role_teacher] = "false"
+      case params[:musician_type].upcase
       when "COMPOSER"
         params[:role_composer] = "true"
-      #      @sample = @sample.where(role_composer: true)
       when "RECORDING"
         params[:role_recording] = "true"
-        #      @sample = @sample.where(role_recording: true)      
       when "SALARIED"
         params[:role_salaried] = "true"
-        #      @sample = @sample.where(role_salaried: true)
       when "PERFORMER"
         params[:role_performer] = "true"
-        #      @sample = @sample.where(role_performer: true)
       when "SESSION"
         params[:role_session] = "true"
+      when "TEACHER"
+        params[:role_teacher] = "true"
         #      @sample = @sample.where(role_session: true)
         #else
         #single_mode = false;
@@ -51,59 +59,59 @@ class DashboardController < ApplicationController
     #
     #  ProcessRole parameters 
     #
-    facetroles=0
+    rolecount=0
     roleclause=""
     #if ("true"==params[:role_missing]) then 
     #     roleclause = "(role_composer is null AND role_recording is null AND role_salaried is null AND role_performer is null AND role_session is null)"
     #     facetroles+=1
     #end
-    if ( "true"==params[:role_composer] ) then 
-      if 0!=facetroles
-        roleclause += " OR role_composer=true"
-      else
-        roleclause = "role_composer=true"
+    if ( params.has_key?(:role_composer) ) then
+      if ("true"==params[:role_composer].downcase ) then 
+        AppendClauseOr(roleclause , "role_composer=true")
       end
-      facetroles+=1
-      #@role_composer=true
+      rolecount += 1
     end
-    if ( "true"==params[:role_recording] ) then 
-       if 0!=facetroles
-         roleclause = roleclause + " OR role_recording=true" 
-       else
-         roleclause = "role_recording=true"
-       end
-       facetroles+=1
-      #@role_recording=true
+
+    if ( params.has_key?(:role_recording) ) then
+      if ("true"==params[:role_recording].downcase ) then 
+        AppendClauseOr(roleclause, "role_recording=true")
+      end
+      rolecount += 1
     end
-    if ( "true"==params[:role_salaried] ) then 
-       if 0!=facetroles
-         roleclause = roleclause + " OR role_salaried=true" 
-       else
-         roleclause = "role_salaried=true"
-       end
-       facetroles+=1
-      #@role_salaried=true
+
+    if params.has_key?(:role_salaried) then
+      if ( "true"==params[:role_salaried].downcase ) then 
+        AppendClauseOr(roleclause, "role_salaried=true") 
+      end
+      rolecount += 1
     end
-    if ( "true"==params[:role_performer] ) then 
-       if 0!=facetroles
-         roleclause = roleclause + " OR role_performer=true" 
-       else
-         roleclause = "role_performer=true"
-       end
-       facetroles+=1
-      #@role_performer=true
+
+    if params.has_key?(:role_performer) then
+      if ( "true"==params[:role_performer].downcase ) then 
+        AppendClauseOr(roleclause, "role_performer=true")
+      end
+      rolecount += 1
     end
-    if ("true"==params[:role_session]) then 
-       if 0!=facetroles
-         roleclause = roleclause + " OR role_session=true" 
-       else
-         roleclause = "role_session=true"
-       end
-       facetroles+=1
-      #@role_session=true
+
+    if params.has_key?(:role_session) then
+      if ("true"==params[:role_session].downcase) then 
+        AppendClauseOr(roleclause, "role_session=true")
+      end
+      rolecount += 1
     end
-    if 0<facetroles then
-        @sample = @sample.where(roleclause)
+
+    if params.has_key?(:role_teacher) then
+      if ("true"==params[:role_teacher].downcase) then 
+        AppendClauseOr(roleclause, "role_teacher=true")
+      end
+      rolecount += 1
+    end      
+      
+    if 0<rolecount then 
+      AppendClauseOr(roleclause, "(role_composer is null and role_recording is null and role_salaried is null and role_performer is null and role_session is null and role_teacher is null)")
+    end
+    if 0<roleclause.length then
+      @sample = @sample.where(roleclause)
     end
     #
     #
@@ -192,7 +200,7 @@ class DashboardController < ApplicationController
     #
     @AvgEMI = @sample.average(:emi)
     @EMISampleSize = @sample.count(:emi)
-    @EMIPctAnswered = 100 * @EMISampleSize / @NCount
+    @EMIPctAnswered = (0==@NCount)? 100 : 100 * @EMISampleSize / @NCount
     @AvgEMI ||= 0 # if nil (or false) set to 0
     
     #
