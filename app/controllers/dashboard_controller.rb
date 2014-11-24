@@ -192,6 +192,7 @@ class DashboardController < ApplicationController
     #
     @AvgEMI = @sample.average(:emi)
     @EMISampleSize = @sample.count(:emi)
+    @EMIPctAnswered = 100 * @EMISampleSize / @NCount
     @AvgEMI ||= 0 # if nil (or false) set to 0
     
     #
