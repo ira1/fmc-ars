@@ -192,18 +192,24 @@
 			Annual Income Chart
 	%>
 
-	<div id="AnnInc" style="width:100%; height:400px;"></div>
-
+	<div id="anninc" class="seven columns" style="background:#EFEFEF;padding:1em;">
+		<div id="anninctitle" class="seven columns"><h5 style="text-align:center;margin-left:0">Gross estimated music income: <span title="<%= @EMIPctAnswered %>% of respondents in filtered sample provided EMI"><%= number_to_currency(@AvgEMI) %> </span></h5>
+			<h6 style="text-align:center;">Allocation of music-related income by category over past 12 months, and perceived changes in income over prior 5 years. N=<%= @EMISampleSize %>.</h6>
+</div>
+		<div id="annincbycat" class="five columns" style="height:300px;margin: 0"></div>
+		<div id="anninctrend" class="two columns" style="height:300px;margin: 0;float:right;">Change</div>
+	</div>
+<p></p>
 <%# 
 			FTCLAIM 
 %>
-<p></p>
-<div id="ftclaim"><%=render "ftclaim/theoutput"%></div>
-<p></p>
+<div>&nbsp;</div>
+<div id="ftclaim" class="seven columns"><%=render "ftclaim/theoutput"%></div>
+<div>&nbsp;</div>
 <%#
 			About This Group
 %>
-	<div id="aboutthisgroup" class="textual_output">
+	<div id="aboutthisgroup" class="seven columns textual_output">
 		<span class="output_title">About This Group</span><span style="text-align:right;" title="Characteristics of this selected group of survey respondents"><%= image_tag "help_icon.png", :size => "16x16" %></span><br>
 		<ul class="textual_output">
 			<li><strong><%= @AboutPctExperienced %>% have 16 or more years of experience</strong></li>
@@ -241,29 +247,93 @@
 
 </div>
 <!-- /End Super Container -->
+<!--           title
+  text: 'Gross estimated music income: <%= number_to_currency(@AvgEMI) %> <%#<tspan title="<%= @EMIPctAnswered % >% of respondents in filtered sample provided EMI"></span>%>'
+subtitle 
+			text: "Allocation of music-related income by category over past 12 months, and perceived changes in income over prior 5 years. N=<%= @EMISampleSize %>."
+-->
 <script>
 $(function () { 
-    $('#AnnInc').highcharts({
+    $('#annincbycat').highcharts({
         chart: {
             type: 'bar'
         },
         title: {
-            text: 'Gross estimated music income: <%= number_to_currency(@AvgEMI) %> <%#<tspan title="<%= @EMIPctAnswered % >% of respondents in filtered sample provided EMI"></span>%>'
+			text:null
         },
 		subtitle:{
-			text: "Allocation of music-related income by category over past 12 months, and perceived changes in income over prior 5 years. N=<%= @EMISampleSize %>."
+			text: 'Income'
 		},
         xAxis: {
-            categories: ['Live performance', 'Teaching', 'Salaried player', 'Session work ', 'Compositions ', 'Sound recordings ', 'Merchandise and branding', 'Other' ]
+            categories: ['Live performance', 'Teaching', 'Salaried player', 'Session work ', 'Compositions ', 'Sound recordings ', 'Merch', 'Other' ]
         },
         yAxis: {
-            title: {
+            title: null,
+			nothing: {
+                text: 'Ave % of Income'
+            },
+            labels: {
+            	enabled: false
+            }			
+        },
+		legend: {
+			enabled: false
+		},
+		credits: {
+			enabled: false
+		},
+        series: [{
+            name: '% of Income',
+            data: [<%= @AvgPctLive.to_i %>, <%= @AvgPctTeach.to_i %> , <%= @AvgPctSalary.to_i %>, <%= @AvgPctSession.to_i %>,<%= @AvgPctComposition.to_i %>,<%= @AvgPctRecord.to_i %>,<%= @AvgPctMerch.to_i %>,<%= @AvgPctOther.to_i%>]
+        }]
+    });
+});
+$(function () { 
+    $('#anninctrend').highcharts({
+        chart: {
+            type: 'bar'
+        },
+        title: {
+			text: null
+		},
+		subtitle:{
+			text: 'Trend'
+		},
+		tooltipnot: {
+			enabled: false
+		},
+        xAxis: {
+            tickPositions: [],
+            labels: {
+                enabled: false
+            }
+        },
+        yAxis: {
+            title: null,
+            labels: {
+            	enabled: false
+            },
+			nothing: {
                 text: 'Ave % of Income'
             }
         },
-        series: [{
-            name: 'Filtered Respondents',
-            data: [35, 17, 13, 8,5,3,1,1]
+		legend: {
+			enabled: false
+		},
+		credits: {
+			enabled: false
+		},
+        series: [{           
+				name: 'Decr',
+				negativeColor: '#FF0000',
+				color: '#009933',
+				data: [<%= -1*@DecrIncLive.to_i %>, <%= -1*@DecrIncTeach.to_i %> , <%= -1*@DecrIncSalary.to_i %>, <%= -1*@DecrIncSession.to_i %>,<%= -1*@DecrIncComposition.to_i %>,<%= -1*@DecrIncRecording.to_i %>,<%= -1*@DecrIncMerch.to_i %>,<%= -1*@DecrIncOther.to_i%>]
+			}, 
+			{
+	            name: 'Incr',
+	            negativeColor: '#FF0000',
+				color: '#009933',	
+				data: [<%= @IncrIncLive.to_i %>, <%= @IncrIncTeach.to_i %> , <%= @IncrIncSalary.to_i %>, <%= @IncrIncSession.to_i %>,<%= @IncrIncComposition.to_i %>,<%= @IncrIncRecording.to_i %>,<%= @IncrIncMerch.to_i %>,<%= @IncrIncOther.to_i%>]
         }]
     });
 });

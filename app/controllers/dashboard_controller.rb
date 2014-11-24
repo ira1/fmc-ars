@@ -202,7 +202,46 @@ class DashboardController < ApplicationController
     @EMISampleSize = @sample.count(:emi)
     @EMIPctAnswered = (0==@NCount)? 100 : 100 * @EMISampleSize / @NCount
     @AvgEMI ||= 0 # if nil (or false) set to 0
+    @AvgPctLive = @sample.average(:pie_live)
+    @AvgEMILive = @AvgPctLive*@AvgEMI
+    @AvgPctTeach = @sample.average(:pie_teach)
+    @AvgEMITeach = @AvgPctTeach * @AvgEMI
+    @AvgPctSalary = @sample.average(:pie_salary)
+    @AvgEMISalary = @AvgPctSalary * @AvgEMI
+    @AvgPctSession = @sample.average(:pie_session)
+    @AvgEMISession = @AvgPctSession * @AvgEMI
+    @AvgPctComposition = @sample.average(:pie_song) 
+    @AvgEMIComposition = @AvgPctComposition * @AvgEMI
+    @AvgPctRecord = @sample.average(:pie_record)
+    @AvgEMIRecord = @AvgPctRecord * @AvgEMI
+    @AvgPctMerch = @sample.average(:pie_merch)
+    @AvgEMIMerch = @AvgPctMerch * @AvgEMI
+    @AvgPctOther = @sample.average(:pie_other)
+    @AvgEMIOther = @AvgPctOther * @AvgEMI
+    @DecrIncLive = @sample.where("perform_inc_direction = -1").count()
+    @IncrIncLive = @sample.where("perform_inc_direction = 1").count()
+
+    @DecrIncTeach = @sample.where("teach_inc_direction = -1").count()
+    @IncrIncTeach = @sample.where("teach_inc_direction = 1").count()
+
+    @DecrIncSalary = @sample.where("salary_inc_direction = -1").count()
+    @IncrIncSalary = @sample.where("salary_inc_direction = 1").count()
+
+    @DecrIncSession = @sample.where("session_inc_direction = -1").count()
+    @IncrIncSession = @sample.where("session_inc_direction = 1").count()
+
+    @DecrIncComposition = @sample.where("compose_inc_direction = -1").count()
+    @IncrIncComposition = @sample.where("compose_inc_direction = 1").count()
+
+    @DecrIncRecording = @sample.where("record_inc_direction = -1").count()
+    @IncrIncRecording = @sample.where("record_inc_direction = 1").count()
+    @DecrIncMerch = @sample.where("merch_inc_direction = -1").count()
+    @IncrIncMerch = @sample.where("merch_inc_direction = 1").count()
+    @DecrIncOther = 0 #@sample.where("perform_inc_direction = -1").count()
+    @IncrIncOther = 0 #@sample.where("perform_inc_direction = 1").count()
     
+    
+
     #
     #  TODO Refactor into FTClaim method & Model
     #
