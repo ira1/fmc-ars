@@ -326,8 +326,8 @@ $(function () {
         series: [{           
 				name: 'Decr',
 				negativeColor: '#FF0000',
-				color: '#009933',
-				data: [<%= -1*@DecrIncLive.to_i %>, <%= -1*@DecrIncTeach.to_i %> , <%= -1*@DecrIncSalary.to_i %>, <%= -1*@DecrIncSession.to_i %>,<%= -1*@DecrIncComposition.to_i %>,<%= -1*@DecrIncRecording.to_i %>,<%= -1*@DecrIncMerch.to_i %>,<%= -1*@DecrIncOther.to_i%>]
+				color: '#FF0000',
+				data: [<%= @DecrIncLive.to_i %>, <%= @DecrIncTeach.to_i %> , <%= @DecrIncSalary.to_i %>, <%= @DecrIncSession.to_i %>,<%= @DecrIncComposition.to_i %>,<%= @DecrIncRecording.to_i %>,<%= @DecrIncMerch.to_i %>,<%= @DecrIncOther.to_i%>]
 			}, 
 			{
 	            name: 'Incr',
