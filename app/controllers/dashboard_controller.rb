@@ -198,25 +198,24 @@ class DashboardController < ApplicationController
     # AnnInc 
     # TODO Refactor into AnnInc method & Model
     #
-    @AvgEMI = @sample.average(:emi)
+    @AvgEMI = @sample.average(:emi) || 0
     @EMISampleSize = @sample.count(:emi)
     @EMIPctAnswered = (0==@NCount)? 100 : 100 * @EMISampleSize / @NCount
-    @AvgEMI ||= 0 # if nil (or false) set to 0
-    @AvgPctLive = @sample.average(:pie_live)
+    @AvgPctLive = (@sample.average(:pie_live)) || 0
     @AvgEMILive = @AvgPctLive*@AvgEMI
-    @AvgPctTeach = @sample.average(:pie_teach)
+    @AvgPctTeach = @sample.average(:pie_teach) || 0
     @AvgEMITeach = @AvgPctTeach * @AvgEMI
-    @AvgPctSalary = @sample.average(:pie_salary)
+    @AvgPctSalary = @sample.average(:pie_salary) || 0
     @AvgEMISalary = @AvgPctSalary * @AvgEMI
-    @AvgPctSession = @sample.average(:pie_session)
+    @AvgPctSession = @sample.average(:pie_session) || 0
     @AvgEMISession = @AvgPctSession * @AvgEMI
-    @AvgPctComposition = @sample.average(:pie_song) 
+    @AvgPctComposition = @sample.average(:pie_song) || 0
     @AvgEMIComposition = @AvgPctComposition * @AvgEMI
-    @AvgPctRecord = @sample.average(:pie_record)
+    @AvgPctRecord = @sample.average(:pie_record) || 0
     @AvgEMIRecord = @AvgPctRecord * @AvgEMI
-    @AvgPctMerch = @sample.average(:pie_merch)
+    @AvgPctMerch = @sample.average(:pie_merch) || 0
     @AvgEMIMerch = @AvgPctMerch * @AvgEMI
-    @AvgPctOther = @sample.average(:pie_other)
+    @AvgPctOther = @sample.average(:pie_other) || 0
     @AvgEMIOther = @AvgPctOther * @AvgEMI
     @DecrIncLive = @sample.where("perform_inc_direction = -1").count()
     @IncrIncLive = @sample.where("perform_inc_direction = 1").count()
