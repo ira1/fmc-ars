@@ -1,9 +1,12 @@
 // Place all the styles related to the Dashboard controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-div#facets {width:25%;float:left;min-width:200px;background:#F9F9F9;}
-div#outputs {float:left;min-width:300px;margin:0px 6px;}
-div#ftclaim, div#aboutthisgroup {background:#EFEFEF; padding:4px;text-align:center;width:100%;}
+//div#facets {width:25%;float:left;min-width:200px;background:#F9F9F9;}
+	div#facets {background:#F9F9F9;}
+//div#outputs {float:left;min-width:300px;margin:0px 6px;}
+//div#ftclaim, div#aboutthisgroup {background:#EFEFEF; padding:4px;text-align:center;width:100%;}
+div#ftclaim, div#aboutthisgroup, div#otherincome {background:#EFEFEF; text-align:center; padding:4px 0px;} //border:black solid 1px;
+div#otherincome p {text-align:left;}
 div#facets label, div#facets legend {display:inline;}
 //div .textual_output {padding:2em;}
 .output_title {font-weight:bold;font-size:120%;line-height:2.0;}

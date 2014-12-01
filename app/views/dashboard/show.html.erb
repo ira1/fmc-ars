@@ -53,7 +53,7 @@
 				
 		
 		
-<div id="facets">
+<div id="facets" class="four columns alpha">
 	<div style="background-color:#F0F0F0; width:100%; display:inline-block">
 		<div style="float:left;margin:.5em">
 			<%= image_tag("person_icon.png")%>
@@ -62,7 +62,7 @@
 			<span style="font-weight:bold;">N = <%= @sample_size %> musicians</span><br>based on current choices
 		</div>
 	</div>
- <div style="clear:both;display:block;overflow:hidden;visibility:hidden;width:0;height:0;"></div>
+ <div nostyle="clear:both;display:block;overflow:hidden;visibility:hidden;width:0;height:0;"></div>
 	<%= form_tag ({controller: "dashboard", action: "show"}) do %>
     	<div id="role_facet">
 			<h6>Musician type</h6> 
@@ -117,21 +117,21 @@
 			<%= radio_button_tag("mgenre", 0, (params[:mgenre] == "0") ) %>
 			<%= label_tag("mgenre_0", "All other genres")%><br/>
 		</div> <%# genre %>
-	</p><p>
+		</p><p>
 		<div id="fulltime_facet">
 			<h6>Full time musicians</h6>
 			<%= hidden_field_tag :ft, "false", :id => "ft1" %>
 			<%= check_box_tag(:ft, "true", "true" == params[:ft]) %>
 			<%= label_tag(:ft, "Full-time musicians only")%>
 		</div>
-	</p><p>
+		</p><p>
 		<div id="education_facet">
 			<h6>Music education</h6>
 			<%= hidden_field_tag :trained, "false", :id => "train1" %>
 			<%= check_box_tag(:trained, "true", "true"==params[:trained])%>
 			<%= label_tag(:trained, "Attended a music school or conservatory", :title=>"Attended a music industry school or conservatory")%>
 		</div>
-	</p><p>
+		</p><p>
 		<div id="career_facet">
 			<h6>Career experience</h6>
 
@@ -147,7 +147,7 @@
 			<%= radio_button_tag("careerexp", "3", (params[:careerexp] == "3" )) %>
 			<%= label_tag("careerexp_3", " Old School (More than 30 yrs)")%><br/>
 		</div>
-	</p><p>
+		</p><p>
 		<div id="gender_facet">
 			<h6>Gender</h6>
 			<%= hidden_field_tag :gender_male, "false", :id => "gend1" %>
@@ -166,7 +166,7 @@
 			<%= check_box_tag(:gender_unanswered, "true", "false"!=params[:gender_unanswered])%>
 			<%= label_tag(:gender_unanswered, "Did not answer")%>			
 		</div>
-		<p></p>
+		</p><p>
 		<div id="emi_facet">
 			<h6>Gross Estimated Music Income (EMI)</h6>
 			<%= radio_button_tag("emigroup", "ALL", true) %>
@@ -181,35 +181,85 @@
 			<%= radio_button_tag("emigroup", "3", (params[:emigroup] == "3" ))%>
 			<%= label_tag("emigroup_3", "$75,000 or more") %><br/>
 		</div>
-				<p></p>
+		</p><p>
 		<%= submit_tag () %>
+		</p>
 	<% end %> <%# form_tag %>
 <br/>	
 </div>
 <p><br/></p>
-<div id="outputs">
-	<%#
-			Annual Income Chart
-	%>
-
-	<div id="anninc" class="seven columns" style="background:#EFEFEF;padding:1em;">
-		<div id="anninctitle" class="seven columns"><h5 style="text-align:center;margin-left:0">Gross estimated music income: <span title="<%= @EMIPctAnswered %>% of respondents in filtered sample provided EMI"><%= number_to_currency(@AvgEMI) %> </span></h5>
-			<h6 style="text-align:center;">Allocation of music-related income by category over past 12 months, and perceived changes in income over prior 5 years. N=<%= @EMISampleSize %>.</h6>
-</div>
-		<div id="annincbycat" class="five columns" style="height:300px;margin: 0"></div>
-		<div id="anninctrend" class="two columns" style="height:300px;margin: 0;float:right;">Change</div>
-	</div>
-<p></p>
-<%# 
-			FTCLAIM 
-%>
-<div>&nbsp;</div>
-<div id="ftclaim" class="seven columns"><%=render "ftclaim/theoutput"%></div>
-<div>&nbsp;</div>
 <%#
-			About This Group
+
+   THE OUTPUTS 
+
 %>
-	<div id="aboutthisgroup" class="seven columns textual_output">
+<div id="outputs" class="twelve columns omega">
+<%#
+
+   LEFT HAND OUTPUTS 
+
+%>
+	<div id="leftoutputs" class="six columns alpha">
+		<%#
+				Annual Income Chart
+		%>
+		<div id="anninc" class="six columns alpha" >
+			<div id="anninctitle" class="six columns" style="background:#EFEFEF;"><h5 style="text-align:center;padding-right:1em;">Gross estimated music income: <span title="<%= @EMIPctAnswered %>% of respondents in filtered sample provided EMI"><%= number_to_currency(@AvgEMI) %> </span></h5>
+				<h6 style="text-align:center;padding-right:1em;">Allocation of music-related income by category over past 12 months, and perceived changes in income over prior 5 years. N=<%= @EMISampleSize %>.</h6>
+			</div>
+			<div id="annincbycat"  style="width:75%;height:300px;margin:0;padding:0;float:left;"></div>
+			<div id="anninctrend"  style="width:25%;height:300px;margin:0;padding:0;float:right;">Change</div>
+		</div>
+		<p>&nbsp;</p>
+		<%#
+				Other Income Text Box
+		%>
+		<div id="otherincome">
+			<ul class="textual_output" style="padding:0 1em;">
+				<span class="output_title">Other sources of income from music</span>
+				<span style="text-align:right;" title="% of [selected group] that have ever received any music-related income from…"><%= image_tag "help_icon.png", :size => "16x16" %></span><br>
+				<li>&nbsp;</li>
+				<p>AFM Special Payments (17%), grants (12%), honoraria (11%), AFM secondary markets (9.3%), corporate (4.2%), AFM/AFTRA Fund (3.2%), producer (2.6%), ASCAPLUS Awards (2.1%), fan funding (1.8%)</p>
+				<li>&nbsp;</li>
+				<li style="text-align:left;font-size:small;font-weight:bold;">Less than 1% made any $ from:</li>
+				<p>Acting, Endorsements, Web ads, AARC royalties, Label Settlement, Sample licensing, Publisher advance, Fan club, YouTube partner, Persona licensing, AFTRA Contingent Scale</p>
+			</ul>
+		</div>
+		<p>&nbsp;</p>
+		<%#
+				Primary Income Chart
+		
+				This chart displays only if at least one genre has been excluded from facets
+		%>		
+		<div id="Income" >
+			<ul class="textual_output" style="padding:0 1em;">
+				<span class="output_title">Comparing revenue allocation by genre</span>
+				<span style="text-align:right;" title="Allocation of annual music-related income by category"><%= image_tag "help_icon.png", :size => "16x16" %></span><br>
+Nifty chart goes right here! <%#
+	Live performance	Compositions (mechanicals, PRO royalties, commissions)
+	Teaching	Sound recordings (sales, streams, synchs, SoundExchange)
+	Salaried player	Merchandise and branding
+	Session/freelance work (studio and/or live)	Other %>
+
+			</ul>
+		</div>
+
+	</div> <%# leftoutputs %>
+<%#
+
+   RIGHT HAND OUTPUTS 
+
+%>
+<div id="rightoutputs" class="six columns omega">
+	<%# 
+				FTCLAIM 
+	%>
+	<%# <div id="ftclaim" class="six columns"><%=render "ftclaim/theoutput"% ></div>
+	<div>&nbsp;</div> %>
+	<%#
+				About This Group
+	%>
+	<div id="aboutthisgroup" class="six columns textual_output">
 		<span class="output_title">About This Group</span><span style="text-align:right;" title="Characteristics of this selected group of survey respondents"><%= image_tag "help_icon.png", :size => "16x16" %></span><br>
 		<ul class="textual_output">
 			<li><strong><%= @AboutPctExperienced %>% have 16 or more years of experience</strong></li>
@@ -220,8 +270,37 @@
 			<li><%= @AboutPctOver50Recordings %>% had more than 50 recording credits <span title="Only <%= @AboutRecordingsPctAnswered %>% of respondents in filtered sample answered this question">(N=<%= @AboutRecordingsNCount %>)</span></li>
 <%#>			<li>[xx%] had more than 50 session credits</li> %>
 			<li><%= @AboutPctOver50Shows %>% played more than 50 shows in the prior 12 months<span title="Only <%= @AboutShowsPctAnswered %>% of respondents in filtered sample answered this question"> (N=<%=@AboutShowsNCount%>)</span></li>
-	</ul>
-</div>
+		</ul>
+	</div>
+	<p>&nbsp;</p>	
+	<%#
+				Income by Age Group
+	%>
+	
+	<div id="ageincome" >
+		<div id="ageinctitle" style="background:#EFEFEF;"><h5 style="text-align:center;padding-right:1em;">	Total income and music-related income</h5>
+			<h6 style="text-align:center;padding-right:1em;">Music-related income as a total of gross income of [selected group] by age strata.</h6>
+		</div>
+		Lovely chart goes here
+	</div>
+	<p>&nbsp;</p>
+	
+	<%#
+				Map
+	%>
+	<div id="Income" >
+		<ul class="textual_output" style="padding:0 1em;">
+			<span class="output_title">Largest clusters of musicians</span>
+			<span style="text-align:right;" title="Allocation of annual music-related income by category"><%= image_tag "help_icon.png", :size => "16x16" %></span><br>
+		Nifty map goes right here! <%#
+			Live performance	Compositions (mechanicals, PRO royalties, commissions)
+			Teaching	Sound recordings (sales, streams, synchs, SoundExchange)
+			Salaried player	Merchandise and branding
+			Session/freelance work (studio and/or live)	Other %>
+		</ul>
+	</div>
+
+</div> <%# rightoutputs %>
 </div>
 </div>
 </div> <%# container %>
