@@ -26,7 +26,7 @@ class DashboardController < ApplicationController
     #
     # Main-$ genre facet (MGenre)
     #
-    @mgenre = (params.has_key?(:mgenre)) ? params[:mgenre] : "ALL"
+    @mgenre = (params.has_key?(:mgenre)) ? params[:mgenre].upcase : "ALL"
     if @mgenre != "ALL"
         @sample = @sample.where(:genre_group_1 => params[:mgenre] )
     end
