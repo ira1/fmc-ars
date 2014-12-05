@@ -204,8 +204,9 @@
 				Annual Income Chart
 		%>
 		<div id="anninc" class="six columns alpha" >
-			<div id="anninctitle" class="six columns" style="background:#EFEFEF;"><h5 style="text-align:center;padding-right:1em;">Gross estimated music income: <span title="<%= @EMIPctAnswered %>% of respondents in filtered sample provided EMI"><%= number_to_currency(@AvgEMI) %> </span></h5>
-				<h6 style="text-align:center;padding-right:1em;">Allocation of music-related income by category over past 12 months, and perceived changes in income over prior 5 years. N=<%= @EMISampleSize %>.</h6>
+			<div id="anninctitle" class="six columns" style="background:#EFEFEF;text-align:center;">
+				<span class="output_title" style="text-align:center;padding-right:1em;">Gross estimated music income: </span><br><span class="output_title"  title="<%= @EMIPctAnswered %>% of respondents in filtered sample provided EMI"><%= number_to_currency(@AvgEMI) %> </span><br>
+				<span class="output_subtitle" style="font-size:small;text-align:center">Allocation of music-related income by category over past 12 months, and perceived changes in income over prior 5 years. N=<%= @EMISampleSize %>.</span>
 			</div>
 			<div id="annincbycat"  style="width:75%;height:300px;margin:0;padding:0;float:left;"></div>
 			<div id="anninctrend"  style="width:25%;height:300px;margin:0;padding:0;float:right;">Change</div>
@@ -240,7 +241,7 @@ Lovely chart goes right here when not all genres are selected! <%#
 	Teaching	Sound recordings (sales, streams, synchs, SoundExchange)
 	Salaried player	Merchandise and branding
 	Session/freelance work (studio and/or live)	Other %>
-
+				<div id="incbygenre"></div>
 			</ul>
 		</div>
 
@@ -254,8 +255,8 @@ Lovely chart goes right here when not all genres are selected! <%#
 	<%# 
 				FTCLAIM 
 	%>
-	<%# <div id="ftclaim" class="six columns"><%=render "ftclaim/theoutput"% ></div>
-	<div>&nbsp;</div> %>
+	<div id="ftclaim" class="six columns"><%=render "ftclaim/theoutput"%></div>
+	<div>&nbsp;</div>
 	<%#
 				About This Group
 	%>
@@ -278,8 +279,9 @@ Lovely chart goes right here when not all genres are selected! <%#
 	%>
 	
 	<div id="ageincome" >
-		<div id="ageinctitle" style="background:#EFEFEF;"><h5 style="text-align:center;padding-right:1em;">	Total income and music-related income</h5>
-			<h6 style="text-align:center;padding-right:1em;">Music-related income as a total of gross income of [selected group] by age strata.</h6>
+		<div id="ageinctitle" style="background:#EFEFEF;text-align:center;">
+			<span class="output_title" style="text-align:center;padding-right:1em;">&nbsp;&nbsp;Total income and music-related income</span>
+			<span class="output_subtitle" style="font-size:small;text-align:center">Music-related income as a total of gross income of [selected group] by age strata.</span>
 		</div>
 		<div id="ageincomechart">Lovely chart goes here</div>
 	</div>
@@ -292,11 +294,14 @@ Lovely chart goes right here when not all genres are selected! <%#
 		<ul class="textual_output" style="padding:0 1em;">
 			<span class="output_title">Largest clusters of musicians</span>
 			<span style="text-align:right;" title="Allocation of annual music-related income by category"><%= image_tag "help_icon.png", :size => "16x16" %></span><br>
-		Nifty map goes right here! <%#
+		<div id="concentrationmap">Nifty map goes right here! yes </div>
+		
+		<%#
 			Live performance	Compositions (mechanicals, PRO royalties, commissions)
 			Teaching	Sound recordings (sales, streams, synchs, SoundExchange)
 			Salaried player	Merchandise and branding
-			Session/freelance work (studio and/or live)	Other %>
+			Session/freelance work (studio and/or live)	Other 
+		%>
 		</ul>
 	</div>
 
@@ -361,6 +366,7 @@ $(function () {
 		},
         series: [{
             name: '% of Income',
+			color: '#00748E',
             data: [<%= @AvgPctLive.to_i %>, <%= @AvgPctTeach.to_i %> , <%= @AvgPctSalary.to_i %>, <%= @AvgPctSession.to_i %>,<%= @AvgPctComposition.to_i %>,<%= @AvgPctRecord.to_i %>,<%= @AvgPctMerch.to_i %>,<%= @AvgPctOther.to_i%>]
         }]
     });
@@ -404,13 +410,13 @@ $(function () {
         series: [{           
 				name: 'Decr',
 				negativeColor: '#FF0000',
-				color: '#FF0000',
+				color: '#c81c1f',
 				data: [<%= @DecrIncLive.to_i %>, <%= @DecrIncTeach.to_i %> , <%= @DecrIncSalary.to_i %>, <%= @DecrIncSession.to_i %>,<%= @DecrIncComposition.to_i %>,<%= @DecrIncRecording.to_i %>,<%= @DecrIncMerch.to_i %>,<%= @DecrIncOther.to_i%>]
 			}, 
 			{
 	            name: 'Incr',
 	            negativeColor: '#FF0000',
-				color: '#009933',	
+				color: '#579333',	
 				data: [<%= @IncrIncLive.to_i %>, <%= @IncrIncTeach.to_i %> , <%= @IncrIncSalary.to_i %>, <%= @IncrIncSession.to_i %>,<%= @IncrIncComposition.to_i %>,<%= @IncrIncRecording.to_i %>,<%= @IncrIncMerch.to_i %>,<%= @IncrIncOther.to_i%>]
         }]
     });
@@ -441,12 +447,14 @@ $(function () {
         },
 
         series: [{
-			name: 'Non-AFM Gross Income (N=1000)',
-            data: [29.9, 71.5, 106.4, 129.2, 144.0]
+			name: 'Personal gross income',
+			color: '#FF7D2C',
+			data: [29.9, 71.5, 106.4, 129.2, 144.0]
+
         }, {
-			name: 'Non-AFM Music Income (N=1000)',
-            data: [144.0, 176.0, 135.6, 148.5, 216.4],
-			color: '#000050'
+			name: 'Income direct from music',
+			color: '#00748E',
+            data: [144.0, 176.0, 135.6, 148.5, 216.4]
         }],
 
         tooltip: {
@@ -455,4 +463,133 @@ $(function () {
     });
 });
 
+$(function () {
+    $('#incbygenre').highcharts({
+        chart: {
+            type: 'bar'
+        },
+        title: {
+            text: null
+        },
+        subtitle: {
+            text: null
+        },
+        xAxis: {
+            categories: ['Live performance','Compositions','Teaching','Sound recordings','Salaried player','Merchandise and branding','Session/freelance work','Other'],
+            title: {
+                text: null
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Pct of Income',
+                align: 'high'
+            },
+            labels: {
+                overflow: 'justify'
+            }
+        },
+        tooltip: {
+            valueSuffix: ' millions'
+        },
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'center',
+            verticalAlign: 'top',
+            x: -0,
+            y: 0,
+            floating: false,
+            borderWidth: 1,
+            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+            shadow: true
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            name: 'Selected Genre',
+			color: '#00748E',
+            data: [15,15,20,25,15,10]
+        }, {
+            name: 'All other Genres',
+			color: '#FF7D2C',
+            data: [25,15,10,15,15,20]
+        }]
+    });
+});
+
+
+$(function () {
+    // Instantiate the map
+    $('#concentrationmap').highcharts('Map', {
+        chart: {
+            spacingBottom: 20
+        },
+        title : {
+            text : 'Europe time zones'
+        },
+
+        legend: {
+            enabled: true
+        },
+
+        plotOptions: {
+            map: {
+                allAreas: false,
+                joinBy: ['iso-a2', 'code'],
+                dataLabels: {
+                    enabled: true,
+                    color: 'white',
+                    formatter: function () {
+                        if (this.point.properties && this.point.properties.labelrank.toString() < 5) {
+                            return this.point.properties['iso-a2'];
+                        }
+                    },
+                    format: null,
+                    style: {
+                        fontWeight: 'bold'
+                    }
+                },
+                mapData: Highcharts.maps['custom/europe'],
+                tooltip: {
+                    headerFormat: '',
+                    pointFormat: '{point.name}: <b>{series.name}</b>'
+                }
+
+            }
+        },
+
+        series : [{
+            name: 'UTC',
+            data: $.map(['IE', 'IS', 'GB', 'PT'], function (code) {
+                return { code: code };
+            })
+        }, {
+            name: 'UTC + 1',
+            data: $.map(['NO', 'SE', 'DK', 'DE', 'NL', 'BE', 'LU', 'ES', 'FR', 'PL', 'CZ', 'AT', 'CH', 'LI', 'SK', 'HU',
+                    'SI', 'IT', 'SM', 'HR', 'BA', 'YF', 'ME', 'AL', 'MK'], function (code) {
+                return { code: code };
+            })
+        }, {
+            name: 'UTC + 2',
+            data: $.map(['FI', 'EE', 'LV', 'LT', 'BY', 'UA', 'MD', 'RO', 'BG', 'GR', 'TR', 'CY'], function (code) {
+                return { code: code };
+            })
+        }, {
+            name: 'UTC + 3',
+            data: $.map(['RU'], function (code) {
+                return { code: code };
+            })
+        }]
+    });
+});
+	
 </script>
