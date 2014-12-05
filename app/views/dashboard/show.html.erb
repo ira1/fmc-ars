@@ -70,28 +70,36 @@
 <%#			<%= label_tag("role_ALL", "All types")% ><br/> %>
 			<%= hidden_field_tag :role_composer, "false", :id => "dummy1" %>
 			<%= check_box_tag(:role_composer, :true, "false"!=params[:role_composer]) %>
-			<%= label_tag(:role_composer, "Composer")%><br/>
+			<%= label_tag(:role_composer, "Composer")%><br>
 
 			<%= hidden_field_tag :role_recording, "false", :id => "dummy2" %>
 			<%= check_box_tag(:role_recording, :true, "false"!=params[:role_recording]) %>
-			<%= label_tag(:role_recording, "Recording artist")%><br/>
+			<%= label_tag(:role_recording, "Recording artist")%><br>
 
 			<%= hidden_field_tag :role_salaried, "false", :id => "dummy3" %>
 			<%= check_box_tag(:role_salaried, :true, "false"!=params[:role_salaried]) %>
-			<%= label_tag(:role_salaried, "Salaried orchestra player")%><br/>
+			<%= label_tag(:role_salaried, "Salaried orchestra player")%><br>
 
 			<%= hidden_field_tag :role_performer, "false", :id => "dummy4" %>
 			<%= check_box_tag(:role_performer, :true, "false" !=params[:role_performer]) %>
-			<%= label_tag(:role_performer, "Performer")%><br/>
+			<%= label_tag(:role_performer, "Performer")%><br>
 
 			<%= hidden_field_tag :role_session, "false", :id => "dummy5" %>
 			<%= check_box_tag(:role_session, :true, "false"!=params[:role_session]) %>
-			<%= label_tag(:role_session, "Session musician/freelancer")%><br/>
+			<%= label_tag(:role_session, "Session musician/freelancer")%><br>
 
 			<%= hidden_field_tag :role_teacher, "false", :id => "dummy6" %>
 			<%= check_box_tag(:role_teacher, :true, "false"!=params[:role_teacher]) %>
-			<%= label_tag(:role_teacher, "Teacher")%><br/>
+			<%= label_tag(:role_teacher, "Teacher")%><br>
+			<p style="margin:0.75em;"></p>
+			<%= hidden_field_tag :roles_exact, "false", :id => "dummy7" %>
+			<%= check_box_tag(:roles_exact, :true, "false"!=params[:roles_exact]) %>
+			<%= label_tag(:roles_exact, "Only those exactly matching above")%><br> <%# Exclude those with additional roles %>
 
+			<%= hidden_field_tag :role_other, "false", :id => "dummy8" %>
+			<%= check_box_tag(:role_other, :true, "true"==params[:role_other]) %>
+			<%= label_tag(:role_other, "Include \"Other\" types")%><br>
+			
 <%#			<%= hidden_field_tag :role_missing, "false", :id => "dummy6" % >
 			<%= check_box_tag(:role_missing, :true, "false"!=params[:role_missing]) % >
 			<%= label_tag(:role_missing, "Did not answer")% ><br/> %>
