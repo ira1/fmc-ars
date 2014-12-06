@@ -93,8 +93,8 @@
 			<%= label_tag(:role_teacher, "Teacher")%><br>
 			<p style="margin:0.75em;"></p>
 			<%= hidden_field_tag :roles_exact, "false", :id => "dummy7" %>
-			<%= check_box_tag(:roles_exact, :true, "false"!=params[:roles_exact]) %>
-			<%= label_tag(:roles_exact, "Only those exactly matching above")%><br> <%# Exclude those with additional roles %>
+			<%= check_box_tag(:roles_exact, :true, "true"==params[:roles_exact]) %>
+			<%= label_tag(:roles_exact, "Exactly match above choices")%><br> <%# Exclude those with additional roles %>
 
 			<%= hidden_field_tag :role_other, "false", :id => "dummy8" %>
 			<%= check_box_tag(:role_other, :true, "true"==params[:role_other]) %>
