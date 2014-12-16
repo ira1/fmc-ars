@@ -63,8 +63,8 @@ class DashboardController < ApplicationController
     if @mgenre != "ALL"
         @sample = @sample.where(:money_genre_group_1 => params[:mgenre] )
         @sample_antigenre = Survey.where.not(:money_genre_group_1 => params[:mgenre])
-        puts "ANTI-GENRE !!!!!!!!"
-        puts @sample_antigenre.count()
+        #puts "ANTI-GENRE !!!!!!!!"
+        #puts @sample_antigenre.count()
         genreincomeOn=true
     end
 
@@ -322,7 +322,7 @@ class DashboardController < ApplicationController
     #
     if genreincomeOn
       @AvgEMI_antigenre = @sample_antigenre.average(:emi) || 0
-      puts "ANTI    GENRE        AMI calc"
+      #puts "ANTI    GENRE        AMI calc"
     end
 
     #
