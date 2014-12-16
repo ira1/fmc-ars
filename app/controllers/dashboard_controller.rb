@@ -61,8 +61,8 @@ class DashboardController < ApplicationController
     genreincomeOn=false
     @mgenre = (params.has_key?(:mgenre)) ? params[:mgenre].upcase : "ALL"
     if @mgenre != "ALL"
-        @sample = @sample.where(:genre_group_1 => params[:mgenre] )
-        @sample_antigenre = Survey.where.not(:genre_group_1 => params[:mgenre])
+        @sample = @sample.where(:money_genre_group_1 => params[:mgenre] )
+        @sample_antigenre = Survey.where.not(:money_genre_group_1 => params[:mgenre])
         puts "ANTI-GENRE !!!!!!!!"
         puts @sample_antigenre.count()
         genreincomeOn=true
