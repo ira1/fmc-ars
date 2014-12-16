@@ -365,16 +365,12 @@ class DashboardController < ApplicationController
      @SessionPlayers = roleCounts.sessionplayers
      @Teachers = roleCounts.teachers
      
-     #@RecordingArtists = @sample.count("case when role_recording then true end")
-     #@Salarieds = @sample.count("case when role_salaried then true end")
-     #@Performers = @sample.count("case when role_performer then true end")
-     #@SessionArtists = @sample.count("case when role_session then true end")
-     #@Teachers = @sample.count("case when role_teacher then true end")
      #
      # Genre Pie Chart
      #
-     
-
+     genreLabel= {0=>'All others',1=>'Classical',2=>'Jazz',3=>'Rock/Alt-Rock/Indie',4=>'Country/Americana/Bluegrass', nil=>'No answer'}
+     genreCounts=@sample.group(:genre_group_1).count()
+     @GenreSeries = [1,2,3,4,0,nil].map { |e| [ genreLabel[e].to_s, genreCounts[e] ] }
      
   end
 end

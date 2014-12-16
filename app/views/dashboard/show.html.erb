@@ -254,20 +254,7 @@
 				<div id="genreincomechart"></div>
 			</ul>
 		</div>
-		<div id="genresingroup" >
-			<div class="textual_output chartheader">
-				<ul>
-					<span class="output_title">What are the primary genres for this group?</span>
-					<span style="text-align:right;" title="% of the musicians who specified this genre as their primary. Each musician may plan other genres as well."><%= image_tag "help_icon.png", :size => "16x16" %></span><br>
-					<%#
-		Live performance	Compositions (mechanicals, PRO royalties, commissions)
-		Teaching	Sound recordings (sales, streams, synchs, SoundExchange)
-		Salaried player	Merchandise and branding
-		Session/freelance work (studio and/or live)	Other %>
-				</ul>
-			</div>
-			<div id="genresingroupchart"></div>
-		</div>
+
 	</div> <%# leftoutputs %>
 <%#
 
@@ -283,6 +270,23 @@
 		<div id="roleschart">Lovely chart goes here</div>
 	</div>
 	<p>&nbsp;</p>
+<% unless @mgenre && 'ALL'!=@mgenre.upcase %>	
+	<div id="genresingroup" >
+		<div class="textual_output chartheader">
+			<ul>
+				<span class="output_title">Primary genres for this group</span>
+				<span style="text-align:right;" title="% of the musicians who specified this genre as their primary. Each musician may play other genres as well."><%= image_tag "help_icon.png", :size => "16x16" %></span><br>
+				<%#
+	Live performance	Compositions (mechanicals, PRO royalties, commissions)
+	Teaching	Sound recordings (sales, streams, synchs, SoundExchange)
+	Salaried player	Merchandise and branding
+	Session/freelance work (studio and/or live)	Other %>
+			</ul>
+		</div>
+		<div id="genresingroupchart"></div>
+	</div>
+<% end %>
+	
 	<%# 
 				FTCLAIM 
 	%>
@@ -628,6 +632,7 @@ $(function () {
 $(function () {
     $('#genresingroupchart').highcharts({
         chart: {
+			type: 'pie',
             plotBackgroundColor: null,
             plotBorderWidth: null,
             plotShadow: false
@@ -639,15 +644,18 @@ $(function () {
 			text: null
 		},
         tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            pointFormat: '<b>{point.percentage:.1f}%</b>'
         },
         plotOptions: {
             pie: {
                 allowPointSelect: true,
                 cursor: 'pointer',
+				//overflow: 'none',
+				//size: '100%',
                 dataLabels: {
-                    enabled: true,
-                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+					//distance: -55,
+					//distance: 15,
+                    format: '<b>{point.name}</b><br>{point.percentage:.1f} %',
                     style: {
                         color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
                     }
@@ -658,20 +666,8 @@ $(function () {
             enabled: false
         },
         series: [{
-            type: 'pie',
-            name: 'Primary Genres',
-            data: [
-                ['Classical',   45.0],
-                ['Rock/Alt-Rock/Indie',       26.8],
-                {
-                    name: 'Jazz',
-                    y: 12.8,
-                    sliced: true,
-                    selected: true
-                },
-                ['Country/Americana/Bluegrass',    8.5],
-                ['All others',     6.2]
-            ]
+            name: 'Musicians',
+            data: <%= @GenreSeries.to_json.html_safe %>
         }]
     });
 });
