@@ -1,3 +1,4 @@
+<%     genre_text=["Selected Other", "Classical", "Jazz", "Rock/Alt-Rock/Indie", "Country/Americana/Bluegrass"] %>
 <div id="page" class="super-container full-width">
 	<div class="container">
 		<header>
@@ -92,6 +93,7 @@
 			<%= check_box_tag(:role_teacher, :true, "false"!=params[:role_teacher]) %>
 			<%= label_tag(:role_teacher, "Teacher")%><br>
 			<p style="margin:0.75em;"></p>
+			<%# <hr style=" border: 0; height: 1px; margin:0; background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); background-image: -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); background-image: -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); background-image: -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); "> %>
 			<%= hidden_field_tag :roles_exact, "false", :id => "dummy7" %>
 			<%= check_box_tag(:roles_exact, :true, "true"==params[:roles_exact]) %>
 			<%= label_tag(:roles_exact, "Exactly match above choices")%><br> <%# Exclude those with additional roles %>
@@ -212,7 +214,7 @@
 				Annual Income Chart
 		%>
 		<div id="anninc" class="six columns alpha" >
-			<div id="anninctitle" class="six columns" style="background:#EFEFEF;text-align:center;">
+			<div id="anninctitle" class="six columns chartheader" >
 				<span class="output_title" style="text-align:center;padding-right:1em;">Gross estimated music income: </span><br><span class="output_title"  title="<%= @EMIPctAnswered %>% of respondents in filtered sample provided EMI"><%= number_to_currency(@AvgEMI) %> </span><br>
 				<span class="output_subtitle" style="font-size:small;text-align:center">Allocation of music-related income by category over past 12 months, and perceived changes in income over prior 5 years. N=<%= @EMISampleSize %>.</span>
 			</div>
@@ -240,19 +242,32 @@
 		
 				This chart displays only if at least one genre has been excluded from facets
 		%>		
-		<div id="Income" >
+		<div id="genreincome" >
 			<ul class="textual_output" style="padding:0 1em;">
 				<span class="output_title">Comparing revenue allocation by genre</span>
 				<span style="text-align:right;" title="Allocation of annual music-related income by category"><%= image_tag "help_icon.png", :size => "16x16" %></span><br>
-Lovely chart goes right here when not all genres are selected! <%#
+				<%#
 	Live performance	Compositions (mechanicals, PRO royalties, commissions)
 	Teaching	Sound recordings (sales, streams, synchs, SoundExchange)
 	Salaried player	Merchandise and branding
 	Session/freelance work (studio and/or live)	Other %>
-				<div id="incbygenre"></div>
+				<div id="genreincomechart"></div>
 			</ul>
 		</div>
-
+		<div id="genresingroup" >
+			<div class="textual_output chartheader">
+				<ul>
+					<span class="output_title">What are the primary genres for this group?</span>
+					<span style="text-align:right;" title="% of the musicians who specified this genre as their primary. Each musician may plan other genres as well."><%= image_tag "help_icon.png", :size => "16x16" %></span><br>
+					<%#
+		Live performance	Compositions (mechanicals, PRO royalties, commissions)
+		Teaching	Sound recordings (sales, streams, synchs, SoundExchange)
+		Salaried player	Merchandise and branding
+		Session/freelance work (studio and/or live)	Other %>
+				</ul>
+			</div>
+			<div id="genresingroupchart"></div>
+		</div>
 	</div> <%# leftoutputs %>
 <%#
 
@@ -260,6 +275,14 @@ Lovely chart goes right here when not all genres are selected! <%#
 
 %>
 <div id="rightoutputs" class="six columns omega">
+	
+	<div id="roles" >
+		<div id="ageinctitle" style="background:#EFEFEF;text-align:center;">
+			<span class="output_title" style="text-align:center;padding-right:1em;">&nbsp;&nbsp;Other roles these musicians fill</span>
+		</div>
+		<div id="roleschart">Lovely chart goes here</div>
+	</div>
+	<p>&nbsp;</p>
 	<%# 
 				FTCLAIM 
 	%>
@@ -281,7 +304,7 @@ Lovely chart goes right here when not all genres are selected! <%#
 			<li><%= @AboutPctOver50Shows %>% played more than 50 shows in the prior 12 months<span title="Only <%= @AboutShowsPctAnswered %>% of respondents in filtered sample answered this question"> (N=<%=@AboutShowsNCount%>)</span></li>
 		</ul>
 	</div>
-	<p>&nbsp;</p>	
+	<p>&nbsp;</p>
 	<%#
 				Income by Age Group
 	%>
@@ -298,7 +321,7 @@ Lovely chart goes right here when not all genres are selected! <%#
 	<%#
 				Map
 	%>
-	<div id="Income" >
+	<div id="concentration" >
 		<ul class="textual_output" style="padding:0 1em;">
 			<span class="output_title">Largest clusters of musicians</span>
 			<span style="text-align:right;" title="Allocation of annual music-related income by category"><%= image_tag "help_icon.png", :size => "16x16" %></span><br>
@@ -312,6 +335,7 @@ Lovely chart goes right here when not all genres are selected! <%#
 		%>
 		</ul>
 	</div>
+
 
 </div> <%# rightoutputs %>
 </div>
@@ -472,7 +496,8 @@ $(function () {
 });
 
 $(function () {
-    $('#incbygenre').highcharts({
+//	if 'true' == '<%= params.has_key?(:mgenre) %>' && 'ALL' != '<%= params[:mgenre]%>' {
+    $('#genreincomechart').highcharts({
         chart: {
             type: 'bar'
         },
@@ -523,15 +548,16 @@ $(function () {
             enabled: false
         },
         series: [{
-            name: 'Selected Genre',
+            name: '<%= genre_text[params[:mgenre].to_i] %> Genre (EMI=<%= number_to_currency(@AvgEMI) %>)',
 			color: '#00748E',
             data: [15,15,20,25,15,10]
         }, {
-            name: 'All other Genres',
+            name: 'All other Genres (EMI=<%= number_to_currency(@AvgEMI_antigenre) %>)',
 			color: '#FF7D2C',
             data: [25,15,10,15,15,20]
         }]
     });
+	//}
 });
 
 
@@ -599,5 +625,100 @@ $(function () {
         }]
     });
 });
-	
+$(function () {
+    $('#genresingroupchart').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false
+        },
+        title: {
+            text: null
+        },
+		subtitle: {
+			text: null
+		},
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                }
+            }
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            type: 'pie',
+            name: 'Primary Genres',
+            data: [
+                ['Classical',   45.0],
+                ['Rock/Alt-Rock/Indie',       26.8],
+                {
+                    name: 'Jazz',
+                    y: 12.8,
+                    sliced: true,
+                    selected: true
+                },
+                ['Country/Americana/Bluegrass',    8.5],
+                ['All others',     6.2]
+            ]
+        }]
+    });
+});
+
+$(function () {
+    $('#roleschart').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+			text: null
+        },
+		yAxis: {
+			title: {
+				text: '# of musicians'
+			}
+		},
+		legend: {
+			enabled: false
+		},
+		credits: {
+			enabled: false
+		},
+        xAxis: {
+            categories: ['Composer','Recording Artist','Salaried Player','Performer','Session player','Teacher'],
+			labels: {
+				rotation: 50
+			}
+        },
+
+        plotOptions: {
+			column: {
+                dataLabels: {
+                    enabled: true
+                }
+			}
+        },
+
+        series: [{
+			name: '# of musicians',
+			color: '#00748E',
+			data: [<%= @Composers %>,<%= @RecordingArtists %>, <%= @Salarieds %>, <%= @Performers %>, <%= @SessionPlayers %>, <%= @Teachers %>]
+        }],
+
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.y}</b> ({point.percentage:.1f}%)<br/>'
+        }
+    });
+});
 </script>

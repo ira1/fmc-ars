@@ -32,14 +32,6 @@ class DashboardController < ApplicationController
     ################### FILTERS ###################
     
     #
-    # Main-$ genre facet (MGenre)
-    #
-    @mgenre = (params.has_key?(:mgenre)) ? params[:mgenre].upcase : "ALL"
-    if @mgenre != "ALL"
-        @sample = @sample.where(:genre_group_1 => params[:mgenre] )
-    end
-
-    #
     #  if musician_type param is set assign/override the role parameter appropriately
     #
     if params.has_key?(:musician_type)
@@ -64,8 +56,21 @@ class DashboardController < ApplicationController
     end
     
     #
+    # Main-$ genre facet (MGenre)
     #
-    #  ProcessRole parameters 
+    genreincomeOn=false
+    @mgenre = (params.has_key?(:mgenre)) ? params[:mgenre].upcase : "ALL"
+    if @mgenre != "ALL"
+        @sample = @sample.where(:genre_group_1 => params[:mgenre] )
+        @sample_antigenre = Survey.where.not(:genre_group_1 => params[:mgenre])
+        puts "ANTI-GENRE !!!!!!!!"
+        puts @sample_antigenre.count()
+        genreincomeOn=true
+    end
+
+    #
+    #
+    #  Process Role parameters 
     #
     rolecount=0
     roleclause=""
@@ -84,7 +89,7 @@ class DashboardController < ApplicationController
         if roles_exact
           AppendClauseAnd(roleclause,"role_composer=true")
         else
-          AppendClauseOr(roleclause , "role_composer=true")
+          AppendClauseOr(roleclause,"role_composer=true")
         end
       else
         if roles_exact 
@@ -101,7 +106,7 @@ class DashboardController < ApplicationController
       end
     else
       if roles_exact
-        AppendClauseAnd(roleclause,"role_recording=true")
+        AppendClauseAnd(roleclause,"role_recording=false")
       end
     end
 
@@ -159,7 +164,8 @@ class DashboardController < ApplicationController
     if params.has_key?(:role_other) && "true"==params[:role_other] then
       AppendClauseOr(roleclause, "role_other=true")
     else
-      AppendClauseAnd(roleclause,"role_other=false")
+      @sample=@sample.where("role_other=false")
+      @sample_antigenre = @sample_antigenre.where("role_other=false") if genreincomeOn
     end
     
 #
@@ -170,34 +176,43 @@ class DashboardController < ApplicationController
 #    end 
     if 0<roleclause.length then
       @sample = @sample.where(roleclause)
+      @sample_antigenre = @sample_antigenre.where(roleclause) if genreincomeOn
     end
     #
     
     # Career Level facet
     #
     @careerexp = params.has_key?(:careerexp) ? params[:careerexp] : "ALL"
+    whereclause =""
     #logger.info{"careerexp #{params.has_key?(:careerexp)} and is #{@careerexp}"}
     case @careerexp
     when  "1" 
-      @sample = @sample.where("experience_group < 4")
+      whereclause = "experience_group < 4"
     when "2"
-      @sample = @sample.where("experience_group > 3 and experience_group < 7")
+      whereclause = "experience_group > 3 and experience_group < 7"
     when "3"
-      @sample = @sample.where("experience_group > 6")
+      whereclause ="experience_group > 6"
     end
-    
+     if 1 < whereclause.length 
+       @sample = @sample.where(whereclause)
+       @sample_antigenre = @sample_antigenre.where(whereclause) if genreincomeOn
+     end
     #
     # Full time? (may contain nulls)
     #
     if "true"==params[:ft] then
-      @sample = @sample.where("full_time = true")
+      whereclause = "full_time = true"
+      @sample = @sample.where(whereclause)
+      @sample_antigenre = @sample_antigenre.where(whereclause) if genreincomeOn
     end
     
     #
     # Went to music school or conservatory
     #
     if "true"==params[:trained] then
-      @sample = @sample.where("music_school = true")
+      whereclause = "music_school = true"
+      @sample = @sample.where(whereclause)
+      @sample_antigenre = @sample_antigenre.where(whereclause) if genreincomeOn
     end
     
     #
@@ -228,22 +243,27 @@ class DashboardController < ApplicationController
     
     if genderclause.length > 0 then
       @sample = @sample.where(genderclause)
+      @sample_antigenre = @sample_antigenre.where(genderclause) if genreincomeOn
     end
     
     #
     # TODO EMI filter
     #
     
+    whereclause=""
     @emigroup = params.has_key?(:emigroup) ? params[:emigroup] : "ALL"
     case @emigroup
     when  "1" 
-      @sample = @sample.where("emi < 25000")
+      whereclause = "emi < 25000"
     when "2"
-      @sample = @sample.where("emi >= 25000 and emi < 75000")
+      whereclause = "emi >= 25000 and emi < 75000"
     when "3"
-      @sample = @sample.where("emi >= 75000")
+      whereclause = "emi >= 75000"
     end
-    
+    if 1 < whereclause.length
+      @sample = @sample.where(whereclause)
+      @sample_antigenre = @sample_antigenre.where(whereclause) if genreincomeOn
+    end      
     
     #################### Outputs ######################
     
@@ -254,7 +274,7 @@ class DashboardController < ApplicationController
     
     #
     # AnnInc 
-    # TODO Refactor into AnnInc method & Model
+    # TODO Refactor into AnnInc method & Model, combine selects into fewer cursors
     #
     @AvgEMI = @sample.average(:emi) || 0
     @EMISampleSize = @sample.count(:emi)
@@ -297,7 +317,13 @@ class DashboardController < ApplicationController
     @DecrIncOther = 0 #@sample.where("perform_inc_direction = -1").count()
     @IncrIncOther = 0 #@sample.where("perform_inc_direction = 1").count()
     
-    
+    #
+    #  GenreIncome
+    #
+    if genreincomeOn
+      @AvgEMI_antigenre = @sample_antigenre.average(:emi) || 0
+      puts "ANTI    GENRE        AMI calc"
+    end
 
     #
     #  TODO Refactor into FTClaim method & Model
@@ -314,7 +340,7 @@ class DashboardController < ApplicationController
     #  TODO Refactor into AboutGroupClaim method
     #
     # experience_group should have no nulls
-     @AboutPctExperienced = 100*@sample.where("experience_group > 3").count/@sample.count
+     @AboutPctExperienced = (0<@sample_size) ? 100*@sample.where("experience_group > 3").count/@sample_size : 0
      #
      @AboutCompositionsNCount = @sample.count(:credits_compositions_life)
      @AboutCompositionsPctAnswered = (0==@NCount) ? 0 : (100 * @AboutCompositionsNCount / @NCount)
@@ -327,5 +353,28 @@ class DashboardController < ApplicationController
      @AboutShowsNCount = @sample.count(:shows_last_year)
      @AboutShowsPctAnswered = (0==@NCount) ? 0 : (100 * @AboutShowsNCount / @NCount)
      @AboutPctOver50Shows = (0==@AboutShowsNCount) ? 0 : 100*@sample.where("shows_last_year > 1").count/@AboutShowsNCount
+     
+     #
+     # Roles chart
+     #
+     roleCounts = @sample.select("count(case when role_composer then true end) as composers, count(case when role_recording then true end) as recordingartists,count(case when role_salaried then true end) as salarieds, count(case when role_performer then true end) as performers, count(case when role_session then true end) as sessionplayers, count(case when role_teacher then true end) as teachers").order('1').first
+     @Composers = roleCounts.composers
+     @RecordingArtists = roleCounts.recordingartists
+     @Salarieds = roleCounts.salarieds
+     @Performers = roleCounts.performers
+     @SessionPlayers = roleCounts.sessionplayers
+     @Teachers = roleCounts.teachers
+     
+     #@RecordingArtists = @sample.count("case when role_recording then true end")
+     #@Salarieds = @sample.count("case when role_salaried then true end")
+     #@Performers = @sample.count("case when role_performer then true end")
+     #@SessionArtists = @sample.count("case when role_session then true end")
+     #@Teachers = @sample.count("case when role_teacher then true end")
+     #
+     # Genre Pie Chart
+     #
+     
+
+     
   end
 end
