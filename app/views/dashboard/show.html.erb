@@ -685,7 +685,8 @@ $(function () {
                 dataLabels: {
 					//distance: -55,
 					//distance: 15,
-                    format: '<b>{point.name}</b><br>{point.percentage:.1f} %',
+					distance: 5,
+                    format: '<b>{point.short}</b><br>{point.percentage:.1f} %',
                     style: {
                         color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
                     }
