@@ -1,4 +1,26 @@
-<%     genre_text=["Selected Other", "Classical", "Jazz", "Rock/Alt-Rock/Indie", "Country/Americana/Bluegrass"] %>
+<% genre_text=["Selected Other", "Classical", "Jazz", "Rock/Alt-Rock/Indie", "Country/Americana/Bluegrass"] %>
+<% otherIncomeLabels= {"rev_produce"=>"Producing",
+"afm_srsp"=>"Sound Recording Special Payments Fund",
+"rev_honoraria"=>"Honoraria",
+"rev_grants"=>"Grants",
+"afm_2"=>"Film Musicians Secondary Markets Fund",
+"rev_fanfund"=>"Fan funding",
+"rev_corp"=>"Corporate sponsorship",
+"afm_aftra"=>"AFM/SAG-AFTRA Intellectual Property Rights Distribution Fund",
+"ascaplus"=>"ASCAPLUS Awards",
+"rev_acting"=>"Acting",
+"rev_webads"=>"WebAds",
+"aarc"=>"AARC royalties",
+"rev_endorse"=>"Product endorsements",
+"label_settle"=>"Label settlements",
+"rev_sample"=>"Sample licensing",
+"rev_pubadvance"=>"Publisher advance",
+"rev_youtube"=>"YouTube Partnership Program",
+"rev_persona"=>"Persona licensing",
+"rev_fanclub"=>"Fan club",
+"aftra_csp"=>"AFTRA Contingent Scale",
+""=>""}
+ %> 
 <div id="page" class="super-container full-width">
 	<div class="container">
 		<header>
@@ -230,10 +252,18 @@
 				<span class="output_title">Other sources of income from music</span>
 				<span style="text-align:right;" title="% of [selected group] that have ever received any music-related income from…"><%= image_tag "help_icon.png", :size => "16x16" %></span><br>
 				<li>&nbsp;</li>
-				<p>AFM Special Payments (17%), grants (12%), honoraria (11%), AFM secondary markets (9.3%), corporate (4.2%), AFM/AFTRA Fund (3.2%), producer (2.6%), ASCAPLUS Awards (2.1%), fan funding (1.8%)</p>
+				<p><%  sep=""
+				 @OtherIncomeDist.select { |k,v| 1.0<=v }.sort_by { |k,v| -1.0*v}.each do |e| 
+					 outp=(sep ? sep : "")+otherIncomeLabels[e[0]]+" ("+e[1].to_i.to_s+"%)"
+					 %><%= outp 
+					 %><% sep=", "; end %></p>
 				<li>&nbsp;</li>
 				<li style="text-align:left;font-size:small;font-weight:bold;">Less than 1% made any $ from:</li>
-				<p>Acting, Endorsements, Web ads, AARC royalties, Label Settlement, Sample licensing, Publisher advance, Fan club, YouTube partner, Persona licensing, AFTRA Contingent Scale</p>
+				<p style="font-size:smaller"><%  sep=""
+				 @OtherIncomeDist.select { |k,v| v<1 }.sort_by { |k,v| -1.0*v}.each do |e| 
+					 outp=(sep ? sep : "")+otherIncomeLabels[e[0]]
+					 %><%= outp 
+					 %><% sep=", "; end %></p>
 			</ul>
 		</div>
 		<p>&nbsp;</p>
