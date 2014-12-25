@@ -58,14 +58,14 @@ class DashboardController < ApplicationController
     #
     # Main-$ genre facet (MGenre)
     #
-    genreincomeOn=false
+    @genreincomeOn=false
     @mgenre = (params.has_key?(:mgenre)) ? params[:mgenre].upcase : "ALL"
     if @mgenre != "ALL"
         @sample = @sample.where(:money_genre_group_1 => params[:mgenre] )
         @sample_antigenre = Survey.where.not(:money_genre_group_1 => params[:mgenre])
         #puts "ANTI-GENRE !!!!!!!!"
         #puts @sample_antigenre.count()
-        genreincomeOn=true
+        @genreincomeOn=true
     end
 
     #
@@ -165,7 +165,7 @@ class DashboardController < ApplicationController
       AppendClauseOr(roleclause, "role_other=true")
     else
       @sample=@sample.where("role_other=false")
-      @sample_antigenre = @sample_antigenre.where("role_other=false") if genreincomeOn
+      @sample_antigenre = @sample_antigenre.where("role_other=false") if @genreincomeOn
     end
     
 #
@@ -176,7 +176,7 @@ class DashboardController < ApplicationController
 #    end 
     if 0<roleclause.length then
       @sample = @sample.where(roleclause)
-      @sample_antigenre = @sample_antigenre.where(roleclause) if genreincomeOn
+      @sample_antigenre = @sample_antigenre.where(roleclause) if @genreincomeOn
     end
     #
     
@@ -195,7 +195,7 @@ class DashboardController < ApplicationController
     end
      if 1 < whereclause.length 
        @sample = @sample.where(whereclause)
-       @sample_antigenre = @sample_antigenre.where(whereclause) if genreincomeOn
+       @sample_antigenre = @sample_antigenre.where(whereclause) if @genreincomeOn
      end
     #
     # Full time? (may contain nulls)
@@ -203,7 +203,7 @@ class DashboardController < ApplicationController
     if "true"==params[:ft] then
       whereclause = "full_time = true"
       @sample = @sample.where(whereclause)
-      @sample_antigenre = @sample_antigenre.where(whereclause) if genreincomeOn
+      @sample_antigenre = @sample_antigenre.where(whereclause) if @genreincomeOn
     end
     
     #
@@ -212,7 +212,7 @@ class DashboardController < ApplicationController
     if "true"==params[:trained] then
       whereclause = "music_school = true"
       @sample = @sample.where(whereclause)
-      @sample_antigenre = @sample_antigenre.where(whereclause) if genreincomeOn
+      @sample_antigenre = @sample_antigenre.where(whereclause) if @genreincomeOn
     end
     
     #
@@ -243,7 +243,7 @@ class DashboardController < ApplicationController
     
     if genderclause.length > 0 then
       @sample = @sample.where(genderclause)
-      @sample_antigenre = @sample_antigenre.where(genderclause) if genreincomeOn
+      @sample_antigenre = @sample_antigenre.where(genderclause) if @genreincomeOn
     end
     
     #
@@ -262,7 +262,7 @@ class DashboardController < ApplicationController
     end
     if 1 < whereclause.length
       @sample = @sample.where(whereclause)
-      @sample_antigenre = @sample_antigenre.where(whereclause) if genreincomeOn
+      @sample_antigenre = @sample_antigenre.where(whereclause) if @genreincomeOn
     end      
     
     #################### Outputs ######################
@@ -320,9 +320,47 @@ class DashboardController < ApplicationController
     #
     #  GenreIncome
     #
-    if genreincomeOn
-      @AvgEMI_antigenre = @sample_antigenre.average(:emi) || 0
-      #puts "ANTI    GENRE        AMI calc"
+    if @genreincomeOn
+      #coalesce(avg(pie_compose),0) as avg_pct_compose,\
+      #coalesce(avg(pie_song),0) as avg_pct_song,\
+      #coalesce(avg(pie_record),0) as avg_pct_record,\
+      genreColExpr = "count(emi) as ncount, \
+      coalesce(avg(emi),0) as avg_emi, \
+      coalesce(avg(pie_live),0) as avg_pct_live,\
+      coalesce(avg(pie_teach),0) as avg_pct_teach,\
+      coalesce(avg(pie_salary),0) as avg_pct_salary,\
+      coalesce(avg(pie_session),0) as avg_pct_session,\
+      coalesce(avg(pie_song),0) as avg_pct_compose,\
+      coalesce(avg(pie_record),0) as avg_pct_record,\
+      coalesce(avg(pie_merch),0) as avg_pct_merch,\
+      coalesce(avg(pie_other),0) as avg_pct_other"
+      
+      @GenreIncResults = @sample.select(genreColExpr).order("1").first
+      @AntiGenreIncResults = @sample_antigenre.select(genreColExpr).order("1").first
+      @NCount_antigenre = @AntiGenreIncResults.attributes["ncount"]
+      @AvgEMI_antigenre = @AntiGenreIncResults.attributes["avg_emi"]
+      
+      @GenrePcts = @GenreIncResults.attributes.select { |k,v| k['avg_pct']}.map {|k,v| v.to_f.round(1)}
+      @AntiGenrePcts = @AntiGenreIncResults.attributes.select { |k,v| k['avg_pct']}.map {|k,v| v.to_f.round(1) }
+      
+     # @EMISampleSize = @sample.count(:emi)
+     # @EMIPctAnswered = (0==@NCount)? 100 : 100 * @EMISampleSize / @NCount
+     #  @AvgPctLive = (@sample.average(:pie_live)) || 0
+     #  @AvgEMILive = @AvgPctLive*@AvgEMI
+     #  @AvgPctTeach = @sample.average(:pie_teach) || 0
+     #  @AvgEMITeach = @AvgPctTeach * @AvgEMI
+     #  @AvgPctSalary = @sample.average(:pie_salary) || 0
+     #  @AvgEMISalary = @AvgPctSalary * @AvgEMI
+     #  @AvgPctSession = @sample.average(:pie_session) || 0
+     #  @AvgEMISession = @AvgPctSession * @AvgEMI
+     #  @AvgPctComposition = @sample.average(:pie_song) || 0
+     #  @AvgEMIComposition = @AvgPctComposition * @AvgEMI
+     #  @AvgPctRecord = @sample.average(:pie_record) || 0
+     #  @AvgEMIRecord = @AvgPctRecord * @AvgEMI
+     #  @AvgPctMerch = @sample.average(:pie_merch) || 0
+     #  @AvgEMIMerch = @AvgPctMerch * @AvgEMI
+     #  @AvgPctOther = @sample.average(:pie_other) || 0
+     #  @AvgEMIOther = @AvgPctOther * @AvgEMI
     end
 
     #

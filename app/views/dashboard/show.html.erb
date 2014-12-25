@@ -1,4 +1,4 @@
-<% genre_text=["Selected Other", "Classical", "Jazz", "Rock/Alt-Rock/Indie", "Country/Americana/Bluegrass"] %>
+<% genre_text=["All Others", "Classical", "Jazz", "Rock/Alt-Rock/Indie", "Country/Americana/Bluegrass"] %>
 <% otherIncomeLabels= {"rev_produce"=>"Producing",
 "afm_srsp"=>"Sound Recording Special Payments Fund",
 "rev_honoraria"=>"Honoraria",
@@ -20,6 +20,7 @@
 "rev_fanclub"=>"Fan club",
 "aftra_csp"=>"AFTRA Contingent Scale",
 ""=>""}
+
  %> 
 <div id="page" class="super-container full-width">
 	<div class="container">
@@ -272,6 +273,7 @@
 		
 				This chart displays only if at least one genre has been excluded from facets
 		%>		
+	<% if @genreincomeOn %>	
 		<div id="genreincome" >
 			<ul class="textual_output" style="padding:0 1em;">
 				<span class="output_title">Comparing revenue allocation by genre</span>
@@ -284,6 +286,7 @@
 				<div id="genreincomechart"></div>
 			</ul>
 		</div>
+	<% end %>
 
 	</div> <%# leftoutputs %>
 <%#
@@ -541,8 +544,8 @@ $(function () {
         subtitle: {
             text: null
         },
-        xAxis: {
-            categories: ['Live performance','Compositions','Teaching','Sound recordings','Salaried player','Merchandise and branding','Session/freelance work','Other'],
+        xAxis: { 
+            categories: ['Live performance','Teaching','Salaried player','Session work','Compositions','Sound recordings','Merchandise and branding','Other'],
             title: {
                 text: null
             }
@@ -550,27 +553,34 @@ $(function () {
         yAxis: {
             min: 0,
             title: {
-                text: 'Pct of Income',
-                align: 'high'
+                text: 'Pct of Income'
             },
             labels: {
                 overflow: 'justify'
             }
         },
         tooltip: {
-            valueSuffix: ' millions'
+			headerFormat: '<span style="font-size: 10px">{series.name}</span><br/>{point.key}:',
+			pointFormat: "{point.y:,.1f}%",
         },
         plotOptions: {
             bar: {
                 dataLabels: {
-                    enabled: true
+                    enabled: true,
+					crop: false,
+					overflow: 'none',
+					format: '{y}%'
                 }
             }
         },
         legend: {
+            labelFormatter: function () {
+                return this.name + ' (EMI='+this.options.emi+')';
+            },
             layout: 'vertical',
             align: 'center',
             verticalAlign: 'top',
+			reversed: true,
             x: -0,
             y: 0,
             floating: false,
@@ -582,18 +592,21 @@ $(function () {
             enabled: false
         },
         series: [{
-            name: '<%= genre_text[params[:mgenre].to_i] %> Genre (EMI=<%= number_to_currency(@AvgEMI) %>)',
-			color: '#00748E',
-            data: [15,15,20,25,15,10]
-        }, {
-            name: 'All other Genres (EMI=<%= number_to_currency(@AvgEMI_antigenre) %>)',
+            name: 'Non-<%= genre_text[params[:mgenre].to_i] %>  Genres',
+			emi: '<%= number_to_currency(@AvgEMI_antigenre, :precision=>0) %>',
 			color: '#FF7D2C',
-            data: [25,15,10,15,15,20]
+            data: <%= @GenrePcts.map {|x| number_with_precision(x,:precision=>2,:significant=>true).to_f}.to_json.html_safe  %>
+			
+        }, {
+            name: '<%= genre_text[params[:mgenre].to_i] %> Genre',
+			emi: '<%= number_to_currency(@AvgEMI, :precision=>0) %>',
+			color: '#00748E',
+            data: <%= @AntiGenrePcts.map {|x| number_with_precision(x,:precision=>2,:significant=>true).to_f}.to_json.html_safe %>
         }]
     });
 	//}
 });
-
+//[25,15,10,15,15,20,4,6]
 
 $(function () {
     // Instantiate the map
