@@ -296,30 +296,6 @@
 %>
 <div id="rightoutputs" class="six columns omega">
 	
-	<div id="roles" >
-		<div id="ageinctitle" style="background:#EFEFEF;text-align:center;">
-			<span class="output_title" style="text-align:center;padding-right:1em;">&nbsp;&nbsp;Other roles these musicians fill</span>
-		</div>
-		<div id="roleschart">Lovely chart goes here</div>
-	</div>
-	<p>&nbsp;</p>
-<%# unless @mgenre && 'ALL'!=@mgenre.upcase %>	
-	<div id="genresingroup" >
-		<div class="textual_output chartheader">
-			<ul>
-				<span class="output_title">Primary genres for this group</span>
-				<span style="text-align:right;" title="% of the musicians who specified this genre as their primary focus. It may not be the genre generating the most income. Musicians may have listed working in other genres also, which is not reflected in this chart."><%= image_tag "help_icon.png", :size => "16x16" %></span><br>
-				<%#
-	Live performance	Compositions (mechanicals, PRO royalties, commissions)
-	Teaching	Sound recordings (sales, streams, synchs, SoundExchange)
-	Salaried player	Merchandise and branding
-	Session/freelance work (studio and/or live)	Other %>
-			</ul>
-		</div>
-		<div id="genresingroupchart"></div>
-	</div>
-<%# end %>
-	
 	<%# 
 				FTCLAIM 
 	%>
@@ -342,6 +318,36 @@
 		</ul>
 	</div>
 	<p>&nbsp;</p>
+	<%#
+					Primary genres
+	%>
+<%# unless @mgenre && 'ALL'!=@mgenre.upcase %>	
+	<div id="genresingroup" >
+		<div class="textual_output chartheader">
+			<ul>
+				<span class="output_title">Primary genres for this group</span>
+				<span style="text-align:right;" title="% of the musicians who specified this genre as their primary focus. It may not be the genre generating the most income. Musicians may have listed working in other genres also, which is not reflected in this chart."><%= image_tag "help_icon.png", :size => "16x16" %></span><br>
+				<%#
+	Live performance	Compositions (mechanicals, PRO royalties, commissions)
+	Teaching	Sound recordings (sales, streams, synchs, SoundExchange)
+	Salaried player	Merchandise and branding
+	Session/freelance work (studio and/or live)	Other %>
+			</ul>
+		</div>
+		<div id="genresingroupchart"></div>
+	</div>
+<%# end %>
+	<%#
+					Other roles 
+	%>
+	<div id="roles" >
+		<div id="ageinctitle" style="background:#EFEFEF;text-align:center;">
+			<span class="output_title" style="text-align:center;padding-right:1em;">&nbsp;&nbsp;Other roles these musicians fill</span>
+		</div>
+		<div id="roleschart">Lovely chart goes here</div>
+	</div>
+	<p>&nbsp;</p>
+
 	<%#
 				Income by Age Group
 	%>
