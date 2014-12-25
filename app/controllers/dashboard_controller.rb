@@ -320,7 +320,7 @@ class DashboardController < ApplicationController
     #
     #  GenreIncome
     #
-    if @genreincomeOn
+    if @genreincomeOn then
       #coalesce(avg(pie_compose),0) as avg_pct_compose,\
       #coalesce(avg(pie_song),0) as avg_pct_song,\
       #coalesce(avg(pie_record),0) as avg_pct_record,\
