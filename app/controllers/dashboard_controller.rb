@@ -1,5 +1,6 @@
 class DashboardController < ApplicationController
 
+  logger.info("running")
   # TODO strip whitespace for length test
   #
   def AppendClauseOr(clause,phrase)
