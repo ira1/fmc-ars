@@ -238,7 +238,7 @@
 		%>
 		<div id="anninc" class="six columns alpha" >
 			<div id="anninctitle" class="six columns chartheader" >
-				<span class="output_title" style="text-align:center;padding-right:1em;">Gross estimated music income: </span><br><span class="output_title"  title="<%= @EMIPctAnswered %>% of respondents in filtered sample provided EMI"><%= number_to_currency(@AvgEMI) %> </span><br>
+				<span class="output_title" style="text-align:center;padding-right:1em;">Gross estimated music income: </span><br><span class="output_title"  title="<%= @EMIPctAnswered %>% of respondents in filtered sample provided EMI"><%= number_to_currency(@AvgEMI, :precision=>0) %> </span><br>
 				<span class="output_subtitle" style="font-size:small;text-align:center">Allocation of music-related income by category over past 12 months, and perceived changes in income over prior 5 years. N=<%= @EMISampleSize %>.</span>
 			</div>
 			<div id="annincbycat"  style="width:75%;height:300px;margin:0;padding:0;float:left;"></div>
