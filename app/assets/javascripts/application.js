@@ -13,5 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
-//= require highcharts
+//x= require_tree .
+//x= require highcharts
+//x= require highcharts/modules/data
+//x= require highcharts/modules/map 
+	
