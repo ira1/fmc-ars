@@ -255,14 +255,14 @@
 				<span style="text-align:right;" title="% of [selected group] that have ever received any music-related income from…"><%= image_tag "help_icon.png", :size => "16x16" %></span><br>
 				<li>&nbsp;</li>
 				<p><%  sep=""
-				 @OtherIncomeDist.select { |k,v| 1.0<=v }.sort_by { |k,v| -1.0*v}.each do |e| 
-					 outp=(sep ? sep : "")+otherIncomeLabels[e[0]]+" ("+number_with_precision(e[1],:precision=>2, :significant=>true)+"%)"
+				 @OtherIncomeDist.select { |k,v| 5.0<=v }.sort_by { |k,v| -1.0*v}.each do |e| 
+					 outp=(sep ? sep.html_safe : "")+otherIncomeLabels[e[0]]+" ("+number_with_precision(e[1],:precision=>2, :significant=>true)+"%)"
 					 %><%= outp 
-					 %><% sep=", "; end %></p>
+					 %><% sep="<br>"; end %></p>
 				<li>&nbsp;</li>
-				<li style="text-align:left;font-size:small;font-weight:bold;">Less than 1% made any money from...</li>
+				<li style="text-align:left;font-size:small;font-weight:bold;"> Fewer than 5% of these musicians earned from...</li>
 				<p style="font-size:smaller"><%  sep=""
-				 @OtherIncomeDist.select { |k,v| v<1 }.sort_by { |k,v| -1.0*v}.each do |e| 
+				 @OtherIncomeDist.select { |k,v| v<5 }.sort_by { |k,v| -1.0*v}.each do |e| 
 					 outp=(sep ? sep : "")+otherIncomeLabels[e[0]]
 					 %><%= outp 
 					 %><% sep=", "; end %></p>
