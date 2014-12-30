@@ -423,5 +423,15 @@ class DashboardController < ApplicationController
        @OtherIncomeDist=@sample.select(colexpr).order("1").first.attributes.select { |k,v| v }
      # f = @OtherIncomeDist.sort_by { |kkey,vval| vval}
      end
+     
+     #
+     #
+     #    Music Income by Age Group
+     #
+     ageColExpr = "age_group as x,avg(emi)::int as avg_emi, (avg(midrange_income)-avg(emi))::int as avg_non_music_inc"
+     musicIncbyAge = ActiveRecord::Base.connection.select_all(@sample.group(:age_group).order(:age_group).select(ageColExpr))
+     @MusicIncbyAge = musicIncbyAge.map { |e| [e["x"].to_i-1, e["avg_emi"].to_i] }
+     @NonMusicIncbyAge = musicIncbyAge.map { |e| [e["x"].to_i-1, e["avg_non_music_inc"].to_i] }
+     @AvgGross = @sample.average(:midrange_income).to_i || 0
   end
 end
