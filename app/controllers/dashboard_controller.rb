@@ -433,5 +433,12 @@ class DashboardController < ApplicationController
      @MusicIncbyAge = musicIncbyAge.map { |e| [e["x"].to_i-1, e["avg_emi"].to_i] }
      @NonMusicIncbyAge = musicIncbyAge.map { |e| [e["x"].to_i-1, e["avg_non_music_inc"].to_i] }
      @AvgGross = @sample.average(:midrange_income).to_i || 0
+     
+     #
+     #
+     #     Concentration Map
+     #
+     colexpr = "countyfips as fips, count(*) as value"
+     @MusiciansByCounties = @sample.where("countyfips is not null").group(:countyfips).select(colexpr).order("1")
   end
 end

@@ -386,7 +386,8 @@
 </div>
 </div> <%# container %>
 </div> <%# super-container %>
-` <%= debug(params) %>
+
+ <%= debug(params) %>
 <!-- Super Container - SubFooter Space -->
 <div class="super-container full-width" id="section-sub-footer">
 
@@ -410,129 +411,116 @@
 subtitle 
 			text: "Allocation of music-related income by category over past 12 months, and perceived changes in income over prior 5 years. N=<%= @EMISampleSize %>."
 -->
+<script src="http://code.highcharts.com/mapdata/countries/us/us-all-all.js"></script>
 <script>
+
 
 $(function () {
 
-    // Prepare demo data
-    var data = [
-        {
-            "hc-key": "us-ma",
-            "value": 300
-        },
-        {
-            "hc-key": "us-ca",
-            "value": 790
-        },
-        {
-            "hc-key": "us-me",
-            "value": 5
-        },
-        {
-            "hc-key": "us-co",
-            "value": 9
-        },
-        {
-            "hc-key": "us-il",
-            "value": 15
-        },
-        {
-            "hc-key": "us-in",
-            "value": 16
-        },
-        {
-            "hc-key": "us-vt",
-            "value": 17
-        },
-        {
-            "hc-key": "us-az",
-            "value": 18
-        },
-        {
-            "hc-key": "us-ar",
-            "value": 19
-        },
-        {
-            "hc-key": "us-tx",
-            "value": 300
-        },
-        {
-            "hc-key": "us-ky",
-            "value": 38
-        },
-        {
-            "hc-key": "us-tn",
-            "value": 200
-        },
-        {
-            "hc-key": "us-wv",
-            "value": 41
-        },
-        {
-            "hc-key": "us-dc",
-            "value": 42
-        },
-        {
-            "hc-key": "us-la",
-            "value": 43
-        },
-        {
-            "hc-key": "us-fl",
-            "value": 44
-        },
-        {
-            "hc-key": "us-ut",
-            "value": 48
-        },
 
-    ];
+    var data = <%= @MusiciansByCounties.to_json.html_safe %>,
+        countiesMap = Highcharts.geojson(Highcharts.maps['countries/us/us-all-all']),
+	lines = Highcharts.geojson(Highcharts.maps['countries/us/us-all-all'], 'mapline'),
+	options;
 
-    // Initiate the chart
-    $('#concentrationmap').highcharts('Map', {
+    // Add state acronym for tooltip
+    Highcharts.each(countiesMap, function (mapPoint) {
+        mapPoint.name = mapPoint.name + ' (' + mapPoint.properties['hc-key'].substr(3, 2).toUpperCase()+ ')';
+    });
+
+    options = {
+        chart : {
+            borderWidth : 1,
+            marginRight: 50 // for the legend
+        },
 
         title : {
-            text : null
+            text : 'Largest Clusters of Musicians'
         },
 
-        subtitle : {
-            text : null 
+        legend: {
+            title: {
+                text: "Musicians By County",
+                style: {
+                    color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
+                }
+            },
+            layout: 'vertical',
+            align: 'right',
+            floating: true,
+            valueDecimals: 0,
+            //valueSuffix: ' %',
+            backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || 'rgba(255, 255, 255, 0.85)',
+            symbolRadius: 0,
+            symbolHeight: 14
         },
-
+		credits: {
+			enabled: false
+		},
         mapNavigation: {
-            enabled: false,
-            buttonOptions: {
-                verticalAlign: 'bottom'
-            }
+            enabled: true
         },
 
         colorAxis: {
-            min: 0
+            dataClasses: [ {
+                from: 16,
+                to: 55,
+                color: "#D4B9DA"
+            }, {
+                from: 56,
+                to: 100,
+                color: "#C994C7"
+            }, {
+                from: 100,
+                to: 250,
+                color: "#DF65B0"
+            }, {
+                from: 251,
+                to: 350,
+                color: "#DD1C77"
+            }]
+        },
+		
+        plotOptions: {
+            mapline: {
+                showInLegend: false,
+                enableMouseTracking: false
+            }
         },
 
         series : [{
-            data : data,
-            mapData: Highcharts.maps['countries/us/us-all'],
-            joinBy: 'hc-key',
-            name: 'Random data',
+            mapData : countiesMap,
+            data: data,
+            joinBy: 'fips',
+            name: 'County of',
+            tooltip: {
+                valueSuffix: ' musicians'
+            },
+            borderWidth: 0.5,
+			allAreas: false,
             states: {
                 hover: {
-                    color: '#BADA55'
+                    color: '#bada55'
                 }
-            },
-            dataLabels: {
-                enabled: false,
-                format: '{point.name}'
             }
         }, {
-            name: 'Separators',
             type: 'mapline',
-            data: Highcharts.geojson(Highcharts.maps['countries/us/us-all'], 'mapline'),
-            color: 'silver',
-            showInLegend: false,
-            enableMouseTracking: false
+            name: 'State borders',
+            data: [lines[0]],
+            color: 'silver'
+        }, {
+            type: 'mapline',
+            name: 'Separator',
+            data: [lines[1]],
+            color: 'white'
         }]
-    });
+    };
+	
+    // Instanciate the map
+    $('#concentrationmap').highcharts('Map', options);
 });
+
+
 
 $(function () { 
     $('#annincbycat').highcharts({
