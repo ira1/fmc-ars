@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141227164851) do
+ActiveRecord::Schema.define(version: 20141231062532) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,12 @@ ActiveRecord::Schema.define(version: 20141227164851) do
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "countyfips", id: false, force: true do |t|
+    t.string "state"
+    t.string "county"
+    t.string "fips"
   end
 
   create_table "imp_surveys", force: true do |t|
@@ -397,6 +403,9 @@ ActiveRecord::Schema.define(version: 20141227164851) do
     t.float    "longitude"
     t.boolean  "role_other"
     t.integer  "midrange_income"
+    t.string   "countyfips"
+    t.string   "state"
+    t.string   "countyname"
   end
 
   create_table "surveytests", force: true do |t|
@@ -487,6 +496,27 @@ ActiveRecord::Schema.define(version: 20141227164851) do
     t.boolean "col2"
     t.boolean "col3"
     t.boolean "colnull"
+  end
+
+  create_table "zc", id: false, force: true do |t|
+    t.string "zip"
+    t.string "cname"
+    t.string "cfips"
+    t.string "msa"
+    t.string "state", limit: 2
+  end
+
+  add_index "zc", ["zip"], name: "zip_unique", unique: true, using: :btree
+
+  create_table "zipmap1", id: false, force: true do |t|
+    t.string "zip"
+    t.string "ztype"
+    t.string "primary_city"
+    t.string "state"
+    t.string "county"
+    t.string "latitude"
+    t.string "longitude"
+    t.string "fips"
   end
 
 end
