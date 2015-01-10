@@ -118,13 +118,15 @@
 			<%= label_tag(:role_teacher, "Teacher")%><br>
 			<p style="margin:0.75em;"></p>
 			<%# <hr style=" border: 0; height: 1px; margin:0; background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); background-image: -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); background-image: -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); background-image: -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); "> %>
-			<%= hidden_field_tag :roles_exact, "false", :id => "dummy7" %>
-			<%= check_box_tag(:roles_exact, :true, "true"==params[:roles_exact]) %>
-			<%= label_tag(:roles_exact, "Exactly match above choices")%><br> <%# Exclude those with additional roles %>
+			<%# REMOVE THE FOLLOWING TWO CHECKBOXES 
+			<%= hidden_field_tag :roles_exact, "false", :id => "dummy7" % >
+			<%= check_box_tag(:roles_exact, :true, "true"==params[:roles_exact]) % >
+			<%= label_tag(:roles_exact, "Exactly match above choices")% ><br> <%# Exclude those with additional roles % >
 
-			<%= hidden_field_tag :role_other, "false", :id => "dummy8" %>
-			<%= check_box_tag(:role_other, :true, "true"==params[:role_other]) %>
-			<%= label_tag(:role_other, "Include \"Other\" types")%><br>
+			<%= hidden_field_tag :role_other, "false", :id => "dummy8" % >
+			<%= check_box_tag(:role_other, :true, "true"==params[:role_other]) % >
+			<%= label_tag(:role_other, "Include \"Other\" types")% ><br>
+			REMOVED PREVIOUS TWO CHECKBOXES %>
 			
 <%#			<%= hidden_field_tag :role_missing, "false", :id => "dummy6" % >
 			<%= check_box_tag(:role_missing, :true, "false"!=params[:role_missing]) % >
