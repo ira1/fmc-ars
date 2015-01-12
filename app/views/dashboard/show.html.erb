@@ -337,7 +337,7 @@
 	Session/freelance work (studio and/or live)	Other %>
 			</ul>
 		</div>
-		<div id="genresingroupchart"></div>
+		<div id="genresingroupchart" style="height:300px"></div>
 	</div>
 <%# end %>
 	<%#
@@ -347,7 +347,7 @@
 		<div id="ageinctitle" style="background:#EFEFEF;text-align:center;">
 			<span class="output_title" style="text-align:center;padding-right:1em;">&nbsp;&nbsp;Other roles these musicians fill</span>
 		</div>
-		<div id="roleschart">Lovely chart goes here</div>
+		<div id="roleschart" style="height:300px;">Lovely chart goes here</div>
 	</div>
 	<p>&nbsp;</p>
 
@@ -360,7 +360,7 @@
 			<span class="output_title" style="text-align:center;padding-right:1em;">&nbsp;&nbsp;Total income and music-related income</span>
 			<span class="output_subtitle" style="font-size:small;text-align:center">Music-related income as a total of gross income by age strata</span>
 		</div>
-		<div id="ageincomechart">Lovely chart goes here</div>
+		<div id="ageincomechart" style="300px">Lovely chart goes here</div>
 	</div>
 	<p>&nbsp;</p>
 	
@@ -371,7 +371,7 @@
 		<ul class="textual_output" style="padding:0 1em;">
 			<span class="output_title">Largest clusters of musicians</span>
 			<span style="text-align:right;" title="Allocation of annual music-related income by category"><%= image_tag "help_icon.png", :size => "16x16" %></span><br>
-		<div id="concentrationmap">Nifty map goes right here! yes </div>
+		<div id="concentrationmap" style="height:350px;">Nifty map goes right here! yes </div>
 		
 		<%#
 			Live performance	Compositions (mechanicals, PRO royalties, commissions)
@@ -432,12 +432,12 @@ $(function () {
 
     options = {
         chart : {
-            borderWidth : 1,
-            marginRight: 50 // for the legend
+//            borderWidth : 1//,
+//            marginRight: 50 // for the legend
         },
 
         title : {
-            text : 'Largest Clusters of Musicians'
+            text : null// 'Largest Clusters of Musicians'
         },
 
         legend: {
@@ -447,40 +447,21 @@ $(function () {
                     color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
                 }
             },
-            layout: 'vertical',
-            align: 'right',
-            floating: true,
-            valueDecimals: 0,
-            //valueSuffix: ' %',
-            backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || 'rgba(255, 255, 255, 0.85)',
-            symbolRadius: 0,
-            symbolHeight: 14
+            floating: false,
         },
 		credits: {
 			enabled: false
 		},
         mapNavigation: {
-            enabled: true
+            enabled: true,
+			buttonOptions: {
+				verticalAlign: 'bottom'
+			}
         },
 
-        colorAxis: {
-            dataClasses: [ {
-                from: 16,
-                to: 55,
-                color: "#D4B9DA"
-            }, {
-                from: 56,
-                to: 100,
-                color: "#C994C7"
-            }, {
-                from: 100,
-                to: 250,
-                color: "#DF65B0"
-            }, {
-                from: 251,
-                to: 350,
-                color: "#DD1C77"
-            }]
+        colorAxis: { 
+			minColor: '#F6B179',
+            maxColor: '#FF2C2E'
         },
 		
         plotOptions: {
@@ -513,12 +494,12 @@ $(function () {
         }, {
             type: 'mapline',
             name: 'Separator',
-            data: [lines[1]],
-            color: 'white'
+            data: [lines[1],lines[2]],
+            color: 'silver'
         }]
     };
 	
-    // Instanciate the map
+    // Instantiate the map
     $('#concentrationmap').highcharts('Map', options);
 });
 
@@ -614,7 +595,8 @@ $(function () {
 $(function () {
     $('#ageincomechart').highcharts({
         chart: {
-            type: 'column'
+            type: 'column',
+			marginTop: 40
         },
         title: {
 			text:null
@@ -749,10 +731,10 @@ $(function () {
 $(function () {
     $('#genresingroupchart').highcharts({
         chart: {
-			type: 'pie',
-            plotBackgroundColor: null,
-            plotBorderWidth: null,
-            plotShadow: false
+			type: 'bar'//,
+//            plotBackgroundColor: null //,
+//            plotBorderWidth: null,
+//            plotShadow: false
         },
         title: {
             text: null
@@ -763,8 +745,11 @@ $(function () {
         tooltip: {
             pointFormat: '<b>{point.percentage:.1f}%</b>'
         },
+        xAxis: {
+            categories: ['All others','Classical','Jazz','Rock','Country', 'No answer']
+		},
         plotOptions: {
-            pie: {
+            bar: {
                 allowPointSelect: true,
                 cursor: 'pointer',
 				//overflow: 'none',
@@ -831,7 +816,7 @@ $(function () {
         }],
 
         tooltip: {
-            pointFormat: '{series.name}: <b>{point.y}</b> ({point.percentage:.1f}%)<br/>'
+            pointFormat: '{point.y} musicians'
         }
     });
 });

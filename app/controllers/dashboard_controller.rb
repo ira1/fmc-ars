@@ -19,6 +19,13 @@ class DashboardController < ApplicationController
     return clause
   end
   
+    def sigfig_to_s(numero,digits)
+      f = sprintf("%.#{digits - 1}e", numero).to_f
+      i = f.to_i
+      (i == f ? i : f).to_s
+    end
+
+  
   def show
 
     @sample = Survey
@@ -251,7 +258,7 @@ class DashboardController < ApplicationController
     # AnnInc 
     # TODO Refactor into AnnInc method & Model, combine selects into fewer cursors
     #
-    @AvgEMI = @sample.average(:emi) || 0
+    @AvgEMI = sigfig_to_s(@sample.average(:emi).to_f || 0,3).to_f
     @EMISampleSize = @sample.count(:emi)
     @EMIPctAnswered = (0==@NCount)? 100 : 100 * @EMISampleSize / @NCount
     @AvgPctLive = (@sample.average(:pie_live)) || 0
@@ -381,7 +388,7 @@ class DashboardController < ApplicationController
      @Teachers = roleCounts.teachers
      
      #
-     # Genre Pie Chart
+     # Genre Bar Chart
      #
      genreLong= {0=>'All others',1=>'Classical',2=>'Jazz',3=>'Rock/Alt-Rock/Indie',4=>'Country/Americana/Bluegrass', nil=>'No answer'}
      genreShort= {0=>'Others',1=>'Classical',2=>'Jazz',3=>'Rock...',4=>'Country...', nil=>'Unknown'}
@@ -404,9 +411,9 @@ class DashboardController < ApplicationController
      #
      ageColExpr = "age_group as x,avg(emi)::int as avg_emi, (avg(midrange_income)-avg(emi))::int as avg_non_music_inc"
      musicIncbyAge = ActiveRecord::Base.connection.select_all(@sample.group(:age_group).order(:age_group).select(ageColExpr))
-     @MusicIncbyAge = musicIncbyAge.map { |e| [e["x"].to_i-1, e["avg_emi"].to_i] }
-     @NonMusicIncbyAge = musicIncbyAge.map { |e| [e["x"].to_i-1, e["avg_non_music_inc"].to_i] }
-     @AvgGross = @sample.average(:midrange_income).to_i || 0
+     @MusicIncbyAge = musicIncbyAge.map { |e| [e["x"].to_i-1, sigfig_to_s(e["avg_emi"].to_f,3).to_i] }
+     @NonMusicIncbyAge = musicIncbyAge.map { |e| [e["x"].to_i-1, sigfig_to_s(e["avg_non_music_inc"].to_f,3).to_i] }
+     @AvgGross = sigfig_to_s(@sample.average(:midrange_income).to_f || 0.0,3).to_i
      
      #
      #
