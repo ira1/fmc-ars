@@ -158,7 +158,8 @@
 			<h6>Full time musicians</h6>
 			<%= hidden_field_tag :ft, "false", :id => "ft1" %>
 			<%= check_box_tag(:ft, "true", "true" == params[:ft]) %>
-			<%= label_tag(:ft, "Full-time musicians only")%>
+			<%= label_tag(:ft, "Full-time musicians only")%><span style="text-align:right;" title="Spending 36+ hrs/week on music &
+deriving 75%+ of income from music"><%= image_tag "help_icon.png", :size => "16x16" %></span>
 		</div>
 		</p><p>
 		<div id="education_facet">
