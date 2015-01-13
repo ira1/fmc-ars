@@ -1,4 +1,4 @@
-<% genre_text=["All Others", "Classical", "Jazz", "Rock/Alt-Rock/Indie", "Country/Americana/Bluegrass"] %>
+<% genre_text=["All Others", "Classical", "Jazz", "Rock", "Country"] %>
 <% otherIncomeLabels= {"rev_produce"=>"Producing",
 "afm_srsp"=>"Sound Recording Special Payments Fund",
 "rev_honoraria"=>"Honoraria",
@@ -145,10 +145,10 @@
 			<%= label_tag("mgenre_2","Jazz")%><br/>
 			
 			<%= radio_button_tag("mgenre", 3, (params[:mgenre] == "3")) %>
-			<%= label_tag("mgenre_3","Rock/Alt-Rock/Indie")%><br/>
+			<%= label_tag("mgenre_3","Rock...")%><span style="text-align:right;" title="Rock, Alt-Rock & Indie combined"><%= image_tag "help_icon.png", :size => "16x16" %></span><br/>
 			
 			<%= radio_button_tag("mgenre", 4, (params[:mgenre] == "4")) %>
-			<%= label_tag("mgenre_4","Country/Americana/Bluegrass")%><br/>
+			<%= label_tag("mgenre_4","Country...")%><span style="text-align:right;" title="Country, Americana & Bluegrass combined"><%= image_tag "help_icon.png", :size => "16x16" %></span><br/>
 			
 			<%= radio_button_tag("mgenre", 0, (params[:mgenre] == "0") ) %>
 			<%= label_tag("mgenre_0", "All other genres")%><br/>
@@ -724,7 +724,7 @@ $(function () {
             enabled: false
         },
         series: [{
-            name: 'Non-<%= genre_text[params[:mgenre].to_i] %>  Genres',
+            name: 'Non-<%= genre_text[params[:mgenre].to_i] %> Genres',
 			emi: '<%= number_to_currency(@AvgEMI_antigenre, :precision=>0) %>',
 			color: '#FF7D2C',
             data: <%= if @GenrePcts then @GenrePcts.map {|x| number_with_precision(x,:precision=>2,:significant=>true).to_f}.to_json.html_safe else [] end  %>
