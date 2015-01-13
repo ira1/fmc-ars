@@ -88,7 +88,7 @@
 		</div>
 	</div>
  <div nostyle="clear:both;display:block;overflow:hidden;visibility:hidden;width:0;height:0;"></div>
-	<%= form_tag ({controller: "dashboard", action: "show"}) do %>
+	<%= form_tag '/dashboard/show', authenticity_token: false, method: :get do %>
     	<div id="role_facet">
 			<h6>Musician type</h6> 
 <%#			<%= check_box_tag("role", "ALL", (@role == "ALL" )) % > %>
@@ -392,7 +392,7 @@ deriving 75%+ of income from music"><%= image_tag "help_icon.png", :size => "16x
 </div> <%# container %>
 </div> <%# super-container %>
 
- <%= debug(params) %>
+ <%# = debug(params) %>
 <!-- Super Container - SubFooter Space -->
 <div class="super-container full-width" id="section-sub-footer">
 
