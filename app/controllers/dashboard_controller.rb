@@ -320,7 +320,7 @@ class DashboardController < ApplicationController
       @GenreIncResults = @sample.select(genreColExpr).order("1").first
       @AntiGenreIncResults = @sample_antigenre.select(genreColExpr).order("1").first
       @NCount_antigenre = @AntiGenreIncResults.attributes["ncount"]
-      @AvgEMI_antigenre = @AntiGenreIncResults.attributes["avg_emi"]
+      @AvgEMI_antigenre = sigfig_to_s(@AntiGenreIncResults.attributes["avg_emi"].to_f,3).to_f
       
       @GenrePcts = @GenreIncResults.attributes.select { |k,v| k['avg_pct']}.map {|k,v| v.to_f.round(1)}
       @AntiGenrePcts = @AntiGenreIncResults.attributes.select { |k,v| k['avg_pct']}.map {|k,v| v.to_f.round(1) }
