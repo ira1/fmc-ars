@@ -608,6 +608,9 @@ $(function () {
 			enabled: false
 		},
         xAxis: {
+			title: {
+				text: 'Age Strata (years)'
+			},
             categories: ['18-29','30-39','40-49','50-59','60+']
         },
         plotOptions: {
@@ -617,29 +620,32 @@ $(function () {
         },
         series: [{
 			name: 'Non-Music income',
-			color: '#FF7D2C',
+			color: '#B2B9FF',
+			borderWidth: 0,
 			type: 'column',
 			data: <%= @MusicIncbyAge.as_json %>
 
         }, {
 			name: 'Income direct from music',
 			color: '#00748E',
+			borderWidth: 0,
 			type: 'column',
             data: <%= @NonMusicIncbyAge.as_json %>
         }],
 		yAxis: {
 			title: {
-				text: 'Income'
+				text: 'Total Gross Income'
 			},
 			stackLabels: {
-				enabled: true
+				enabled: true,
+				format: '${total:,.0f}'
 			},
 			plotLines: [{
 			    color: 'black', // Color value
 			    dashStyle: 'Dash', // Style of the plot line. Default to solid
 			    value: <%= @AvgGross %>, // Value of where the line will appear
 				width: '2', // Width of the line    
-				zIndex: 10,
+				zIndex: 4,
                 label: {
                     text: '<%= number_to_currency(@AvgGross, :precision=>0) %>',
                     align: 'right'
@@ -648,7 +654,9 @@ $(function () {
 			  }]
 		},
         tooltip: {
-            pointFormat: '{series.name}: <b>{point.y}</b> ({point.percentage:.1f}%)<br/>'
+			headerFormat: '{point.key} years old<br>',
+            pointFormat: 'Average {series.name}: $<b>{point.y}</b><br/>',
+			zIndex: 5
         }
     });
 });
@@ -743,10 +751,10 @@ $(function () {
 			text: null
 		},
         tooltip: {
-            pointFormat: '<b>{point.percentage:.1f}%</b>'
+            pointFormat: '<b>{point.y}</b> musicians'
         },
         xAxis: {
-            categories: ['All others','Classical','Jazz','Rock','Country', 'No answer']
+            categories: ['Classical','Jazz','Rock','Country','All others','No answer']
 		},
         plotOptions: {
             bar: {
@@ -769,7 +777,8 @@ $(function () {
             enabled: false
         },
         series: [{
-            name: 'Musicians',
+            name: '# of Musicians',
+			color: '#00748E',
             data: <%= @GenreSeries.to_json.html_safe %>
         }]
     });
