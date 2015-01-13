@@ -340,6 +340,7 @@ deriving 75%+ of income from music"><%= image_tag "help_icon.png", :size => "16x
 		<div id="genresingroupchart" style="height:300px"></div>
 	</div>
 <%# end %>
+	<p>&nbsp;</p>
 	<%#
 					Other roles 
 	%>
@@ -759,10 +760,16 @@ $(function () {
         xAxis: {
             categories: ['Classical','Jazz','Rock','Country','All others','No answer']
 		},
+		yAxis: {
+			title: {
+				text: '# of musicians'
+			}
+		},
+		legend: {
+			enabled: false
+		},
         plotOptions: {
             bar: {
-                allowPointSelect: true,
-                cursor: 'pointer',
 				//overflow: 'none',
 				//size: '100%',
                 dataLabels: {
