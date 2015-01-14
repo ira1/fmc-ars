@@ -59,7 +59,8 @@
 				
 						<!-- DEFAULT NAVIGATION -->
 <!-- DEFAULT NAV removed by Ira -->						
-						<div><div style="float:left;"><%= image_tag ("filter_selector_fake.png") %></div> <div style="float:left;margin-left:20px;margin-bottom:4px;"><div># Musicians represented by current filters:<br>&nbsp;<%= @NCount %> (<%= (100*@NCount/4453).to_i %>%) of 4,453 survey respondents:</div><div id="progressbar"><div style="width:80%"></div></div></div></div>
+						<div><div style="float:left;"><h1 style="color:#00748E;padding-top:5px;margin-bottom:1px;"><%= FilterProfileName() %></h1></div> 
+						<div style="float:left;margin-left:20px;margin-bottom:4px;"><div><span style="color:#FF7D2C"># Musicians represented by current filters:</span><br>&nbsp;<%= @NCount %> (<%= (100*@NCount/4453).to_i %>%) of 4,453 survey respondents:</div><div id="progressbar"><div style="width:<%= (100*@NCount/4453).to_i %>%"></div></div></div></div>
 
 						 <!-- /DEFAULT NAVIGATION -->
 				 
@@ -538,7 +539,7 @@ $(function () {
         },
         tooltip: {
 			headerFormat: '{point.key}:<br>',
-			pointFormat: "Averages {point.y:,.1f}% of income",
+			pointFormat: "Average is {point.y:,.0f}% of income",
         },
         plotOptions: {
             bar: {
