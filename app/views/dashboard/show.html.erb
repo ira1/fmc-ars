@@ -42,7 +42,7 @@
 						</a>
 					</div>
 					<!-- /End Branding -->
-			
+
 			
 					<!-- Promo Space -->
 								<!-- /Promo Space -->
@@ -59,7 +59,8 @@
 				
 						<!-- DEFAULT NAVIGATION -->
 <!-- DEFAULT NAV removed by Ira -->						
-						<%= image_tag ("filter_selector_fake.png") %>
+						<div><div style="float:left;"><%= image_tag ("filter_selector_fake.png") %></div> <div style="float:left;margin-left:20px;margin-bottom:4px;"><div># Musicians represented by current filters:<br>&nbsp;<%= @NCount %> (<%= (100*@NCount/4453).to_i %>%) of 4,453 survey respondents:</div><div id="progressbar"><div style="width:80%"></div></div></div></div>
+
 						 <!-- /DEFAULT NAVIGATION -->
 				 
 				 
@@ -885,6 +886,12 @@ $(function () {
             pointFormat: '{point.y} musicians'
         }
     });
+});
+
+$(function() {
+  $( "#progressbar" ).progressbar({
+    value: 37
+  });
 });
 
 
