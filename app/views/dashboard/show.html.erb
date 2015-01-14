@@ -237,13 +237,14 @@ deriving 75%+ of income from music"><%= image_tag "help_icon.png", :size => "16x
 
 %>
 	<div id="leftoutputs" class="six columns alpha">
-		<%#
+		<%# Percent who perceive increase in [category] income over prior 5 years: xx%
 				Annual Income Chart
 		%>
 		<div id="anninc" class="six columns alpha" >
 			<div id="anninctitle" class="six columns chartheader" >
 				<span class="output_title" style="text-align:center;padding-right:1em;">Gross estimated music income: </span><br><span class="output_title"  title="<%= @EMIPctAnswered %>% of respondents in filtered sample provided EMI"><%= number_to_currency(@AvgEMI, :precision=>0) %> </span><br>
-				<span class="output_subtitle" style="font-size:small;text-align:center">Allocation of music-related income by category over past 12 months, and perceived changes in income over prior 5 years. N=<%= @EMISampleSize %>.</span>
+				<span class="output_subtitle" style="font-size:small;text-align:center">Allocation of music-related income by category over past 12 months, and perceived changes in income over prior 5 years. (N=<%= @EMISampleSize %>).</span>
+				<span style="text-align:right;" title="Trend displays the number of musicians who perceived, over the prior 5 years, either an increase or decrease in income for the respective category of work. The percent difference is also displayed."><%= image_tag "help_icon.png", :size => "16x16" %></span>
 			</div>
 			<div id="annincbycat"  style="width:75%;height:300px;margin:0;padding:0;float:left;"></div>
 			<div id="anninctrend"  style="width:25%;height:300px;margin:0;padding:0;float:right;">Change</div>
@@ -523,7 +524,7 @@ $(function () {
 			text: 'Income'
 		},
         xAxis: {
-            categories: ['Live performance', 'Teaching', 'Salaried player', 'Session work ', 'Compositions ', 'Sound recordings ', 'Merch', 'Other' ]
+            categories: ['Live performance', 'Teaching', 'Salaried player', 'Session work', 'Compositions', 'Sound recordings', 'Merch', 'Other' ]
         },
         yAxis: {
             title: null,
@@ -533,6 +534,20 @@ $(function () {
             labels: {
             	enabled: false
             }			
+        },
+        tooltip: {
+			headerFormat: '{point.key}:<br>',
+			pointFormat: "Averages {point.y:,.1f}% of income",
+        },
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true,
+					crop: false,
+					overflow: 'none',
+					format: '{y}%'
+                }
+            }
         },
 		legend: {
 			enabled: false
@@ -557,12 +572,14 @@ $(function () {
 			text: null
 		},
 		subtitle:{
-			text: 'Trend'
+			text: 'Trend',
+			x: -7
 		},
 		tooltipnot: {
 			enabled: false
 		},
         xAxis: {
+            categories: ['Live perf.', 'Teaching', 'Salaried player', 'Session work', 'Compositions', 'Sound recordings', 'Merch', 'Other' ],
             tickPositions: [],
             labels: {
                 enabled: false
@@ -577,6 +594,22 @@ $(function () {
                 text: 'Ave % of Income'
             }
         },
+        tooltip: {
+			headerFormat: '<span style="font-size: 10px">{series.name}</span><br><span style="font-size: 10px">{point.key}:</span><br>',
+			pointFormat: '<span style="font-size: 10px">{point.y:,.0f} people</span>',
+        },
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true,
+					crop: false,
+					overflow: 'none',
+					x: -2,
+					y: -2,
+					format: '{point.options.delt}'
+                }
+            }
+        },
 		legend: {
 			enabled: false
 		},
@@ -584,16 +617,28 @@ $(function () {
 			enabled: false
 		},
         series: [{           
-				name: 'Decr',
+				name: 'Decreased',
 				negativeColor: '#FF0000',
 				color: '#c81c1f',
 				data: [<%= @DecrIncLive.to_i %>, <%= @DecrIncTeach.to_i %> , <%= @DecrIncSalary.to_i %>, <%= @DecrIncSession.to_i %>,<%= @DecrIncComposition.to_i %>,<%= @DecrIncRecording.to_i %>,<%= @DecrIncMerch.to_i %>,<%= @DecrIncOther.to_i%>]
 			}, 
 			{
-	            name: 'Incr',
+	            name: 'Increased',
 	            negativeColor: '#FF0000',
-				color: '#579333',	
-				data: [<%= @IncrIncLive.to_i %>, <%= @IncrIncTeach.to_i %> , <%= @IncrIncSalary.to_i %>, <%= @IncrIncSession.to_i %>,<%= @IncrIncComposition.to_i %>,<%= @IncrIncRecording.to_i %>,<%= @IncrIncMerch.to_i %>,<%= @IncrIncOther.to_i%>]
+				color: '#579333',
+					
+				data: [
+					{y: <%= @IncrIncLive.to_i %>,delt:'<%= delta_percent_to_s(@IncrIncLive, @DecrIncLive) %>'},
+					{y: <%= @IncrIncTeach.to_i %>,delt:'<%= delta_percent_to_s(@IncrIncTeach, @DecrIncTeach) %>'},
+					{y: <%= @IncrIncSalary.to_i %>,delt:'<%= delta_percent_to_s(@IncrIncSalary, @DecrIncSalary) %>'},
+					{y: <%= @IncrIncSession.to_i %>,delt:'<%= delta_percent_to_s(@IncrIncSession, @DecrIncSession) %>'},
+					{y: <%= @IncrIncComposition.to_i %>,delt:'<%= delta_percent_to_s(@IncrIncComposition, @DecrIncComposition) %>'},
+					{y: <%= @IncrIncRecording.to_i %>,delt:'<%= delta_percent_to_s(@IncrIncRecording, @DecrIncRecording) %>'},
+					{y: <%= @IncrIncMerch.to_i %>,delt:'<%= delta_percent_to_s(@IncrIncMerch, @DecrIncMerch) %>'},
+					{y: <%= @IncrIncOther.to_i %>,delt: '<%= delta_percent_to_s(@IncrIncOther,@DecrIncOther) %>'}]
+//[<%= @IncrIncLive.to_i %>, <%= @IncrIncTeach.to_i %> , <%= @IncrIncSalary.to_i %>, 
+//<%= @IncrIncSession.to_i %>,<%= @IncrIncComposition.to_i %>,<%= @IncrIncRecording.to_i %>,
+//<%= @IncrIncMerch.to_i %>,<%= @IncrIncOther.to_i%>]
         }]
     });
 });
