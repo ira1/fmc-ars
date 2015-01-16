@@ -679,14 +679,14 @@ $(function () {
 			color: '#B2B9FF',
 			borderWidth: 0,
 			type: 'column',
-			data: <%= @MusicIncbyAge.as_json %>
+            data: <%= @NonMusicIncbyAge.as_json %>
 
         }, {
 			name: 'Income direct from music',
 			color: '#00748E',
 			borderWidth: 0,
 			type: 'column',
-            data: <%= @NonMusicIncbyAge.as_json %>
+			data: <%= @MusicIncbyAge.as_json %>
         }],
 		yAxis: {
 			title: {
