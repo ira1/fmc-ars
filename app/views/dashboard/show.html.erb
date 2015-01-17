@@ -780,13 +780,13 @@ $(function () {
             name: 'Non-<%= genre_text[params[:mgenre].to_i] %> Genres',
 			emi: '<%= number_to_currency(@AvgEMI_antigenre, :precision=>0) %>',
 			color: '#FF7D2C',
-            data: <%= if @GenrePcts then @GenrePcts.map {|x| number_with_precision(x,:precision=>2,:significant=>true).to_f}.to_json.html_safe else [] end  %>
+            data: <%= if @AntiGenrePcts then @AntiGenrePcts.map {|x| number_with_precision(x,:precision=>2,:significant=>true).to_f}.to_json.html_safe else [] end %>
 			
         }, {
             name: '<%= genre_text[params[:mgenre].to_i] %> Genre',
 			emi: '<%= number_to_currency(@AvgEMI, :precision=>0) %>',
 			color: '#00748E',
-            data: <%= if @AntiGenrePcts then @AntiGenrePcts.map {|x| number_with_precision(x,:precision=>2,:significant=>true).to_f}.to_json.html_safe else [] end %>
+            data: <%= if @GenrePcts then @GenrePcts.map {|x| number_with_precision(x,:precision=>2,:significant=>true).to_f}.to_json.html_safe else [] end  %>
         }]
     });
 	//}
