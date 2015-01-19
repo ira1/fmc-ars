@@ -224,7 +224,7 @@ deriving 75%+ of income from music"><%= image_tag "help_icon.png", :size => "16x
 			<%= label_tag("emigroup_3", "$75,000 or more") %><br/>
 		</div>
 		</p><p>
-		<%= submit_tag () %>
+		<%# = submit_tag () %>
 		</p>
 	<% end %> <%# form_tag %>
 <br/>	
@@ -894,5 +894,11 @@ $(function () {
         }
     });
 });
+
+// Automatic form submission
+$('input').change(function(){
+  $('form').submit();
+});
+
 
 </script>
