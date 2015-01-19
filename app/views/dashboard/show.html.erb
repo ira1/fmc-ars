@@ -697,13 +697,13 @@ $(function () {
 				format: '${total:,.0f}'
 			},
 			plotLines: [{
-			    color: 'black', // Color value
+			    color: '#00748E', // Color value
 			    dashStyle: 'Dash', // Style of the plot line. Default to solid
-			    value: <%= @AvgGross %>, // Value of where the line will appear
+			    value: <%= @AvgEMI %>, // Value of where the line will appear
 				width: '2', // Width of the line    
 				zIndex: 4,
                 label: {
-                    text: '<%= number_to_currency(@AvgGross, :precision=>0) %>',
+                    text: '<%= number_to_currency(@AvgEMI, :precision=>0) %>',
                     align: 'left'
                 }
 				
