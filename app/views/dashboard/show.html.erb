@@ -235,7 +235,10 @@ deriving 75%+ of income from music"><%= image_tag "help_icon.png", :size => "16x
    THE OUTPUTS 
 
 %>
-<div id="outputs" class="twelve columns omega">
+<div id="outputs" class="twelve columns omega" style="position:relative;">
+	
+  <div id="toolow" class ="twelve columns" style="display:<%= if @sample_size<201 then "inline" else  "none" end %>; opacity: 0.75;filter: alpha(opacity=75);z-index: 2; background-color:white; position:absolute; top: 0%; left: 0%; height: 100%; text-align: center;"><%= image_tag "caution.png" %><<h3>The number of filtered surveys is too low to be accurate. Please adjust your filter choices.</h2></div>
+	
 <%#
 
    LEFT HAND OUTPUTS 
