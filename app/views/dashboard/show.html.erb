@@ -287,11 +287,12 @@ Please adjust your filters to increase population size represented in the data b
 				<span class="output_title">Other sources of income from music</span>
 				<span style="text-align:right;" title="% of these musicians that have ever received any music-related income from…"><%= image_tag "help_icon.png", :size => "16x16" %></span><br>
 				<li>&nbsp;</li>
-				<p><%  sep=""
+				<li style="text-align:left;font-size:small;font-weight:bold;">Percent of filtered group that have ever received any music-related income from…</li>
+				<p><%  sep="&nbsp;"
 				 @OtherIncomeDist.select { |k,v| 5.0<=v }.sort_by { |k,v| -1.0*v}.each do |e| 
 					 outp=(sep ? sep.html_safe : "")+otherIncomeLabels[e[0]]+" ("+number_with_precision(e[1],:precision=>2, :significant=>true)+"%)"
 					 %><%= outp 
-					 %><% sep="<br>"; end %></p>
+					 %><% sep="<br>&nbsp;"; end %></p>
 				<li>&nbsp;</li>
 				<li style="text-align:left;font-size:small;font-weight:bold;"> Fewer than 5% of these musicians earned from...</li>
 				<p style="font-size:smaller"><%  sep=""
