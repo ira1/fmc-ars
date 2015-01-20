@@ -100,27 +100,27 @@
 <%#			<%= label_tag("role_ALL", "All types")% ><br/> %>
 			<%= hidden_field_tag :role_composer, "false", :id => "dummy1" %>
 			<%= check_box_tag(:role_composer, :true, "false"!=params[:role_composer]) %>
-			<%= label_tag(:role_composer, "Composer")%><br>
+			<%= label_tag(:role_composer, "Composer")%><span style="text-align:right;" title="Composes music and/or lyrics. Earns money from mechanicals, performance royalties, commissions, synch licenses."><%= image_tag "help_icon.png", :size => "16x16" %></span><br>
 
 			<%= hidden_field_tag :role_recording, "false", :id => "dummy2" %>
 			<%= check_box_tag(:role_recording, :true, "false"!=params[:role_recording]) %>
-			<%= label_tag(:role_recording, "Recording artist")%><br>
+			<%= label_tag(:role_recording, "Recording artist")%><span style="text-align:right;" title="Records music they wrote, or covers of other composers' music. Earns money from record label support, recorded music sales, sound recording performance royalties, synch licenses."><%= image_tag "help_icon.png", :size => "16x16" %></span><br>
 
 			<%= hidden_field_tag :role_salaried, "false", :id => "dummy3" %>
 			<%= check_box_tag(:role_salaried, :true, "false"!=params[:role_salaried]) %>
-			<%= label_tag(:role_salaried, "Salaried orchestra player")%><br>
+			<%= label_tag(:role_salaried, "Salaried orchestra player")%><span style="text-align:right;" title="Paid a regular salary to perform as part of a band, ensemble or orchestra."><%= image_tag "help_icon.png", :size => "16x16" %></span><br>
 
 			<%= hidden_field_tag :role_performer, "false", :id => "dummy4" %>
 			<%= check_box_tag(:role_performer, :true, "false" !=params[:role_performer]) %>
-			<%= label_tag(:role_performer, "Performer")%><br>
+			<%= label_tag(:role_performer, "Performer")%><span style="text-align:right;" title="Performs their music or other composers' music in a live setting. Includes concerts/gigs, broadcast TV or radio, orchestra or chamber music performance. Includes DJs and live remixers."><%= image_tag "help_icon.png", :size => "16x16" %></span><br>
 
 			<%= hidden_field_tag :role_session, "false", :id => "dummy5" %>
 			<%= check_box_tag(:role_session, :true, "false"!=params[:role_session]) %>
-			<%= label_tag(:role_session, "Session musician/freelancer")%><br>
+			<%= label_tag(:role_session, "Session musician/freelancer")%><span style="text-align:right;" title="Hired by other musicians/producers/record labels to play or sing in the studio or in a live setting."><%= image_tag "help_icon.png", :size => "16x16" %></span><br>
 
 			<%= hidden_field_tag :role_teacher, "false", :id => "dummy6" %>
 			<%= check_box_tag(:role_teacher, :true, "false"!=params[:role_teacher]) %>
-			<%= label_tag(:role_teacher, "Teacher")%><br>
+			<%= label_tag(:role_teacher, "Teacher")%><span style="text-align:right;" title="Hired to teach music performance or craft to individuals or in a group setting."><%= image_tag "help_icon.png", :size => "16x16" %></span><br>
 			<p style="margin:0.75em;"></p>
 			<%# <hr style=" border: 0; height: 1px; margin:0; background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); background-image: -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); background-image: -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); background-image: -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); "> %>
 			<%# REMOVE THE FOLLOWING TWO CHECKBOXES 
