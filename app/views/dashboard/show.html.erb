@@ -95,7 +95,7 @@
  <div nostyle="clear:both;display:block;overflow:hidden;visibility:hidden;width:0;height:0;"></div>
 	<%= form_tag '/dashboard/show', authenticity_token: false, method: :get do %>
     	<div id="role_facet">
-			<h6>Musician type</h6> 
+			<h6>Musician roles</h6> 
 <%#			<%= check_box_tag("role", "ALL", (@role == "ALL" )) % > %>
 <%#			<%= label_tag("role_ALL", "All types")% ><br/> %>
 			<%= hidden_field_tag :role_composer, "false", :id => "dummy1" %>
