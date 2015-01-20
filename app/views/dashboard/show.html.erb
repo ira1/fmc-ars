@@ -151,10 +151,10 @@
 			<%= label_tag("mgenre_2","Jazz")%><br/>
 			
 			<%= radio_button_tag("mgenre", 3, (params[:mgenre] == "3")) %>
-			<%= label_tag("mgenre_3","Rock...")%><span style="text-align:right;" title="Rock, Alt-Rock & Indie combined"><%= image_tag "help_icon.png", :size => "16x16" %></span><br/>
+			<%= label_tag("mgenre_3","Rock...")%><span style="text-align:right;" title="Includes rock, alt-rock, indie, punk and metal."><%= image_tag "help_icon.png", :size => "16x16" %></span><br/>
 			
 			<%= radio_button_tag("mgenre", 4, (params[:mgenre] == "4")) %>
-			<%= label_tag("mgenre_4","Country...")%><span style="text-align:right;" title="Country, Americana & Bluegrass combined"><%= image_tag "help_icon.png", :size => "16x16" %></span><br/>
+			<%= label_tag("mgenre_4","Country...")%><span style="text-align:right;" title="Includes country, Americana, bluegrass, folk and singer-songwriter."><%= image_tag "help_icon.png", :size => "16x16" %></span><br/>
 			
 			<%= radio_button_tag("mgenre", 0, (params[:mgenre] == "0") ) %>
 			<%= label_tag("mgenre_0", "All other genres")%><br/>
