@@ -5,7 +5,7 @@ module MyCustomHelper
     if 0==(a+b) then
         str=''
     else
-	    str='Δ'+(100*(a - b)/(a+b)).to_i.abs.to_s+'%'
+	    str='Δ='+(100*(a - b)/(a+b)).to_i.abs.to_s+'%'
     end
     return str
   end

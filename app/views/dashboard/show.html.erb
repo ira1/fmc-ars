@@ -267,18 +267,29 @@ Please adjust your filters to increase population size represented in the data b
 %>
 	<div id="leftoutputs" class="six columns alpha">
 		<%# Percent who perceive increase in [category] income over prior 5 years: xx%
-				Annual Income Chart
+				Annual Income by Cat Chart
 		%>
 		<div id="anninc" class="six columns alpha" >
-			<div id="anninctitle" class="six columns chartheader" >
-				<span class="output_title" style="text-align:center;padding-right:1em;">Gross estimated music income: </span><br><span class="output_title"  title="<%= @EMIPctAnswered %>% of respondents in filtered sample provided EMI"><%= number_to_currency(@AvgEMI, :precision=>0) %> </span><br>
-				<span class="output_subtitle" style="font-size:small;text-align:center">Allocation of music-related income by category over past 12 months, and perceived changes in income over prior 5 years. (N=<%= @EMISampleSize %>).</span>
+			<div id="anninctitle" class="six columns chartheader" style="padding-bottom:5px;">
+				<span class="output_title" style="text-align:center;">Gross estimated music income: </span><br><span class="output_title"  title="<%= @EMIPctAnswered %>% of respondents in filtered sample provided EMI"><%= number_to_currency(@AvgEMI, :precision=>0) %> </span><br>
+				<span class="output_subtitle" style="font-size:small;text-align:center">Allocation of music-related income by category over past 12 months. (N=<%= @EMISampleSize %>).</span>
 				<span style="text-align:right;" title="Trend displays the number of musicians who perceived, over the prior 5 years, either an increase or decrease in income for the respective category of work. The percent difference is also displayed."><%= image_tag "help_icon.png", :size => "16x16" %></span>
 			</div>
-			<div id="annincbycat"  style="width:75%;height:300px;margin:0;padding:0;float:left;"></div>
-			<div id="anninctrend"  style="width:25%;height:300px;margin:0;padding:0;float:right;">Change</div>
+			<div id="annincbycat"  style="width:100%;height:300px;margin:0;padding:0;float:left;"></div>
+
 		</div>
 		<p>&nbsp;</p>
+		
+		<div id="anninc" class="six columns alpha" >
+			<div id="anninctitle" class="six columns chartheader" style="padding-bottom:5px;">
+				<span class="output_title" style="text-align:center;">Income Trend</span><span style="text-align:right;" title="Trend displays the number of musicians who perceived, over the prior 5 years, either an increase or decrease in income for the respective category of work. The percent difference is also displayed."><%= image_tag "help_icon.png", :size => "16x16" %></span><br>
+				<span class="output_subtitle" style="font-size:small;text-align:center">Perceived changes in income over prior 5 years. (N=<%= @EMISampleSize %>).</span>
+			</div>
+					<div id="anninctrend"  style="width:100%;height:300px;margin:0;padding:0;float:right;">Change</div>
+
+		</div>
+		<p>&nbsp;</p>
+
 		<%#
 				Other Income Text Box
 		%>
@@ -551,18 +562,18 @@ $(function () {
 			text:null
         },
 		subtitle:{
-			text: 'Income'
+			text: null,
+			nothing: 'Income'
 		},
         xAxis: {
-            categories: ['Live performance', 'Teaching', 'Salaried player', 'Session work', 'Compositions', 'Sound recordings', 'Merch', 'Other' ]
+            categories: ['Live performance', 'Teaching', 'Salaried player', 'Session work', 'Compositions', 'Sound recordings', 'Merch', 'Other']
         },
         yAxis: {
-            title: null,
-			nothing: {
+            title: {
                 text: 'Ave % of Income'
             },
             labels: {
-            	enabled: false
+            	enabled: true
             }			
         },
         tooltip: {
@@ -602,26 +613,25 @@ $(function () {
 			text: null
 		},
 		subtitle:{
-			text: 'Trend',
+			text: null,
+			nothing: 'Trend',
 			x: -7
 		},
 		tooltipnot: {
 			enabled: false
 		},
         xAxis: {
-            categories: ['Live perf.', 'Teaching', 'Salaried player', 'Session work', 'Compositions', 'Sound recordings', 'Merch', 'Other' ],
-            tickPositions: [],
+            categories: ['Live performance', 'Teaching', 'Salaried player', 'Session work', 'Compositions', 'Sound recordings', 'Merch' ],
             labels: {
-                enabled: false
+                enabled: true
             }
         },
         yAxis: {
-            title: null,
-            labels: {
-            	enabled: false
+            title: {
+                text: '# of Musicians noting trend'
             },
-			nothing: {
-                text: 'Ave % of Income'
+            labels: {
+            	enabled: true
             }
         },
         tooltip: {
@@ -650,7 +660,7 @@ $(function () {
 				name: 'Decreased',
 				negativeColor: '#FF0000',
 				color: '#c81c1f',
-				data: [<%= @DecrIncLive.to_i %>, <%= @DecrIncTeach.to_i %> , <%= @DecrIncSalary.to_i %>, <%= @DecrIncSession.to_i %>,<%= @DecrIncComposition.to_i %>,<%= @DecrIncRecording.to_i %>,<%= @DecrIncMerch.to_i %>,<%= @DecrIncOther.to_i%>]
+				data: [<%= @DecrIncLive.to_i %>, <%= @DecrIncTeach.to_i %> , <%= @DecrIncSalary.to_i %>, <%= @DecrIncSession.to_i %>,<%= @DecrIncComposition.to_i %>,<%= @DecrIncRecording.to_i %>,<%= @DecrIncMerch.to_i %>]
 			}, 
 			{
 	            name: 'Increased',
@@ -664,11 +674,7 @@ $(function () {
 					{y: <%= @IncrIncSession.to_i %>,delt:'<%= delta_percent_to_s(@IncrIncSession, @DecrIncSession) %>'},
 					{y: <%= @IncrIncComposition.to_i %>,delt:'<%= delta_percent_to_s(@IncrIncComposition, @DecrIncComposition) %>'},
 					{y: <%= @IncrIncRecording.to_i %>,delt:'<%= delta_percent_to_s(@IncrIncRecording, @DecrIncRecording) %>'},
-					{y: <%= @IncrIncMerch.to_i %>,delt:'<%= delta_percent_to_s(@IncrIncMerch, @DecrIncMerch) %>'},
-					{y: <%= @IncrIncOther.to_i %>,delt: '<%= delta_percent_to_s(@IncrIncOther,@DecrIncOther) %>'}]
-//[<%= @IncrIncLive.to_i %>, <%= @IncrIncTeach.to_i %> , <%= @IncrIncSalary.to_i %>, 
-//<%= @IncrIncSession.to_i %>,<%= @IncrIncComposition.to_i %>,<%= @IncrIncRecording.to_i %>,
-//<%= @IncrIncMerch.to_i %>,<%= @IncrIncOther.to_i%>]
+					{y: <%= @IncrIncMerch.to_i %>,delt:'<%= delta_percent_to_s(@IncrIncMerch, @DecrIncMerch) %>'}]
         }]
     });
 });
