@@ -285,7 +285,7 @@ Please adjust your filters to increase population size represented in the data b
 		<div id="otherincome">
 			<ul class="textual_output" style="padding:0 1em;">
 				<span class="output_title">Other sources of income from music</span>
-				<span style="text-align:right;" title="% of [selected group] that have ever received any music-related income from…"><%= image_tag "help_icon.png", :size => "16x16" %></span><br>
+				<span style="text-align:right;" title="% of these musicians that have ever received any music-related income from…"><%= image_tag "help_icon.png", :size => "16x16" %></span><br>
 				<li>&nbsp;</li>
 				<p><%  sep=""
 				 @OtherIncomeDist.select { |k,v| 5.0<=v }.sort_by { |k,v| -1.0*v}.each do |e| 
