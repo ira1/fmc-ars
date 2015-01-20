@@ -100,11 +100,11 @@
 <%#			<%= label_tag("role_ALL", "All types")% ><br/> %>
 			<%= hidden_field_tag :role_composer, "false", :id => "dummy1" %>
 			<%= check_box_tag(:role_composer, :true, "false"!=params[:role_composer]) %>
-			<%= label_tag(:role_composer, "Composer")%><span style="text-align:right;" title="Composes music and/or lyrics. Earns money from mechanicals, performance royalties, commissions, synch licenses."><%= image_tag "help_icon.png", :size => "16x16" %></span><br>
+			<%= label_tag(:role_composer, "Composes music and/or lyrics")%><span style="text-align:right;" title="Composes music and/or lyrics. Earns money from mechanicals, performance royalties, commissions, synch licenses."><%= image_tag "help_icon.png", :size => "16x16" %></span><br>
 
 			<%= hidden_field_tag :role_recording, "false", :id => "dummy2" %>
 			<%= check_box_tag(:role_recording, :true, "false"!=params[:role_recording]) %>
-			<%= label_tag(:role_recording, "Recording artist")%><span style="text-align:right;" title="Records music they wrote, or covers of other composers' music. Earns money from record label support, recorded music sales, sound recording performance royalties, synch licenses."><%= image_tag "help_icon.png", :size => "16x16" %></span><br>
+			<%= label_tag(:role_recording, "Records music/recording artist")%><span style="text-align:right;" title="Records music they wrote, or covers of other composers' music. Earns money from record label support, recorded music sales, sound recording performance royalties, synch licenses."><%= image_tag "help_icon.png", :size => "16x16" %></span><br>
 
 			<%= hidden_field_tag :role_salaried, "false", :id => "dummy3" %>
 			<%= check_box_tag(:role_salaried, :true, "false"!=params[:role_salaried]) %>
