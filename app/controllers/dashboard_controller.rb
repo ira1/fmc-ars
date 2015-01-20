@@ -229,7 +229,7 @@ class DashboardController < ApplicationController
     end
     
     #
-    # TODO EMI filter
+    #  EMI filter
     #
     
     whereclause=""
@@ -403,6 +403,8 @@ class DashboardController < ApplicationController
        colexpr="100.0*count(case when rev_produce then 1 end)/count(*) as rev_produce, 100.0*count(case when afm_srsp then 1 end)/count(*) as afm_srsp, 100.0*count(case when rev_honoraria then 1 end)/count(*) as rev_honoraria, 100.0*count(case when rev_grants then 1 end)/count(*) as rev_grants, 100.0*count(case when afm_2 then 1 end)/count(*) as afm_2, 100.0*count(case when rev_fanfund then 1 end)/count(*) as rev_fanfund, 100.0*count(case when rev_corp then 1 end)/count(*) as rev_corp, 100.0*count(case when afm_aftra then 1 end)/count(*) as afm_aftra, 100.0*count(case when ascaplus then 1 end)/count(*) as ascaplus, 100.0*count(case when rev_acting then 1 end)/count(*) as rev_acting, 100.0*count(case when rev_webads then 1 end)/count(*) as rev_webads, 100.0*count(case when aarc then 1 end)/count(*) as aarc, 100.0*count(case when rev_endorse then 1 end)/count(*) as rev_endorse, 100.0*count(case when label_settle then 1 end)/count(*) as label_settle, 100.0*count(case when rev_sample then 1 end)/count(*) as rev_sample, 100.0*count(case when rev_pubadvance then 1 end)/count(*) as rev_pubadvance, 100.0*count(case when rev_youtube then 1 end)/count(*) as rev_youtube, 100.0*count(case when rev_persona then 1 end)/count(*) as rev_persona, 100.0*count(case when rev_fanclub then 1 end)/count(*) as rev_fanclub, 100.0*count(case when aftra_csp then 1 end)/count(*) as aftra_csp"
        @OtherIncomeDist=@sample.select(colexpr).order("1").first.attributes.select { |k,v| v }
      # f = @OtherIncomeDist.sort_by { |kkey,vval| vval}
+     else
+       @OtherIncomeDist=[]
      end
      
      #
