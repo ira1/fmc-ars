@@ -13,6 +13,7 @@ div#facets label, div#facets legend {display:inline;}
 ul.textual_output li {line-height:1.5;margin-bottom:0;}
 ul.textual_output li strong {font-weight:bold;line-height:1.0;}
 div#facets h6 {font-weight:bolder;color:#FF8C00;}
+.miniheader {color:#F5B132;font-weight:bold;}
 // ul.textual_output li {list-style-position:inside;line-height:1.2em;}
 .chartheader {background:#EFEFEF;text-align:center;}
 #progressbar {
@@ -20,7 +21,7 @@ div#facets h6 {font-weight:bolder;color:#FF8C00;}
   border: 1px black solid;
   border-radius: 3px; /* (height of inner div) / 2 + padding */
   padding: 2px;
-  width: 250px;
+  width: 260px;
 }
 
 #progressbar > div {
