@@ -253,6 +253,7 @@ class DashboardController < ApplicationController
     # Shared by all Outputs
     #
     @NCount = @sample.count
+    @NCount_pct = (100*@NCount/4453).to_i
     
     #
     # AnnInc 

@@ -60,7 +60,7 @@
 						<!-- DEFAULT NAVIGATION -->
 <!-- DEFAULT NAV removed by Ira -->						
 						<div><div style="float:left;margin-right:35px;"><h1 style="color:#00748E;padding-top:5px;margin-bottom:1px;"><%= FilterProfileName() %></h1></div> 
-						<div style="float:left;margin-left:5px;margin-bottom:4px;"><div><span style="color:#FF7D2C"># Musicians represented by current filters:</span><br>&nbsp;<%= @NCount %> (<%= (100*@NCount/4453).to_i %>%) of 4,453 survey respondents:</div><div id="progressbar"><div style="width:<%= (100*@NCount/4453).to_i %>%"></div></div></div></div>
+						<div style="float:left;margin-left:5px;margin-bottom:4px;"><div><span style="color:#FF7D2C"># Musicians represented by current filters:</span><br>&nbsp;<%= @NCount %> (<%= @NCount_pct %>%) of 4,453 survey respondents:</div><div id="progressbar"><div style="width:<%= @NCount_pct %>%"></div></div></div></div>
 <div style="float:right;"><a style="hover:" href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Ffmc%2dars%2d0.herokuapp.com%2Fdashboard%2Fshow&t=Future%20of%20Music%2dArtists%20Revenue%20Portal" target="_blank"><%= image_tag("fbicon.png")%></a>
 <a href="https://twitter.com/intent/tweet?status=Future%20of%20Music%2dArtists%20Revenue%20Portal%20http%3A%2F%2Ffmc%2dars%2d0.herokuapp.com%2Fdashboard%2Fshow" target="_blank"><%= image_tag("twiticon.png")%></a>
 </div>
