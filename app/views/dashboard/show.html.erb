@@ -276,7 +276,7 @@ Please adjust your filters to increase population size represented in the data b
 				<span class="output_subtitle" style="font-size:small;text-align:center">Allocation of music-related income by category over past 12 months. (N=<%= @EMISampleSize %>).</span>
 				<span style="text-align:right;" title="Trend displays the number of musicians who perceived, over the prior 5 years, either an increase or decrease in income for the respective category of work. The percent difference is also displayed."><%= image_tag "help_icon.png", :size => "16x16" %></span>
 			</div>
-			<div id="annincbycat"  style="width:100%;height:300px;margin:0;padding:0;float:left;"></div>
+			<div id="annincbycat"  style="width:100%;height:400px;margin:0;padding:0;float:left;"></div>
 
 		</div>
 		<p>&nbsp;</p>
@@ -286,7 +286,7 @@ Please adjust your filters to increase population size represented in the data b
 				<span class="output_title" style="text-align:center;">Income Trend</span><span style="text-align:right;" title="Trend displays the number of musicians who perceived, over the prior 5 years, either an increase or decrease in income for the respective category of work. The percent difference is also displayed."><%= image_tag "help_icon.png", :size => "16x16" %></span><br>
 				<span class="output_subtitle" style="font-size:small;text-align:center">Perceived changes in income over prior 5 years. (N=<%= @EMISampleSize %>).</span>
 			</div>
-					<div id="anninctrend"  style="width:100%;height:300px;margin:0;padding:0;float:right;">Change</div>
+					<div id="anninctrend"  style="width:100%;height:400px;margin:0;padding:0;float:right;">Change</div>
 
 		</div>
 		<p>&nbsp;</p>
@@ -563,8 +563,7 @@ $(function () {
 			text:null
         },
 		subtitle:{
-			text: null,
-			nothing: 'Income'
+			text: 'Income by Category'
 		},
         xAxis: {
             categories: ['Live performance', 'Teaching', 'Salaried player', 'Session work', 'Compositions', 'Sound recordings', 'Merch', 'Other']
@@ -614,9 +613,7 @@ $(function () {
 			text: null
 		},
 		subtitle:{
-			text: null,
-			nothing: 'Trend',
-			x: -7
+			text: 'Income Trend by Category'
 		},
 		tooltipnot: {
 			enabled: false
