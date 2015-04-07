@@ -22,52 +22,7 @@
 ""=>""}
 
  %> 
-<div id="page" class="super-container full-width">
-	<div class="container">
-    <header>
-		  <div class="sixteen columns">		
-  		  <!-- Branding -->
-				<div class="six columns alpha logospace sixteen omega">
-				  <a href="http://money.futureofmusic.org/" title="Artist Revenue Streams">.
-          <h1 id="logo" style="margin-top: 40px; margin-bottom: 30px;"><img id="logotype" src="http://money.futureofmusic.org/wordpress/wp-content/uploads/2012/02/ARSprojectheader940x70.png" alt="Artist Revenue Streams" /></h1>
-				  </a>
-				</div>
-				<!-- /End Branding -->
-				<hr class="remove-bottom"/>
-		  </div>
-		
-						<!-- Menu -->
-				<div class="sixteen columns" id="menu"> 
-			
-						
-					<div class="twelve columns alpha navigation sixteen omega">
-				
-						<!-- DEFAULT NAVIGATION -->
-<!-- DEFAULT NAV removed by Ira -->						
-						<div><div style="float:left;margin-right:35px;"><h1 style="color:#00748E;padding-top:5px;margin-bottom:1px;"><%= FilterProfileName() %></h1></div> 
-						<div style="float:left;margin-left:5px;margin-bottom:4px;"><div><span class="miniheader"># Musicians represented by current filters:</span><br>&nbsp;<%= @NCount %> (<%= @NCount_pct %>%) of 4,453 survey respondents:</div><div id="progressbar"><div style="width:<%= @NCount_pct %>%"></div></div></div></div>
-<div style="float:right;"><a style="hover:" href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Ffmc%2dars%2d0.herokuapp.com%2Fdashboard%2Fshow&t=Future%20of%20Music%2dArtists%20Revenue%20Portal" target="_blank"><%= image_tag("fbicon.png")%></a>
-<a href="https://twitter.com/intent/tweet?status=Future%20of%20Music%2dArtists%20Revenue%20Portal%20http%3A%2F%2Ffmc%2dars%2d0.herokuapp.com%2Fdashboard%2Fshow" target="_blank"><%= image_tag("twiticon.png")%></a>
-</div>
 
-						 <!-- /DEFAULT NAVIGATION -->
-				 
-				 
-						 <!-- TODO RESPONSIVE NAVIGATION FLIP -->
-<!-- REMOVED by Ira -->
-						<!-- /END RESPONSIVE NAV -->
-							 
-					</div>	
-			
-						
-					<hr class="remove-top"/>
-				</div>		 
-				<!-- /End Menu -->			
-				</header>
-				<!-- /End Header -->
-				
-		
-		
 <div id="facets" class="four columns alpha" style="margin-bottom: 6px;">
 	<div style="background-color:#F0F0F0; width:100%; display:inline-block">
 		<div style="float:left;margin:.5em">
@@ -433,12 +388,6 @@ Please adjust your filters to increase population size represented in the data b
 </ul>
 <span class="colophon"><p>&nbsp;</p>
 <p style="text-align: left;"><span style="color: #c0c0c0;">Future of Music Coalition | 1615 L Street NW, Suite 520, Washington, DC 20036 | (202) 822-2051.</span><br /> <span style="color: #c0c0c0;"> The Artist Revenue Streams site is powered by Wordpress. Super-Skeleton theme by Brandon R. Jones.</span></p></span></div>
-
-</div>
-<!-- /End 960 Container -->
-
-</div>
-<!-- /End Super Container -->
 <!--           title
   text: 'Gross estimated music income: <%= number_to_currency(@AvgEMI) %> <%#<tspan title="<%= @EMIPctAnswered % >% of respondents in filtered sample provided EMI"></span>%>'
 subtitle 

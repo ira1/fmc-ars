@@ -150,8 +150,55 @@
   
 </head>
 <body>
-
-<%= yield %>
-
-</body>
+  <div id="page" class="super-container full-width">
+	  <div class="container">
+      <header>
+    	  <div class="sixteen columns">		
+    		  <!-- Branding -->
+    			<div class="six columns alpha logospace sixteen omega">
+    			  <a href="http://money.futureofmusic.org/" title="Artist Revenue Streams">.
+            <h1 id="logo" style="margin-top: 40px; margin-bottom: 30px;"><img id="logotype" src="http://money.futureofmusic.org/wordpress/wp-content/uploads/2012/02/ARSprojectheader940x70.png" alt="Artist Revenue Streams" /></h1>
+    			  </a>
+    			</div>
+    			<!-- /End Branding -->
+    			<hr class="remove-bottom"/>
+    	  </div>
+        <!-- Menu -->
+        <div class="sixteen columns" id="menu"> 
+          <div class="twelve columns alpha navigation sixteen omega">
+    			  <!-- DEFAULT NAVIGATION -->
+            <!-- DEFAULT NAV removed by Ira -->						
+    			  <div>
+    				  <div style="float:left;margin-right:35px;">
+      				  <h1 style="color:#00748E;padding-top:5px;margin-bottom:1px;"><%= FilterProfileName() %></h1>
+      				</div> 
+    					<div style="float:left;margin-left:5px;margin-bottom:4px;">
+    						<div>
+                  <span class="miniheader"># Musicians represented by current filters:</span>
+                  <br>&nbsp;<%= @NCount %> (<%= @NCount_pct %>%) of 4,453 survey respondents:
+                </div>
+                <div id="progressbar">
+                  <div style="width:<%= @NCount_pct %>%"></div>
+                </div>
+              </div>
+            </div>
+            <div style="float:right;">
+              <a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Ffmc%2dars%2d0.herokuapp.com%2Fdashboard%2Fshow&t=Future%20of%20Music%2dArtists%20Revenue%20Portal"><%= image_tag("fbicon.png")%></a>
+    
+              <a href="https://twitter.com/intent/tweet?status=Future%20of%20Music%2dArtists%20Revenue%20Portal%20http%3A%2F%2Ffmc%2dars%2d0.herokuapp.com%2Fdashboard%2Fshow"><%= image_tag("twiticon.png")%></a>
+            </div>						 
+            <!-- /DEFAULT NAVIGATION -->
+    				<!-- TODO RESPONSIVE NAVIGATION FLIP -->
+            <!-- REMOVED by Ira -->
+    				<!-- /END RESPONSIVE NAV -->
+    		  </div>
+    		  <!-- END MENU -->	
+    			<hr class="remove-top"/>
+    		</div>		 
+    		<!-- /End Menu -->			
+      </header>
+      <%= yield %>
+	    </div><!-- /End 960 Container -->
+    </div><!-- /End Super Container -->
+  </body>
 </html>
