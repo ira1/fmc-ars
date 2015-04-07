@@ -1,0 +1,13 @@
+<%# TOO LOW %>
+<div id="toolow" class ="twelve columns" style="display:<%= if @NCount<201 then "inline" else  "none" end %>; opacity: 0.75;filter: alpha(opacity=75);z-index: 2; background-color:white; position:absolute; top: 0%; left: 0%; height: 100%; text-align: center;"><%= image_tag "caution.png" %>
+  <h3>There weren't enough musicians matching your filter criteria to display accurate results. Please broaden your search filters.</h3>
+</div>
+<%# VERY LOW %>
+<div id ="verylow" class="twelve columns textual_output chartheader" style="width:100%; padding:4px 0px;margin-bottom:6px;display:<%= if @NCount <401 && @NCount > 200 then "inline" else "none" end %>;">
+  <div style="float:left;width:54px;height:42px;">
+	  <%=render "svg_exclamation_point" %>
+  </div>
+  <div style="float:left;width:85%; text-align:left;">
+    <strong>Only <%= @NCount_pct %>% of survey population matched your filter criteria</strong> (<%= @NCount %> musicians). This is a statistically small sample size from which to draw conclusions.
+  </div>
+</div>

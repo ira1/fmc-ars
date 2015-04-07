@@ -41,28 +41,7 @@
 
 %>
 <div id="outputs" class="twelve columns omega" style="position:relative;">
-  <div id="toolow" class ="twelve columns" style="display:<%= if @NCount<201 then "inline" else  "none" end %>; opacity: 0.75;filter: alpha(opacity=75);z-index: 2; background-color:white; position:absolute; top: 0%; left: 0%; height: 100%; text-align: center;"><%= image_tag "caution.png" %><<h3>The number of filtered surveys is too low to be accurate. Please adjust your filter choices.</h2></div>
-  <div id ="verylow" class="twelve columns textual_output chartheader" style="width:100%; padding:4px 0px;margin-bottom:6px;display:<%= if @NCount <401 && @NCount > 200 then "inline" else "none" end %>;">
-	  <div style="float:left;width:54px;height:42px;">
-		  <svg version="1.1" id="warnlow" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="float:justify;" x="0px" y="0px"
-	 width="42px" height="42px" viewBox="0 0 42 42" enable-background="new 0 0 42 42" xml:space="preserve">
-<g>
-	<path fill="#FFFFFF" d="M41.002,38c0,1.657-1.343,3-3,3h-34c-1.657,0-3-1.343-3-3V4c0-1.657,1.343-3,3-3h34c1.657,0,3,1.343,3,3V38
-		z"/>
-	
-		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="306.002" y1="-333" x2="306.002" y2="-373" gradientTransform="matrix(1 0 0 -1 -285 -332)">
-		<stop  offset="0" style="stop-color:#F5B132"/>
-		<stop  offset="1" style="stop-color:#F5B132"/>
-	</linearGradient>
-	<path fill="url(#SVGID_1_)" d="M37.002,5v32h-32V5H37.002 M38.002,1h-34c-1.657,0-3,1.343-3,3v34c0,1.657,1.343,3,3,3h34
-		c1.657,0,3-1.343,3-3V4C41.002,2.343,39.659,1,38.002,1L38.002,1z"/>
-</g>
-<g>
-	<path fill="#F5B132" d="M19.688,26.797l-1.141-11.625V9.797h4.75v5.375l-1.125,11.625H19.688z M18.734,32.703v-4.391h4.391v4.391
-		H18.734z"/>
-</g>
-</svg> </div><div style="float:left;width:85%; text-align:left;"><strong><%= @NCount %></strong> musicians (<%= @NCount_pct %>% of survey pop.) is a statistically small sample size from which to draw conclusions.
-Please adjust your filters to increase population size represented in the data below.</div></div>
+<%=render 'n_size_warnings.html.erb'%>
 			
 <%#
 
