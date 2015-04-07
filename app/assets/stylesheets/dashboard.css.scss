@@ -2,20 +2,49 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 //div#facets {width:25%;float:left;min-width:200px;background:#F9F9F9;}
-	div#facets {background:#F9F9F9;}
+#facets {
+    background:#F9F9F9;
+}
 //div#outputs {float:left;min-width:300px;margin:0px 6px;}
 //div#ftclaim, div#aboutthisgroup {background:#EFEFEF; padding:4px;text-align:center;width:100%;}
-div#ftclaim, div#aboutthisgroup, div#otherincome {background:#EFEFEF; text-align:center; padding:4px 0px;} //border:black solid 1px;
-div#otherincome p {text-align:left;}
-div#facets label, div#facets legend {display:inline;}
-//div .textual_output {padding:2em;}
-.output_title {font-weight:bold;font-size:120%;line-height:2.0;}
-ul.textual_output li {line-height:1.5;margin-bottom:0;}
-ul.textual_output li strong {font-weight:bold;line-height:1.0;}
-div#facets h6 {font-weight:bolder;color:#FF8C00;}
-.miniheader {color:#F5B132;font-weight:bold;}
-// ul.textual_output li {list-style-position:inside;line-height:1.2em;}
-.chartheader {background:#EFEFEF;text-align:center;}
+#ftclaim,
+#aboutthisgroup,
+#otherincome {
+    background:#EFEFEF;
+    text-align:center;
+    padding:4px 0px;
+} //border:black solid 1px;
+div#otherincome p {
+    text-align:left;
+}
+div#facets label, div#facets legend {
+  display:inline;
+}
+.output_title {
+  font-weight:bold;
+  font-size:120%;
+  line-height:2.0;
+}
+ul.textual_output li {
+  line-height:1.5;
+  margin-bottom:0;
+}
+ul.textual_output li strong {
+  font-weight:bold;
+  line-height:1.0;
+}
+div#facets h6 {
+  font-weight:bolder;
+  color:#FF8C00;
+}
+.miniheader {
+  color:#F5B132;
+  font-weight:bold;
+}
+.chartheader {
+  background:#EFEFEF;
+  text-align:center;
+}
 #progressbar {
   background-color: transparent;
   border: 1px black solid;
@@ -23,10 +52,15 @@ div#facets h6 {font-weight:bolder;color:#FF8C00;}
   padding: 2px;
   width: 260px;
 }
-
 #progressbar > div {
    background-color: #00748E;
    width: 100%; /* Adjust with JavaScript */
    height: 10px;
    border-radius: 2px;
+}
+#career_facet > input:not(:first-child) {
+  margin-left: 16px;
+}
+.logospace {
+  text-align: center;
 }
