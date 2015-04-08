@@ -13,7 +13,7 @@ header {
   .current_n_size {
     float: left;
     font-size: .85em;
-    margin-top: -.8em;
+    margin-top: -.5em;
   }
 }
 #facets {
@@ -99,16 +99,16 @@ div#facets h6 {
 }
 #progressbar {
   background-color: transparent;
-  border: 1px #ccc solid;
+  border: 1px #ddd solid;
   border-radius: 1px; /* (height of inner div) / 2 + padding */
-  padding: 2px;
+  padding: 1px;
   width: 260px;
 }
 #progressbar > div {
    background-color: #00748E;
    width: 100%; /* Adjust with JavaScript */
    height: 10px;
-   border-radius: 2px;
+   border-radius: 1px;
 }
 .logospace {
   text-align: center;
