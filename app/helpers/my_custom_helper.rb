@@ -20,4 +20,9 @@ module MyCustomHelper
     end
   end
   
+  def makeHelpTip(str)
+    data="<span style='text-align:right;' title='#{str}'>#{image_tag "help_icon.png", :size => "16x16"}</span>"
+    data=data.html_safe
+  end
+  
 end

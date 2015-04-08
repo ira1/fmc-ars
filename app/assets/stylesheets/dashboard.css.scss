@@ -1,8 +1,63 @@
 // Place all the styles related to the Dashboard controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$yellow: #FFBE41;
+div.masthead,
+#menu {
+  background: #f9f9f9;
+}
+div.navigation {
+  padding-bottom: 1em;
+}
+header {
+  .current_n_size {
+    float: left;
+    font-size: .85em;
+    margin-top: -.8em;
+  }
+}
 #facets {
-    background:#F9F9F9;
+  background:#FAFAFA;
+  border-right: 1px solid #e4e4e4;
+  .current_n_size {
+    padding: 4px;
+  }
+  form > div {
+    margin-bottom: 1em;
+    padding: 0 4px;
+    padding: 4px;
+    h6 {
+      font-size: .9em;
+    }
+    label {
+      display: block;
+      margin-bottom: .5em;
+    }
+    label input[type=radio] {
+      margin-left: 6px;
+    }
+    label.all input[type=radio] {
+      margin-left: 2px;
+    }
+    label.checkbox {
+      position: relative;
+      padding-left: 19px;
+      input[type=checkbox] {
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+    }
+  }  
+  .reset_link {
+    text-align: right;
+    display: block;
+    margin: .5em 4px 0 0;   
+    padding: 0;
+  }
+}
+#outputs {
+  padding-top: 1em;
 }
 #ftclaim,
 #aboutthisgroup,
@@ -32,20 +87,20 @@ ul.textual_output li strong {
 }
 div#facets h6 {
   font-weight:bolder;
-  color:#FF8C00;
+  color: $yellow;
 }
 .miniheader {
   color:#F5B132;
   font-weight:bold;
 }
 .chartheader {
-  background:#EFEFEF;
+  background:#f1f1f1;
   text-align:center;
 }
 #progressbar {
   background-color: transparent;
-  border: 1px black solid;
-  border-radius: 3px; /* (height of inner div) / 2 + padding */
+  border: 1px #ccc solid;
+  border-radius: 1px; /* (height of inner div) / 2 + padding */
   padding: 2px;
   width: 260px;
 }
@@ -54,9 +109,6 @@ div#facets h6 {
    width: 100%; /* Adjust with JavaScript */
    height: 10px;
    border-radius: 2px;
-}
-#career_facet > input:not(:first-child) {
-  margin-left: 16px;
 }
 .logospace {
   text-align: center;

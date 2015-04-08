@@ -153,7 +153,7 @@
   <div id="page" class="super-container full-width">
 	  <div class="container">
       <header>
-    	  <div class="sixteen columns">		
+    	  <div class="sixteen columns alpha masthead">		
     		  <!-- Branding -->
     			<div class="six columns alpha logospace sixteen omega">
     			  <a href="http://money.futureofmusic.org/" title="Artist Revenue Streams">.
@@ -161,10 +161,9 @@
     			  </a>
     			</div>
     			<!-- /End Branding -->
-    			<hr class="remove-bottom"/>
     	  </div>
         <!-- Menu -->
-        <div class="sixteen columns" id="menu"> 
+        <div class="sixteen columns alpha" id="menu"> 
           <div class="twelve columns alpha navigation sixteen omega">
     			  <!-- DEFAULT NAVIGATION -->
             <!-- DEFAULT NAV removed by Ira -->						
@@ -172,7 +171,7 @@
     				  <div style="float:left;margin-right:35px;">
       				  <h1 style="color:#00748E;padding-top:5px;margin-bottom:1px;"><%= FilterProfileName() %></h1>
       				</div> 
-    					<div style="float:left;margin-left:5px;margin-bottom:4px;">
+    					<div class="current_n_size">
     						<div>
                   <span class="miniheader"># Musicians represented by current filters:</span>
                   <br>&nbsp;<%= @NCount %> (<%= @NCount_pct %>%) of 4,453 survey respondents:
@@ -193,7 +192,6 @@
     				<!-- /END RESPONSIVE NAV -->
     		  </div>
     		  <!-- END MENU -->	
-    			<hr class="remove-top"/>
     		</div>		 
     		<!-- /End Menu -->			
       </header>

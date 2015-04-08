@@ -23,17 +23,12 @@
  %> 
 
 <div id="facets" class="four columns alpha" style="margin-bottom: 6px;">
-	<div style="background-color:#F0F0F0; width:100%; display:inline-block">
-		<div style="float:left;margin:.5em">
-			<%= image_tag("person_icon.png")%>
-		</div>
-		<div style="float:left;">
-			<span style="font-weight:bold;">N = <%= @sample_size %> musicians</span><br>based on current choices
-		</div>
-	</div>
-  <div nostyle="clear:both;display:block;overflow:hidden;visibility:hidden;width:0;height:0;"></div>
-	<%=render "facet_stack.html.erb"%>
-  <br/>	
+	<div class="current_n_size">
+		<%= image_tag("person_icon.png")%>
+		<br />
+			<strong><%= @sample_size %> musicians match</strong> the criteria below (N=<%= @sample_size %>)
+  </div>
+	<%=render "facet_stack.html.erb" %>
 </div>
 <%#
 
