@@ -12,15 +12,14 @@
 		  <%= radio_button_tag("mgenre", 2, (params[:mgenre] == "2")) %> Jazz
 		</label>
 		<label>
-		  <%= radio_button_tag("mgenre", 3, (params[:mgenre] == "3")) %> Rock <%=makeHelpTip("Includes rock, alt-rock, indie, punk and metal."%></span><br/>
+		  <%= radio_button_tag("mgenre", 3, (params[:mgenre] == "3")) %> Rock <%=makeHelpTip("Includes rock, alt-rock, indie, punk and metal.")%></span><br/>
 		</label>
 		<label>
 		  <%= radio_button_tag("mgenre", 4, (params[:mgenre] == "4")) %> Country
-		  <%=makeHelpTip("Includes country, Americana, bluegrass, folk and singer-songwriter."%>
+		  <%=makeHelpTip("Includes country, Americana, bluegrass, folk and singer-songwriter.")%>
 		</label>
 		<label>
-		  <%= radio_button_tag("mgenre", 0, (params[:mgenre] == "0") ) %> All other genres <%=makeHelpTip("This includes: A Capella,
-Avant Garde,
+		  <%= radio_button_tag("mgenre", 0, (params[:mgenre] == "0") ) %> All other genres <%=makeHelpTip("This includes: A Capella, Avant Garde,
 Blues,
 Celtic,
 Children's,
@@ -40,7 +39,7 @@ Reggae,
 Religious,
 Soul,
 Vernacular/Traditional,
-World")>
+World")%>
 		</label>
 	</div>
   <div id="role_facet">
