@@ -43,7 +43,7 @@ World")%>
 		</label>
 	</div>
   <div id="role_facet">
-		<h6>Musician roles <%=makeHelpTip("Musical role(s) of respondents. More than one answer allowed.")%></h6>
+		<h6>Musician Roles <%=makeHelpTip("Musical role(s) of respondents. More than one answer allowed.")%></h6>
     <%# <%= check_box_tag("role", "ALL", (@role == "ALL" )) All types %>
 	  <label class="checkbox">
 	  	<%= hidden_field_tag :role_composer, "false", :id => "dummy1" %>
@@ -105,7 +105,7 @@ World")%>
 		</label>
 	</div>
 	<div id="career_facet">
-		<h6>Career experience</h6>
+		<h6>Career Experience</h6>
     <label class="all">
   		<%= radio_button_tag("careerexp", "ALL", true ) %> All musicians
     </label>
@@ -135,10 +135,10 @@ World")%>
     </label>
 	</div>
 	<div id="education_facet">
-		<h6>Music education</h6>
+		<h6>Music Education</h6>
 		<label class="checkbox">
 		  <%= hidden_field_tag :trained, "false", :id => "train1" %>
-		  <%= check_box_tag(:trained, "true", "true"==params[:trained])%> Attended a music school or conservatory		
+		  <%= check_box_tag(:trained, "true", "true"==params[:trained])%> Only musicians who attended a music industry school, performance school or conservatory		
 		</label>
 	</div>
 	<div id="gender_facet">
