@@ -48,10 +48,10 @@ $fonts: "LatoLatin", "Helvetica","Arial",sans-serif !important;
 }
 @font-face {
       font-family: 'LatoLatinBold';
-    src: url('LatoLatinBlack-Regular.eot'); /* IE9 Compat Modes */
-    src: url('LatoLatinBlack-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-         url('LatoLatinBlack-Regular.woff') format('woff'), /* Modern Browsers */
-         url('LatoLatinBlack-Regular.ttf') format('truetype'); 
+    src: url('LatoLatin/LatoLatin-Bold.eot'); /* IE9 Compat Modes */
+    src: url('LatoLatin/LatoLatin-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('LatoLatin/LatoLatin-Bold.woff') format('woff'), /* Modern Browsers */
+         url('LatoLatin/LatoLatin-Bold.ttf') format('truetype'); 
     font-style: normal;
     font-weight: normal;
     text-rendering: optimizeLegibility;
@@ -145,7 +145,7 @@ html body {
       }
       label.checkbox {
         position: relative;
-        padding-left: 1.5em;
+        padding-left: 1.6em;
         input[type=checkbox] {
           position: absolute;
           left: 0;
