@@ -84,13 +84,6 @@
   		<%=makeHelpTip("Limits results to respondents working 36 hours/week or more on music, and deriving 75% or more of income from music")%>
 		</label>
 	</div>
-	<div id="education_facet">
-		<h6>Music education</h6>
-		<label class="checkbox">
-		  <%= hidden_field_tag :trained, "false", :id => "train1" %>
-		  <%= check_box_tag(:trained, "true", "true"==params[:trained])%> Attended a music school or conservatory		
-		</label>
-	</div>
 	<div id="career_facet">
 		<h6>Career experience</h6>
     <label class="all">
@@ -104,6 +97,28 @@
     </label>
     <label>
 		  <%= radio_button_tag("careerexp", "3", (params[:careerexp] == "3" )) %> Old School (More than 30 yrs)
+		</label>
+	</div>
+	<div id="emi_facet">
+		<h6>Gross Estimated Music Income (EMI)<span style="text-align:right;" title="Estimated Music Income = (personal gross income) x (percent of income derived from music)"><%= image_tag "help_icon.png", :size => "16x16" %></span></h6>
+    <label class="all">		
+      <%= radio_button_tag("emigroup", "ALL", true) %> All income levels
+    </label>
+    <label>	
+  		<%= radio_button_tag("emigroup", "1", (params[:emigroup] == "1" )) %> $1 to $24,999
+    </label>
+    <label>	
+  		<%= radio_button_tag("emigroup", "2", (params[:emigroup] == "2" )) %> $25,000 to $74,999
+    </label>
+    <label>	
+  		<%= radio_button_tag("emigroup", "3", (params[:emigroup] == "3" ))%> $75,000 or more
+    </label>
+	</div>
+	<div id="education_facet">
+		<h6>Music education</h6>
+		<label class="checkbox">
+		  <%= hidden_field_tag :trained, "false", :id => "train1" %>
+		  <%= check_box_tag(:trained, "true", "true"==params[:trained])%> Attended a music school or conservatory		
 		</label>
 	</div>
 	<div id="gender_facet">
@@ -123,21 +138,6 @@
     <label class="checkbox">
       <%= hidden_field_tag :gender_unanswered, "false", :id => "gend4" %>
 	  	<%= check_box_tag(:gender_unanswered, "true", "false"!=params[:gender_unanswered])%> Did not answer
-    </label>
-	</div>
-	<div id="emi_facet">
-		<h6>Gross Estimated Music Income (EMI)<span style="text-align:right;" title="Estimated Music Income = (personal gross income) x (percent of income derived from music)"><%= image_tag "help_icon.png", :size => "16x16" %></span></h6>
-    <label class="all">		
-      <%= radio_button_tag("emigroup", "ALL", true) %> All income levels
-    </label>
-    <label>	
-  		<%= radio_button_tag("emigroup", "1", (params[:emigroup] == "1" )) %> $1 to $24,999
-    </label>
-    <label>	
-  		<%= radio_button_tag("emigroup", "2", (params[:emigroup] == "2" )) %> $25,000 to $74,999
-    </label>
-    <label>	
-  		<%= radio_button_tag("emigroup", "3", (params[:emigroup] == "3" ))%> $75,000 or more
     </label>
 	</div>
 	<%# = submit_tag () %>
