@@ -19,7 +19,7 @@
 "rev_fanclub"=>"Fan club",
 "aftra_csp"=>"AFTRA Contingent Scale",
 ""=>""}
-
+outputheight='200px'
  %> 
 
 <div id="facets" class="four columns alpha" style="margin-bottom: 6px;">
@@ -51,12 +51,12 @@
 			<div class="output">
 				<h2>This group made <span class=" special"  title="<%= @EMIPctAnswered %>% of respondents in filtered sample provided EMI"><%= number_to_currency(@AvgEMI, :precision=>0) %></span>&hellip;</h2>
 				<p class="subtitle">...in Gross Estimated Music Income (EMI). Here is how it was allocated over the previous 12 months:  (N=<%= @EMISampleSize %>). <%=makeHelpTip("Trend displays the number of musicians who perceived, over the prior 5 years, either an increase or decrease in income for the respective category of work. The percent difference is also displayed.")%></p>
-  			<div id="annincbycat"  style="height:400px; "></div>
+  			<div id="annincbycat"  style="height:300px; "></div>
 			</div>
 			<div class="output">
 				<h2>Income Trend <%=makeHelpTip("Trend displays the number of musicians who perceived, over the prior 5 years, either an increase or decrease in income for the respective category of work. The percent difference is also displayed.")%></h2>
 				<p class="subtitle">Perceived changes in income over prior 5 years. (N=<%= @EMISampleSize %>).</p>
-		    <div id="anninctrend"  style="height:400px;">Change</div>
+		    <div id="anninctrend"  style="height:450px;">Change</div>
 		  </div>
 		<%#
 				Other Income Text Box
@@ -126,16 +126,16 @@
 	Teaching	Sound recordings (sales, streams, synchs, SoundExchange)
 	Salaried player	Merchandise and branding
 	Session/freelance work (studio and/or live)	Other %> 
-		<div id="genresingroupchart" style="height:300px"></div>
+		<div id="genresingroupchart" style="height:<%=outputheight%>"></div>
 	</div>
 	<div id="roles" class="output" >
 		<h2>Other roles these musicians fill</h2>
-		<div id="roleschart" style="height:300px;">Lovely chart goes here</div>
+		<div id="roleschart" style="height:<%=outputheight%>;">Lovely chart goes here</div>
 	</div> 
 	<div id="ageincome" class="output" >
 		<h2>Total income and music-related income</h2>
 		<p class="subtitle">Music-related income as a total of gross income by age strata</p>
-		<div id="ageincomechart" style="height:300px">Lovely chart goes here</div>
+		<div id="ageincomechart" style="height:400px">Lovely chart goes here</div>
 	</div>  
 	<div id="concentration" class="output">
 			<h2>Where these musicians live			<%=makeHelpTip("Allocation of annual music-related income by category")%></h2>
