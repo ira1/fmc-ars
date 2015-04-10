@@ -23,12 +23,9 @@
  %> 
 
 <div id="facets" class="four columns alpha" style="margin-bottom: 6px;">
-	<div class="current_n_size">
-		<%= image_tag("person_icon.png")%>
-		<br />
-			<strong><%= @sample_size %> musicians match</strong> the criteria below (N=<%= @sample_size %>)
-  </div>
-	<%=render "facet_stack.html.erb" %>
+ 
+	  <%=render "facet_stack.html.erb" %>
+  
 </div>
 <%#
 
@@ -44,75 +41,65 @@
 
 %>
 	<div id="leftoutputs" class="six columns alpha">
+    <!-- About this group -->
+  	<div id="ftclaim"  class="textual_output output">
+    	<%=render "ftclaim/theoutput"%>
+    </div>
 		<%# Percent who perceive increase in [category] income over prior 5 years: xx%
 				Annual Income by Cat Chart
 		%>
-		<div id="anninc" class="six columns alpha" >
-			<div id="anninctitle" class="six columns chartheader" style="padding-bottom:5px;">
-				<span class="output_title" style="text-align:center;">Gross estimated music income: </span><br><span class="output_title"  title="<%= @EMIPctAnswered %>% of respondents in filtered sample provided EMI"><%= number_to_currency(@AvgEMI, :precision=>0) %> </span><br>
-				<span class="output_subtitle" style="font-size:small;text-align:center">Allocation of music-related income by category over past 12 months. (N=<%= @EMISampleSize %>).</span>
-				<span style="text-align:right;" title="Trend displays the number of musicians who perceived, over the prior 5 years, either an increase or decrease in income for the respective category of work. The percent difference is also displayed."><%= image_tag "help_icon.png", :size => "16x16" %></span>
+			<div class="output">
+				<h2>This group made <span class=" special"  title="<%= @EMIPctAnswered %>% of respondents in filtered sample provided EMI"><%= number_to_currency(@AvgEMI, :precision=>0) %></span>&hellip;</h2>
+				<p class="subtitle">...in Gross Estimated Music Income (EMI). Here is how it was allocated over the previous 12 months:  (N=<%= @EMISampleSize %>). <%=makeHelpTip("Trend displays the number of musicians who perceived, over the prior 5 years, either an increase or decrease in income for the respective category of work. The percent difference is also displayed.")%></p>
+  			<div id="annincbycat"  style="height:400px; "></div>
 			</div>
-			<div id="annincbycat"  style="width:100%;height:400px;margin:0;padding:0;float:left;"></div>
-
-		</div>
-		<p>&nbsp;</p>
-		
-		<div id="anninc" class="six columns alpha" >
-			<div id="anninctitle" class="six columns chartheader" style="padding-bottom:5px;">
-				<span class="output_title" style="text-align:center;">Income Trend</span><span style="text-align:right;" title="Trend displays the number of musicians who perceived, over the prior 5 years, either an increase or decrease in income for the respective category of work. The percent difference is also displayed."><%= image_tag "help_icon.png", :size => "16x16" %></span><br>
-				<span class="output_subtitle" style="font-size:small;text-align:center">Perceived changes in income over prior 5 years. (N=<%= @EMISampleSize %>).</span>
-			</div>
-					<div id="anninctrend"  style="width:100%;height:400px;margin:0;padding:0;float:right;">Change</div>
-
-		</div>
-		<p>&nbsp;</p>
-
+			<div class="output">
+				<h2>Income Trend <%=makeHelpTip("Trend displays the number of musicians who perceived, over the prior 5 years, either an increase or decrease in income for the respective category of work. The percent difference is also displayed.")%></h2>
+				<p class="subtitle">Perceived changes in income over prior 5 years. (N=<%= @EMISampleSize %>).</p>
+		    <div id="anninctrend"  style="height:400px;">Change</div>
+		  </div>
 		<%#
 				Other Income Text Box
 		%>
-		<div id="otherincome">
-			<ul class="textual_output" style="padding:0 1em;">
-				<span class="output_title">Other sources of income from music</span>
-				<span style="text-align:right;" title="% of these musicians that have ever received any music-related income from…"><%= image_tag "help_icon.png", :size => "16x16" %></span><br>
-				<li>&nbsp;</li>
-				<li style="text-align:left;font-size:small;font-weight:bold;">Percent of filtered group that have ever received any music-related income from…</li>
-				<p><%  sep="&nbsp;"
-				 @OtherIncomeDist.select { |k,v| 5.0<=v }.sort_by { |k,v| -1.0*v}.each do |e| 
-					 outp=(sep ? sep.html_safe : "")+otherIncomeLabels[e[0]]+" ("+number_with_precision(e[1],:precision=>2, :significant=>true)+"%)"
-					 %><%= outp 
-					 %><% sep="<br>&nbsp;"; end %></p>
-				<li>&nbsp;</li>
-				<li style="text-align:left;font-size:small;font-weight:bold;">Fewer than 5% of these musicians have earned any money from…</li>
-				<p style="font-size:smaller"><%  sep=""
+		<div id="otherincome" class="textual_output output">
+		  <h2>Other Music Income Sources <%=makeHelpTip("% of these musicians that have ever received any music-related income from&hellip;")%></h2>
+			<table>
+				<%   
+				 @OtherIncomeDist.select { |k,v| 5.0<=v }.sort_by { |k,v| -1.0*v}.each do |e|  %>
+			  	<tr>
+  				 <td><strong class="special2"><%=number_with_precision(e[1],:precision=>2, :significant=>true)%>%</strong></td>
+					 <td class="nowrap">earned $ from </td>
+					 <td><strong class="special2"><%=otherIncomeLabels[e[0]]%></strong></td>
+					 </tr>
+				<% end %>
+			</table>
+			<p>&hellip; although <strong>fewer than 5%</strong> of this group earned any money from <%  sep=""
 				 @OtherIncomeDist.select { |k,v| v<5 }.sort_by { |k,v| -1.0*v}.each do |e| 
 					 outp=(sep ? sep : "")+otherIncomeLabels[e[0]]
 					 %><%= outp 
-					 %><% sep=", "; end %></p>
+					 %><% sep=", "; end %> 
+				</p>
 			</ul>
 		</div>
-		<p>&nbsp;</p>
 		<%#
 				Primary Income Chart
 		
 				This chart displays only if at least one genre has been excluded from facets
 		%>		
-	<% if @genreincomeOn %>	
-		<div id="genreincome" >
-			<div id="genreincometitle" class="textual_output chartheader">
-				<span class="output_title">Comparing revenue allocation by genre</span>
-				<span style="text-align:right;" title="Allocation of annual music-related income by category"><%= image_tag "help_icon.png", :size => "16x16" %></span><br>
-				<%#
-	Live performance	Compositions (mechanicals, PRO royalties, commissions)
-	Teaching	Sound recordings (sales, streams, synchs, SoundExchange)
-	Salaried player	Merchandise and branding
-	Session/freelance work (studio and/or live)	Other %>
-			</div>
-				<div id="genreincomechart" style="height:500px;"></div>
-			</ul>
-		</div>
-	<% end %>
-
+  	<% if @genreincomeOn %>	
+  		<div id="genreincome" class=" output" >
+  			<div id="genreincometitle">
+  				<h2>Comparing revenue allocation by genre <%=makeHelpTip("Allocation of annual music-related income by category")%></h2>
+  				<%#
+  	Live performance	Compositions (mechanicals, PRO royalties, commissions)
+  	Teaching	Sound recordings (sales, streams, synchs, SoundExchange)
+  	Salaried player	Merchandise and branding
+  	Session/freelance work (studio and/or live)	Other %>
+  			</div>
+  				<div id="genreincomechart" style="height:500px;"></div>
+  			</ul>
+  		</div>
+  	<% end %>
 	</div> <%# leftoutputs %>
 <%#
 
@@ -120,92 +107,46 @@
 
 %>
 <div id="rightoutputs" class="six columns omega">
-	
-	<%# 
-				FTCLAIM 
-	%>
-	<div id="ftclaim" class="six columns"><%=render "ftclaim/theoutput"%></div>
-	<div>&nbsp;</div>
-	<%#
-				About This Group
-	%>
-	<div id="aboutthisgroup" class="six columns textual_output">
-		<span class="output_title">Credits and Activity</span><span style="text-align:right;" title="Respondents who took the long path survey answered these questions"><%= image_tag "help_icon.png", :size => "16x16" %></span><br>
-		<ul class="textual_output">
+	<div id="aboutthisgroup" class="output textual_output" >
+		<h2>Credits and Activity <%=makeHelpTip("Respondents who took the long path survey answered these questions")%></h2>
+		<ul class="">
 <%#			<li title="A union, trade association, PRO or service organization"><strong>[xx%] belong to a music organization</strong><li>%>
 		<%# l i title="Of those respondents who took the long path through the survey">< s trong>Musical credits</strong></li> %>
-			<li><%= @AboutPctOver50Compositions %>% had more than 50 composing credits. 
+			<li><%= @AboutPctOver50Compositions %>% had >  50 composing credits. 
 				<span title="Only <%= @AboutCompositionsPctAnswered %>% of respondents in filtered sample answered this question">(N=<%= @AboutCompositionsNCount %>)</span></li>
-			<li><%= @AboutPctOver50Recordings %>% had more than 50 recording credits <span title="Only <%= @AboutRecordingsPctAnswered %>% of respondents in filtered sample answered this question">(N=<%= @AboutRecordingsNCount %>)</span></li>
-<%#>			<li>[xx%] had more than 50 session credits</li> %>
-			<li><%= @AboutPctOver50Shows %>% played more than 50 shows in the prior 12 months<span title="Only <%= @AboutShowsPctAnswered %>% of respondents in filtered sample answered this question"> (N=<%=@AboutShowsNCount%>)</span></li>
+			<li><%= @AboutPctOver50Recordings %>% had >  50 recording credits <span title="Only <%= @AboutRecordingsPctAnswered %>% of respondents in filtered sample answered this question">(N=<%= @AboutRecordingsNCount %>)</span></li>
+<%#>			<li>[xx%] had >  50 session credits</li> %>
+			<li><%= @AboutPctOver50Shows %>% played > 50 shows in the prior 12 months<span title="Only <%= @AboutShowsPctAnswered %>% of respondents in filtered sample answered this question"> (N=<%=@AboutShowsNCount%>)</span></li>
 		</ul>
 	</div>
-	<p>&nbsp;</p>
-	<%#
-					Primary genres
-	%>
-<%# unless @mgenre && 'ALL'!=@mgenre.upcase %>	
-	<div id="genresingroup" >
-		<div class="textual_output chartheader">
-			<ul>
-				<span class="output_title">Primary genres for this group</span>
-				<span style="text-align:right;" title="% of the musicians who specified this genre as their primary focus. It may not be the genre generating the most income. Musicians may have listed working in other genres also, which is not reflected in this chart."><%= image_tag "help_icon.png", :size => "16x16" %></span><br>
+	<div id="genresingroup" class="output" >
+		<h2>Primary Genres for this Group <%=makeHelpTip("% of the musicians who specified this genre as their primary focus. It may not be the genre generating the most income. Musicians may have listed working in other genres also, which is not reflected in this chart.") %></h2>	  
 				<%#
 	Live performance	Compositions (mechanicals, PRO royalties, commissions)
 	Teaching	Sound recordings (sales, streams, synchs, SoundExchange)
 	Salaried player	Merchandise and branding
-	Session/freelance work (studio and/or live)	Other %>
-			</ul>
-		</div>
+	Session/freelance work (studio and/or live)	Other %> 
 		<div id="genresingroupchart" style="height:300px"></div>
 	</div>
-<%# end %>
-	<p>&nbsp;</p>
-	<%#
-					Other roles 
-	%>
-	<div id="roles" >
-		<div id="ageinctitle" style="background:#EFEFEF;text-align:center;">
-			<span class="output_title" style="text-align:center;padding-right:1em;">&nbsp;&nbsp;Other roles these musicians fill</span>
-		</div>
+	<div id="roles" class="output" >
+		<h2>Other roles these musicians fill</h2>
 		<div id="roleschart" style="height:300px;">Lovely chart goes here</div>
-	</div>
-	<p>&nbsp;</p>
-
-	<%#
-				Income by Age Group
-	%>
-	
-	<div id="ageincome" >
-		<div id="ageinctitle" style="background:#EFEFEF;text-align:center;">
-			<span class="output_title" style="text-align:center;padding-right:1em;">&nbsp;&nbsp;Total income and music-related income</span>
-			<span class="output_subtitle" style="font-size:small;text-align:center">Music-related income as a total of gross income by age strata</span>
-		</div>
-		<div id="ageincomechart" style="300px">Lovely chart goes here</div>
-	</div>
-	<p>&nbsp;</p>
-	
-	<%#
-				Map
-	%>
-	<div id="concentration" >
-		<div id="concentrationtitle" class="textual_output" style="background:#EFEFEF;text-align:center;" style="padding:0 1em;">
-			<span class="output_title">Where these musicians live</span>
-			<span style="text-align:right;" title="Allocation of annual music-related income by category"><%= image_tag "help_icon.png", :size => "16x16" %></span><br>
-		</div>
+	</div> 
+	<div id="ageincome" class="output" >
+		<h2>Total income and music-related income</h2>
+		<p class="subtitle">Music-related income as a total of gross income by age strata</p>
+		<div id="ageincomechart" style="height:300px">Lovely chart goes here</div>
+	</div>  
+	<div id="concentration" class="output">
+			<h2>Where these musicians live			<%=makeHelpTip("Allocation of annual music-related income by category")%></h2>
 		<div id="concentrationmap" style="height:350px;">Nifty map goes right here! yes </div>
-		
 		<%#
 			Live performance	Compositions (mechanicals, PRO royalties, commissions)
 			Teaching	Sound recordings (sales, streams, synchs, SoundExchange)
 			Salaried player	Merchandise and branding
 			Session/freelance work (studio and/or live)	Other 
 		%>
-		</ul>
 	</div>
-
-
 </div> <%# rightoutputs %>
 </div>
 </div>

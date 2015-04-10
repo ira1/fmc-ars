@@ -1,5 +1,5 @@
 <%= form_tag '/dashboard/show', authenticity_token: false, method: :get, class: "f_facets" do %>		
-  <a href="/dashboard/show/" class="reset_link">reset filters</a> 
+  <p class="reset_link"><a href="/dashboard/show/">reset filters</a></p>
 	<div id="genre_facet">
  		<h6>Main money-generating genre</h6>
 		<label class="all">
@@ -81,7 +81,7 @@
 		<label class="checkbox">
   		<%= hidden_field_tag :ft, "false", :id => "ft1" %>
   		<%= check_box_tag(:ft, "true", "true" == params[:ft]) %> Full-time musicians only
-  		<%=makeHelpTip("Limit results to respondents working 36 hours/week or more on music, and deriving 75% or more of income from music")%>
+  		<%=makeHelpTip("Limits results to respondents working 36 hours/week or more on music, and deriving 75% or more of income from music")%>
 		</label>
 	</div>
 	<div id="education_facet">

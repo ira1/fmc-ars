@@ -73,14 +73,14 @@
 	<link rel="stylesheet" type="text/css" media="all" href="http://money.futureofmusic.org/wordpress/wp-content/themes/super-skeleton/assets/stylesheets/styles.css" />
 	
 	
-    <!-- Load the font stack from the Options Panel -->
-        <link rel="stylesheet" href="http://money.futureofmusic.org/wordpress/wp-content/themes/super-skeleton/assets/stylesheets/typography-sans.css" />
+    <!-- Load the font stack from the Options Panel 
+        <link rel="stylesheet" href="http://money.futureofmusic.org/wordpress/wp-content/themes/super-skeleton/assets/stylesheets/typography-sans.css" /> -->
         
     <!-- Load the default skin from the Options Panel -->
     		<link rel="stylesheet" href="http://money.futureofmusic.org/wordpress/wp-content/themes/super-skeleton/assets/stylesheets/skin-clean.css" />
 		
 	
-	<link rel="stylesheet" type="text/css" media="all" href="http://money.futureofmusic.org/wordpress/wp-content/themes/fmc-ars-theme/style.css" />
+	<!--<link rel="stylesheet" type="text/css" media="all" href="http://money.futureofmusic.org/wordpress/wp-content/themes/fmc-ars-theme/style.css" />-->
 
 
 	<!-- Favicons, StyleLoader, and basic WP stuff
@@ -115,38 +115,7 @@
 			
 	
 	
-</style>
-
-
-<!-- ALTERNATIVE HEADLINE FONT OVERRIDE - For TypeKit/GoogleFonts Insertion -->	
-
-		<!-- FONT REPLACEMENT LOADER 1. Checks for opt-outs, then Cufon, then Google and loads the appropriate files. -->
-		 
-			
-			<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=" />
-			<style type="text/css">
-			h1, h2, h3, h4, h5, h6, #section-header strong, #section-header span {
-			  font-family: '', sans-serif;
-			   -webkit-transform: rotate(-0.01deg);
-			   -moz-transform: rotate(-0.01deg);
-			   text-rendering: optimizeLegibility;
-			   -webkit-font-smoothing: antialiased;
-			}
-			</style>
-		
-			
-<!-- // END HEADLINE FONT OVERRIDE -->	
-
-
-
-<!-- Hide the top bar / optional -->
-	
-	<style type="text/css">
-	#section-tophat{display: none; height: 0px !important; margin: 0; padding: 0;}
-	html{margin-top: -40px;}
-	</style>
-<!-- end of money.fom.org specific headers -->
-
+</style> 
   
 </head>
 <body>
@@ -167,21 +136,10 @@
           <div class="twelve columns alpha navigation sixteen omega">
     			  <!-- DEFAULT NAVIGATION -->
             <!-- DEFAULT NAV removed by Ira -->						
-    			  <div>
-    				  <div style="float:left;margin-right:35px;">
+    			  
       				  <h1 style="color:#00748E;padding-top:5px;margin-bottom:1px;"><%= FilterProfileName() %></h1>
-      				</div> 
-    					<div class="current_n_size">
-    						<div>
-                  <span class="miniheader"># Musicians represented by current filters:</span>
-                  <br>&nbsp;<%= @NCount %> (<%= @NCount_pct %>%) of 4,453 survey respondents:
-                </div>
-                <div id="progressbar">
-                  <div style="width:<%= @NCount_pct %>%"></div>
-                </div>
-              </div>
-            </div>
-            <div style="float:right;">
+ 
+            <div class="social_links">
               <a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Ffmc%2dars%2d0.herokuapp.com%2Fdashboard%2Fshow&t=Future%20of%20Music%2dArtists%20Revenue%20Portal"><%= image_tag("fbicon.png")%></a>
     
               <a href="https://twitter.com/intent/tweet?status=Future%20of%20Music%2dArtists%20Revenue%20Portal%20http%3A%2F%2Ffmc%2dars%2d0.herokuapp.com%2Fdashboard%2Fshow"><%= image_tag("twiticon.png")%></a>

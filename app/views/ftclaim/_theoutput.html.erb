@@ -1,7 +1,11 @@
-<span class="output_title">About This Group</span><span style="text-align:right;" title="Characteristics of this selected group of survey respondents"><%= image_tag "help_icon.png", :size => "16x16" %></span><br/>
-<strong><%= @AboutPctExperienced %>% have 16 or more years of experience</strong><br>
-<strong><%= @pctfulltime %>% are full-time</strong><br>
-Spending 36+ hrs/week on music &<br/>
-deriving 75%+ of income from music<br/>
-
-<%# TODO: better name for this partial %>
+ 
+<h2><%= image_tag("person_icon.png")%> <span class="special2">Number of respondents (N)=<%= number_with_delimiter(@NCount, :delimiter => ',') %></span></h2>
+<div class="current_n_size">
+  <p>Your filters yielded a group of musicians comprising<br /> <strong><%= number_with_delimiter(@NCount, :delimiter => ',') %> (<%= @NCount_pct %>%) of 4,453 respondents:</strong></p>
+  <div id="progressbar">
+    <div style="width:<%= @NCount_pct %>%"></div>
+  </div>
+  <p class="">Within this group, <%= @AboutPctExperienced %>% have 16 or more years of experience and <%= @pctfulltime %>% are full-time musicians.
+<%=makeHelpTip("Full-time means musicians working 36 hours/week or more on music, and deriving 75% or more of income from music")%></p>
+</div>
+ <%# TODO: better name for this partial %>

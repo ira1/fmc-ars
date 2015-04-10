@@ -137,7 +137,7 @@ $(function () {
 		},
         series: [{
             name: '% of Income',
-			color: '#00748E',
+			color: '#00748F',
             data: [<%= @AvgPctLive.to_i %>, <%= @AvgPctTeach.to_i %> , <%= @AvgPctSalary.to_i %>, <%= @AvgPctSession.to_i %>,<%= @AvgPctComposition.to_i %>,<%= @AvgPctRecord.to_i %>,<%= @AvgPctMerch.to_i %>,<%= @AvgPctOther.to_i%>]
         }]
     });
@@ -172,8 +172,8 @@ $(function () {
             }
         },
         tooltip: {
-			headerFormat: '<span style="font-size: 10px">{series.name}</span><br><span style="font-size: 10px">{point.key}:</span><br>',
-			pointFormat: '<span style="font-size: 10px">{point.y:,.0f} people</span>',
+			headerFormat: '{series.name}<br>{point.key}:<br>',
+			pointFormat: '{point.y:,.0f} people',
         },
         plotOptions: {
             bar: {
@@ -195,13 +195,13 @@ $(function () {
 		},
         series: [{           
 				name: 'Decreased',
-				negativeColor: '#FF0000',
+				negativeColor: '#c81c1f',
 				color: '#c81c1f',
 				data: [<%= @DecrIncLive.to_i %>, <%= @DecrIncTeach.to_i %> , <%= @DecrIncSalary.to_i %>, <%= @DecrIncSession.to_i %>,<%= @DecrIncComposition.to_i %>,<%= @DecrIncRecording.to_i %>,<%= @DecrIncMerch.to_i %>]
 			}, 
 			{
 	            name: 'Increased',
-	            negativeColor: '#FF0000',
+	            negativeColor: '#c81c1f',
 				color: '#579333',
 					
 				data: [
@@ -244,14 +244,14 @@ $(function () {
         },
         series: [{
 			name: 'Non-Music income',
-			color: '#7AC5CD',
+			color: '#CCCCCC',
 			borderWidth: 0,
 			type: 'column',
             data: <%= @NonMusicIncbyAge.as_json %>
 
         }, {
 			name: 'Income direct from music',
-			color: '#00748E',
+			color: '#00748F',
 			borderWidth: 0,
 			type: 'column',
 			data: <%= @MusicIncbyAge.as_json %>
@@ -265,7 +265,7 @@ $(function () {
 				format: '${total:,.0f}'
 			},
 			plotLines: [{
-			    color: '#00748E', // Color value
+			    color: '#00748F', // Color value
 			    dashStyle: 'Dash', // Style of the plot line. Default to solid
 			    value: <%= @AvgEMI %>, // Value of where the line will appear
 				width: '2', // Width of the line    
@@ -313,7 +313,7 @@ $(function () {
             }
         },
         tooltip: {
-			headerFormat: '<span style="font-size: 10px">{series.name}</span><br/>{point.key}:',
+			headerFormat: '{series.name}<br/>{point.key}:',
 			pointFormat: "{point.y:,.1f}%",
         },
         plotOptions: {
@@ -353,7 +353,7 @@ $(function () {
         }, {
             name: '<%= genre_text[params[:mgenre].to_i] %> Genre',
 			emi: '<%= number_to_currency(@AvgEMI, :precision=>0) %>',
-			color: '#00748E',
+			color: '#00748F',
             data: <%= if @GenrePcts then @GenrePcts.map {|x| number_with_precision(x,:precision=>2,:significant=>true).to_f}.to_json.html_safe else [] end  %>
         }]
     });
@@ -408,7 +408,7 @@ $(function () {
         },
         series: [{
             name: '# of Musicians',
-			color: '#00748E',
+			color: '#00748F',
             data: <%= @GenreSeries.to_json.html_safe %>
         }]
     });
@@ -450,7 +450,7 @@ $(function () {
 
         series: [{
 			name: '# of musicians',
-			color: '#00748E',
+			color: '#00748F',
 			data: [<%= @Composers %>,<%= @RecordingArtists %>, <%= @Salarieds %>, <%= @Performers %>, <%= @SessionPlayers %>, <%= @Teachers %>]
         }],
 
