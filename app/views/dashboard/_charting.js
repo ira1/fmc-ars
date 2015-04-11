@@ -461,8 +461,8 @@ $(function () {
 });
 
 // Automatic form submission
-$('input').change(function(){
-  $('form').submit();
+$('form.f_facets input').change(function(){
+  $('form.f_facets').submit();
 });
 
 
