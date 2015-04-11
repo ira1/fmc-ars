@@ -1,6 +1,7 @@
 // Place all the styles related to the Dashboard controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$purple: #482F93;
 $yellow: #FFBE41;
 $blue:#00748F;
 $orange:#FF7D2B;
@@ -67,10 +68,19 @@ $fonts: "LatoLatin", "Helvetica","Arial",sans-serif !important;
     text-rendering: optimizeLegibility;
 }
 html body {
+  #masthead {
+    text-align: center;
+    background: #000;
+    margin-bottom: 1em;
+  }
   font-family: $fonts;
   font-size: 100%;
   color: #222;
   line-height: 1.4em;
+  a:hover {
+    background: none;
+    color: inherit;
+  }
   .quiet, .ncount {
     color: #666;
   }
@@ -95,8 +105,14 @@ html body {
   h1,h2,h3,h4,h5,h6 {
     line-height: 1em;
   }
-  h3,h4,h5,h6,li,address,p,td,th,text,label,legend,input,textarea {
-    font-size: .75em;
+  div {
+    h3,h4,h5,h6,li,address,p,td,th,text,label,legend  {
+      font-size: .75em;
+    }
+    li,address,p,td,th,text,label,legend {
+      line-height: 150%;
+      font-family: inherit;
+    }
   }
   h1,h2,h3,h4,h5,h6 {
     margin-bottom: .25em;
@@ -145,16 +161,34 @@ html body {
       float: right;
       margin-top: -32px;
     }
-  }
+  }       
   #facets {
-    background:#f6f6f6;
-    border-right: 1px solid #e4e4e4;
-    .current_n_size {
-      padding: 4px;
-    }
-    form > div {
-
-      padding: .5em;
+    form {
+      input[type="text"],
+      input[type="password"],
+      input[type="email"],
+      textarea,
+      select {
+        min-width: intrinsic;
+        max-width: none;
+        margin-bottom: 1em;
+        padding: .25em;
+        font: inherit;
+      }
+      
+      input[type="text"],
+      input[type="password"],
+      input[type="email"] {
+        padding: .5em 1em !important;
+        
+      }
+      input[type="submit"],
+      input[type=submit] {
+        padding: .5em 1em !important;
+        font: inherit;
+        font-family: "LatoLatinBlack";
+        font-size: inherit;
+      }
       label {
         display: block;
         margin-bottom: .5em;
@@ -171,9 +205,37 @@ html body {
         input[type=checkbox] {
           position: absolute;
           left: 0;
-          top: .2em;
+          top: 0;
         }
       }
+    }
+    background:#f6f6f6;
+    border-right: 1px solid #e4e4e4;
+    .about_survey {
+      margin-top:1em;
+      padding:1em .5em;
+      border-top: 1px solid #e4e4e4;
+      h5 {
+        margin-top: 2em;
+        color: $purple;
+      }   
+    }
+    .social {
+      text-align: left;
+      margin-top: 0;
+      a {
+        text-decoration: none;
+      }
+      img {
+        position: relative;
+        top:.5em;
+      }
+    }
+    .current_n_size {
+      padding: 4px;
+    }
+    form > div {
+      padding: .5em;
     }  
     .reset_link {
       text-align: right;
@@ -266,9 +328,6 @@ html body {
     p {
       text-align:left;
     }
-  }
-  div#facets label, div#facets legend {
-    display:inline;
   }
   div#facets h6 {
     color: $orange;

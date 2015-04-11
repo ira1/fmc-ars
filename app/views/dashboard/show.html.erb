@@ -21,26 +21,12 @@
 ""=>""}
 outputheight='200px'
  %> 
-
 <div id="facets" class="four columns alpha" style="margin-bottom: 6px;">
- 
 	  <%=render "facet_stack.html.erb" %>
-  
 </div>
-<%#
-
-   THE OUTPUTS 
-
-%>
 <div id="outputs" class="twelve columns omega" style="position:relative;">
-<%=render 'n_size_warnings.html.erb'%>
-			
-<%#
-
-   LEFT HAND OUTPUTS 
-
-%>
-	<div id="leftoutputs" class="six columns alpha">
+  <%=render 'n_size_warnings.html.erb'%>
+	<div id="leftoutputs" class="six columns alpha"><main>
     <!-- About this group -->
   	<div id="ftclaim"  class="textual_output output">
     	<%=render "ftclaim/theoutput"%>
@@ -168,6 +154,7 @@ outputheight='200px'
     <p>The Artist Revenue Streams site is powered by Wordpress. Super-Skeleton theme by Brandon R. Jones.</p>
     <p>Data portal design by <a href="http://rhythmspice.com">rhythmspice</a> and <a href="http://twitter.com/orchestrotica">@orchestrotica</a></p>
   </div>
+</main>
 </div>
 <!--           title
   text: 'Gross estimated music income: <%= number_to_currency(@AvgEMI) %> <%#<tspan title="<%= @EMIPctAnswered % >% of respondents in filtered sample provided EMI"></span>%>'

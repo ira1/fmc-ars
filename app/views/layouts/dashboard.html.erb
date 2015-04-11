@@ -2,55 +2,34 @@
 <html>
 <head>
   <title>Future of Music Coalition -- Artists Revenue Portal</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-   <meta property="og:image" content="<%= image_url("fbimg.png") %>"/>
-   <meta property="og:title" content="Get inside musicians&#39; wallets"/>
-   <meta property="og:site_name" content="Future of Music Coalition&#39;s Artists Revenue Portal"/>
-   <meta property="og:description" content="Users can explore, chart and map musicians and their incomes from the Future of Music Coalition&#39;s ground breaking survey of over 5000 musicians from around the USA."/>
-	
-
-   
-
-  
-<script src="http://code.highcharts.com/highcharts.js"></script>
-<script src="http://code.highcharts.com/maps/modules/map.js"></script>
+  <meta property="og:image" content="<%= image_url("fbimg.png") %>"/>
+  <meta property="og:type" content="website"/>
+  <meta property="ob:url" content="<%=request.original_url%>" />
+  <meta property="og:title" content="Artist Revenue Streams Data Portal"/>
+  <meta property="og:site_name" content="Future of Music Coalition&#39;s Artists Revenue Portal"/>
+  <meta property="og:description" content="Users can explore, chart and map musicians and their incomes from the Future of Music Coalition&#39;s ground breaking survey of over 5000 musicians from around the USA."/>
+	<meta charset="utf-8">	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
+  <script src="http://code.highcharts.com/highcharts.js"></script>
+  <script src="http://code.highcharts.com/maps/modules/map.js"></script>
   <script src="http://code.highcharts.com/maps/modules/exporting.js"></script>
   <script src="http://code.highcharts.com/mapdata/countries/us/us-all.js"></script>
-<!-- money.fom.org specific headers follow -->
-<title>Artist Revenue Streams | a multi-method, cross-genre examination of how US based musicians and composers are earning a living.</title>
-	
-	<meta charset="utf-8">	
-	
-		<link rel="alternate" type="application/rss+xml" title="Artist Revenue Streams &raquo; Feed" href="http://money.futureofmusic.org/feed/" />
-<link rel="alternate" type="application/rss+xml" title="Artist Revenue Streams &raquo; Comments Feed" href="http://money.futureofmusic.org/comments/feed/" />
-
-<!-- TODO: google analytics code removed from dev version -->			
-<link rel='stylesheet' id='columns-css'  href='http://money.futureofmusic.org/wordpress/wp-content/plugins/columns/columns.css?ver=3.7.4' type='text/css' media='all' />
-<link rel='stylesheet' id='collapseomatic-css-css'  href='http://money.futureofmusic.org/wordpress/wp-content/plugins/jquery-collapse-o-matic/light_style.css?ver=1.5.7' type='text/css' media='all' />
-<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://money.futureofmusic.org/wordpress/xmlrpc.php?rsd" />
-<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://money.futureofmusic.org/wordpress/wp-includes/wlwmanifest.xml" /> 
-<!-- Vipers Video Quicktags v6.4.5 | http://www.viper007bond.com/wordpress-plugins/vipers-video-quicktags/ -->
-<style type="text/css">
-.vvqbox { display: block; max-width: 100%; visibility: visible !important; margin: 10px auto; } .vvqbox img { max-width: 100%; height: 100%; } .vvqbox object { max-width: 100%; } 
-</style>
-
-<!-- video handling code removed from portal -->
-
-<style type="text/css" media="screen">body{position:relative}#dynamic-to-top{display:none;overflow:hidden;width:auto;z-index:90;position:fixed;bottom:20px;right:20px;top:auto;left:auto;font-family:sans-serif;font-size:1em;color:#fff;text-decoration:none;padding:17px 16px;border:1px solid #000;background:#272727;-webkit-background-origin:border;-moz-background-origin:border;-icab-background-origin:border;-khtml-background-origin:border;-o-background-origin:border;background-origin:border;-webkit-background-clip:padding-box;-moz-background-clip:padding-box;-icab-background-clip:padding-box;-khtml-background-clip:padding-box;-o-background-clip:padding-box;background-clip:padding-box;-webkit-box-shadow:0 1px 3px rgba( 0, 0, 0, 0.4 ), inset 0 0 0 1px rgba( 0, 0, 0, 0.2 ), inset 0 1px 0 rgba( 255, 255, 255, .4 ), inset 0 10px 10px rgba( 255, 255, 255, .1 );-ms-box-shadow:0 1px 3px rgba( 0, 0, 0, 0.4 ), inset 0 0 0 1px rgba( 0, 0, 0, 0.2 ), inset 0 1px 0 rgba( 255, 255, 255, .4 ), inset 0 10px 10px rgba( 255, 255, 255, .1 );-moz-box-shadow:0 1px 3px rgba( 0, 0, 0, 0.4 ), inset 0 0 0 1px rgba( 0, 0, 0, 0.2 ), inset 0 1px 0 rgba( 255, 255, 255, .4 ), inset 0 10px 10px rgba( 255, 255, 255, .1 );-o-box-shadow:0 1px 3px rgba( 0, 0, 0, 0.4 ), inset 0 0 0 1px rgba( 0, 0, 0, 0.2 ), inset 0 1px 0 rgba( 255, 255, 255, .4 ), inset 0 10px 10px rgba( 255, 255, 255, .1 );-khtml-box-shadow:0 1px 3px rgba( 0, 0, 0, 0.4 ), inset 0 0 0 1px rgba( 0, 0, 0, 0.2 ), inset 0 1px 0 rgba( 255, 255, 255, .4 ), inset 0 10px 10px rgba( 255, 255, 255, .1 );-icab-box-shadow:0 1px 3px rgba( 0, 0, 0, 0.4 ), inset 0 0 0 1px rgba( 0, 0, 0, 0.2 ), inset 0 1px 0 rgba( 255, 255, 255, .4 ), inset 0 10px 10px rgba( 255, 255, 255, .1 );box-shadow:0 1px 3px rgba( 0, 0, 0, 0.4 ), inset 0 0 0 1px rgba( 0, 0, 0, 0.2 ), inset 0 1px 0 rgba( 255, 255, 255, .4 ), inset 0 10px 10px rgba( 255, 255, 255, .1 );-webkit-border-radius:30px;-moz-border-radius:30px;-icab-border-radius:30px;-khtml-border-radius:30px;border-radius:30px}#dynamic-to-top:hover{background:#4e9c9c;background:#272727 -webkit-gradient( linear, 0% 0%, 0% 100%, from( rgba( 255, 255, 255, .2 ) ), to( rgba( 0, 0, 0, 0 ) ) );background:#272727 -webkit-linear-gradient( top, rgba( 255, 255, 255, .2 ), rgba( 0, 0, 0, 0 ) );background:#272727 -khtml-linear-gradient( top, rgba( 255, 255, 255, .2 ), rgba( 0, 0, 0, 0 ) );background:#272727 -moz-linear-gradient( top, rgba( 255, 255, 255, .2 ), rgba( 0, 0, 0, 0 ) );background:#272727 -o-linear-gradient( top, rgba( 255, 255, 255, .2 ), rgba( 0, 0, 0, 0 ) );background:#272727 -ms-linear-gradient( top, rgba( 255, 255, 255, .2 ), rgba( 0, 0, 0, 0 ) );background:#272727 -icab-linear-gradient( top, rgba( 255, 255, 255, .2 ), rgba( 0, 0, 0, 0 ) );background:#272727 linear-gradient( top, rgba( 255, 255, 255, .2 ), rgba( 0, 0, 0, 0 ) );cursor:pointer}#dynamic-to-top:active{background:#272727;background:#272727 -webkit-gradient( linear, 0% 0%, 0% 100%, from( rgba( 0, 0, 0, .3 ) ), to( rgba( 0, 0, 0, 0 ) ) );background:#272727 -webkit-linear-gradient( top, rgba( 0, 0, 0, .1 ), rgba( 0, 0, 0, 0 ) );background:#272727 -moz-linear-gradient( top, rgba( 0, 0, 0, .1 ), rgba( 0, 0, 0, 0 ) );background:#272727 -khtml-linear-gradient( top, rgba( 0, 0, 0, .1 ), rgba( 0, 0, 0, 0 ) );background:#272727 -o-linear-gradient( top, rgba( 0, 0, 0, .1 ), rgba( 0, 0, 0, 0 ) );background:#272727 -ms-linear-gradient( top, rgba( 0, 0, 0, .1 ), rgba( 0, 0, 0, 0 ) );background:#272727 -icab-linear-gradient( top, rgba( 0, 0, 0, .1 ), rgba( 0, 0, 0, 0 ) );background:#272727 linear-gradient( top, rgba( 0, 0, 0, .1 ), rgba( 0, 0, 0, 0 ) )}#dynamic-to-top,#dynamic-to-top:active,#dynamic-to-top:focus,#dynamic-to-top:hover{outline:none}#dynamic-to-top span{display:block;overflow:hidden;width:14px;height:12px;background:url( http://money.futureofmusic.org/wordpress/wp-content/plugins/dynamic-to-top/css/images/up.png )no-repeat center center}</style>	
-	
-	<!-- Mobile Specific Metas
-  	================================================== -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
-	
+  <!-- money.fom.org specific headers follow -->
+  <title>Artist Revenue Streams Data Portal | a multi-method, cross-genre examination of how US based musicians and composers are earning a living.</title>
+	<link rel="alternate" type="application/rss+xml" title="Artist Revenue Streams &raquo; Feed" href="http://money.futureofmusic.org/feed/" />
+  <link rel="alternate" type="application/rss+xml" title="Artist Revenue Streams &raquo; Comments Feed" href="http://money.futureofmusic.org/comments/feed/" />
+  <!-- TODO: google analytics code removed from dev version -->			
+  <link rel='stylesheet' id='columns-css'  href='http://money.futureofmusic.org/wordpress/wp-content/plugins/columns/columns.css?ver=3.7.4' type='text/css' media='all' />
+  <link rel='stylesheet' id='collapseomatic-css-css'  href='http://money.futureofmusic.org/wordpress/wp-content/plugins/jquery-collapse-o-matic/light_style.css?ver=1.5.7' type='text/css' media='all' />
+  <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://money.futureofmusic.org/wordpress/xmlrpc.php?rsd" />
+  <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://money.futureofmusic.org/wordpress/wp-includes/wlwmanifest.xml" /> 
 	<link rel="profile" href="http://gmpg.org/xfn/11" />
 	<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://money.futureofmusic.org/feed/" />
 	<link rel="alternate" type="text/xml" title="RSS .92" href="http://money.futureofmusic.org/feed/rss/" />
 	<link rel="alternate" type="application/atom+xml" title="Atom 0.3" href="http://money.futureofmusic.org/feed/atom/" />
 	<link rel="pingback" href="http://money.futureofmusic.org/wordpress/xmlrpc.php" />
-	
-
 
 	<!-- CSS
   	================================================== -->
@@ -62,93 +41,30 @@
 	<link rel="stylesheet" type="text/css" media="all" href="http://money.futureofmusic.org/wordpress/wp-content/themes/super-skeleton/assets/stylesheets/superfish.css" />
 	<link rel="stylesheet" type="text/css" media="all" href="http://money.futureofmusic.org/wordpress/wp-content/themes/super-skeleton/assets/stylesheets/flexslider.css" />
 	<link rel="stylesheet" type="text/css" media="all" href="http://money.futureofmusic.org/wordpress/wp-content/themes/super-skeleton/assets/javascripts/chosen/chosen.css" />
-
-	<link rel="stylesheet" type="text/css" media="all" href="http://money.futureofmusic.org/wordpress/wp-content/themes/super-skeleton/assets/javascripts/prettyPhoto/css/prettyPhoto.css" />
-	
-	<!-- Alternate rLightbox
-	<link type="text/css" rel="stylesheet" href="< ?php echo get_template_directory_uri(); ?>/assets/javascripts/rlightbox_css/ui-lightness/jquery-ui-1.8.16.custom.css" />
-	<link type="text/css" rel="stylesheet" href="< ?php echo get_template_directory_uri(); ?>/assets/javascripts/rlightbox_css/lightbox.min.css" />
-	-->
-	
 	<link rel="stylesheet" type="text/css" media="all" href="http://money.futureofmusic.org/wordpress/wp-content/themes/super-skeleton/assets/stylesheets/styles.css" />
-	
-	
-    <!-- Load the font stack from the Options Panel 
-        <link rel="stylesheet" href="http://money.futureofmusic.org/wordpress/wp-content/themes/super-skeleton/assets/stylesheets/typography-sans.css" /> -->
-        
-    <!-- Load the default skin from the Options Panel -->
-    		<link rel="stylesheet" href="http://money.futureofmusic.org/wordpress/wp-content/themes/super-skeleton/assets/stylesheets/skin-clean.css" />
-		
-	
-	<!--<link rel="stylesheet" type="text/css" media="all" href="http://money.futureofmusic.org/wordpress/wp-content/themes/fmc-ars-theme/style.css" />-->
-
-
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 	<!-- Favicons, StyleLoader, and basic WP stuff
 	================================================== -->
-	<link rel="shortcut icon"href="http://money.futureofmusic.org/wordpress/wp-content/uploads/2012/01/fmc_favicon.png" type="image/gif" />
-	
-	<!-- THIS FILE LOADS ALL THE CUSTOMIZATIONS FROM THE THEME OPTIONS PANEL  -->
-
-
-<!-- Custom CSS Modifications from the Admin Panel -->
-<style type="text/css">
-
-/* Insert the rest of the custom CSS from the admin panel */ 
- 
-	 
-	 
-	/* Add a custom bg if it exists */
-		 
-		 
-	 
-	/* This is your link hover color */
-			
-		#section-header li a:hover, a:hover {color: #0a4194;}
-		
-	
-	/* This is your link color */
-			
-		#section-header li a, a {color: #0a4194;}
-		
-	/* This is your visited link color */
-			a:visited {color: #782375;}
-			
-	
-	
-</style> 
-  
+	<link rel="shortcut icon"href="http://money.futureofmusic.org/wordpress/wp-content/uploads/2012/01/fmc_favicon.png" type="image/gif" />  
 </head>
 <body>
+  <div id="masthead"><a href="http://money.futureofmusic.org"><img src="http://money.futureofmusic.org/wordpress/wp-content/uploads/2012/02/ARSprojectheader940x70.png" alt="Artist Revenue Streams" /></a></div>
   <div id="page" class="super-container full-width">
 	  <div class="container">
       <header>
-    	  <div class="sixteen columns alpha masthead">		
-    		  <!-- Branding -->
-    			<div class="six columns alpha logospace sixteen omega">
-    			  <a href="http://money.futureofmusic.org/" title="Artist Revenue Streams">.
-            <h1 id="logo" style="margin-top: 40px; margin-bottom: 30px;"><img id="logotype" src="http://money.futureofmusic.org/wordpress/wp-content/uploads/2012/02/ARSprojectheader940x70.png" alt="Artist Revenue Streams" /></h1>
-    			  </a>
-    			</div>
-    			<!-- /End Branding -->
-    	  </div>
-        <!-- Menu -->
-        <div class="sixteen columns alpha" id="menu"> 
-          <div class="twelve columns alpha navigation sixteen omega">
-            <h6 class="">Artist Revenue Streams Data Portal (<a href="#">about</a>)</h6>
-            <h1 style="color:#00748E;padding-top:5px;margin-bottom:1px;"><%= FilterProfileName() %> <span class="ncount">N=<%= number_with_delimiter(@NCount, :delimiter => ',') %></span></h1>
-            <div class="social_links">
-              <a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Ffmc%2dars%2d0.herokuapp.com%2Fdashboard%2Fshow&t=Future%20of%20Music%2dArtists%20Revenue%20Portal"><%= image_tag("fbicon.png")%></a>
-    
-              <a href="https://twitter.com/intent/tweet?status=Future%20of%20Music%2dArtists%20Revenue%20Portal%20http%3A%2F%2Ffmc%2dars%2d0.herokuapp.com%2Fdashboard%2Fshow"><%= image_tag("twiticon.png")%></a>
-            </div>						 
-            <!-- /DEFAULT NAVIGATION -->
-    				<!-- TODO RESPONSIVE NAVIGATION FLIP -->
-            <!-- REMOVED by Ira -->
-    				<!-- /END RESPONSIVE NAV -->
-    		  </div>
-    		  <!-- END MENU -->	
-    		</div>		 
-    		<!-- /End Menu -->			
+        <div class="sixteen columns alpha omega"> 
+          <h6 class="">Artist Revenue Streams Data Portal (<a href="http://money.futureofmusic.org">about</a>)</h6>
+          <h1 style="color:#00748E;padding-top:5px;margin-bottom:1px;"><%= FilterProfileName() %> <span class="ncount">N=<%= number_with_delimiter(@NCount, :delimiter => ',') %></span></h1>
+          <div class="social_links">
+            <a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Ffmc%2dars%2d0.herokuapp.com%2Fdashboard%2Fshow&t=Future%20of%20Music%2dArtists%20Revenue%20Portal"><%= image_tag("fbicon.png")%></a>
+            <a href="https://twitter.com/intent/tweet?status=Examine the data about musicians’ revenue streams, collected by @future_of_music Money from Music Survey in 2011, through an online portal"><%= image_tag("twiticon.png")%></a>
+          </div>						 
+          <!-- /DEFAULT NAVIGATION -->
+  				<!-- TODO RESPONSIVE NAVIGATION FLIP -->
+          <!-- REMOVED by Ira -->
+  				<!-- /END RESPONSIVE NAV -->
+  		  </div>
+  		  <!-- END MENU -->			
       </header>
       <%= yield %>
 	    </div><!-- /End 960 Container -->
