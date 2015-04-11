@@ -49,7 +49,7 @@ outputheight='200px'
 				Annual Income by Cat Chart
 		%>
 			<div class="output">
-				<h2>This group made <span class=" special"  title="<%= @EMIPctAnswered %>% of respondents in filtered sample provided EMI"><%= number_to_currency(@AvgEMI, :precision=>0) %></span>&hellip;</h2>
+				<h2>This Group Made <span class=" special"  title="<%= @EMIPctAnswered %>% of respondents in filtered sample provided EMI"><%= number_to_currency(@AvgEMI, :precision=>0) %></span>&hellip;</h2>
 				<p class="subtitle">...in Gross Estimated Music Income (EMI). Here is how it was allocated over the previous 12 months:  (N=<%= @EMISampleSize %>). <%=makeHelpTip("Trend displays the number of musicians who perceived, over the prior 5 years, either an increase or decrease in income for the respective category of work. The percent difference is also displayed.")%></p>
   			<div id="annincbycat"  style="height:300px; "></div>
 			</div>
@@ -67,9 +67,8 @@ outputheight='200px'
 				<%   
 				 @OtherIncomeDist.select { |k,v| 5.0<=v }.sort_by { |k,v| -1.0*v}.each do |e|  %>
 			  	<tr>
-  				 <td><strong class="special2"><%=number_with_precision(e[1],:precision=>2, :significant=>true)%>%</strong></td>
-					 <td class="nowrap">earned $ from </td>
-					 <td><strong class="special2"><%=otherIncomeLabels[e[0]]%></strong></td>
+  				 <td><strong><%=number_with_precision(e[1],:precision=>2, :significant=>true)%>%</strong></td>
+					 <td><div>earned $ from</div><strong class="special2"><%=otherIncomeLabels[e[0]]%></strong></td>
 					 </tr>
 				<% end %>
 			</table>
@@ -89,7 +88,7 @@ outputheight='200px'
   	<% if @genreincomeOn %>	
   		<div id="genreincome" class=" output" >
   			<div id="genreincometitle">
-  				<h2>Comparing revenue allocation by genre <%=makeHelpTip("Allocation of annual music-related income by category")%></h2>
+  				<h2>Impact of Genre On This Group's Income <%=makeHelpTip("Allocation of annual music-related income by category")%></h2>
   				<%#
   	Live performance	Compositions (mechanicals, PRO royalties, commissions)
   	Teaching	Sound recordings (sales, streams, synchs, SoundExchange)
@@ -120,7 +119,7 @@ outputheight='200px'
 		</ul>
 	</div>
 	<div id="genresingroup" class="output" >
-		<h2>Primary Genres for this Group <%=makeHelpTip("% of the musicians who specified this genre as their primary focus. It may not be the genre generating the most income. Musicians may have listed working in other genres also, which is not reflected in this chart.") %></h2>	  
+		<h2>Primary Genres for This Group <%=makeHelpTip("% of the musicians who specified this genre as their primary focus. It may not be the genre generating the most income. Musicians may have listed working in other genres also, which is not reflected in this chart.") %></h2>	  
 				<%#
 	Live performance	Compositions (mechanicals, PRO royalties, commissions)
 	Teaching	Sound recordings (sales, streams, synchs, SoundExchange)
@@ -129,16 +128,16 @@ outputheight='200px'
 		<div id="genresingroupchart" style="height:<%=outputheight%>"></div>
 	</div>
 	<div id="roles" class="output" >
-		<h2>Other roles these musicians fill</h2>
+		<h2>Other Roles This Group Fills</h2>
 		<div id="roleschart" style="height:<%=outputheight%>;">Lovely chart goes here</div>
 	</div> 
 	<div id="ageincome" class="output" >
-		<h2>Total income and music-related income</h2>
+		<h2>Music vs. Non-Music Income by Age</h2>
 		<p class="subtitle">Music-related income as a total of gross income by age strata</p>
 		<div id="ageincomechart" style="height:400px">Lovely chart goes here</div>
 	</div>  
 	<div id="concentration" class="output">
-			<h2>Where these musicians live			<%=makeHelpTip("Allocation of annual music-related income by category")%></h2>
+			<h2>Where This Group Lives <%=makeHelpTip("Allocation of annual music-related income by category")%></h2>
 		<div id="concentrationmap" style="height:350px;">Nifty map goes right here! yes </div>
 		<%#
 			Live performance	Compositions (mechanicals, PRO royalties, commissions)
