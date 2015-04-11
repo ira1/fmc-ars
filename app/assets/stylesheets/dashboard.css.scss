@@ -127,6 +127,20 @@ html body {
     padding-bottom: 1em;
   }
   header {
+    h1 .ncount {
+      font-size: .3em;
+      font-weight: normal;
+    }
+    h6 {
+      color: #666;
+      font-family: "LatoLatin";
+      a {
+        color: inherit;
+      }
+      a:hover {
+        background: none;
+      }
+    }
     .social_links {
       float: right;
       margin-top: -32px;
@@ -282,6 +296,18 @@ html body {
   }
   .logospace {
     text-align: center;
+  }
+  .colophon {
+    padding-top:2.6em;
+    p {
+      margin-bottom: 0;
+    }
+    p, p a {
+      color: #ddd;
+    }
+  }
+  #section-sub-footer ul.social {
+    margin-top: 4em;
   }
 }
 @media only screen and (min-device-width : 768px) {
