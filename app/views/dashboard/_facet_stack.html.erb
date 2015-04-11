@@ -3,7 +3,7 @@
 	<div id="genre_facet">
  		<h6>Main money-generating genre</h6>
 		<label class="all">
-		  <%= radio_button_tag("mgenre", "ALL", true) %> All Genres
+		  <%= radio_button_tag("mgenre", "ALL", true) %> All genres
 		</label>
 		<label>
 		  <%= radio_button_tag("mgenre", 1, (params[:mgenre] == "1")) %> Classical
@@ -97,30 +97,30 @@ World")%>
 		<% end %>
 	</div> 
 	<div id="fulltime_facet">
-		<h6>Full time musicians</h6>
+		<h6>Music-Only Career</h6>
 		<label class="checkbox">
   		<%= hidden_field_tag :ft, "false", :id => "ft1" %>
-  		<%= check_box_tag(:ft, "true", "true" == params[:ft]) %> Full-time musicians only
-  		<%=makeHelpTip("Limits results to respondents working 36 hours/week or more on music, and deriving 75% or more of income from music")%>
+  		<%= check_box_tag(:ft, "true", "true" == params[:ft]) %> Limit to full-time musicians only: those with 75%+ of their income coming from music, and spending a min. of 36 hrs/wk on music
+  		<br /><span class="quiet">Note: Only 1736 / 33% of all respondents met this criteria</span>
 		</label>
 	</div>
 	<div id="career_facet">
-		<h6>Career Experience</h6>
+		<h6>Years of Experience</h6>
     <label class="all">
-  		<%= radio_button_tag("careerexp", "ALL", true ) %> All musicians
+  		<%= radio_button_tag("careerexp", "ALL", true ) %> All experience levels
     </label>
     <label>
-		  <%= radio_button_tag("careerexp", "1", (params[:careerexp] == "1" )) %> Emerging (Less than 16 yrs)
+		  <%= radio_button_tag("careerexp", "1", (params[:careerexp] == "1" )) %> Emerging <span class="quiet">(Less than 16 yrs)</span>
     </label>
     <label>
-		  <%= radio_button_tag("careerexp", "2", (params[:careerexp] == "2" )) %> Established (16 to 30 yrs)
+		  <%= radio_button_tag("careerexp", "2", (params[:careerexp] == "2" )) %> Established <span class="quiet">(16 to 30 yrs)</span>
     </label>
     <label>
-		  <%= radio_button_tag("careerexp", "3", (params[:careerexp] == "3" )) %> Old School (More than 30 yrs)
+		  <%= radio_button_tag("careerexp", "3", (params[:careerexp] == "3" )) %> Old School <span class="quiet">(More than 30 yrs)</span>
 		</label>
 	</div>
 	<div id="emi_facet">
-		<h6>Gross Estimated Music Income (EMI) <%=makeHelpTip("Estimated Music Income = (personal gross income) x (percent of income derived from music)")%></h6>
+		<h6>Gross Estimated Music Income  <%=makeHelpTip("EMI, or Estimated Music Income = (personal gross income) x (percent of income derived from music)")%></h6>
     <label class="all">		
       <%= radio_button_tag("emigroup", "ALL", true) %> All income levels
     </label>
@@ -135,10 +135,10 @@ World")%>
     </label>
 	</div>
 	<div id="education_facet">
-		<h6>Music Education</h6>
+		<h6>Educated in Music</h6>
 		<label class="checkbox">
 		  <%= hidden_field_tag :trained, "false", :id => "train1" %>
-		  <%= check_box_tag(:trained, "true", "true"==params[:trained])%> Only musicians who attended a music industry school, performance school or conservatory		
+		  <%= check_box_tag(:trained, "true", "true"==params[:trained])%> Limit to musicians who attended a music industry school, performance school or conservatory		
 		</label>
 	</div>
 	<div id="gender_facet">
