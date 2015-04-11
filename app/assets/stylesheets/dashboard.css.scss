@@ -71,6 +71,9 @@ html body {
   font-size: 100%;
   color: #222;
   line-height: 1.4em;
+  .quiet {
+    color: #666;
+  }
   h2,h3,h4,h5,h6,strong {
     font-family: 'LatoLatinBold';
   }
@@ -80,7 +83,7 @@ html body {
   h1 {
     font-size: 2.5em;
   }
-  h2 {
+  h2,label span {
     font-size: 1em;
   }
   h3 {
@@ -103,6 +106,11 @@ html body {
     width: auto;
     margin: 1em 0;
     font-size: inherit;
+    td {
+      background: #fff;
+      border-top-color: #eee;
+      padding: .5em;
+    }
   }
   p {
     margin: 0 0 .5em 0;
@@ -224,8 +232,26 @@ html body {
     white-space: nowrap;
     
   }  
-  div#otherincome p {
+  #otherincome {
+    table {
+      margin-left:  auto;
+      margin-right: auto;
+      tr td:first-child {
+        background: $blue;
+        strong {
+          color: #fff;
+        }
+      }
+      td {
+        vertical-align: middle;
+      }
+      td div {
+        color: #666
+      }
+    }
+    p {
       text-align:left;
+    }
   }
   div#facets label, div#facets legend {
     display:inline;
@@ -257,4 +283,16 @@ html body {
   .logospace {
     text-align: center;
   }
+}
+@media only screen and (min-device-width : 768px) {
+  #facets {
+
+    span.tip {
+      display: none;
+    }
+    label:hover span.tip {
+      display: inline;
+    }
+  }
+  
 }
