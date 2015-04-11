@@ -50,12 +50,12 @@ outputheight='200px'
 		%>
 			<div class="output">
 				<h2>This Group Made <span class=" special"  title="<%= @EMIPctAnswered %>% of respondents in filtered sample provided EMI"><%= number_to_currency(@AvgEMI, :precision=>0) %></span>&hellip;</h2>
-				<p class="subtitle">...in Gross Estimated Music Income (EMI). Here is how it was allocated over the previous 12 months:  (N=<%= @EMISampleSize %>). <%=makeHelpTip("Trend displays the number of musicians who perceived, over the prior 5 years, either an increase or decrease in income for the respective category of work. The percent difference is also displayed.")%></p>
+				<p class="subtitle">...in Gross Estimated Music Income (EMI). Here is how it was allocated over the previous 12 months:  <span class="ncount">(N=<%= @EMISampleSize %>)</span>. <%=makeHelpTip("Trend displays the number of musicians who perceived, over the prior 5 years, either an increase or decrease in income for the respective category of work. The percent difference is also displayed.")%></p>
   			<div id="annincbycat"  style="height:300px; "></div>
 			</div>
 			<div class="output">
 				<h2>Income Trend <%=makeHelpTip("Trend displays the number of musicians who perceived, over the prior 5 years, either an increase or decrease in income for the respective category of work. The percent difference is also displayed.")%></h2>
-				<p class="subtitle">Perceived changes in income over prior 5 years. (N=<%= @EMISampleSize %>).</p>
+				<p class="subtitle">Perceived changes in income over prior 5 years. <span class="ncount">(N=<%= @EMISampleSize %>)</span></p>
 		    <div id="anninctrend"  style="height:450px;">Change</div>
 		  </div>
 		<%#
@@ -112,10 +112,10 @@ outputheight='200px'
 <%#			<li title="A union, trade association, PRO or service organization"><strong>[xx%] belong to a music organization</strong><li>%>
 		<%# l i title="Of those respondents who took the long path through the survey">< s trong>Musical credits</strong></li> %>
 			<li><%= @AboutPctOver50Compositions %>% had >  50 composing credits. 
-				<span title="Only <%= @AboutCompositionsPctAnswered %>% of respondents in filtered sample answered this question">(N=<%= @AboutCompositionsNCount %>)</span></li>
-			<li><%= @AboutPctOver50Recordings %>% had >  50 recording credits <span title="Only <%= @AboutRecordingsPctAnswered %>% of respondents in filtered sample answered this question">(N=<%= @AboutRecordingsNCount %>)</span></li>
+				<span title="Only <%= @AboutCompositionsPctAnswered %>% of respondents in filtered sample answered this question" class="ncount">(N=<%= @AboutCompositionsNCount %>)</span></li>
+			<li><%= @AboutPctOver50Recordings %>% had >  50 recording credits <span class="ncount" title="Only <%= @AboutRecordingsPctAnswered %>% of respondents in filtered sample answered this question">(N=<%= @AboutRecordingsNCount %>)</span></li>
 <%#>			<li>[xx%] had >  50 session credits</li> %>
-			<li><%= @AboutPctOver50Shows %>% played > 50 shows in the prior 12 months<span title="Only <%= @AboutShowsPctAnswered %>% of respondents in filtered sample answered this question"> (N=<%=@AboutShowsNCount%>)</span></li>
+			<li><%= @AboutPctOver50Shows %>% played > 50 shows in the prior 12 months<span class="ncount" title="Only <%= @AboutShowsPctAnswered %>% of respondents in filtered sample answered this question"> (N=<%=@AboutShowsNCount%>)</span></li>
 		</ul>
 	</div>
 	<div id="genresingroup" class="output" >
