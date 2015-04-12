@@ -5,6 +5,7 @@ $purple: #482F93;
 $yellow: #FFBE41;
 $blue:#00748F;
 $orange:#FF7D2B;
+$red: #c81c1f;
 $fonts: "LatoLatin", "Helvetica","Arial",sans-serif !important;
 @font-face {
     font-family: 'LatoLatin';
@@ -253,6 +254,30 @@ html body {
       background: #f1f1f1;
       padding: .5em;
   }
+  /*if results too low < 100, do this:*/
+  #toolow_warning {
+    display: none;
+  }
+  .toolow {
+    .output {
+      display: none;
+    }
+    #toolow_warning {
+      display: block;
+      p strong {
+        display: block;
+        line-height: 1.5em;
+        color: $red;
+        font: "LatoLatinBold" !important;
+        max-width: 50em;
+      }
+      img {
+        width: 2.5em;
+        height: 2.5em;
+        margin-right: 1em;
+      }
+    }
+  }
   #outputs {
     #ftclaim img {
       height: 1em;
@@ -280,7 +305,6 @@ html body {
         @extend .left-stripe;
         margin-bottom: 0;
     }
-    
     .output {
       .current_n_size {
         width: 88%;
@@ -301,12 +325,20 @@ html body {
       }
       .highcharts-container {        
         @extend .left-stripe;
+      }      
+ 
+      .very_low {
+        > p:first-child strong, h2  {
+          color: $red !important;
+        }
+        #progressbar > div {
+          background: $red;
+        }
       }
     } 
   }
   .nowrap {
     white-space: nowrap;
-    
   }  
   #otherincome {
     table {
@@ -368,6 +400,9 @@ html body {
   #section-sub-footer ul.social {
     margin-top: 4em;
   }
+}
+.none {
+  display: none;
 }
 @media only screen and (min-device-width : 768px) {
   #facets {

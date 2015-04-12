@@ -1,11 +1,12 @@
  
-<h2><%= image_tag("person_icon.png")%> <span class="special2">Number of Respondents (N)=<%= number_with_delimiter(@NCount, :delimiter => ',') %></span></h2>
-<div class="current_n_size">
-  <p>Your filters yielded a group of musicians comprising<br /> <strong><%= number_with_delimiter(@NCount, :delimiter => ',') %> (<%= @NCount_pct %>%) of 4,453 respondents:</strong></p>
+<h2 class=""><%= image_tag("person_icon.png")%> <span class="special2"><%= number_with_delimiter(@NCount, :delimiter => ',') %> Musicians Comprise This Group</span></h2>
+<div class="current_n_size <%= if @NCount <401 && @NCount > 100 then 'very_low' end %>">
+  <p class="">
+    <%= "<strong>".html_safe if @NCount <401 && @NCount > 100   %>This is <%= @NCount_pct %>% of our 4,453 respondents
+    <% if @NCount <401 && @NCount > 100 then  %> and a statistically small sample size from which to draw conclusions<%end%>:
+    <%= "</strong>".html_safe if @NCount <401 && @NCount > 100    %></p>
   <div id="progressbar">
     <div style="width:<%= @NCount_pct %>%"></div>
   </div>
-  <p class="">Within this group, <%= @AboutPctExperienced %>% have 16 or more years of experience and <%= @pctfulltime %>% are full-time musicians.
-<%=makeHelpTip("Full-time means musicians working 36 hours/week or more on music, and deriving 75% or more of income from music")%></p>
 </div>
  <%# TODO: better name for this partial %>

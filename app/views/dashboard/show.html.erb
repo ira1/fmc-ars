@@ -24,19 +24,34 @@ outputheight='200px'
 <div id="facets" class="four columns alpha" style="margin-bottom: 6px;">
 	  <%=render "facet_stack.html.erb" %>
 </div>
-<div id="outputs" class="twelve columns omega" style="position:relative;">
-  <%=render 'n_size_warnings.html.erb'%>
+<div id="outputs" class=" columns omega<%= if @NCount<=100 then " toolow seven" else "twelve" end %>" style="position:relative;">
+  <%# TOO LOW %>
+  <div id="toolow_warning" >
+    <div class="textual_output">
+    <%= image_tag "caution.png" %>
+    <p><strong>There weren't enough musicians matching your filter criteria to display accurate results. Please broaden your search filters.</strong></p>
+    </div>
+  </div> 
 	<div id="leftoutputs" class="six columns alpha"><main>
     <!-- About this group -->
   	<div id="ftclaim"  class="textual_output output">
     	<%=render "ftclaim/theoutput"%>
     </div>
+    <div class="output textual_output">
+      <h2><%= @AboutPctExperienced %>% of this group&hellip;</h2>
+      <ul>
+        <li>&hellip;have 16+ years of experience </li>
+        <%unless @pctfulltime=100 %>
+          <li><%= @pctfulltime %>%  are full-time musicians</li>
+        <%end%>
+      </ul>
+    </div>
 		<%# Percent who perceive increase in [category] income over prior 5 years: xx%
 				Annual Income by Cat Chart
 		%>
 			<div class="output">
-				<h2>This Group Made <span class=" special"  title="<%= @EMIPctAnswered %>% of respondents in filtered sample provided EMI"><%= number_to_currency(@AvgEMI, :precision=>0) %></span>&hellip;</h2>
-				<p class="subtitle">...in Gross Estimated Music Income (EMI). Here is how it was allocated over the previous 12 months:  <span class="ncount">(N=<%= @EMISampleSize %>)</span>. <%=makeHelpTip("Trend displays the number of musicians who perceived, over the prior 5 years, either an increase or decrease in income for the respective category of work. The percent difference is also displayed.")%></p>
+				<h2>Annual Income: <span class=" special"  title="<%= @EMIPctAnswered %>% of respondents in filtered sample provided EMI"><%= number_to_currency(@AvgEMI, :precision=>0) %></span>&hellip;</h2>
+				<p class="subtitle"><%= @EMISampleSize %> musicians in this group answered the Gross Estimated Music Income (EMI) question. Income sources over last 12 months: </p>
   			<div id="annincbycat"  style="height:300px; "></div>
 			</div>
 			<div class="output">
