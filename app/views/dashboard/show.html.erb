@@ -41,9 +41,7 @@ outputheight='200px'
       <h2><%= @AboutPctExperienced %>% of this group&hellip;</h2>
       <ul>
         <li>&hellip;have 16+ years of experience </li>
-        <%unless @pctfulltime=100 %>
-          <li><%= @pctfulltime %>%  are full-time musicians</li>
-        <%end%>
+        <li><%= @pctfulltime %>%  are full-time musicians</li>
       </ul>
     </div>
 		<%# Percent who perceive increase in [category] income over prior 5 years: xx%
