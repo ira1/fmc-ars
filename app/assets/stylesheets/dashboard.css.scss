@@ -93,6 +93,8 @@ html body {
   }
   h1 {
     font-size: 2.5em;
+    margin-bottom: 2em;
+    color: $blue;
   }
   h2,label span {
     font-size: 1em;
@@ -164,6 +166,10 @@ html body {
     }
   }       
   #facets {
+    p.footnote {
+      color: #666;
+      padding: .5em;
+    }
     form {
       input[type="text"],
       input[type="password"],
@@ -239,10 +245,8 @@ html body {
       padding: .5em;
     }  
     .reset_link {
-      text-align: right;
-      display: block;
       margin: .5em .5em 0 0;   
-      padding: 0;
+      padding: 1em;
       font-size: .75em;
     }
   }

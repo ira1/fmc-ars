@@ -1,5 +1,5 @@
 <%= form_tag '/dashboard/show', authenticity_token: false, method: :get, class: "f_facets" do %>		
-  <p class="reset_link"><a href="/dashboard/show/">reset filters</a></p>
+  <p class="reset_link"><span class="ncount">N=<%= number_with_delimiter(@NCount, :delimiter => ',') %>* based on the filters below. </span><a href="/dashboard/show/">Reset filters</a></p>
 	<div id="genre_facet">
  		<h6>Main money-generating genre</h6>
 		<label class="all">
@@ -160,6 +160,7 @@ World")%>
 	  	<%= check_box_tag(:gender_unanswered, "true", "false"!=params[:gender_unanswered])%> Did not answer
     </label>
 	</div>
+	<p class="footnote">* The abbreviation (N) means the number of respondents (musicians) who answered that particular question. Within any given filtered group, not all musicians in that group necessarily answered all questions.</p>
 <%# = submit_tag () %>
 <% end %> <%# END form_tag %>
 <%=render "about_content"%>
