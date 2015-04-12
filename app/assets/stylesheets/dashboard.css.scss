@@ -69,15 +69,20 @@ $fonts: "LatoLatin", "Helvetica","Arial",sans-serif !important;
     text-rendering: optimizeLegibility;
 }
 html body {
-  #masthead {
-    text-align: center;
-    background: #000;
-    margin-bottom: 1em;
-  }
   font-family: $fonts;
   font-size: 100%;
   color: #222;
   line-height: 1.4em;
+  #masthead {
+    text-align: center;
+    background: #000;
+    margin-bottom: 1em;
+    img {
+      width: 100%;
+      height: auto;
+      max-width: intrinsic;
+    }
+  }
   a:hover {
     background: none;
     color: inherit;
@@ -146,6 +151,10 @@ html body {
     padding-bottom: 1em;
   }
   header {
+    .social_links img {      
+      min-width: 44px;
+      min-height: 44px;
+    }
     h1 .ncount {
       font-size: .3em;
       font-weight: normal;
@@ -159,10 +168,6 @@ html body {
       a:hover {
         background: none;
       }
-    }
-    .social_links {
-      float: right;
-      margin-top: -32px;
     }
   }       
   #facets {
@@ -326,10 +331,7 @@ html body {
       }
       > p:last-child {
         margin-bottom: 0;
-      }
-      .highcharts-container {        
-        @extend .left-stripe;
-      }      
+      }     
  
       .very_low {
         > p:first-child strong, h2  {
@@ -394,6 +396,7 @@ html body {
   }
   .colophon {
     padding-top:2.6em;
+    margin-bottom: 2em;
     p {
       margin-bottom: 0;
     }
@@ -408,15 +411,29 @@ html body {
 .none {
   display: none;
 }
-@media only screen and (min-device-width : 768px) {
-  #facets {
-
-    span.tip {
-      display: none;
+html body {
+  @media only screen and (min-device-width : 768px) {
+    header .social_links {
+      float: right;
+      margin-top: -32px;
+      img {
+        min-width: intrinsic;
+        min-height: intrinsic;
+      }
     }
-    label:hover span.tip {
-      display: inline;
+    #facets {
+      span.tip {
+        display: none;
+      }
+      label:hover span.tip {
+        display: inline;
+      }
     }
+    #outputs {
+        .highcharts-container {        
+          @extend .left-stripe;
+        } 
+    }
+    
   }
-  
 }
