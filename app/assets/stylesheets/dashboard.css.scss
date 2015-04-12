@@ -231,6 +231,12 @@ html body {
         margin-top: 2em;
         color: $purple;
       }   
+      ul li {
+        display: list-item;
+        list-style-type: circle;
+        list-style-position: outside;
+        margin-left: 2em;
+      }
     }
     .social {
       text-align: left;
