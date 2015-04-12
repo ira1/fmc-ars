@@ -288,6 +288,9 @@ html body {
     }
   }
   #outputs {
+    .has_highchart {
+      width: 98%;
+    }
     #ftclaim img {
       height: 1em;
       margin-right: 4px;
@@ -430,9 +433,12 @@ html body {
       }
     }
     #outputs {
-        .highcharts-container {        
-          @extend .left-stripe;
-        } 
+      .highcharts-container {        
+        @extend .left-stripe;
+      } 
+      .has_highchart {
+        width: 98%;
+      }
     }
     
   }

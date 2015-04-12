@@ -52,12 +52,12 @@ outputheight='200px'
 			<div class="output">
 				<h2>Annual Income: <span class=" special"  title="<%= @EMIPctAnswered %>% of respondents in filtered sample provided EMI"><%= number_to_currency(@AvgEMI, :precision=>0) %></span>&hellip;</h2>
 				<p class="subtitle"><%= number_with_delimiter(@EMISampleSize, :delimiter => ',') %> musicians in this group answered the Gross Estimated Music Income (EMI) question. Here's how their income sources broke down over  the last 12 months: </p>
-  			<div id="annincbycat"  style="height:300px; "></div>
+  			<div id="annincbycat"  class="has_highchart" style="height: 300px; "></div>
 			</div>
 			<div class="output">
 				<h2>Income Trend <%=makeHelpTip("Trend displays the number of musicians who perceived, over the prior 5 years, either an increase or decrease in income for the respective category of work. The percent difference is also displayed.")%></h2>
 				<p class="subtitle">Perceived changes in income over prior 5 years. <span class="ncount">(N=<%= number_with_delimiter(@EMISampleSize, :delimiter => ',') %>)</span></p>
-		    <div id="anninctrend"  style="height:450px;">Change</div>
+		    <div id="anninctrend"  class="has_highchart" style="height: 450px;">Change</div>
 		  </div>
 		<%#
 				Other Income Text Box
@@ -96,7 +96,7 @@ outputheight='200px'
   	Salaried player	Merchandise and branding
   	Session/freelance work (studio and/or live)	Other %>
   			</div>
-  				<div id="genreincomechart" style="height:500px;"></div>
+  				<div id="genreincomechart" class="has_highchart" style="height: 500px;"></div>
   			</ul>
   		</div>
   	<% end %>
@@ -126,20 +126,20 @@ outputheight='200px'
 	Teaching	Sound recordings (sales, streams, synchs, SoundExchange)
 	Salaried player	Merchandise and branding
 	Session/freelance work (studio and/or live)	Other %> 
-		<div id="genresingroupchart" style="height:<%=outputheight%>"></div>
+		<div id="genresingroupchart" class="has_highchart" style="height: <%=outputheight%>"></div>
 	</div>
 	<div id="roles" class="output" >
 		<h2>Other Roles This Group Fills</h2>
-		<div id="roleschart" style="height:<%=outputheight%>;">Lovely chart goes here</div>
+		<div id="roleschart" class="has_highchart" style="height: <%=outputheight%>;">Lovely chart goes here</div>
 	</div> 
 	<div id="ageincome" class="output" >
 		<h2>Music vs. Non-Music Income by Age</h2>
 		<p class="subtitle">Music-related income as a total of gross income by age strata</p>
-		<div id="ageincomechart" style="height:400px">Lovely chart goes here</div>
+		<div id="ageincomechart" class="has_highchart" style="height: 400px">Lovely chart goes here</div>
 	</div>  
 	<div id="concentration" class="output">
 			<h2>Where This Group Lives <%=makeHelpTip("Allocation of annual music-related income by category")%></h2>
-		<div id="concentrationmap" style="height:350px;">Nifty map goes right here! yes </div>
+		<div id="concentrationmap" class="has_highchart" style="height: 350px;">Nifty map goes right here! yes </div>
 		<%#
 			Live performance	Compositions (mechanicals, PRO royalties, commissions)
 			Teaching	Sound recordings (sales, streams, synchs, SoundExchange)
