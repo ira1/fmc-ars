@@ -151,9 +151,8 @@ html body {
     padding-bottom: 1em;
   }
   header {
-    .social_links img {      
-      min-width: 44px;
-      min-height: 44px;
+    .social_links   {      
+      display: none;
     }
     h1 .ncount {
       font-size: .3em;
@@ -181,13 +180,12 @@ html body {
       input[type="email"],
       textarea,
       select {
-        min-width: intrinsic;
-        max-width: none;
+        width: 80%;
+        min-width: 50px;
         margin-bottom: 1em;
         padding: .25em;
         font: inherit;
       }
-      
       input[type="text"],
       input[type="password"],
       input[type="email"] {
@@ -324,6 +322,7 @@ html body {
         margin-bottom: 0;
     }
     .output {
+      margin-bottom: 1em;
       .current_n_size {
         width: 88%;
         margin: 0 auto;
@@ -334,7 +333,6 @@ html body {
           margin-top:1em;
         }
       }
-      margin-bottom: 2em;
       h2 {
         @extend .headerstyle;  
       }
@@ -420,10 +418,42 @@ html body {
 .none {
   display: none;
 }
+#facets {
+  display: none;
+}
+#mobile_menu_toggle {
+  a {
+    background: $yellow;
+    text-decoration: none;
+    color: #000;
+    text-align: center;
+    display: block;
+    padding: .5em;
+    margin-bottom: 1em;
+  }
+  a.hide_filtering_affordance,
+  a.hide_exit_filtering_affordance {
+    display: none;
+  } 
+  a.facets_off {
+    margin-top:2em;
+    text-align: left;
+    float: left;
+    padding-right: 1em;
+    padding-left: 1em;
+  }
+}
 html body {
   @media only screen and (min-device-width : 768px) {
+    #mobile_menu_toggle a {
+      display: none;
+    }
+    #facets {
+      display: block;
+    }
     header .social_links {
       float: right;
+      display: block;
       margin-top: -32px;
       img {
         min-width: intrinsic;
@@ -439,6 +469,9 @@ html body {
       }
     }
     #outputs {
+      .output {
+        margin-bottom: 2em;
+      }
       .highcharts-container {        
         @extend .left-stripe;
       } 

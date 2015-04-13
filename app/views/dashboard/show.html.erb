@@ -21,13 +21,18 @@
 ""=>""}
 outputheight='200px'
  %> 
+ 
+<div id="mobile_menu_toggle" class="twelve columns alpha omega ">
+  <a href="" class="facets_on">Filters (genre, roles, and more...)</a>
+  <a href="" class="facets_off hide_exit_filtering_affordance">&lt;</a>
+</div> 
 <div id="facets" class="four columns alpha" style="margin-bottom: 6px;">
 	  <%=render "facet_stack.html.erb" %>
 </div>
-<div id="outputs" class=" columns omega<%= if @NCount<=100 then " toolow seven" else "twelve" end %>" style="position:relative;">
+<div id="outputs" class=" columns omega<%= if @NCount<=100 then " toolow seven" else " twelve" end %>" style="position:relative;">
   <%# TOO LOW %>
-  <div id="toolow_warning" >
-    <div class="textual_output">
+  <div id="toolow_warning" class="textual_output output" >
+    <div>
     <%= image_tag "caution.png" %>
     <p><strong>There weren't enough musicians matching your filter criteria to display accurate results. Please broaden your search filters.</strong></p>
     </div>
@@ -152,6 +157,7 @@ outputheight='200px'
 </div> <%# super-container %>
 
  <%# = debug(params) %>
+<footer>
 <!-- Super Container - SubFooter Space -->
 <div class="super-container full-width" id="section-sub-footer">
 
@@ -176,3 +182,4 @@ subtitle
 -->
 <script src="http://code.highcharts.com/mapdata/countries/us/us-all-all.js"></script>
 <%=render "charting.js"  %>
+</footer>
