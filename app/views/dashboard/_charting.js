@@ -468,16 +468,16 @@ $('form.f_facets input').change(function(){
 $("#mobile_menu_toggle a.facets_on").on("click",function(e) {
   e.preventDefault();
   $('#facets').show();
-  $("#outputs, .about_survey, #masthead, header, footer").hide();
+  $("#outputs, .about_survey, #masthead, header, footer, .reset_link").hide();
   $("a.facets_on").addClass('hide_filtering_affordance');
-  $("a.facets_off").removeClass('hide_exit_filtering_affordance');
+  $(".hide_exit_filtering_affordance").removeClass('none');
 });
 //Mobile : hide filters and show data wituh back button
 $("#mobile_menu_toggle a.facets_off").on("click",function(e) {
   e.preventDefault();
-  $('#facets, a.facets_off').hide();
-  $("#outputs, .about_survey, #masthead, header, footer").show()
+  $('#facets').hide();
+  $("#outputs, .about_survey, #masthead, header, footer, .reset_link").show()
   $("a.facets_on").removeClass('hide_filtering_affordance');
-  $("a.facets_off").addClass('hide_exit_filtering_affordance');
+  $(".hide_exit_filtering_affordance").addClass('none');
 });
 </script>

@@ -169,12 +169,29 @@ html body {
       }
     }
   }       
+  .fixed_n_count  {
+    position: fixed;
+    top:0;
+    left: 0;
+    background: #eee;
+    padding: .5em;
+    z-index: 10;
+  }
   #facets {
+    display: none;
+    margin-top: 4em;
+    h6 {
+      color: $orange;
+      font-family: "LatoLatinBlack";
+    }
     p.footnote {
       color: #666;
       padding: .5em;
     }
     form {
+      h6 {
+        margin-bottom: 1em;
+      }
       input[type="text"],
       input[type="password"],
       input[type="email"],
@@ -201,7 +218,9 @@ html body {
       }
       label {
         display: block;
-        margin-bottom: .5em;
+        padding-top: 1.25em;
+        margin-bottom: 1.25em;
+        border-top: 1px solid #dedede;
       }
       label input[type=radio] {
         margin-left: 6px;
@@ -211,16 +230,35 @@ html body {
       }
       label.checkbox {
         position: relative;
-        padding-left: 1.6em;
-        input[type=checkbox] {
+        padding-left: 3em;
+        input {
           position: absolute;
           left: 0;
-          top: 0;
+          top: 1.25em;
         }
       }
+      input[type=checkbox],
+      input[type=radio] {
+      display: inline-block;
+      font-size: inherit;
+      line-height: 1em;
+      margin: 0 0.25em 0 0;
+      padding: 0;
+      width: 1.5em;
+      height: 1.5em;
+      -webkit-border-radius: 0.25em;
+      vertical-align: text-top;
+      }
+      
+      input[type=radio] {
+      -webkit-border-radius: 2em; /* Make radios round */
+      }
+      
+      input[type=checkbox]:checked {
+      background: url("data:image/png,%89PNG[...]") no-repeat center center;
+      -webkit-background-size: 28px 28px; /* shrink high resolution background */
+      }
     }
-    background:#f6f6f6;
-    border-right: 1px solid #e4e4e4;
     .about_survey {
       margin-top:1em;
       padding:1em .5em;
@@ -373,11 +411,7 @@ html body {
     p {
       text-align:left;
     }
-  }
-  div#facets h6 {
-    color: $orange;
-    font-family: "LatoLatinBlack";
-  }
+  }  
   .special {
     color: $orange;
   }
@@ -418,11 +452,8 @@ html body {
 .none {
   display: none;
 }
-#facets {
-  display: none;
-}
 #mobile_menu_toggle {
-  a {
+  .facets_on {
     background: $yellow;
     text-decoration: none;
     color: #000;
@@ -431,25 +462,35 @@ html body {
     padding: .5em;
     margin-bottom: 1em;
   }
-  a.hide_filtering_affordance,
-  a.hide_exit_filtering_affordance {
+  a.facets_off {
+    @extend .facets_on;
+    padding: .5em 1em;
+    display: inline-block;
+    margin-right: 1em;
+    margin-bottom: .5em;
+  }
+  a.hide_filtering_affordance {
     display: none;
   } 
-  a.facets_off {
-    margin-top:2em;
+  .hide_exit_filtering_affordance {
+    padding-top:.5em;
+    padding-left: .5em;
+    a:not(.facets_off), span {
+    font-size: .75em;
+    }
     text-align: left;
-    float: left;
-    padding-right: 1em;
-    padding-left: 1em;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: #eee;
+    border-bottom: 1px solid #ddd;
   }
 }
 html body {
   @media only screen and (min-device-width : 768px) {
-    #mobile_menu_toggle a {
+    #mobile_menu_toggle a.facets_on {
       display: none;
-    }
-    #facets {
-      display: block;
     }
     header .social_links {
       float: right;
@@ -460,12 +501,36 @@ html body {
         min-height: intrinsic;
       }
     }
+    .fixed_n_count  {
+      display: none;
+    }
     #facets {
-      span.tip {
-        display: none;
-      }
-      label:hover span.tip {
-        display: inline;
+      background:#f6f6f6;
+      border-right: 1px solid #e4e4e4;
+      display: block;
+      margin-top: 0;
+      form {
+        h6 {
+          margin-bottom: .25em;
+        }
+        span.tip {
+          display: none;
+        }
+        label {
+          margin-bottom: .5em;
+          border-top: none;
+          padding-top: 0;
+        }
+        label:hover span.tip {
+          display: inline;
+        }
+        label.checkbox {
+          padding-left: 1.6em;
+          margin-bottom: .5em;
+          input {
+            top: 0;
+          }
+        }
       }
     }
     #outputs {

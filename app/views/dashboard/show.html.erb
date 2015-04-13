@@ -24,8 +24,12 @@ outputheight='200px'
  
 <div id="mobile_menu_toggle" class="twelve columns alpha omega ">
   <a href="" class="facets_on">Filters (genre, roles, and more...)</a>
-  <a href="" class="facets_off hide_exit_filtering_affordance">&lt;</a>
-</div> 
+  <div class="hide_exit_filtering_affordance none">
+    <a class="facets_off" href="">&lt;</a>
+    <span class="ncount">N=<%= number_with_delimiter(@NCount, :delimiter => ',') %>* based on the filters below. </span>
+    <a href="/dashboard/show/">Reset</a>
+  </div> 
+</div>
 <div id="facets" class="four columns alpha" style="margin-bottom: 6px;">
 	  <%=render "facet_stack.html.erb" %>
 </div>
