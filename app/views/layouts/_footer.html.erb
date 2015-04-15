@@ -1,0 +1,31 @@
+<!-- Super Container - SubFooter Space -->
+<div class="super-container full-width" id="section-sub-footer">  
+  <!-- 960 Container -->
+  <div class="container">
+    <footer>
+      <div class="four columns alpha">   
+        <img alt="Future of Music Coalition - Education, Research, and Advocacy for Musicians" src="http://money.futureofmusic.org/wordpress/wp-content/uploads/2012/02/FMClogonameblackback300.png" />
+        <img id="create_uk" alt="Create UK" src="/assets/logo_create_300.jpg" />
+        <ul class="social">
+          <li><a href="http://twitter.com/future_of_music"><img src="http://money.futureofmusic.org/wordpress/wp-content/themes/super-skeleton/assets/images/theme/social-icons/twitter_32.png" alt="twitter" title="Twitter"/></a></li>
+          <li><a href="http://facebook.com/Futureofmusiccoalition"><img src="http://money.futureofmusic.org/wordpress/wp-content/themes/super-skeleton/assets/images/theme/social-icons/facebook_32.png" alt="facebook" title="Facebook" /></a></li>
+          <li><a href="http://money.futureofmusic.org/feed/" target="_blank"><img src="http://money.futureofmusic.org/wordpress/wp-content/themes/super-skeleton/assets/images/theme/social-icons/rss_32.png" alt="RSS" title="RSS" /></a></li>
+        </ul>
+      </div>
+      <div class="twelve columns colophon omega">
+        <p class="made_possible">This data portal is made possible through the financial support of CREATe UK, Doris Duke Charitable Foundation, and Future of Music Coalition.</p>
+        <address><span>Future of Music Coalition</span><span>1615 L Street NW, Suite 520, Washington, DC 20036</span><span>(202) 822-2051</span></address>
+        <p>Interface design by <a href="http://rhythmspice.com">rhythmspice</a> and <a href="http://twitter.com/orchestrotica">@orchestrotica</a>.</p>
+        <p>Development by <a href="http://intouchcorp.com">InTouch Corp.</a></p>
+        <p>Super-Skeleton theme by Brandon R. Jones. </p>
+      </div>
+    </footer>
+  </div>
+</div>
+<!--           title
+text: 'Gross estimated music income: <%= number_to_currency(@AvgEMI) %> <%#<tspan title="<%= @EMIPctAnswered % >% of respondents in filtered sample provided EMI"></span>%>'
+subtitle 
+text: "Allocation of music-related income by category over past 12 months, and perceived changes in income over prior 5 years. N=<%= @EMISampleSize %>."
+-->
+<script src="http://code.highcharts.com/mapdata/countries/us/us-all-all.js"></script>
+<%=render "charting.js"  %>

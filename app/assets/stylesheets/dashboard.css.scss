@@ -429,18 +429,44 @@ html body {
   .logospace {
     text-align: center;
   }
-  .colophon {
-    padding-top:2.6em;
-    margin-bottom: 2em;
+  #section-sub-footer {
+    p, p a,p a:visited, address {
+      color: #aaa;
+    }
+    address {
+      color: #fff;
+      margin: 1.5em auto;
+      span {
+        display: block;
+        margin: 0 0 .5em 0;
+        padding: 0;
+      }
+    } 
     p {
-      margin-bottom: 0;
+      margin-bottom: 1em;
     }
-    p, p a {
-      color: #ddd;
+    div.four {
+      text-align: center;
+      > img {
+        max-width: 80%;
+        margin-bottom: .5em;
+      }
+      #create_uk {
+        max-width: 65%;
+      }
     }
-  }
-  #section-sub-footer ul.social {
-    margin-top: 4em;
+    .container {
+      padding-top: 1em;
+      padding-bottom: 1em;
+    }
+    p.made_possible {
+      color: $yellow;
+    }
+    ul.social {
+      float: none;
+      text-align: center;
+      margin: 0 0 2em 0 !important;
+    }
   }
 }
 .none {
@@ -527,7 +553,6 @@ html body {
       }
       .social_links {
         float: right;
-        display: block;
         margin-top: -32px;
         img {
           min-width: intrinsic;
@@ -578,6 +603,24 @@ html body {
         width: 98%;
       }
     }
-    
+    #section-sub-footer {
+      address  {
+        text-align: center;
+        span {
+          display: inline;
+        }          
+        span:not(:last-child) {
+          margin-right:1em;
+        }
+      }
+      p.made_possible {        
+        margin-top:2em;
+        max-width: 36em;
+        margin: 2em auto 1em;
+      }
+      p {
+        text-align: center;
+      } 
+    }
   }
 }
