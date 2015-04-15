@@ -96,6 +96,15 @@ World")%>
   		</label>
 		<% end %>
 	</div> 
+  <div id="exact_role_facet">
+    <h6>Use Exact Role Matching?</h6>
+    <label class="checkbox">
+		  <%= radio_button_tag("roles_exact", "false", true) %> Regular match: View the <strong class="total_n_count_from_ajax"><%= number_with_delimiter(@NCount, :delimiter => ',') %></strong> musicians who claimed these (#) roles at a minimum, and possible additional roles.</span>
+    </label>
+    <label class="checkbox">
+		  <%= radio_button_tag("roles_exact", "true", (params[:roles_exact] == "true" )) %> View the <strong>(#)</strong> musicians who claimed exactly these (3) roles and no others.
+    </label>
+  </div>
 	<div id="fulltime_facet">
 		<h6>Music-Only Career</h6>
 		<label class="checkbox">
