@@ -76,7 +76,6 @@ html body {
   #masthead {
     text-align: center;
     background: #000;
-    margin-bottom: 1em;
     img {
       width: 100%;
       height: auto;
@@ -151,6 +150,9 @@ html body {
     padding-bottom: 1em;
   }
   header {
+    nav {
+      display: none;
+    }
     .social_links   {      
       display: none;
     }
@@ -486,13 +488,51 @@ html body {
     #mobile_menu_toggle a.facets_on {
       display: none;
     }
-    header .social_links {
-      float: right;
-      display: block;
-      margin-top: -32px;
-      img {
-        min-width: intrinsic;
-        min-height: intrinsic;
+    header {
+      background: #eee;
+      nav {
+        display: block;
+        background: #fff;
+        margin-bottom: 1em;
+        border: 1px solid #eee;
+        border-top: none;
+        ul {
+          text-align: center;
+          margin: 0 auto;
+        }        
+        li.active {      
+          border-right: 1px solid #eee;
+          border-left: 1px solid #eee;    
+        }
+
+        li {
+          display: inline-block;
+          font-weight: bold;
+          font: "LatoLatinBold";
+          text-align: center;
+          margin-right: 1em;
+          padding: 1em 1em; 
+          margin-bottom: 0;
+          a, a:visited {
+            color: #333;
+            font-size: 1em;
+            text-decoration: none;
+          line-height: 300%;
+          }
+          strong,
+          a:hover {
+            color: $purple;
+          }
+        }
+      }
+      .social_links {
+        float: right;
+        display: block;
+        margin-top: -32px;
+        img {
+          min-width: intrinsic;
+          min-height: intrinsic;
+        }
       }
     }
     .fixed_n_count  {
