@@ -480,4 +480,12 @@ $("#mobile_menu_toggle a.facets_off").on("click",function(e) {
   $("a.facets_on").removeClass('hide_filtering_affordance');
   $(".hide_exit_filtering_affordance").addClass('none');
 });
+//slightly gray out facets values not currently selected
+function gray_out_facets() {
+  $('#facets label input[type=checkbox]:not(:checked), #facets label input[type=radio]:not(:checked)').parent().addClass('unselected_filter');
+}
+gray_out_facets();
+$('#facets input').on('click',function() {
+  gray_out_facets();
+});
 </script>

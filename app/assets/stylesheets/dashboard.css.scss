@@ -178,6 +178,9 @@ html body {
       color: $orange;
       font-family: "LatoLatinBlack";
     }
+    .unselected_filter {
+      color: #444;
+    }
     p.footnote {
       color: #666;
       padding: .5em;
@@ -229,6 +232,9 @@ html body {
           position: absolute;
           left: 0;
           top: 1.25em;
+        }
+        input[type=radio] {
+          margin-left: 0;
         }
       }
       input[type=checkbox],
