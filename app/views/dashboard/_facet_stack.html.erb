@@ -19,27 +19,7 @@
 		  <%=makeHelpTip("Includes country, Americana, bluegrass, folk and singer-songwriter.")%>
 		</label>
 		<label>
-		  <%= radio_button_tag("mgenre", 0, (params[:mgenre] == "0") ) %> All other genres <%=makeHelpTip("This includes: A Capella, Avant Garde,
-Blues,
-Celtic,
-Children's,
-Christian,
-Composer,
-DJ,
-Electronic,
-Experimental,
-Funk,
-Gospel,
-Hawaiian,
-Not applicable,
-Pop,
-R&B,
-Rap/Hip-Hop,
-Reggae,
-Religious,
-Soul,
-Vernacular/Traditional,
-World")%>
+		  <%= radio_button_tag("mgenre", 0, (params[:mgenre] == "0") ) %> All other genres <%=makeHelpTip("This includes: A Capella, Avant Garde, Blues, Celtic, Children's, Christian, Composer, DJ, Electronic, Experimental, Funk, Gospel, Hawaiian, Not applicable, Pop, R&B, Rap/Hip-Hop, Reggae, Religious, Soul, Vernacular/Traditional, World")%>
 		</label>
 	</div>
   <div id="role_facet">
@@ -97,12 +77,12 @@ World")%>
 		<% end %>
 	</div> 
   <div id="exact_role_facet">
-    <h6>Use Exact Role Matching?</h6>
+    <h5>Match Style</h5>
     <label class="checkbox">
-		  <%= radio_button_tag("roles_exact", "false", true) %> Regular match: View the <strong class="total_n_count_from_ajax"><%= number_with_delimiter(@NCount, :delimiter => ',') %></strong> musicians who claimed these (#) roles at a minimum, and possible additional roles.</span>
+		  <%= radio_button_tag("roles_exact", "false", true) %> Regular match: View the <strong class="total_n_count_from_ajax">(<%= number_with_delimiter(@NCount, :delimiter => ',') %>)</strong> musicians who claimed all (<span class="num_of_roles_selected"></span>) of these roles, and possibly additional roles.</span>
     </label>
     <label class="checkbox">
-		  <%= radio_button_tag("roles_exact", "true", (params[:roles_exact] == "true" )) %> View the <strong>(#)</strong> musicians who claimed exactly these (3) roles and no others.
+		  <%= radio_button_tag("roles_exact", "true", (params[:roles_exact] == "true" )) %> Strict match: View the <strong>(#)</strong> musicians who claimed exactly these (<span class="num_of_roles_selected"></span>) roles and no others.
     </label>
   </div>
 	<div id="fulltime_facet">

@@ -485,7 +485,21 @@ function gray_out_facets() {
   $('#facets label input[type=checkbox]:not(:checked), #facets label input[type=radio]:not(:checked)').parent().addClass('unselected_filter');
 }
 gray_out_facets();
+//Display the number of selected role checkboxes dynmamically
+function count_number_of_roles() {
+  var cnt=$('#role_facet input:checked').length;
+  $('.num_of_roles_selected').text(cnt);
+  if (cnt==$('#role_facet input[type=checkbox]').length) {
+    $('#exact_role_facet').slideUp();
+  } else {
+    $('#exact_role_facet').slideDown();
+  }
+}
+count_number_of_roles();
+//Do this function whenever anything is changed in facet area
+
 $('#facets input').on('click',function() {
   gray_out_facets();
+  count_number_of_roles();
 });
 </script>
