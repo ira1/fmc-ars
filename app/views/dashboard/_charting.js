@@ -3,97 +3,81 @@
 
 <script>
 var standardBarWidth=12;
-$(function () {
-
-
-    var data = <%= @MusiciansByCounties.to_json.html_safe %>,
-        countiesMap = Highcharts.geojson(Highcharts.maps['countries/us/us-all-all']),
-	lines = Highcharts.geojson(Highcharts.maps['countries/us/us-all-all'], 'mapline'),
-	options;
-
-    // Add state acronym for tooltip
-    Highcharts.each(countiesMap, function (mapPoint) {
-        mapPoint.name = mapPoint.name + ' (' + mapPoint.properties['hc-key'].substr(3, 2).toUpperCase()+ ')';
-    });
-
-    options = {
-        chart : {
-//            borderWidth : 1//,
-//            marginRight: 50 // for the legend
-        },
-
-        title : {
-            text : null// 'Largest Clusters of Musicians'
-        },
-        subtitle : {
-            text : 'Distribution of filtered group by zipcode'
-        },
-
-        legend: {
-            title: {
-                text: "Musicians By County",
-                style: {
-                    color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
-                }
-            },
-            floating: false,
-        },
+//GEO MAP OF MUSICIANS BY COUNTY
+$ (function () {
+  var data = <%= @MusiciansByCounties.to_json.html_safe %>,
+  countiesMap = Highcharts.geojson(Highcharts.maps['countries/us/us-all-all']),
+  lines = Highcharts.geojson(Highcharts.maps['countries/us/us-all-all'], 'mapline'),
+  options;
+  // Add state acronym for tooltip
+  Highcharts.each(countiesMap, function (mapPoint) {
+    mapPoint.name = mapPoint.name + ' (' + mapPoint.properties['hc-key'].substr(3, 2).toUpperCase()+ ')';
+  });  
+  options = {
+    title : {
+      text : null// 'Largest Clusters of Musicians'
+    },
+    subtitle : {
+      text : 'Distribution of filtered group by zipcode'
+    },
+    legend: {
+      title: {
+        text: "Musicians By County",
+        style: {
+            color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
+        }
+      },
+      floating: false,
+    },
 		credits: {
 			enabled: false
 		},
-        mapNavigation: {
-            enabled: true,
+    mapNavigation: {
+      enabled: true,
 			buttonOptions: {
 				verticalAlign: 'bottom'
 			}
-        },
-
-        colorAxis: { 
+    },
+    colorAxis: { 
 			minColor: '#F6B179',
-            maxColor: '#FF2C2E'
-        },
-		
-        plotOptions: {
-            mapline: {
-                showInLegend: false,
-                enableMouseTracking: false
-            }
-        },
-
-        series : [{
-            mapData : countiesMap,
-            data: data,
-            joinBy: 'fips',
-            name: 'County of',
-            tooltip: {
-                valueSuffix: ' musicians'
-            },
-            borderWidth: 0.5,
-			allAreas: false,
-            states: {
-                hover: {
-                    color: '#bada55'
-                }
-            }
-        }, {
-            type: 'mapline',
-            name: 'State borders',
-            data: [lines[0]],
-            color: 'silver'
-        }, {
-            type: 'mapline',
-            name: 'Separator',
-            data: [lines[1],lines[2]],
-            color: 'silver'
-        }]
-    };
-	
-    // Instantiate the map
-    $('#concentrationmap').highcharts('Map', options);
+      maxColor: '#FF2C2E'
+    },		
+    plotOptions: {
+      mapline: {
+        showInLegend: false,
+        enableMouseTracking: false
+      }
+    },
+    series : [{
+      mapData : countiesMap,
+      data: data,
+      joinBy: 'fips',
+      name: 'County of',
+      tooltip: {
+        valueSuffix: ' musicians'
+      },
+      borderWidth: 0.5,
+      allAreas: false,
+      states: {
+        hover: {
+          color: '#bada55'
+        }
+      }
+      }, {
+        type: 'mapline',
+        name: 'State borders',
+        data: [lines[0]],
+        color: 'silver'
+      }, {
+        type: 'mapline',
+        name: 'Separator',
+        data: [lines[1],lines[2]],
+        color: 'silver'
+    }]
+  };
+  // Instantiate the map
+  $('#concentrationmap').highcharts('Map', options);
 });
-
-
-
 $(function () { 
     $('#annincbycat').highcharts({
         chart: {
