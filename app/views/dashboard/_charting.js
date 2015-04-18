@@ -78,57 +78,58 @@ $ (function () {
   // Instantiate the map
   $('#concentrationmap').highcharts('Map', options);
 });
+//ANNUAL INCOME BY CATEGORY
 $(function () { 
-    $('#annincbycat').highcharts({
-        chart: {
-            type: 'bar'
-        },
-        title: {
-			text:null
-        },
-		subtitle:{
-			text: 'Income by Category'
-		},
-        xAxis: {
-            categories: ['Live performance', 'Teaching', 'Salaried player', 'Session work', 'Compositions', 'Sound recordings', 'Merch', 'Other']
-        },
-        yAxis: {
-            title: {
-                text: 'Ave % of Income'
-            },
-            labels: {
-            	enabled: true
-            }			
-        },
-        tooltip: {
-			headerFormat: '{point.key}:<br>',
-			pointFormat: "{point.y:,.0f}% of music-related income",
-        },
-        plotOptions: {
-          series: {
-            pointWidth: standardBarWidth
-          },
-            bar: {
-                dataLabels: {
-                    enabled: true,
-					crop: false,
-					overflow: 'none',
-					format: '{y}%'
-                }
-            }
-        },
-		legend: {
-			enabled: false
-		},
-		credits: {
-			enabled: false
-		},
-        series: [{
-            name: '% of Income',
-			color: '#00748F',
-            data: [<%= @AvgPctLive.to_i %>, <%= @AvgPctTeach.to_i %> , <%= @AvgPctSalary.to_i %>, <%= @AvgPctSession.to_i %>,<%= @AvgPctComposition.to_i %>,<%= @AvgPctRecord.to_i %>,<%= @AvgPctMerch.to_i %>,<%= @AvgPctOther.to_i%>]
-        }]
-    });
+  $('#annincbycat').highcharts({
+    chart: {
+      type: 'bar'
+    },
+    title: {
+      text:null
+    },
+    subtitle:{
+      text: 'Income by Category'
+    },
+    xAxis: {
+      categories: ['Live performance', 'Teaching', 'Salaried player', 'Session work', 'Compositions', 'Sound recordings', 'Merch', 'Other']
+    },
+    yAxis: {
+      title: {
+        text: 'Ave % of Income'
+      },
+      labels: {
+        enabled: true
+      }			
+    },
+    tooltip: {
+      headerFormat: '{point.key}:<br>',
+      pointFormat: "{point.y:,.0f}% of music-related income",
+    },
+    plotOptions: {
+      series: {
+        pointWidth: standardBarWidth
+      },
+      bar: {
+        dataLabels: {
+          enabled: true,
+          crop: false,
+          overflow: 'none',
+          format: '{y}%'
+        }
+      }
+    },
+    legend: {
+      enabled: false
+    },
+    credits: {
+      enabled: false
+    },
+    series: [{
+      name: '% of Income',
+      color: '#00748F',
+      data: [<%= @AvgPctLive.to_i %>, <%= @AvgPctTeach.to_i %> , <%= @AvgPctSalary.to_i %>, <%= @AvgPctSession.to_i %>,<%= @AvgPctComposition.to_i %>,<%= @AvgPctRecord.to_i %>,<%= @AvgPctMerch.to_i %>,<%= @AvgPctOther.to_i%>]
+    }]
+  });
 });
 
 $(function () { 
