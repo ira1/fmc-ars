@@ -131,83 +131,83 @@ $(function () {
     }]
   });
 });
-
+//ANNUAL INCOME TREND UP OR DOWN
 $(function () { 
-    $('#anninctrend').highcharts({
-        chart: {
-            type: 'bar'
-        },
-        title: {
-			text: null
-		},
-		subtitle:{
-			text: 'Income Trend by Category'
-		},
-		tooltipnot: {
-			enabled: false
-		},
-        xAxis: {
-            categories: ['Live performance', 'Teaching', 'Salaried player', 'Session work', 'Compositions', 'Sound recordings', 'Merch' ],
-            labels: {
-                enabled: true
-            }
-        },
-        yAxis: {
-            title: {
-                text: '# of Musicians noting trend'
-            },
-            labels: {
-            	enabled: true
-            }
-        },
-        tooltip: {
-			headerFormat: '{series.name}<br>{point.key}:<br>',
-			pointFormat: '{point.y:,.0f} people',
-        },
-        plotOptions: {
-          series: {
-            pointWidth: standardBarWidth
-          },
-            bar: {
-                dataLabels: {
-                    enabled: true,
-					crop: false,
-					overflow: 'none',
-					x: -2,
-					y: -2,
-					format: '{point.options.delt}'
-                }
-            }
-        },
-		legend: {
-			enabled: false
-		},
-		credits: {
-			enabled: false
-		},
-        series: [{           
-				name: 'Decreased',
-				negativeColor: '#c81c1f',
-				color: '#c81c1f',
-				data: [<%= @DecrIncLive.to_i %>, <%= @DecrIncTeach.to_i %> , <%= @DecrIncSalary.to_i %>, <%= @DecrIncSession.to_i %>,<%= @DecrIncComposition.to_i %>,<%= @DecrIncRecording.to_i %>,<%= @DecrIncMerch.to_i %>]
-			}, 
-			{
-	            name: 'Increased',
-	            negativeColor: '#c81c1f',
-				color: '#579333',
-					
-				data: [
-					{y: <%= @IncrIncLive.to_i %>,delt:'<%= delta_percent_to_s(@IncrIncLive, @DecrIncLive) %>'},
-					{y: <%= @IncrIncTeach.to_i %>,delt:'<%= delta_percent_to_s(@IncrIncTeach, @DecrIncTeach) %>'},
-					{y: <%= @IncrIncSalary.to_i %>,delt:'<%= delta_percent_to_s(@IncrIncSalary, @DecrIncSalary) %>'},
-					{y: <%= @IncrIncSession.to_i %>,delt:'<%= delta_percent_to_s(@IncrIncSession, @DecrIncSession) %>'},
-					{y: <%= @IncrIncComposition.to_i %>,delt:'<%= delta_percent_to_s(@IncrIncComposition, @DecrIncComposition) %>'},
-					{y: <%= @IncrIncRecording.to_i %>,delt:'<%= delta_percent_to_s(@IncrIncRecording, @DecrIncRecording) %>'},
-					{y: <%= @IncrIncMerch.to_i %>,delt:'<%= delta_percent_to_s(@IncrIncMerch, @DecrIncMerch) %>'}]
-        }]
-    });
+  $('#anninctrend').highcharts({
+    chart: {
+      type: 'bar'
+    },
+    title: {
+      text: null
+    },
+    subtitle:{
+      text: 'Income Trend by Category'
+    },
+    tooltipnot: {
+      enabled: false
+    },
+    xAxis: {
+      categories: ['Live performance', 'Teaching', 'Salaried player', 'Session work', 'Compositions', 'Sound recordings', 'Merch' ],
+      labels: {
+        enabled: true
+      }
+    },
+    yAxis: {
+      title: {
+        text: '# of Musicians noting trend'
+      },
+      labels: {
+        enabled: true
+      }
+    },
+    tooltip: {
+      headerFormat: '{series.name}<br>{point.key}:<br>',
+      pointFormat: '{point.y:,.0f} people',
+    },
+    plotOptions: {
+      series: {
+        pointWidth: standardBarWidth
+      },
+      bar: {
+        dataLabels: {
+          enabled: true,
+          crop: false,
+          overflow: 'none',
+          x: -2,
+          y: -2,
+          format: '{point.options.delt}'
+        }
+      }
+    },
+    legend: {
+      enabled: false
+    },
+    credits: {
+      enabled: false
+    },
+    series: [{           
+      name: 'Decreased',
+      negativeColor: '#c81c1f',
+      color: '#c81c1f',
+      data: [<%= @DecrIncLive.to_i %>, <%= @DecrIncTeach.to_i %> , <%= @DecrIncSalary.to_i %>, <%= @DecrIncSession.to_i %>,<%= @DecrIncComposition.to_i %>,<%= @DecrIncRecording.to_i %>,<%= @DecrIncMerch.to_i %>]
+      }, 
+      {
+      name: 'Increased',
+      negativeColor: '#c81c1f',
+      color: '#579333',        
+      data: [
+        {y: <%= @IncrIncLive.to_i %>,delt:'<%= delta_percent_to_s(@IncrIncLive, @DecrIncLive) %>'},
+        {y: <%= @IncrIncTeach.to_i %>,delt:'<%= delta_percent_to_s(@IncrIncTeach, @DecrIncTeach) %>'},
+        {y: <%= @IncrIncSalary.to_i %>,delt:'<%= delta_percent_to_s(@IncrIncSalary, @DecrIncSalary) %>'},
+        {y: <%= @IncrIncSession.to_i %>,delt:'<%= delta_percent_to_s(@IncrIncSession, @DecrIncSession) %>'},
+        {y: <%= @IncrIncComposition.to_i %>,delt:'<%= delta_percent_to_s(@IncrIncComposition, @DecrIncComposition) %>'},
+        {y: <%= @IncrIncRecording.to_i %>,delt:'<%= delta_percent_to_s(@IncrIncRecording, @DecrIncRecording) %>'},
+        {y: <%= @IncrIncMerch.to_i %>,delt:'<%= delta_percent_to_s(@IncrIncMerch, @DecrIncMerch) %>'}
+      ]
+    }]
+  });
 });
-
+//AGE VS INCOME CHART    
 $(function () {
     $('#ageincomechart').highcharts({
         chart: {
