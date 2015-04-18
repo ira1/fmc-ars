@@ -422,14 +422,13 @@ html body {
     background-color: #fff;
     border: 1px #ccc solid;
     border-radius: 1px; /* (height of inner div) / 2 + padding */
-    padding: 1px;
     margin-bottom: 1em;
    
   }
   #progressbar > div {
      background-color: #00748E;
      width: 100%; /* Adjust with JavaScript */
-     height: 10px;
+     height: 12px;
      border-radius: 1px;
   }
   .logospace {

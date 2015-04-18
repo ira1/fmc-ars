@@ -1,7 +1,8 @@
-<% genre_text=["All Others", "Classical", "Jazz", "Rock", "Country"] %>
+<% genre_text=["All Others", "Classical", "Jazz", "Rock", "Country"]
+%>
+
 <script>
-
-
+var standardBarWidth=12;
 $(function () {
 
 
@@ -120,6 +121,9 @@ $(function () {
 			pointFormat: "{point.y:,.0f}% of music-related income",
         },
         plotOptions: {
+          series: {
+            pointWidth: standardBarWidth
+          },
             bar: {
                 dataLabels: {
                     enabled: true,
@@ -176,6 +180,9 @@ $(function () {
 			pointFormat: '{point.y:,.0f} people',
         },
         plotOptions: {
+          series: {
+            pointWidth: standardBarWidth
+          },
             bar: {
                 dataLabels: {
                     enabled: true,
@@ -236,12 +243,13 @@ $(function () {
 				text: 'Age Strata (years)'
 			},
             categories: ['18-29','30-39','40-49','50-59','60+']
-        },
-        plotOptions: {
-            series: {
-                stacking: 'normal'
-			}
-        },
+      },
+      plotOptions: {
+          series: {
+              stacking: 'normal',
+              pointWidth: standardBarWidth
+		    }
+      },
         series: [{
 			name: 'Non-Music income',
 			color: '#CCCCCC',
@@ -317,6 +325,9 @@ $(function () {
 			pointFormat: "{point.y:,.1f}%",
         },
         plotOptions: {
+           series: {
+             pointWidth: standardBarWidth
+            },
             bar: {
                 dataLabels: {
                     enabled: true,
@@ -389,6 +400,9 @@ $(function () {
 			enabled: false
 		},
         plotOptions: {
+          series: {
+            pointWidth: standardBarWidth
+          },
             bar: {
 				//overflow: 'none',
 				//size: '100%',
@@ -415,49 +429,49 @@ $(function () {
 });
 
 $(function () {
-    $('#roleschart').highcharts({
-        chart: {
-            type: 'bar'
-        },
-        title: {
-			text: null
-        },
-		yAxis: {
-			title: {
-				text: '# of musicians'
-			}
-		},
-		legend: {
-			enabled: false
-		},
-		credits: {
-			enabled: false
-		},
-        xAxis: {
-            categories: ['Composer','Recording Artist','Salaried Player','Performer','Session player','Teacher'],
-			labels: {
-				rotation: 0
-			}
-        },
-
-        plotOptions: {
-			bar: {
-                dataLabels: {
-                    enabled: true
-                }
-			}
-        },
-
-        series: [{
-			name: '# of musicians',
-			color: '#00748F',
-			data: [<%= @Composers %>,<%= @RecordingArtists %>, <%= @Salarieds %>, <%= @Performers %>, <%= @SessionPlayers %>, <%= @Teachers %>]
-        }],
-
-        tooltip: {
-            pointFormat: '{point.y} musicians'
+  $('#roleschart').highcharts({
+    chart: {
+      type: 'bar'
+    },
+    title: {
+      text: null
+    },
+    yAxis: {
+      title: {
+        text: '# of musicians'
+      }
+    },
+    legend: {
+      enabled: false
+    },
+    credits: {
+      enabled: false
+    },
+    xAxis: {
+      categories: ['Composer','Recording Artist','Salaried Player','Performer','Session player','Teacher'],
+      labels: {
+        rotation: 0
+      }
+    },
+    plotOptions: {
+      series: {
+        pointWidth: standardBarWidth,
+      },
+      bar: {
+        dataLabels: {
+          enabled: true
         }
-    });
+      }
+    },
+    series: [{
+      name: '# of musicians',
+      color: '#00748F',
+      data: [<%= @Composers %>,<%= @RecordingArtists %>, <%= @Salarieds %>, <%= @Performers %>, <%= @SessionPlayers %>, <%= @Teachers %>]
+    }],
+    tooltip: {
+      pointFormat: '{point.y} musicians'
+    }
+  });
 });
 
 // Automatic form submission
