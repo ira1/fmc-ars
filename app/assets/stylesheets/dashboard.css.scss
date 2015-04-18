@@ -79,7 +79,8 @@ html body {
     img {
       width: 100%;
       height: auto;
-      max-width: intrinsic;
+      max-height: 70px;
+      max-width:940px;
     }
   }
   a:hover {
