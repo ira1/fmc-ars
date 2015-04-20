@@ -209,47 +209,47 @@ $(function () {
 });
 //AGE VS INCOME CHART    
 $(function () {
-    $('#ageincomechart').highcharts({
-        chart: {
-            type: 'column',
-			marginTop: 40
-        },
-        title: {
-			text:null
-        },
+  $('#ageincomechart').highcharts({
+    chart: {
+        type: 'bar'
+    },
+    title: {
+	    text:null
+    },
 		subtitle:{
 			text: null
 		},
 		credits: {
 			enabled: false
 		},
-        xAxis: {
+    xAxis: {
 			title: {
 				text: 'Age Strata (years)'
 			},
-            categories: ['18-29','30-39','40-49','50-59','60+']
-      },
-      plotOptions: {
-          series: {
-              stacking: 'normal',
-              pointWidth: standardBarWidth
-		    }
-      },
-        series: [{
+      categories: ['18-29','30-39','40-49','50-59','60+']
+    },
+    plotOptions: {
+        series: {
+            stacking: 'normal',
+            pointWidth: standardBarWidth
+	    }
+    },
+    series: [{
 			name: 'Non-Music income',
 			color: '#CCCCCC',
 			borderWidth: 0,
 			type: 'column',
-            data: <%= @NonMusicIncbyAge.as_json %>
-
-        }, {
+      data: <%= @NonMusicIncbyAge.as_json %>
+    },{
 			name: 'Income direct from music',
 			color: '#00748F',
 			borderWidth: 0,
 			type: 'column',
 			data: <%= @MusicIncbyAge.as_json %>
-        }],
+    }],
 		yAxis: {
+  		
+  		offset: 10,
 			title: {
 				text: 'Total Gross Income'
 			},
@@ -258,24 +258,30 @@ $(function () {
 				format: '${total:,.0f}'
 			},
 			plotLines: [{
-			    color: '#00748F', // Color value
-			    dashStyle: 'Dash', // Style of the plot line. Default to solid
-			    value: <%= @AvgEMI %>, // Value of where the line will appear
-				width: '2', // Width of the line    
-				zIndex: 4,
-                label: {
-                    text: '<%= number_to_currency(@AvgEMI, :precision=>0) %>',
-                    align: 'left'
-                }
-				
-			  }]
-		},
-        tooltip: {
-			headerFormat: '{point.key} years old<br>',
-            pointFormat: 'Average {series.name}: $<b>{point.y}</b><br/>',
-			zIndex: 5
+        color: '#FF7D2C', // Color value
+        dashStyle: 'Dash', // Style of the plot line. Default to solid
+        value: <%= @AvgEMI %>, // Value of where the line will appear
+        width: '2', // Width of the line    
+        label: {
+          text: 'Avg. EMI: <%= number_to_currency(@AvgEMI, :precision=>0) %>',
+          rotation: '0',
+          verticalAlign: 'bottom',
+          style: {
+            textAlign: 'left',
+            marginTop: '-1em',
+            color: '#FF7D2C',
+            fontSize: '.915em',
+            fontWeight: 'bold'
+          }
         }
-    });
+		  }]
+		},
+    tooltip: {
+			headerFormat: '{point.key} years old<br>',
+      pointFormat: 'Average {series.name}: $<b>{point.y}</b><br/>',
+			zIndex: 5
+    }
+  });
 });
 
 $(function () {
