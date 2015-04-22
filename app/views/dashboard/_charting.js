@@ -39,8 +39,8 @@ $ (function () {
 			}
     },
     colorAxis: { 
-			minColor: '#F6B179',
-      maxColor: '#FF2C2E'
+			minColor: '#98E6F8',
+      maxColor: '#00748F'
     },		
     plotOptions: {
       mapline: {
