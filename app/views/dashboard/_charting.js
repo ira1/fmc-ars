@@ -4,7 +4,33 @@
 <script>
 var standardBarWidth=12;
 //GEO MAP OF MUSICIANS BY COUNTY
-$ (function () {
+$ (function () {  
+  Highcharts.setOptions({       
+      legend: {
+          itemStyle: {
+              fontWeight: 'normal',
+              fontSize: '.917em'
+          }
+      },
+      lang: {
+        thousandsSep: ','
+      },
+      title: {
+        style: {
+          fontSize:'1em'
+        }
+      },
+      plotOptions: {
+        series: {
+            dataLabels: {
+                style: {
+                    fontWeight: 'normal'
+                }
+            }
+        }
+    }
+         
+  });
   var data = <%= @MusiciansByCounties.to_json.html_safe %>,
   countiesMap = Highcharts.geojson(Highcharts.maps['countries/us/us-all-all']),
   lines = Highcharts.geojson(Highcharts.maps['countries/us/us-all-all'], 'mapline'),
@@ -18,7 +44,7 @@ $ (function () {
       text : null// 'Largest Clusters of Musicians'
     },
     subtitle : {
-      text : 'Distribution of filtered group by zipcode'
+      text : 'Distribution of Group by ZIP/County'
     },
     legend: {
       title: {
@@ -77,19 +103,20 @@ $ (function () {
   };
   // Instantiate the map
   $('#concentrationmap').highcharts('Map', options);
-});
+ 
 //ANNUAL INCOME BY CATEGORY
-$(function () { 
+ 
   $('#annincbycat').highcharts({
     chart: {
       type: 'bar'
     },
     title: {
-      text:null
+      text:'Income by Category',
+        style: {
+          fontSize:'1em'
+        }
     },
-    subtitle:{
-      text: 'Income by Category'
-    },
+    subtitle: null,
     xAxis: {
       categories: ['Live performance', 'Teaching', 'Salaried player', 'Session work', 'Compositions', 'Sound recordings', 'Merch', 'Other']
     },
@@ -130,18 +157,18 @@ $(function () {
       data: [<%= @AvgPctLive.to_i %>, <%= @AvgPctTeach.to_i %> , <%= @AvgPctSalary.to_i %>, <%= @AvgPctSession.to_i %>,<%= @AvgPctComposition.to_i %>,<%= @AvgPctRecord.to_i %>,<%= @AvgPctMerch.to_i %>,<%= @AvgPctOther.to_i%>]
     }]
   });
-});
+ 
 //ANNUAL INCOME TREND UP OR DOWN
-$(function () { 
+ 
   $('#anninctrend').highcharts({
     chart: {
       type: 'bar'
     },
     title: {
-      text: null
+      text: 'Income Trend by Category'
     },
     subtitle:{
-      text: 'Income Trend by Category'
+      text: null
     },
     tooltipnot: {
       enabled: false
@@ -206,15 +233,16 @@ $(function () {
       ]
     }]
   });
-});
+ 
 //AGE VS INCOME CHART    
-$(function () {
+ 
   $('#ageincomechart').highcharts({
     chart: {
-        type: 'bar'
+        type: 'bar',
+        paddingRight: '3em'
     },
     title: {
-	    text:null
+	    text:'Music vs. Non-Music Income by Age'
     },
 		subtitle:{
 			text: null
@@ -235,7 +263,7 @@ $(function () {
 	    }
     },
     series: [{
-			name: 'Non-Music income',
+			name: 'Non-music income',
 			color: '#CCCCCC',
 			borderWidth: 0,
 			type: 'column',
@@ -248,14 +276,17 @@ $(function () {
 			data: <%= @MusicIncbyAge.as_json %>
     }],
 		yAxis: {
-  		
+      maxPadding: .1,
   		offset: 10,
 			title: {
 				text: 'Total Gross Income'
 			},
 			stackLabels: {
 				enabled: true,
-				format: '${total:,.0f}'
+				format: '${total:,.0f}',
+				style: {
+  				fontWeight: 'normal'
+				}
 			},
 			plotLines: [{
         color: '#FF7D2C', // Color value
@@ -270,7 +301,7 @@ $(function () {
             textAlign: 'left',
             marginTop: '-1em',
             color: '#FF7D2C',
-            fontSize: '.915em',
+            fontSize: '.917em',
             fontWeight: 'bold'
           }
         }
@@ -282,16 +313,14 @@ $(function () {
 			zIndex: 5
     }
   });
-});
-
-$(function () {
-//	if 'true' == '<%= params.has_key?(:mgenre) %>' && 'ALL' != '<%= params[:mgenre]%>' {
+  // GENRE INCOME CHART
+  //	if 'true' == '<%= params.has_key?(:mgenre) %>' && 'ALL' != '<%= params[:mgenre]%>' {
     $('#genreincomechart').highcharts({
         chart: {
             type: 'bar'
         },
         title: {
-            text: null
+            text: 'Comparison of Revenue Streams Based on Genre'
         },
         subtitle: {
             text: null
@@ -334,14 +363,13 @@ $(function () {
             },
             layout: 'vertical',
             align: 'center',
-            verticalAlign: 'top',
+            verticalAlign: 'bottom',
 			reversed: true,
             x: -0,
             y: 0,
             floating: false,
             borderWidth: 1,
             backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
-            shadow: true
         },
         credits: {
             enabled: false
@@ -360,9 +388,7 @@ $(function () {
         }]
     });
 	//}
-});
-
-$(function () {
+  //GENRES IN GROUP
     $('#genresingroupchart').highcharts({
         chart: {
 			type: 'bar'//,
@@ -417,9 +443,8 @@ $(function () {
             data: <%= @GenreSeries.to_json.html_safe %>
         }]
     });
-});
 
-$(function () {
+  //ROLES CHART
   $('#roleschart').highcharts({
     chart: {
       type: 'bar'
