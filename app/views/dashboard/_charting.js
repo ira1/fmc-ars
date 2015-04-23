@@ -276,7 +276,7 @@ $ (function () {
 			data: <%= @MusicIncbyAge.as_json %>
     }],
 		yAxis: {
-      maxPadding: .1,
+      maxPadding: .3,
   		offset: 10,
 			title: {
 				text: 'Total Gross Income'
