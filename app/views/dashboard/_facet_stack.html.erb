@@ -27,7 +27,7 @@
     <%# <%= check_box_tag("role", "ALL", (@role == "ALL" )) All types %>
 	  <label class="checkbox">
 	  	<%= hidden_field_tag :role_composer, "false", :id => "dummy1" %>
-		  <%= check_box_tag(:role_composer, :true, "false"!=params[:role_composer]) %> Composer
+		  <%= check_box_tag(:role_composer, :true, "false"!=params[:role_composer]) %> Composes music and/or lyrics
   		<%=makeHelpTip("Composes music and/or lyrics. Earns money from mechanicals, performance royalties, commissions, synch licenses.")%>
     </label>
     <label class="checkbox">  
@@ -49,7 +49,7 @@
     <label class="checkbox"> 
   		<%= hidden_field_tag :role_session, "false", :id => "dummy5" %>
   		<%= check_box_tag(:role_session, :true, "false"!=params[:role_session]) %>
-  		Session musician/freelancer")
+  		Session musician/freelancer
   		<%=makeHelpTip("Hired by other musicians/producers/record labels to play or sing in the studio or in a live setting.")%>
     </label>
     <label class="checkbox"> 
