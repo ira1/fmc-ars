@@ -586,8 +586,10 @@ html body {
           border-top: none;
           padding-top: 0;
         }
-        label:hover span.tip {
-          display: inline;
+        label:hover, h6:hover { 
+          span.tip {
+            display: inline;
+          }
         }
         label.checkbox {
           padding-left: 1.6em;
