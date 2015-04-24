@@ -70,14 +70,14 @@ outputheight='200px'
   		<%#
   				Other Income Text Box
   		%>
-  		<div id="otherincome" class="textual_output output">
+  		<div id="otherincome" class="output textual_output">
   		  <h2>Other Music Income Sources <%=makeHelpTip("% of these musicians that have ever received any music-related income from&hellip;")%></h2>
   			<table>
   				<%   
   				 @OtherIncomeDist.select { |k,v| 5.0<=v }.sort_by { |k,v| -1.0*v}.each do |e|  %>
   			  	<tr>
     				 <td><strong><%=number_with_precision(e[1],:precision=>2, :significant=>true)%>%</strong></td>
-  					 <td><div>earned $ from</div><strong class="special2"><%=otherIncomeLabels[e[0]]%></strong></td>
+  					 <td><div>&hellip; of respondents earned some $ from</div><strong class="special2"><%=otherIncomeLabels[e[0]]%></strong></td>
   					 </tr>
   				<% end %>
   			</table>
