@@ -368,6 +368,25 @@ html body {
     }
     .output {
       margin-bottom: 1em;
+      table {
+        margin-left:  auto ;
+        margin-right: auto;
+        tr td:first-child {
+          background: $blue;
+          strong {
+            color: #fff;
+          }
+        }
+        td {
+          vertical-align: middle;
+        }
+        td div {
+          color: #666
+        }
+      }
+      p {
+        text-align:left;
+      }
       .current_n_size {
         width: 88%;
         margin: 0 auto;
@@ -397,27 +416,6 @@ html body {
   }
   .nowrap {
     white-space: nowrap;
-  }  
-  #otherincome {
-    table {
-      margin-left:  auto ;
-      margin-right: auto;
-      tr td:first-child {
-        background: $blue;
-        strong {
-          color: #fff;
-        }
-      }
-      td {
-        vertical-align: middle;
-      }
-      td div {
-        color: #666
-      }
-    }
-    p {
-      text-align:left;
-    }
   }  
   .special {
     color: $orange;
