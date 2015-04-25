@@ -494,7 +494,7 @@ $ (function () {
 $('form.f_facets input').change(function(){
   gray_out_facets();
   count_number_of_roles();
-  //$('form.f_facets').submit();
+  $('form.f_facets').submit();
 });
 //Mobile nav toggle to hide and show filters on mobile
 $("#mobile_menu_toggle a.facets_on").on("click",function(e) {
