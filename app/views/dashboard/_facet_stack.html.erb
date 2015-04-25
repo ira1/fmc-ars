@@ -85,10 +85,10 @@
   <div id="exact_role_facet">
     <h5>Match Style</h5>
     <label class="checkbox">
-		  <%= radio_button_tag("roles_exact", "false", true) %> Regular match: View the <strong class="total_n_count_from_ajax">(<%= number_with_delimiter(@NCount, :delimiter => ',') %>)</strong> musicians who claimed at least <span class="roles_selected_phrase"></span>, and possibly additional roles.</span>
+		  <%= radio_button_tag("roles_exact", "false", true) %> Loose match: View the <strong class="total_n_count_from_ajax">(<%= number_with_delimiter(@NCount, :delimiter => ',') %>)</strong> musicians who claimed 1 to <span class="roles_selected_phrase"></span>, and possibly additional roles.</span>
     </label>
     <label class="checkbox">
-		  <%= radio_button_tag("roles_exact", "true", (params[:roles_exact] == "true" )) %> Strict match: View the <strong>(#)</strong> musicians who claimed exactly <span class="roles_selected_phrase"></span> and no others.
+		  <%= radio_button_tag("roles_exact", "true", (params[:roles_exact] == "true" )) %> Exact match: View the <strong>(#)</strong> musicians who claimed exactly <span class="roles_selected_phrase"></span> and no others.
     </label>
   </div>
 	<div id="fulltime_facet">
