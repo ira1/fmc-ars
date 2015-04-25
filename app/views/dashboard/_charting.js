@@ -445,7 +445,7 @@ $ (function () {
     });
 
   //ROLES CHART
-  $('#roleschart').highcharts({
+  /*$('#roleschart').highcharts({
     chart: {
       type: 'bar'
     },
@@ -487,7 +487,7 @@ $ (function () {
     tooltip: {
       pointFormat: '{point.y} musicians'
     }
-  });
+  });*/
 });
 
 // Automatic form submission

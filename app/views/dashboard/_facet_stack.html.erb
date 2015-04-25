@@ -23,38 +23,44 @@
 		</label>
 	</div>
   <div id="role_facet">
-		<h6>Musician Roles <%=makeHelpTip("Musicians were asked to check all roles they spent time on (regardless of income derived from the role). Most musicians selected several roles.")%></h6>
+		<h6>Musician Roles <%=makeHelpTip("Musicians were asked to check all roles they spent time on (regardless of income). Most musicians selected several roles. ")%></h6>
     <%# <%= check_box_tag("role", "ALL", (@role == "ALL" )) All types %>
 	  <label class="checkbox">
 	  	<%= hidden_field_tag :role_composer, "false", :id => "dummy1" %>
-		  <%= check_box_tag(:role_composer, :true, "false"!=params[:role_composer]) %> Composes music and/or lyrics
+		  <%= check_box_tag(:role_composer, :true, "false"!=params[:role_composer]) %> Composes music and/or lyrics 
+		  <span class="ncount">(<%=@Composers%>)</span>
   		<%=makeHelpTip("Composes music and/or lyrics. Earns money from mechanicals, performance royalties, commissions, synch licenses.")%>
     </label>
     <label class="checkbox">  
   		<%= hidden_field_tag :role_recording, "false", :id => "dummy2" %>
   		<%= check_box_tag(:role_recording, :true, "false"!=params[:role_recording]) %> Records music/recording artist
+		  <span class="ncount">(<%=@RecordingArtists%>)</span>
   		<%=makeHelpTip("Records music they wrote, or covers of other composers' music. Earns money from record label support, recorded music sales, sound recording performance royalties, synch licenses.")%>    
 		</label>
     <label class="checkbox"> 
   		<%= hidden_field_tag :role_salaried, "false", :id => "dummy3" %>
   		<%= check_box_tag(:role_salaried, :true, "false"!=params[:role_salaried]) %> Salaried orchestra player
+		  <span class="ncount">(<%=@Salarieds%>)</span>
   		<%=makeHelpTip("Paid a regular salary to perform as part of a band, ensemble or orchestra.")%>
     </label>
     <label class="checkbox"> 
   		<%= hidden_field_tag :role_performer, "false", :id => "dummy4" %>
   		<%= check_box_tag(:role_performer, :true, "false" !=params[:role_performer]) %>
   		Performer
+		  <span class="ncount">(<%=@Performers%>)</span>
   		<%=makeHelpTip("Performs their music or other composers' music in a live setting. Includes concerts/gigs, broadcast TV or radio, orchestra or chamber music performance. Includes DJs and live remixers.")%>
     </label>
     <label class="checkbox"> 
   		<%= hidden_field_tag :role_session, "false", :id => "dummy5" %>
   		<%= check_box_tag(:role_session, :true, "false"!=params[:role_session]) %>
   		Session musician/freelancer
+		  <span class="ncount">(<%=@SessionPlayers%>)</span>
   		<%=makeHelpTip("Hired by other musicians/producers/record labels to play or sing in the studio or in a live setting.")%>
     </label>
     <label class="checkbox"> 
   		<%= hidden_field_tag :role_teacher, "false", :id => "dummy6" %>
   		<%= check_box_tag(:role_teacher, :true, "false"!=params[:role_teacher]) %> Teacher
+		  <span class="ncount">(<%=@Teachers%>)</span>
   		<%=makeHelpTip("Hired to teach music performance or craft to individuals or in a group setting.")%>
     </label>
     <%# multi-line comment: %>
