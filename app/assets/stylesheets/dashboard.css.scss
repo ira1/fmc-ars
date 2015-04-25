@@ -179,6 +179,10 @@ html body {
       color: $orange;
       font-family: "LatoLatinBlack";
     }
+    .has_disabled_input, 
+    .has_disabled_input * {
+      color: #999;
+    }
     .unselected_filter {
       color: #444;
     }
