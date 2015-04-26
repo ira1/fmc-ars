@@ -118,7 +118,7 @@ $ (function () {
     },
     subtitle: null,
     xAxis: {
-      categories: ['Live performance', 'Teaching', 'Salaried player', 'Session work', 'Compositions', 'Sound recordings', 'Merch', 'Other']
+      categories: ['Live performance', 'Teaching', 'Salaried orch. player', 'Session work', 'Compositions', 'Sound recordings', 'Merch', 'Other']
     },
     yAxis: {
       title: {
@@ -174,7 +174,7 @@ $ (function () {
       enabled: false
     },
     xAxis: {
-      categories: ['Live performance', 'Teaching', 'Salaried player', 'Session work', 'Compositions', 'Sound recordings', 'Merch' ],
+      categories: ['Live performance', 'Teaching', 'Salaried orch. player', 'Session work', 'Compositions', 'Sound recordings', 'Merch' ],
       labels: {
         enabled: true
       }
@@ -326,7 +326,7 @@ $ (function () {
             text: null
         },
         xAxis: { 
-            categories: ['Live performance','Teaching','Salaried player','Session work','Compositions','Sound recordings','Merchandise and branding','Other'],
+            categories: ['Live performance','Teaching','Salaried orch. player','Session work','Compositions','Sound recordings','Merchandise and branding','Other'],
             title: {
                 text: null
             }
@@ -464,7 +464,7 @@ $ (function () {
       enabled: false
     },
     xAxis: {
-      categories: ['Composer','Recording Artist','Salaried Player','Performer','Session player','Teacher'],
+      categories: ['Composer','Recording Artist','Salaried orch. player','Performer','Session player','Teacher'],
       labels: {
         rotation: 0
       }
@@ -537,10 +537,7 @@ function count_number_of_roles() {
   }  
   //if all boxes checked:
   if (cnt==$('#role_facet input[type=checkbox]').length) {
-    $('#roles_exact_true').prop('checked',true);
-    $('#roles_exact_true').parent().removeClass('unselected_filter');
-    $('#roles_exact_false').prop('disabled',true).parent('label').addClass('has_disabled_input').removeClass('unselected_filter');
-    $('.roles_selected_phrase').text('these 5 roles');
+    $('#exact_role_facet').slideUp();
   } else {
     //if one box checked
     if (cnt==1) {
