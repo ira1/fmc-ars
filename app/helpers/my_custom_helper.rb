@@ -13,7 +13,7 @@ module MyCustomHelper
   def FilterProfileName 
     #return params["mgenre"]
     genre_text=["Other", "Classical", "Jazz", "Rock", "Country"]
-    if params.has_key?("mgenre") then
+    if params.has_key?("mgenre") and params["mgenre"]!='ALL' then
       return genre_text[params["mgenre"].to_i]+' musicians'
     else
       return "All Musicians"

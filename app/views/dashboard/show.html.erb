@@ -117,7 +117,7 @@ outputheight='200px'
     <div id="rightoutputs" class="six columns omega">
     	<div id="aboutthisgroup" class="output textual_output" >
     		<h2>Credits and Activity <%=makeHelpTip("Respondents who took the medium or the long path survey answered these questions")%></h2>
-    		<table>
+    		<p class="">The survey asked musicians about their recording credits, composing credits, and number of shows performed. Respondents could respond with a range of "0" to "more than 100" for each question. The overall survey data results suggested that anyone who answered more than 50 was a statistically significant achievement, and so this table shows the <% if FilterProfileName()=='All Musicians' %>musicians<% elsif FilterProfileName()=='Other musicians' %><strong>all-other-genres musicians</strong> <%else%><strong><%= FilterProfileName().downcase %></strong><%end%> who reached this threshold. <table>
     <%#			<li title="A union, trade association, PRO or service organization"><strong>[xx%] belong to a music organization</strong><li>%>
     		<%# l i title="Of those respondents who took the long path through the survey">< s trong>Musical credits</strong></li> %>
     			<tr>
@@ -169,7 +169,7 @@ outputheight='200px'
     		<h2>What Genres Do These <%= FilterProfileName().titlecase %> Spend The Most Time On?<%=makeHelpTip("Musicians were able to select multiple genres of focus, however, below, we are only displaying the primary genre of focus. This chart does not show the primary genre generating income.") %></h2>	  
     		<% unless FilterProfileName()=='All Musicians' %>
     		  <p class="subtitle">
-      		The survey also asked this group of <strong class="total_n_count_from_ajax"><%= number_with_delimiter(@NCount, :delimiter => ',') %></strong> musicians &#151;who make most of their music income as <strong><%= FilterProfileName().downcase %></strong>&#151;on which genre they spent the most <strong>time</strong>. 
+      		The survey also asked this group of <strong class="total_n_count_from_ajax"><%= number_with_delimiter(@NCount, :delimiter => ',') %></strong> musicians &#151;who make most of their music income as <strong><% if FilterProfileName()=='Other musicians' %>all-other-genres musicians<% else %><%=FilterProfileName().downcase%><%end%></strong>&#151;on which genre they spent the most <strong>time</strong>. 
       		
       		This question seeks to answer, "do musicians always make the majority of their music income on the same genre they spend the most time on?" </p>
         <% end %>
