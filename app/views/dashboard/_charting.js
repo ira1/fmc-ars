@@ -121,6 +121,7 @@ $ (function () {
       categories: ['Live performance', 'Teaching', 'Salaried orch. player', 'Session work', 'Compositions', 'Sound recordings', 'Merch', 'Other']
     },
     yAxis: {
+      maxPadding: .1,
       title: {
         text: 'Ave % of Income'
       },
@@ -238,8 +239,7 @@ $ (function () {
  
   $('#ageincomechart').highcharts({
     chart: {
-        type: 'bar',
-        paddingRight: '3em'
+        type: 'bar'
     },
     title: {
 	    text:'Music vs. Non-Music Income by Age'
@@ -308,8 +308,8 @@ $ (function () {
 		  }]
 		},
     tooltip: {
-			headerFormat: '{point.key} years old<br>',
-      pointFormat: 'Average {series.name}: $<b>{point.y}</b><br/>',
+			headerFormat: 'For musicians {point.key} years old:<br>',
+      pointFormat: 'Avg. {series.name}: $<b>{point.y}</b><br/>',
 			zIndex: 5
     }
   });
@@ -317,8 +317,7 @@ $ (function () {
   //	if 'true' == '<%= params.has_key?(:mgenre) %>' && 'ALL' != '<%= params[:mgenre]%>' {
   $('#genreincomechart').highcharts({
     chart: {
-      type: 'bar',
-      paddingRight: '3em'
+      type: 'bar'
     },
     title: {
       text: 'Comparison of Revenue Streams Based on Genre'
@@ -333,6 +332,7 @@ $ (function () {
       }
     },
     yAxis: {
+      maxPadding: .08,
       min: 0,
       title: {
           text: 'Pct of Income'
@@ -393,7 +393,7 @@ $ (function () {
   $('#genresingroupchart').highcharts({
     chart: {
 			type: 'bar',
-      paddingRight: '1em'
+      paddingTop: '3em'
 //            plotBackgroundColor: null //,
 //            plotBorderWidth: null,
 //            plotShadow: false
@@ -405,13 +405,19 @@ $ (function () {
 			text: null
 		},
     tooltip: {
-        pointFormat: '<b>{point.y}</b> musicians'
+      headerFormat: "<strong>{point.y}</strong> musicians spend most of their <strong>time</strong> on {point.key}.",
+      <% if FilterProfileName()=='All Musicians' %>
+      pointFormat: ""
+      <%else%> 
+      pointFormat: '<br />...although they earn most of their <strong>income</strong> as<br /> <% if FilterProfileName()=='Other musicians' %>all-other-genres<% else %><%=FilterProfileName().downcase%><%end%>'
+      <% end %>  
     },
     xAxis: {
-        categories: ['Classical','Jazz','Rock','Country','All others','No answer'],
-        title: {text: "I spend most of my time on..."}
+      categories: ['Classical','Jazz','Rock','Country','All others','No answer'],
+      title: {text: "I spend most of my time on..."}
 		},
 		yAxis: {
+      maxPadding: .08,
 			title: {
 				text: '# of musicians '
 		  }
