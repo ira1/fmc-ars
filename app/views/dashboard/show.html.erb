@@ -166,14 +166,19 @@ outputheight='200px'
     		%>
     	</div>
     	<div id="genresingroup" class="output" >
-    		<h2>On What Genre Did This Group Spend The Most Time?<%=makeHelpTip("Musicians were able to select multiple genres of focus, however, below, we are only displaying the primary genre of focus. This chart does not show the primary genre generating income.") %></h2>	  
-    		<p class="subtitle">The survey asked the <strong class="total_n_count_from_ajax"><%= number_with_delimiter(@NCount, :delimiter => ',') %></strong> musicians who make most of their music income from <strong><%= FilterProfileName() %></strong> where they spent the most <strong>time</strong>. </p>
+    		<h2>What Genres Do These <%= FilterProfileName().titlecase %> Spend The Most Time On?<%=makeHelpTip("Musicians were able to select multiple genres of focus, however, below, we are only displaying the primary genre of focus. This chart does not show the primary genre generating income.") %></h2>	  
+    		<% unless FilterProfileName()=='All Musicians' %>
+    		  <p class="subtitle">
+      		The survey also asked this group of <strong class="total_n_count_from_ajax"><%= number_with_delimiter(@NCount, :delimiter => ',') %></strong> musicians &#151;who make most of their music income as <strong><%= FilterProfileName().downcase %></strong>&#151;on which genre they spent the most <strong>time</strong>. 
+      		
+      		This question seeks to answer, "do musicians always make the majority of their music income on the same genre they spend the most time on?" </p>
+        <% end %>
     				<%#
     	Live performance	Compositions (mechanicals, PRO royalties, commissions)
     	Teaching	Sound recordings (sales, streams, synchs, SoundExchange)
     	Salaried player	Merchandise and branding
     	Session/freelance work (studio and/or live)	Other %> 
-    		<div id="genresingroupchart" class="has_highchart" style="height: <%=outputheight%>"></div>
+    		<div id="genresingroupchart" class="has_highchart" style="height: 220px"></div>
     	</div>
     </div> <%# rightoutputs %>
   </main>

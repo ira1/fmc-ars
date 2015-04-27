@@ -315,134 +315,137 @@ $ (function () {
   });
   // GENRE INCOME CHART
   //	if 'true' == '<%= params.has_key?(:mgenre) %>' && 'ALL' != '<%= params[:mgenre]%>' {
-    $('#genreincomechart').highcharts({
-        chart: {
-            type: 'bar'
-        },
-        title: {
-            text: 'Comparison of Revenue Streams Based on Genre'
-        },
-        subtitle: {
-            text: null
-        },
-        xAxis: { 
-            categories: ['Live performance','Teaching','Salaried orch. player','Session work','Compositions','Sound recordings','Merchandise and branding','Other'],
-            title: {
-                text: null
-            }
-        },
-        yAxis: {
-            min: 0,
-            title: {
-                text: 'Pct of Income'
-            },
-            labels: {
-                overflow: 'justify'
-            }
-        },
-        tooltip: {
-			headerFormat: '{series.name}<br/>{point.key}:',
-			pointFormat: "{point.y:,.1f}%",
-        },
-        plotOptions: {
-           series: {
-             pointWidth: standardBarWidth
-            },
-            bar: {
-                dataLabels: {
-                    enabled: true,
+  $('#genreincomechart').highcharts({
+    chart: {
+      type: 'bar',
+      paddingRight: '3em'
+    },
+    title: {
+      text: 'Comparison of Revenue Streams Based on Genre'
+    },
+    subtitle: {
+      text: null
+    },
+    xAxis: { 
+      categories: ['Live performance','Teaching','Salaried orch. player','Session work','Compositions','Sound recordings','Merchandise and branding','Other'],
+      title: {
+          text: null
+      }
+    },
+    yAxis: {
+      min: 0,
+      title: {
+          text: 'Pct of Income'
+      },
+      labels: {
+          overflow: 'justify'
+      }
+    },
+    tooltip: {
+      headerFormat: '{series.name}<br/>{point.key}:',
+      pointFormat: "{point.y:,.1f}%",
+    },
+    plotOptions: {
+      series: {
+        pointWidth: standardBarWidth
+      },
+      bar: {
+        dataLabels: {
+          enabled: true,
 					crop: false,
 					overflow: 'none',
 					format: '{y}%'
-                }
-            }
-        },
-        legend: {
-            labelFormatter: function () {
-                return this.name + ' (EMI='+this.options.emi+')';
-            },
-            layout: 'vertical',
-            align: 'center',
-            verticalAlign: 'bottom',
-			reversed: true,
-            x: -0,
-            y: 0,
-            floating: false,
-            borderWidth: 1,
-            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
-        },
-        credits: {
-            enabled: false
-        },
-        series: [{
-            name: 'Non-<%= genre_text[params[:mgenre].to_i] %> Genres',
-			emi: '<%= number_to_currency(@AvgEMI_antigenre, :precision=>0) %>',
-			color: '#FF7D2C',
-            data: <%= if @AntiGenrePcts then @AntiGenrePcts.map {|x| number_with_precision(x,:precision=>2,:significant=>true).to_f}.to_json.html_safe else [] end %>
-			
-        }, {
-            name: '<%= genre_text[params[:mgenre].to_i] %> Genre',
+        }
+      }
+    },
+    legend: {
+      labelFormatter: function () {
+        return this.name + ' (EMI='+this.options.emi+')';
+      },
+      layout: 'vertical',
+      align: 'center',
+      verticalAlign: 'bottom',
+      reversed: true,
+      x: -0,
+      y: 0,
+      floating: false,
+      borderWidth: 1,
+      backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+    },
+    credits: {
+      enabled: false
+    },
+    series: [{
+      name: 'Non-<%= genre_text[params[:mgenre].to_i] %> Genres',
+      emi: '<%= number_to_currency(@AvgEMI_antigenre, :precision=>0) %>',
+      color: '#FF7D2C',
+      data: <%= if @AntiGenrePcts then @AntiGenrePcts.map {|x| number_with_precision(x,:precision=>2,:significant=>true).to_f}.to_json.html_safe else [] end %>
+	
+    }, {
+      name: '<%= genre_text[params[:mgenre].to_i] %> Genre',
 			emi: '<%= number_to_currency(@AvgEMI, :precision=>0) %>',
-			color: '#00748F',
-            data: <%= if @GenrePcts then @GenrePcts.map {|x| number_with_precision(x,:precision=>2,:significant=>true).to_f}.to_json.html_safe else [] end  %>
-        }]
-    });
+    	color: '#00748F',
+      data: <%= if @GenrePcts then @GenrePcts.map {|x| number_with_precision(x,:precision=>2,:significant=>true).to_f}.to_json.html_safe else [] end  %>
+    }]
+  });
 	//}
   //GENRES IN GROUP
-    $('#genresingroupchart').highcharts({
-        chart: {
-			type: 'bar'//,
+  $('#genresingroupchart').highcharts({
+    chart: {
+			type: 'bar',
+      paddingRight: '1em'
 //            plotBackgroundColor: null //,
 //            plotBorderWidth: null,
 //            plotShadow: false
-        },
-        title: {
-            text: null
-        },
+    },
+    title: {
+        text: null
+    },
 		subtitle: {
 			text: null
 		},
-        tooltip: {
-            pointFormat: '<b>{point.y}</b> musicians'
-        },
-        xAxis: {
-            categories: ['Classical','Jazz','Rock','Country','All others','No answer']
+    tooltip: {
+        pointFormat: '<b>{point.y}</b> musicians'
+    },
+    xAxis: {
+        categories: ['Classical','Jazz','Rock','Country','All others','No answer'],
+        title: {text: "I spend most of my time on..."}
 		},
 		yAxis: {
 			title: {
-				text: '# of musicians'
-			}
+				text: '# of musicians '
+		  }
 		},
 		legend: {
 			enabled: false
 		},
-        plotOptions: {
-          series: {
-            pointWidth: standardBarWidth
-          },
-            bar: {
-				//overflow: 'none',
-				//size: '100%',
-                dataLabels: {
-					//distance: -55,
-					//distance: 15,
-					distance: 5,
-                    format: '<b>{point.short}</b><br>{point.percentage:.1f} %',
-                    style: {
-                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                    }
-                }
-            }
-        },
-        credits: {
-            enabled: false
-        },
-        series: [{
-            name: '# of Musicians',
-			color: '#00748F',
-            data: <%= @GenreSeries.to_json.html_safe %>
-        }]
-    });
+    plotOptions: {
+      series: {
+        pointWidth: standardBarWidth
+      },
+      bar: {
+        //overflow: 'none',
+        //size: '100%',
+        dataLabels: {
+          //distance: -55,
+          //distance: 15,
+          distance: 5,
+          format: '<b>{point.short}</b><br>{point.percentage:.1f} %',
+          style: {
+              color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+          }
+        }
+      }
+    },
+    credits: {
+        enabled: false
+    },
+    series: [{
+      name: '# of Musicians',
+      color: '#00748F',
+      data: <%= @GenreSeries.to_json.html_safe %>
+    }]
+  });
 
   //ROLES CHART
   /*$('#roleschart').highcharts({
