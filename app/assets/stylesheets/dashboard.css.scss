@@ -6,6 +6,7 @@ $yellow: #FFBE41;
 $blue:#00748F;
 $orange:#FF7D2B;
 $red: #c81c1f;
+$green: #649E1E;
 $fonts: "LatoLatin", "Helvetica","Arial",sans-serif !important;
 @font-face {
     font-family: 'LatoLatin';
@@ -83,12 +84,21 @@ html body {
       max-width:940px;
     }
   }
+  .increased {
+    color:  $green;
+  }
+  .decreased {
+    color: $red;
+  }
   a:hover {
     background: none;
     color: inherit;
   }
   .quiet, .ncount {
     color: #666;
+  }
+  th.quiet {
+    color: #999;
   }
   h2,h3,h4,h5,h6,strong {
     font-family: 'LatoLatinBold';
@@ -127,6 +137,14 @@ html body {
     padding: 0;
   }
   table {
+    tr th {
+      color: #666;
+      text-transform: none;
+      background: #fff;
+      border-bottom: #ccc;
+      font-family: "LatoLatinBold";
+      vertical-align: bottom;
+    }
     width: auto;
     margin: 1em 0;
     font-size: inherit;
@@ -134,6 +152,7 @@ html body {
       background: #fff;
       border-top-color: #eee;
       padding: .5em;
+      vertical-align: middle;
     }
   }
   p {
@@ -374,7 +393,7 @@ html body {
     }
     .output {
       margin-bottom: 1em;
-      table {
+      table:not(.has_barcharts) {
         margin-left:  auto ;
         margin-right: auto;
         tr td:first-child {
@@ -415,7 +434,7 @@ html body {
         > p:first-child strong, h2  {
           color: $red !important;
         }
-        #progressbar > div {
+        .progressbar > div {
           background: $red;
         }
       }
@@ -430,18 +449,29 @@ html body {
   .special2 {
     color: $blue;
   }
-  #progressbar {
+  .progressbar {
     background-color: #fff;
     border: 1px #ccc solid;
     border-radius: 1px; /* (height of inner div) / 2 + padding */
     margin-bottom: 1em;
-   
+    > div, span {
+      background-color: #00748E;
+      width: 100%; /* Adjust with JavaScript */
+      height: 12px;
+      border-radius: 1px;
+      display: inline-block;
+    }
+    .quiet {
+      background: #ccc;
+    }
   }
-  #progressbar > div {
-     background-color: #00748E;
-     width: 100%; /* Adjust with JavaScript */
-     height: 12px;
-     border-radius: 1px;
+  .has_barcharts {
+    .progressbar {
+      border: none;
+    }
+    tr td:first-child {
+      text-align: center;
+    }
   }
   .logospace {
     text-align: center;
