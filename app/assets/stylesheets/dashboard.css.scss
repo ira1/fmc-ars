@@ -300,6 +300,9 @@ html body {
       margin: .5em .5em 0 0;   
       padding: 1em;
       font-size: .75em;
+      .tip {
+        display: inline;
+      }
     }
   }
   .left-stripe {
