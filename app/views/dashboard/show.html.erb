@@ -156,12 +156,16 @@ outputheight='200px'
     		%>
     	</div>
     	<div id="genresingroup" class="output" >
-    		<h2>What Genres Do These <%= FilterProfileName().titlecase %> Spend The Most Time On?<%=makeHelpTip("Musicians were able to select multiple genres of focus, however, below, we are only displaying the primary genre of focus. This chart does not show the primary genre generating income.") %></h2>	  
-    		<% unless FilterProfileName()=='All Musicians' %>
+      	<% if FilterProfileName()=='All Musicians' %>
+      		<h2>Primary Genres of This Group
+      	<%else%>
+      		<h2>Primary Genre for Musicians Who Make Money As <%= FilterProfileName().titlecase %>
+        <% end %><%=makeHelpTip("Musicians were asked to identify primary, secondary and tertiary genres in the survey. The chart below shows the primary genres of the selected group.") %></h2>
+        
+    		<% if FilterProfileName()=='All Musicians' %>
+    		<% else %>
     		  <p class="subtitle">
-      		The survey also asked this group of <strong class="total_n_count_from_ajax"><%= number_with_delimiter(@NCount, :delimiter => ',') %></strong> musicians &#151;who make most of their music income as <strong><% if FilterProfileName()=='Other musicians' %>all-other-genres musicians<% else %><%=FilterProfileName().downcase%><%end%></strong>&#151;on which genre they spent the most <strong>time</strong>. 
-      		
-      		This question seeks to answer, "do musicians always make the majority of their music income on the same genre they spend the most time on?" </p>
+      		This group of <strong class="total_n_count_from_ajax"><%= number_with_delimiter(@NCount, :delimiter => ',') %></strong> musicians made most of their music income as <strong><% if FilterProfileName()=='Other musicians' %>all-other-genres musicians<% else %><%=FilterProfileName().downcase%><%end%></strong>. They were also asked, "what is your <strong>primary</strong> genre?" For some groups, the top income-making genre did not always match the primary genre response:</p>
         <% end %>
     				<%#
     	Live performance	Compositions (mechanicals, PRO royalties, commissions)
