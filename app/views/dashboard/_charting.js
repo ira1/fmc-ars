@@ -1,6 +1,12 @@
 <% genre_text=["All Others", "Classical", "Jazz", "Rock", "Country"]
 %>
 
+<% if (!@genre_income_on) %>
+	<script>
+		$("#genreincome").slideUp();
+	</script>
+<% end %>
+
 <script>
 var standardBarWidth=12;
 //GEO MAP OF MUSICIANS BY COUNTY
