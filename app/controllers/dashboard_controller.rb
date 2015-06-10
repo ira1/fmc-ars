@@ -285,7 +285,7 @@ class DashboardController < ApplicationController
     
     #computed
     #debugging puts @avg_incomes.to_json
-    @EMIPctAnswered = (0==@NCount)? 100 : 100 * @avg_incomes.emisamplesize / @NCount
+    @emi_pct_answered = (0==@NCount)? 100 : 100 * @avg_incomes.emisamplesize / @NCount
 
     #@AvgPctLive = (@sample.average(:pie_live)) || 0
     #@AvgEMILive = @AvgPctLive*@avg_emi
@@ -372,7 +372,7 @@ class DashboardController < ApplicationController
       @AntiGenrePcts = @AntiGenreIncResults.attributes.select { |k,v| k['avg_pct']}.map {|k,v| v.to_f.round(1) }
       
      # @EMISampleSize = @sample.count(:emi)
-     # @EMIPctAnswered = (0==@NCount)? 100 : 100 * @EMISampleSize / @NCount
+     # @emi_pct_answered = (0==@NCount)? 100 : 100 * @EMISampleSize / @NCount
      #  @AvgPctLive = (@sample.average(:pie_live)) || 0
      #  @AvgEMILive = @AvgPctLive*@avg_emi
      #  @AvgPctTeach = @sample.average(:pie_teach) || 0
