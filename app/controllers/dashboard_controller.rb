@@ -265,18 +265,18 @@ class DashboardController < ApplicationController
     #Retreive EMI info: columns 
     #add code to handle null result on individual columns
 
-    @avg_EMI = sigfig_to_s(@sample.average(:emi).to_f || 0,3).to_f #compute this on its own to get the correct precision once
+    @avg_emi = sigfig_to_s(@sample.average(:emi).to_f || 0,3).to_f #compute this on its own to get the correct precision once
 
     colexpr = "count(emi) as EMISampleSize, 
-    Coalesce(avg(pie_live), 0) as AvgPctLive, Coalesce(avg(pie_live)/100, 0)*#{@avg_EMI}/100 as AvgEMILive, 
-    Coalesce(avg(pie_teach), 0) as AvgPctTeach, Coalesce(avg(pie_teach)/100, 0)*#{@avg_EMI}  as AvgEMITeach, 
-    Coalesce(avg(pie_salary), 0) as AvgPctSalary, Coalesce(avg(pie_salary/100), 0)*#{@avg_EMI} as AvgEMISalary, 
-    Coalesce(avg(pie_session), 0) as AvgPctSession, Coalesce(avg(pie_session/100), 0)*#{@avg_EMI} as AvgEMISession, 
-    Coalesce(avg(pie_song), 0) as AvgPctComposition, Coalesce(avg(pie_song)/100, 0)*#{@avg_EMI} as AvgEMIComposition, 
-    Coalesce(avg(pie_record), 0) as AvgPctRecord, Coalesce(avg(pie_record)/100, 0)*#{@avg_EMI} as AvgEMIRecord, 
-    Coalesce(avg(pie_merch), 0) as AvgPctMerch, Coalesce(avg(pie_merch)/100, 0)*#{@avg_EMI} as AvgEMIMerch, 
-    Coalesce(avg(pie_record), 0) as AvgPctRecord, Coalesce(avg(pie_record)/100, 0)*#{@avg_EMI} as AvgEMIRecord, 
-    Coalesce(avg(pie_other), 0) as AvgPctOther, Coalesce(avg(pie_other)/100, 0)*#{@avg_EMI} as AvgEMIOther "
+    Coalesce(avg(pie_live), 0) as AvgPctLive, Coalesce(avg(pie_live)/100, 0)*#{@avg_emi}/100 as AvgEMILive, 
+    Coalesce(avg(pie_teach), 0) as AvgPctTeach, Coalesce(avg(pie_teach)/100, 0)*#{@avg_emi}  as AvgEMITeach, 
+    Coalesce(avg(pie_salary), 0) as AvgPctSalary, Coalesce(avg(pie_salary/100), 0)*#{@avg_emi} as AvgEMISalary, 
+    Coalesce(avg(pie_session), 0) as AvgPctSession, Coalesce(avg(pie_session/100), 0)*#{@avg_emi} as AvgEMISession, 
+    Coalesce(avg(pie_song), 0) as AvgPctComposition, Coalesce(avg(pie_song)/100, 0)*#{@avg_emi} as AvgEMIComposition, 
+    Coalesce(avg(pie_record), 0) as AvgPctRecord, Coalesce(avg(pie_record)/100, 0)*#{@avg_emi} as AvgEMIRecord, 
+    Coalesce(avg(pie_merch), 0) as AvgPctMerch, Coalesce(avg(pie_merch)/100, 0)*#{@avg_emi} as AvgEMIMerch, 
+    Coalesce(avg(pie_record), 0) as AvgPctRecord, Coalesce(avg(pie_record)/100, 0)*#{@avg_emi} as AvgEMIRecord, 
+    Coalesce(avg(pie_other), 0) as AvgPctOther, Coalesce(avg(pie_other)/100, 0)*#{@avg_emi} as AvgEMIOther "
     
     
     @avg_incomes = @sample.select(colexpr)[0]
@@ -288,21 +288,21 @@ class DashboardController < ApplicationController
     @EMIPctAnswered = (0==@NCount)? 100 : 100 * @avg_incomes.emisamplesize / @NCount
 
     #@AvgPctLive = (@sample.average(:pie_live)) || 0
-    #@AvgEMILive = @AvgPctLive*@avg_EMI
+    #@AvgEMILive = @AvgPctLive*@avg_emi
     #@AvgPctTeach = @sample.average(:pie_teach) || 0
-    #@AvgEMITeach = @AvgPctTeach * @avg_EMI
+    #@AvgEMITeach = @AvgPctTeach * @avg_emi
     #@AvgPctSalary = @sample.average(:pie_salary) || 0
-    #@AvgEMISalary = @AvgPctSalary * @avg_EMI
+    #@AvgEMISalary = @AvgPctSalary * @avg_emi
     #@AvgPctSession = @sample.average(:pie_session) || 0
-    #@AvgEMISession = @AvgPctSession * @avg_EMI
+    #@AvgEMISession = @AvgPctSession * @avg_emi
     #@AvgPctComposition = @sample.average(:pie_song) || 0
-    #@AvgEMIComposition = @AvgPctComposition * @avg_EMI
+    #@AvgEMIComposition = @AvgPctComposition * @avg_emi
     #@AvgPctRecord = @sample.average(:pie_record) || 0
-    #@AvgEMIRecord = @AvgPctRecord * @avg_EMI
+    #@AvgEMIRecord = @AvgPctRecord * @avg_emi
     #@AvgPctMerch = @sample.average(:pie_merch) || 0
-    #@AvgEMIMerch = @AvgPctMerch * @avg_EMI
+    #@AvgEMIMerch = @AvgPctMerch * @avg_emi
     #@AvgPctOther = @sample.average(:pie_other) || 0
-    #@AvgEMIOther = @AvgPctOther * @avg_EMI
+    #@AvgEMIOther = @AvgPctOther * @avg_emi
     
     colexpr = "count(case when perform_inc_direction = -1 THEN 1 ELSE 0 END) as DecrIncLive,
     count(case when perform_inc_direction = 1 THEN 1 ELSE 0 END) as IncrIncLive,
@@ -374,21 +374,21 @@ class DashboardController < ApplicationController
      # @EMISampleSize = @sample.count(:emi)
      # @EMIPctAnswered = (0==@NCount)? 100 : 100 * @EMISampleSize / @NCount
      #  @AvgPctLive = (@sample.average(:pie_live)) || 0
-     #  @AvgEMILive = @AvgPctLive*@avg_EMI
+     #  @AvgEMILive = @AvgPctLive*@avg_emi
      #  @AvgPctTeach = @sample.average(:pie_teach) || 0
-     #  @AvgEMITeach = @AvgPctTeach * @avg_EMI
+     #  @AvgEMITeach = @AvgPctTeach * @avg_emi
      #  @AvgPctSalary = @sample.average(:pie_salary) || 0
-     #  @AvgEMISalary = @AvgPctSalary * @avg_EMI
+     #  @AvgEMISalary = @AvgPctSalary * @avg_emi
      #  @AvgPctSession = @sample.average(:pie_session) || 0
-     #  @AvgEMISession = @AvgPctSession * @avg_EMI
+     #  @AvgEMISession = @AvgPctSession * @avg_emi
      #  @AvgPctComposition = @sample.average(:pie_song) || 0
-     #  @AvgEMIComposition = @AvgPctComposition * @avg_EMI
+     #  @AvgEMIComposition = @AvgPctComposition * @avg_emi
      #  @AvgPctRecord = @sample.average(:pie_record) || 0
-     #  @AvgEMIRecord = @AvgPctRecord * @avg_EMI
+     #  @AvgEMIRecord = @AvgPctRecord * @avg_emi
      #  @AvgPctMerch = @sample.average(:pie_merch) || 0
-     #  @AvgEMIMerch = @AvgPctMerch * @avg_EMI
+     #  @AvgEMIMerch = @AvgPctMerch * @avg_emi
      #  @AvgPctOther = @sample.average(:pie_other) || 0
-     #  @AvgEMIOther = @AvgPctOther * @avg_EMI
+     #  @AvgEMIOther = @AvgPctOther * @avg_emi
     end
 
     #

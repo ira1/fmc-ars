@@ -298,10 +298,10 @@ $('#anninctrend').highcharts({
 			plotLines: [{
         color: '#FF7D2C', // Color value
         dashStyle: 'Dash', // Style of the plot line. Default to solid
-        value: <%= @avg_EMI %>, // Value of where the line will appear
+        value: <%= @avg_emi %>, // Value of where the line will appear
         width: '2', // Width of the line    
         label: {
-          text: 'Avg. EMI: <%= number_to_currency(@avg_EMI, :precision=>0) %>',
+          text: 'Avg. EMI: <%= number_to_currency(@avg_emi, :precision=>0) %>',
           rotation: '0',
           verticalAlign: 'bottom',
           style: {
@@ -390,7 +390,7 @@ $('#anninctrend').highcharts({
 	
     }, {
       name: '<%= genre_text[params[:mgenre].to_i] %> Genre',
-			emi: '<%= number_to_currency(@avg_EMI, :precision=>0) %>',
+			emi: '<%= number_to_currency(@avg_emi, :precision=>0) %>',
     	color: '#00748F',
       data: <%= if @GenrePcts then @GenrePcts.map {|x| number_with_precision(x,:precision=>2,:significant=>true).to_f}.to_json.html_safe else [] end  %>
     }]
