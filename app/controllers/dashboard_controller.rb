@@ -279,13 +279,13 @@ class DashboardController < ApplicationController
     Coalesce(avg(pie_other), 0) as AvgPctOther, Coalesce(avg(pie_other)/100, 0)*#{@avg_EMI} as AvgEMIOther "
     
     
-    @AvgIncomes = @sample.select(colexpr)[0]
+    @avg_incomes = @sample.select(colexpr)[0]
     
     #@EMISampleSize = @sample.count(:emi)
     
     #computed
-    #debugging puts @AvgIncomes.to_json
-    @EMIPctAnswered = (0==@NCount)? 100 : 100 * @AvgIncomes.emisamplesize / @NCount
+    #debugging puts @avg_incomes.to_json
+    @EMIPctAnswered = (0==@NCount)? 100 : 100 * @avg_incomes.emisamplesize / @NCount
 
     #@AvgPctLive = (@sample.average(:pie_live)) || 0
     #@AvgEMILive = @AvgPctLive*@avg_EMI
