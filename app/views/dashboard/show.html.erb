@@ -1,24 +1,4 @@
-<% otherIncomeLabels= {"rev_produce"=>"Producing",
-"afm_srsp"=>"Sound Recording Special Payments Fund",
-"rev_honoraria"=>"Honoraria",
-"rev_grants"=>"Grants",
-"afm_2"=>"Film Musicians Secondary Markets Fund",
-"rev_fanfund"=>"Fan funding",
-"rev_corp"=>"Corporate sponsorship",
-"afm_aftra"=>"AFM/SAG-AFTRA Intellectual Property Rights Distribution Fund",
-"ascaplus"=>"ASCAPLUS Awards",
-"rev_acting"=>"Acting",
-"rev_webads"=>"WebAds",
-"aarc"=>"AARC royalties",
-"rev_endorse"=>"Product endorsements",
-"label_settle"=>"Label settlements",
-"rev_sample"=>"Sample licensing",
-"rev_pubadvance"=>"Publisher advance",
-"rev_youtube"=>"YouTube Partnership Program",
-"rev_persona"=>"Persona licensing",
-"rev_fanclub"=>"Fan club",
-"aftra_csp"=>"AFTRA Contingent Scale",
-""=>""}
+<%
 outputheight='200px'
  %> 
  
@@ -48,23 +28,23 @@ outputheight='200px'
       	<%=render "ftclaim/theoutput"%>
       </div>
       <div class="output textual_output">
-        <h2><%= @AboutPctExperienced %>% of this group&hellip;</h2>
+        <h2><span id="aboutpctexperiencedtxt"><%= @AboutPctExperienced %></span>% of this group&hellip;</h2>
         <ul>
           <li>&hellip;have 16+ years of experience </li>
-          <li><%= @pctfulltime %>%  are full-time musicians</li>
+          <li><span id="pctfulltimetxt"><%= @pctfulltime %></span>%  are full-time musicians</li>
         </ul>
       </div>
   		<%# Percent who perceive increase in [category] income over prior 5 years: xx%
   				Annual Income by Cat Chart
   		%>
   			<div class="output">
-  				<h2>Avg. Annual  Income from Music: <span class=" special"  title="<%= @EMIPctAnswered %>% of respondents in filtered sample provided EMI"><%= number_to_currency(@AvgEMI, :precision=>0) %></span>&hellip;</h2>
-  				<p class="subtitle">This is the average annual gross Estimated Music Income (EMI) for this group of <%= number_with_delimiter(@EMISampleSize, :delimiter => ',') %> musicians. Musicians may have had non-music income too (see Music vs. non-Music Income by Age chart). Here's how this group allocated their music-related income over a 12-month period:</p>
+  				<h2>Avg. Annual Income from Music: <span id="aveannincheader" class=" special"  title="<%= @EMIPctAnswered %>% of respondents in filtered sample provided EMI"><%= number_to_currency(@AvgEMI, :precision=>0) %></span>&hellip;</h2>
+  				<p class="subtitle">This is the average annual gross Estimated Music Income (EMI) for this group of <span id="aveannincncount"><%= number_with_delimiter(@EMISampleSize, :delimiter => ',') %></span> musicians. Musicians may have had non-music income too (see Music vs. non-Music Income by Age chart). Here's how this group allocated their music-related income over a 12-month period:</p>
     			<div id="annincbycat"  class="has_highchart" style="height: 280px; "></div>
   			</div>
   			<div class="output">
   				<h2>Income Trend <%=makeHelpTip("Trend displays the number of musicians who perceived, over the prior 5 years, either an increase or decrease in income for the respective category of work. The percent difference is also displayed.")%></h2>
-  				<p class="subtitle">Perceived changes in income over prior 5 years. <span class="ncount">(N=<%= number_with_delimiter(@EMISampleSize, :delimiter => ',') %>)</span></p>
+  				<p class="subtitle">Perceived changes in income over prior 5 years. <span class="ncount">(N=<span id="emincount"><%= number_with_delimiter(@EMISampleSize, :delimiter => ',') %></span>)</span></p>
   		    <div id="anninctrend"  class="has_highchart" style="height: 380px;">Change</div>
   			</div>
   			<% if false %>
@@ -120,29 +100,16 @@ outputheight='200px'
   		%>
   		<div id="otherincome" class="output textual_output">
   		  <h2>Other Music Income Sources <%=makeHelpTip("% of musicians who said they received any music-related income in the prior 12 months from one of these sources.")%></h2>
-  			<table>
-  				<%   
-  				 @OtherIncomeDist.select { |k,v| 5.0<=v }.sort_by { |k,v| -1.0*v}.each do |e|  %>
-  			  	<tr>
-    				 <td><strong><%=number_with_precision(e[1],:precision=>2, :significant=>true)%>%</strong></td>
-  					 <td><div>&hellip; of respondents earned some $ from</div><strong class="special2"><%=otherIncomeLabels[e[0]]%></strong></td>
-  					 </tr>
-  				<% end %>
-  			</table>
-  			<p>&hellip; although <strong>fewer than 5%</strong> of this group earned any money from <%  sep=""
-  				 @OtherIncomeDist.select { |k,v| v<5 }.sort_by { |k,v| -1.0*v}.each do |e| 
-  					 outp=(sep ? sep : "")+otherIncomeLabels[e[0]]
-  					 %><%= outp 
-  					 %><% sep=", "; end %> 
-  				</p>
-  			</ul>
+				<span id="otherincomebody">
+					<%= render :partial => 'otherincbody' %>
+				</span>
   		</div>
   		<%#
   				Primary Income Chart
   		
   				This chart displays only if at least one genre has been excluded from facets
   		%>		
-    	<% if @genreincomeOn %>	
+    	<% if @genre_income_on %>	
     		<div id="genreincome" class=" output" >
     			<div id="genreincometitle">
     				<h2>Impact of Genre On This Group's Income <%=makeHelpTip("Allocation of annual music-related income by category")%></h2>
@@ -165,32 +132,9 @@ outputheight='200px'
     <div id="rightoutputs" class="six columns omega">
     	<div id="aboutthisgroup" class="output textual_output" >
     		<h2>Credits and Activity <%=makeHelpTip("Respondents who took the medium or the long path survey answered these questions")%></h2>
-    		<p class="">The survey asked musicians about their recording credits, composing credits, and number of shows performed. Respondents could respond with a range of "0" to "more than 100" for each question. The overall survey data results suggested that anyone who answered more than 50 was a statistically significant achievement, and so this table shows the <% if FilterProfileName()=='All Musicians' %>musicians<% elsif FilterProfileName()=='Other musicians' %><strong>all-other-genres musicians</strong> <%else%><strong><%= FilterProfileName().downcase %></strong><%end%> who reached this threshold. <table>
-    <%#			<li title="A union, trade association, PRO or service organization"><strong>[xx%] belong to a music organization</strong><li>%>
-    		<%# l i title="Of those respondents who took the long path through the survey">< s trong>Musical credits</strong></li> %>
-    			<tr>
-      		  <td><strong><%= @AboutPctOver50Compositions %>%</strong></td>
-    			  <td><div>&hellip; of respondents had more than </div>
-      			   50 composing credits 
-    				  <span title="Only <%= @AboutCompositionsPctAnswered %>% of respondents in filtered sample answered this question" class="ncount">(N=<%= @AboutCompositionsNCount %>)</span>
-      		  </td>
-      		</tr>
-    			<tr>
-      			<td><strong><%= @AboutPctOver50Recordings %>%</strong></td>
-    			  <td><div>&hellip; of respondents had more than </div>
-      			   50 recording credits 
-      			  <span class="ncount" title="Only <%= @AboutRecordingsPctAnswered %>% of respondents in filtered sample answered this question">(N=<%= @AboutRecordingsNCount %>)</span>
-    			  </td>
-    		  </tr>
-    <%#>			<li>[xx%] had >  50 session credits</li> %>
-    			<tr>
-      			<td><strong><%= @AboutPctOver50Shows %>%</strong></td>
-    			  <td><div>&hellip; of respondents played more than </div>
-      			   50 shows in the prior 12 months 
-      			  <span class="ncount" title="Only <%= @AboutPctOver50Shows %>% of respondents in filtered sample answered this question"> (N=<%=@AboutShowsNCount%>)</span>
-    			  </td>
-          </tr>
-    		</table>
+
+    		<span><%= render :partial => 'abouthisgroup_body' %></span>
+
     	</div>
     	<%if false %>
     	<div id="roles" class="output" >

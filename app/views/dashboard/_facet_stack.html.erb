@@ -1,4 +1,4 @@
-<%= form_tag '/dashboard/show', authenticity_token: false, method: :get, class: "f_facets" do %>		
+<%= form_tag '/dashboard/show', authenticity_token: false, method: :get, class: "f_facets", remote: true do %>		
   <p class="reset_link"><span class="ncount">N=<span class="total_n_count_from_ajax"><%= number_with_delimiter(@NCount, :delimiter => ',') %></span> based on filters below </span><%=makeHelpTip("The abbreviation (N) means the number of respondents (musicians). Within any given filtered group, not all musicians in that group may have answered all questions.")%> <a href="/dashboard/show/">Reset filters</a></p>
 	<div id="genre_facet">
  		<h6>Main $-Generating Genre</h6>

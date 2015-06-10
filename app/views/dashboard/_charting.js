@@ -106,7 +106,7 @@ $ (function () {
  
 //ANNUAL INCOME BY CATEGORY
  
-  $('#annincbycat').highcharts({
+$('#annincbycat').highcharts({
     chart: {
       type: 'bar'
     },
@@ -161,7 +161,7 @@ $ (function () {
  
 //ANNUAL INCOME TREND UP OR DOWN
  
-  $('#anninctrend').highcharts({
+$('#anninctrend').highcharts({
     chart: {
       type: 'bar'
     },
@@ -217,8 +217,9 @@ $ (function () {
       name: 'Decreased',
       negativeColor: '#c81c1f',
       color: '#c81c1f',
-      data: [<%= @DecrIncLive.to_i %>, <%= @DecrIncTeach.to_i %> , <%= @DecrIncSalary.to_i %>, <%= @DecrIncSession.to_i %>,<%= @DecrIncComposition.to_i %>,<%= @DecrIncRecording.to_i %>,<%= @DecrIncMerch.to_i %>]
-      }, 
+			      data: [10,10,10,10,10,10,10]
+      }, //      data: [<%= @DecrIncLive.to_i %>, <%= @DecrIncTeach.to_i %> , <%= @DecrIncSalary.to_i %>, <%= @DecrIncSession.to_i %>,<%= @DecrIncComposition.to_i %>,<%= @DecrIncRecording.to_i %>,<%= @DecrIncMerch.to_i %>]
+
       {
       name: 'Increased',
       negativeColor: '#c81c1f',

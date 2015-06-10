@@ -19,7 +19,9 @@ class DashboardController < ApplicationController
     return clause
   end
   
-    def sigfig_to_s(numero,digits)
+  # truncate number to maximum of significant digits (either side of decimal point) and return as string for display.
+  # E.g. sigfig_to_s(34947.8, 3) ==>  "34900"
+    def sigfig_to_s(numero,digits)    
       f = sprintf("%.#{digits - 1}e", numero).to_f
       i = f.to_i
       (i == f ? i : f).to_s
@@ -66,13 +68,13 @@ class DashboardController < ApplicationController
     #
     # Main-$ genre facet (MGenre)
     #
-    @genreincomeOn=false
+    @genre_income_on=false
     @mgenre = (params.has_key?(:mgenre)) ? params[:mgenre].upcase : "ALL"
     if @mgenre != "ALL"
         @sample = @sample.where(:money_genre_group_1 => params[:mgenre] )
         # if user has chosen a genre, then we need to prepare a result set based on the inverse of chosen genre 
         @sample_antigenre = Survey.where.not(:money_genre_group_1 => params[:mgenre])
-        @genreincomeOn=true
+        @genre_income_on=true
     end
 
     #
@@ -139,7 +141,7 @@ class DashboardController < ApplicationController
       AppendClauseOr(roleclause, "role_other=true")
     else
       @sample=@sample.where("role_other=false")
-      @sample_antigenre = @sample_antigenre.where("role_other=false") if @genreincomeOn
+      @sample_antigenre = @sample_antigenre.where("role_other=false") if @genre_income_on
     end
     
 #
@@ -159,7 +161,7 @@ class DashboardController < ApplicationController
       end
     end
     @sample = @sample.where(roleclause)
-    @sample_antigenre = @sample_antigenre.where(roleclause) if @genreincomeOn
+    @sample_antigenre = @sample_antigenre.where(roleclause) if @genre_income_on
     #
     
     # Career Level facet
@@ -177,7 +179,7 @@ class DashboardController < ApplicationController
     end
      if 1 < whereclause.length 
        @sample = @sample.where(whereclause)
-       @sample_antigenre = @sample_antigenre.where(whereclause) if @genreincomeOn
+       @sample_antigenre = @sample_antigenre.where(whereclause) if @genre_income_on
      end
     #
     # Full time? (may contain nulls)
@@ -185,7 +187,7 @@ class DashboardController < ApplicationController
     if "true"==params[:ft] then
       whereclause = "full_time = true"
       @sample = @sample.where(whereclause)
-      @sample_antigenre = @sample_antigenre.where(whereclause) if @genreincomeOn
+      @sample_antigenre = @sample_antigenre.where(whereclause) if @genre_income_on
     end
     
     #
@@ -194,7 +196,7 @@ class DashboardController < ApplicationController
     if "true"==params[:trained] then
       whereclause = "music_school = true"
       @sample = @sample.where(whereclause)
-      @sample_antigenre = @sample_antigenre.where(whereclause) if @genreincomeOn
+      @sample_antigenre = @sample_antigenre.where(whereclause) if @genre_income_on
     end
     
     #
@@ -225,7 +227,7 @@ class DashboardController < ApplicationController
     
     if genderclause.length > 0 then
       @sample = @sample.where(genderclause)
-      @sample_antigenre = @sample_antigenre.where(genderclause) if @genreincomeOn
+      @sample_antigenre = @sample_antigenre.where(genderclause) if @genre_income_on
     end
     
     #
@@ -244,7 +246,7 @@ class DashboardController < ApplicationController
     end
     if 1 < whereclause.length
       @sample = @sample.where(whereclause)
-      @sample_antigenre = @sample_antigenre.where(whereclause) if @genreincomeOn
+      @sample_antigenre = @sample_antigenre.where(whereclause) if @genre_income_on
     end      
     
     #################### Outputs ######################
@@ -259,51 +261,94 @@ class DashboardController < ApplicationController
     # AnnInc 
     # TODO Refactor into AnnInc method & Model, combine selects into fewer cursors
     #
-    @AvgEMI = sigfig_to_s(@sample.average(:emi).to_f || 0,3).to_f
-    @EMISampleSize = @sample.count(:emi)
-    @EMIPctAnswered = (0==@NCount)? 100 : 100 * @EMISampleSize / @NCount
-    @AvgPctLive = (@sample.average(:pie_live)) || 0
-    @AvgEMILive = @AvgPctLive*@AvgEMI
-    @AvgPctTeach = @sample.average(:pie_teach) || 0
-    @AvgEMITeach = @AvgPctTeach * @AvgEMI
-    @AvgPctSalary = @sample.average(:pie_salary) || 0
-    @AvgEMISalary = @AvgPctSalary * @AvgEMI
-    @AvgPctSession = @sample.average(:pie_session) || 0
-    @AvgEMISession = @AvgPctSession * @AvgEMI
-    @AvgPctComposition = @sample.average(:pie_song) || 0
-    @AvgEMIComposition = @AvgPctComposition * @AvgEMI
-    @AvgPctRecord = @sample.average(:pie_record) || 0
-    @AvgEMIRecord = @AvgPctRecord * @AvgEMI
-    @AvgPctMerch = @sample.average(:pie_merch) || 0
-    @AvgEMIMerch = @AvgPctMerch * @AvgEMI
-    @AvgPctOther = @sample.average(:pie_other) || 0
-    @AvgEMIOther = @AvgPctOther * @AvgEMI
-    @DecrIncLive = @sample.where("perform_inc_direction = -1").count()
-    @IncrIncLive = @sample.where("perform_inc_direction = 1").count()
 
-    @DecrIncTeach = @sample.where("teach_inc_direction = -1").count()
-    @IncrIncTeach = @sample.where("teach_inc_direction = 1").count()
+    #Retreive EMI info: columns 
+    #add code to handle null result on individual columns
 
-    @DecrIncSalary = @sample.where("salary_inc_direction = -1").count()
-    @IncrIncSalary = @sample.where("salary_inc_direction = 1").count()
+    @AvgEMI = sigfig_to_s(@sample.average(:emi).to_f || 0,3).to_f #compute this on its own to get the correct precision once
 
-    @DecrIncSession = @sample.where("session_inc_direction = -1").count()
-    @IncrIncSession = @sample.where("session_inc_direction = 1").count()
+    colexpr = "count(emi) as EMISampleSize, 
+    Coalesce(avg(pie_live), 0) as AvgPctLive, Coalesce(avg(pie_live)/100, 0)*#{@AvgEMI}/100 as AvgEMILive, 
+    Coalesce(avg(pie_teach), 0) as AvgPctTeach, Coalesce(avg(pie_teach)/100, 0)*#{@AvgEMI}  as AvgEMITeach, 
+    Coalesce(avg(pie_salary), 0) as AvgPctSalary, Coalesce(avg(pie_salary/100), 0)*#{@AvgEMI} as AvgEMISalary, 
+    Coalesce(avg(pie_session), 0) as AvgPctSession, Coalesce(avg(pie_session/100), 0)*#{@AvgEMI} as AvgEMISession, 
+    Coalesce(avg(pie_song), 0) as AvgPctComposition, Coalesce(avg(pie_song)/100, 0)*#{@AvgEMI} as AvgEMIComposition, 
+    Coalesce(avg(pie_record), 0) as AvgPctRecord, Coalesce(avg(pie_record)/100, 0)*#{@AvgEMI} as AvgEMIRecord, 
+    Coalesce(avg(pie_merch), 0) as AvgPctMerch, Coalesce(avg(pie_merch)/100, 0)*#{@AvgEMI} as AvgEMIMerch, 
+    Coalesce(avg(pie_record), 0) as AvgPctRecord, Coalesce(avg(pie_record)/100, 0)*#{@AvgEMI} as AvgEMIRecord, 
+    Coalesce(avg(pie_other), 0) as AvgPctOther, Coalesce(avg(pie_other)/100, 0)*#{@AvgEMI} as AvgEMIOther "
+    
+    
+    @AvgIncomes = @sample.select(colexpr)[0]
+    
+    #@EMISampleSize = @sample.count(:emi)
+    
+    #computed
+    #debugging puts @AvgIncomes.to_json
+    @EMIPctAnswered = (0==@NCount)? 100 : 100 * @AvgIncomes.emisamplesize / @NCount
 
-    @DecrIncComposition = @sample.where("compose_inc_direction = -1").count()
-    @IncrIncComposition = @sample.where("compose_inc_direction = 1").count()
+    #@AvgPctLive = (@sample.average(:pie_live)) || 0
+    #@AvgEMILive = @AvgPctLive*@AvgEMI
+    #@AvgPctTeach = @sample.average(:pie_teach) || 0
+    #@AvgEMITeach = @AvgPctTeach * @AvgEMI
+    #@AvgPctSalary = @sample.average(:pie_salary) || 0
+    #@AvgEMISalary = @AvgPctSalary * @AvgEMI
+    #@AvgPctSession = @sample.average(:pie_session) || 0
+    #@AvgEMISession = @AvgPctSession * @AvgEMI
+    #@AvgPctComposition = @sample.average(:pie_song) || 0
+    #@AvgEMIComposition = @AvgPctComposition * @AvgEMI
+    #@AvgPctRecord = @sample.average(:pie_record) || 0
+    #@AvgEMIRecord = @AvgPctRecord * @AvgEMI
+    #@AvgPctMerch = @sample.average(:pie_merch) || 0
+    #@AvgEMIMerch = @AvgPctMerch * @AvgEMI
+    #@AvgPctOther = @sample.average(:pie_other) || 0
+    #@AvgEMIOther = @AvgPctOther * @AvgEMI
+    
+    colexpr = "count(case when perform_inc_direction = -1 THEN 1 ELSE 0 END) as DecrIncLive,
+    count(case when perform_inc_direction = 1 THEN 1 ELSE 0 END) as IncrIncLive,
+    count(case when teach_inc_direction = -1 THEN 1 ELSE 0 END) as DecrIncTeach,
+    count(case when teach_inc_direction = 1 THEN 1 ELSE 0 END) as IncrIncTeach,
+    count(case when salary_inc_direction = -1 THEN 1 ELSE 0 END) as DecrIncSalary,
+    count(case when salary_inc_direction = 1 THEN 1 ELSE 0 END) as IncrIncSalary,
+    count(case when session_inc_direction = -1 THEN 1 ELSE 0 END) as DecrIncSession,
+    count(case when session_inc_direction = 1 THEN 1 ELSE 0 END) as IncrIncSession,
+    count(case when compose_inc_direction = -1 THEN 1 ELSE 0 END) as DecrIncComposition,
+    count(case when compose_inc_direction = 1 THEN 1 ELSE 0 END) as IncrIncComposition,
+    count(case when record_inc_direction = -1 THEN 1 ELSE 0 END) as DecrIncRecording,
+    count(case when record_inc_direction = 1 THEN 1 ELSE 0 END) as IncrIncRecording,
+    count(case when merch_inc_direction = -1 THEN 1 ELSE 0 END) as DecrIncMerch,
+    count(case when merch_inc_direction = 1 THEN 1 ELSE 0 END) as IncrIncMerch,
+    0 as DecrIncOther,
+    0 as IncrIncOther"
+    
+    @incTrends = @sample.select(colexpr)[0]
+    
+    #@DecrIncLive = @sample.where("perform_inc_direction = -1").count()
+    #@IncrIncLive = @sample.where("perform_inc_direction = 1").count()
 
-    @DecrIncRecording = @sample.where("record_inc_direction = -1").count()
-    @IncrIncRecording = @sample.where("record_inc_direction = 1").count()
-    @DecrIncMerch = @sample.where("merch_inc_direction = -1").count()
-    @IncrIncMerch = @sample.where("merch_inc_direction = 1").count()
-    @DecrIncOther = 0 #@sample.where("perform_inc_direction = -1").count()
-    @IncrIncOther = 0 #@sample.where("perform_inc_direction = 1").count()
+    #@DecrIncTeach = @sample.where("teach_inc_direction = -1").count()
+    #@IncrIncTeach = @sample.where("teach_inc_direction = 1").count()
+
+    #@DecrIncSalary = @sample.where("salary_inc_direction = -1").count()
+    #@IncrIncSalary = @sample.where("salary_inc_direction = 1").count()
+
+    #@DecrIncSession = @sample.where("session_inc_direction = -1").count()
+    #@IncrIncSession = @sample.where("session_inc_direction = 1").count()
+
+    #@DecrIncComposition = @sample.where("compose_inc_direction = -1").count()
+    #@IncrIncComposition = @sample.where("compose_inc_direction = 1").count()
+
+    #@DecrIncRecording = @sample.where("record_inc_direction = -1").count()
+    #@IncrIncRecording = @sample.where("record_inc_direction = 1").count()
+    #@DecrIncMerch = @sample.where("merch_inc_direction = -1").count()
+    #@IncrIncMerch = @sample.where("merch_inc_direction = 1").count()
+    #@DecrIncOther = 0 #@sample.where("perform_inc_direction = -1").count()
+    #@IncrIncOther = 0 #@sample.where("perform_inc_direction = 1").count()
     
     #
     #  GenreIncome
     #
-    if @genreincomeOn then
+    if @genre_income_on then
       #coalesce(avg(pie_compose),0) as avg_pct_compose,\
       #coalesce(avg(pie_song),0) as avg_pct_song,\
       #coalesce(avg(pie_record),0) as avg_pct_record,\
@@ -424,5 +469,10 @@ class DashboardController < ApplicationController
      #
      colexpr = "countyfips as fips, count(*) as value"
      @MusiciansByCounties = @sample.where("countyfips is not null").group(:countyfips).select(colexpr).order("1")
+
+     respond_to do |format|
+       format.html
+       format.js {render layout: false, content_type: 'text/javascript'}
+     end
   end
 end

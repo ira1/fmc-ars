@@ -1,0 +1,23 @@
+
+<%= logger.info("show.js.erb is running 3") %>
+//$('#aboutthisgroup').html("ajax");
+// Highcharts Outputs
+$('#annincbycat').highcharts().series[0].setData([1,2,3,4,5,6,7,8], true);
+
+
+// Textual Outputs 
+$('.total_n_count_from_ajax').html("123,123,123");
+// % of this group have 16+ years of experience
+$('#aboutpctexperiencedtxt').html("66");
+$('#pctfulltimetxt').html("66");
+// Avg Ann Income from music/ EMI
+$('#aveannincheader').html("$99,999"); <%# avg ann inc for sample %>
+$('#aveannincheader').attr("title","66% of respondents in filtered sample provided EMI");
+$('#aveannincncount').html("1,234");  <%# N for this output %>
+// Income Trend
+$('#emincount').html("123,123,123");
+//Other Music Income Sources
+htmlstring ="<%= escape_javascript( render :partial => 'otherincbody') %>";
+$('#otherincomebody').html(htmlstring);
+htmlstring = "<%= escape_javascript( render :partial => 'abouthisgroup_body') %>";
+$('#aboutthisgroup > span').html(htmlstring);

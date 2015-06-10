@@ -1,0 +1,26 @@
+<p class="">The survey asked musicians about their recording credits, composing credits, and number of shows performed. Respondents could respond with a range of "0" to "more than 100" for each question. The overall survey data results suggested that anyone who answered more than 50 was a statistically significant achievement, and so this table shows the <% if FilterProfileName()=='All Musicians' %>musicians<% elsif FilterProfileName()=='Other musicians' %><strong>all-other-genres musicians</strong> <%else%><strong><%= FilterProfileName().downcase %></strong><%end%> who reached this threshold. </p><table>
+    <%#			<li title="A union, trade association, PRO or service organization"><strong>[xx%] belong to a music organization</strong><li>%>
+<%# l i title="Of those respondents who took the long path through the survey">< s trong>Musical credits</strong></li> %>
+	<tr>
+      		  <td><strong><%= @AboutPctOver50Compositions %>%</strong></td>
+	  <td><div>&hellip; of respondents had more than </div>
+      			   50 composing credits 
+		  <span title="Only <%= @AboutCompositionsPctAnswered %>% of respondents in filtered sample answered this question" class="ncount">(N=<%= @AboutCompositionsNCount %>)</span>
+      		  </td>
+      		</tr>
+	<tr>
+      			<td><strong><%= @AboutPctOver50Recordings %>%</strong></td>
+	  <td><div>&hellip; of respondents had more than </div>
+      			   50 recording credits 
+      			  <span class="ncount" title="Only <%= @AboutRecordingsPctAnswered %>% of respondents in filtered sample answered this question">(N=<%= @AboutRecordingsNCount %>)</span>
+	  </td>
+  </tr>
+    <%#>			<li>[xx%] had >  50 session credits</li> %>
+	<tr>
+      			<td><strong><%= @AboutPctOver50Shows %>%</strong></td>
+	  <td><div>&hellip; of respondents played more than </div>
+      			   50 shows in the prior 12 months 
+      			  <span class="ncount" title="Only <%= @AboutPctOver50Shows %>% of respondents in filtered sample answered this question"> (N=<%=@AboutShowsNCount%>)</span>
+	  </td>
+          </tr>
+</table>
