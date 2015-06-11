@@ -1,5 +1,5 @@
  
-<h2 class=""><%= image_tag("person_icon.png")%> <span class="special2"><span class="total_n_count_from_ajax"><%= number_with_delimiter(@NCount, :delimiter => ',') %></span> Musicians Comprise This Group</span></h2>
+<h2 class=""><%= image_tag("person_icon.png")%> <span class="special2"><span class="total_n_count_from_ajax"><%= number_with_delimiter(@NCount, :delimiter => ',') %></span> Musicians In This Group</span></h2>
 <div class="current_n_size <%= if @NCount <401 && @NCount > 100 then 'very_low' end %>">
   <p class="">
     <%= "<strong>".html_safe if @NCount <401 && @NCount > 100   %>This is <span class="total_pct_from_ajax"><%= @NCount_pct %></span>% of our 4,453 respondents
