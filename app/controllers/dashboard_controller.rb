@@ -71,11 +71,11 @@ class DashboardController < ApplicationController
     #
     @genre_income_on=false
     @mgenre = (params.has_key?(:mgenre)) ? params[:mgenre].upcase : "ALL"
-    if (@mgenre != "ALL" && @mgenre != "0")
+    if (@mgenre != "ALL")
         @sample = @sample.where(:money_genre_group_1 => params[:mgenre] )
         # if user has chosen a genre, then we need to prepare a result set based on the inverse of chosen genre 
         @sample_antigenre = Survey.where.not(:money_genre_group_1 => params[:mgenre])
-        @genre_income_on=true
+        @genre_income_on=true if @mgenre != "0"
     end
     if (@mgenre != "ALL")
       @genre_bar_on=false 
