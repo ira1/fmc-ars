@@ -21,8 +21,7 @@
 ""=>""}
 %>
 <table>
-	<%   
-							 @OtherIncomeDist.select { |k,v| 5.0<=v }.sort_by { |k,v| -1.0*v}.each do |e|  %>
+	<%  @other_income_dist.select { |k,v| 5.0<=v }.sort_by { |k,v| -1.0*v}.each do |e|  %>
 	<tr>
 		<td>
 			<strong><%=number_with_precision(e[1],:precision=>2, :significant=>true)%>%</strong>
@@ -36,7 +35,7 @@
 </table>
 <p>
 	… although <strong>fewer than 5%</strong> of this group earned any money from <%  sep=""
-							 @OtherIncomeDist.select { |k,v| v<5 }.sort_by { |k,v| -1.0*v}.each do |e| 
+							 @other_income_dist.select { |k,v| v<5 }.sort_by { |k,v| -1.0*v}.each do |e| 
 								 outp=(sep ? sep : "")+otherIncomeLabels[e[0]]
 								 %><%= outp 
 								 %><% sep=", "; end %>
