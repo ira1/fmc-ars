@@ -321,7 +321,7 @@ class DashboardController < ApplicationController
     0 as DecrIncOther,
     0 as IncrIncOther"
     
-    @incTrends = @sample.select(colexpr)[0]
+    @inc_trends = @sample.select(colexpr)[0]
     
     #@DecrIncLive = @sample.where("perform_inc_direction = -1").count()
     #@IncrIncLive = @sample.where("perform_inc_direction = 1").count()
