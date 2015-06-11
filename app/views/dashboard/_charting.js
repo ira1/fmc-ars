@@ -280,13 +280,13 @@ $('#anninctrend').highcharts({
 			color: '#CCCCCC',
 			borderWidth: 0,
 			type: 'column',
-      data: <%= @NonMusicIncbyAge.as_json %>
+      data: <%= @nonmusic_inc_by_age.as_json %>
     },{
 			name: 'Income direct from music',
 			color: '#00748F',
 			borderWidth: 0,
 			type: 'column',
-			data: <%= @MusicIncbyAge.as_json %>
+			data: <%= @music_inc_by_age.as_json %>
     }],
 		yAxis: {
       maxPadding: .3,

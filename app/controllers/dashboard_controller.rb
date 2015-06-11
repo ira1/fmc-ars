@@ -474,10 +474,10 @@ class DashboardController < ApplicationController
      #
      ageColExpr = "age_group as x,avg(emi)::int as avg_emi, (avg(midrange_income)-avg(emi))::int as avg_non_music_inc"
      musicIncbyAge = ActiveRecord::Base.connection.select_all(@sample.group(:age_group).order(:age_group).select(ageColExpr))
-     @MusicIncbyAge = musicIncbyAge.map { |e| [e["x"].to_i-1, sigfig_to_s(e["avg_emi"].to_f,3).to_i] }
-     @NonMusicIncbyAge = musicIncbyAge.map { |e| [e["x"].to_i-1, sigfig_to_s(e["avg_non_music_inc"].to_f,3).to_i] }
-     @AvgGross = sigfig_to_s(@sample.average(:midrange_income).to_f || 0.0,3).to_i
-     
+     @music_inc_by_age = musicIncbyAge.map { |e| [e["x"].to_i-1, sigfig_to_s(e["avg_emi"].to_f,3).to_i] }
+     @nonmusic_inc_by_age = musicIncbyAge.map { |e| [e["x"].to_i-1, sigfig_to_s(e["avg_non_music_inc"].to_f,3).to_i] }
+     # Chart uses avg_emi instead of avg_gross now
+     #@AvgGross = sigfig_to_s(@sample.average(:midrange_income).to_f || 0.0,3).to_i
      #
      #
      #     Concentration Map
