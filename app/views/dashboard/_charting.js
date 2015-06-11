@@ -167,7 +167,8 @@ $('#annincbycat').highcharts({
     series: [{
       name: '% of Income',
       color: '#00748F',
-      data: [<%= @AvgPctLive.to_i %>, <%= @AvgPctTeach.to_i %> , <%= @AvgPctSalary.to_i %>, <%= @AvgPctSession.to_i %>,<%= @AvgPctComposition.to_i %>,<%= @AvgPctRecord.to_i %>,<%= @AvgPctMerch.to_i %>,<%= @AvgPctOther.to_i%>]
+      data: <%= @avg_pct_incomes.to_json.html_safe %>
+			//[<%= @AvgPctLive.to_i %>, <%= @AvgPctTeach.to_i %> , <%= @AvgPctSalary.to_i %>, <%= @AvgPctSession.to_i %>,<%= @AvgPctComposition.to_i %>,<%= @AvgPctRecord.to_i %>,<%= @AvgPctMerch.to_i %>,<%= @AvgPctOther.to_i%>]
     }]
   });
  

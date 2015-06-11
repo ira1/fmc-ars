@@ -1,5 +1,6 @@
 class DashboardController < ApplicationController
-
+  include ActionView::Helpers::NumberHelper
+ 
   logger.info("running")
   # TODO strip whitespace for length test
   #
@@ -272,25 +273,25 @@ class DashboardController < ApplicationController
 
     @avg_emi = sigfig_to_s(@sample.average(:emi).to_f || 0,3).to_f #compute this on its own to get the correct precision once
 
-    colexpr = "count(emi) as EMISampleSize, 
-    Coalesce(avg(pie_live), 0) as AvgPctLive, Coalesce(avg(pie_live)/100, 0)*#{@avg_emi}/100 as AvgEMILive, 
-    Coalesce(avg(pie_teach), 0) as AvgPctTeach, Coalesce(avg(pie_teach)/100, 0)*#{@avg_emi}  as AvgEMITeach, 
-    Coalesce(avg(pie_salary), 0) as AvgPctSalary, Coalesce(avg(pie_salary/100), 0)*#{@avg_emi} as AvgEMISalary, 
-    Coalesce(avg(pie_session), 0) as AvgPctSession, Coalesce(avg(pie_session/100), 0)*#{@avg_emi} as AvgEMISession, 
-    Coalesce(avg(pie_song), 0) as AvgPctComposition, Coalesce(avg(pie_song)/100, 0)*#{@avg_emi} as AvgEMIComposition, 
-    Coalesce(avg(pie_record), 0) as AvgPctRecord, Coalesce(avg(pie_record)/100, 0)*#{@avg_emi} as AvgEMIRecord, 
-    Coalesce(avg(pie_merch), 0) as AvgPctMerch, Coalesce(avg(pie_merch)/100, 0)*#{@avg_emi} as AvgEMIMerch, 
-    Coalesce(avg(pie_record), 0) as AvgPctRecord, Coalesce(avg(pie_record)/100, 0)*#{@avg_emi} as AvgEMIRecord, 
-    Coalesce(avg(pie_other), 0) as AvgPctOther, Coalesce(avg(pie_other)/100, 0)*#{@avg_emi} as AvgEMIOther "
+    colexpr = "count(emi) as emi_sample_size, 
+    Coalesce(avg(pie_live), 0) as avg_pct_live, Coalesce(avg(pie_live)/100, 0)*#{@avg_emi}/100 as avg_emi_live, 
+    Coalesce(avg(pie_teach), 0) as avg_pct_teach, Coalesce(avg(pie_teach)/100, 0)*#{@avg_emi}  as avg_emi_teach, 
+    Coalesce(avg(pie_salary), 0) as avg_pct_salary, Coalesce(avg(pie_salary/100), 0)*#{@avg_emi} as avg_emi_salary, 
+    Coalesce(avg(pie_session), 0) as avg_pct_session, Coalesce(avg(pie_session/100), 0)*#{@avg_emi} as avg_emi_session, 
+    Coalesce(avg(pie_song), 0) as avg_pct_composition, Coalesce(avg(pie_song)/100, 0)*#{@avg_emi} as avg_emi_composition, 
+    Coalesce(avg(pie_record), 0) as avg_pct_record, Coalesce(avg(pie_record)/100, 0)*#{@avg_emi} as avg_emi_record, 
+    Coalesce(avg(pie_merch), 0) as avg_pct_merch, Coalesce(avg(pie_merch)/100, 0)*#{@avg_emi} as avg_emi_merch, 
+    Coalesce(avg(pie_record), 0) as avg_pct_record, Coalesce(avg(pie_record)/100, 0)*#{@avg_emi} as avg_emi_record, 
+    Coalesce(avg(pie_other), 0) as avg_pct_other, Coalesce(avg(pie_other)/100, 0)*#{@avg_emi} as avg_emi_other "
     
     
     @avg_incomes = @sample.select(colexpr)[0]
+    #debugging puts avg_incomes.to_json
+    @emi_ncount = @avg_incomes.emi_sample_size
+    @emi_pct_answered = (0==@NCount)? 100 : 100 * @emi_ncount / @NCount
+    @avg_pct_incomes = @avg_incomes.attributes.select { |k,v| k['avg_pct']}.map { |k,v| number_with_precision(v,:precision=>2,:significant=>true).to_f}
     
-    #@EMISampleSize = @sample.count(:emi)
     
-    #computed
-    #debugging puts @avg_incomes.to_json
-    @emi_pct_answered = (0==@NCount)? 100 : 100 * @avg_incomes.emisamplesize / @NCount
 
     #@AvgPctLive = (@sample.average(:pie_live)) || 0
     #@AvgEMILive = @AvgPctLive*@avg_emi

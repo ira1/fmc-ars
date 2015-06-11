@@ -1,7 +1,7 @@
 
 <%= logger.info("show.js.erb is running") %>
 // Highcharts Outputs
-$('#annincbycat').highcharts().series[0].setData([1,2,3,4,5,6,7,8], true);
+
 // Show & Hide GenreIncome Output based on controller's visibility indicator
 if ("true"==="<%= escape_javascript ( @genre_income_on.to_s) %>") {
   $("#genreincome").slideDown(); // anti-genre =0, genre = 1
@@ -27,10 +27,13 @@ $('#sample_size_progressbar').animate({width: "<%= @NCount_pct %>%"});
 // % of this group have 16+ years of experience
 $('#aboutpctexperiencedtxt').html("<%= @AboutPctExperienced %>");
 $('#pctfulltimetxt').html("<%= @pctfulltime %>");
+
 // Avg Ann Income from music/ EMI
-$('#aveannincheader').html("$99,999"); <%# avg ann inc for sample %>
-$('#aveannincheader').attr("title","66% of respondents in filtered sample provided EMI");
-$('#aveannincncount').html("1,234");  <%# N for this output %>
+$('#aveannincheader').html("<%= number_to_currency(@avg_emi, :precision=>0) %>"); <%# avg ann inc for sample %>
+$('#aveannincheader').attr("title","<%= @emi_pct_answered %>% of respondents in filtered sample provided EMI");
+$('#aveannincncount').html("<%= number_with_delimiter(@emi_ncount, :delimiter => ',') %>");  <%# N for this output %>
+$('#annincbycat').highcharts().series[0].setData(<%= @avg_pct_incomes.to_json.html_safe %>, true);
+
 // Income Trend
 $('#emincount').html("123,123,123");
 //Other Music Income Sources
