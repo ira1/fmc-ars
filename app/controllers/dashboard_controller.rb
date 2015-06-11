@@ -364,12 +364,12 @@ class DashboardController < ApplicationController
       coalesce(avg(pie_other),0) as avg_pct_other"
       
       @genre_inc_results = @sample.select(genreColExpr).order("1").first
-      @AntiGenreIncResults = @sample_antigenre.select(genreColExpr).order("1").first
-      @NCount_antigenre = @AntiGenreIncResults.attributes["ncount"]
-      @AvgEMI_antigenre = sigfig_to_s(@AntiGenreIncResults.attributes["avg_emi"].to_f,3).to_f
+      @antigenre_inc_results = @sample_antigenre.select(genreColExpr).order("1").first
+      @NCount_antigenre = @antigenre_inc_results.attributes["ncount"]
+      @AvgEMI_antigenre = sigfig_to_s(@antigenre_inc_results.attributes["avg_emi"].to_f,3).to_f
       
       @GenrePcts = @genre_inc_results.attributes.select { |k,v| k['avg_pct']}.map {|k,v| v.to_f.round(1)}
-      @AntiGenrePcts = @AntiGenreIncResults.attributes.select { |k,v| k['avg_pct']}.map {|k,v| v.to_f.round(1) }
+      @AntiGenrePcts = @antigenre_inc_results.attributes.select { |k,v| k['avg_pct']}.map {|k,v| v.to_f.round(1) }
       
      # @EMISampleSize = @sample.count(:emi)
      # @emi_pct_answered = (0==@NCount)? 100 : 100 * @EMISampleSize / @NCount
