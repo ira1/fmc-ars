@@ -8,6 +8,13 @@ if ("true"==="<%= escape_javascript ( @genre_income_on.to_s) %>") {
 } else {
   $("#genreincome").slideUp();
 }
+if ("true"==="<%= escape_javascript ( @genre_bar_on.to_s) %>") {
+  $('#genresingroup').slideDown();
+	$('#genresingroupchart').highcharts().series[0].setData([10,5,4,3,2,1], true);
+} else {
+  $("#genresingroup").slideUp();
+}
+
 
 
 // Textual Outputs 

@@ -70,11 +70,16 @@ class DashboardController < ApplicationController
     #
     @genre_income_on=false
     @mgenre = (params.has_key?(:mgenre)) ? params[:mgenre].upcase : "ALL"
-    if @mgenre != "ALL"
+    if (@mgenre != "ALL" && @mgenre != "0")
         @sample = @sample.where(:money_genre_group_1 => params[:mgenre] )
         # if user has chosen a genre, then we need to prepare a result set based on the inverse of chosen genre 
         @sample_antigenre = Survey.where.not(:money_genre_group_1 => params[:mgenre])
         @genre_income_on=true
+    end
+    if (@mgenre != "ALL")
+      @genre_bar_on=false 
+    else
+      @genre_bar_on=true
     end
 
     #
@@ -444,11 +449,13 @@ class DashboardController < ApplicationController
      #
      # Genre Bar Chart
      #
-     genreLong= {0=>'All others',1=>'Classical',2=>'Jazz',3=>'Rock/Alt-Rock/Indie',4=>'Country/Americana/Bluegrass', nil=>'No answer'}
-     genreShort= {0=>'Others',1=>'Classical',2=>'Jazz',3=>'Rock...',4=>'Country...', nil=>'Unknown'}
-     genreCounts=@sample.group(:genre_group_1).count()
-     @GenreSeries = [1,2,3,4,0,nil].map { |e| { :name=>genreLong[e].to_s, :y=>genreCounts[e], :short=>genreShort[e].to_s } }
-     
+     if @genre_bar_on
+       genreLong= {0=>'All others',1=>'Classical',2=>'Jazz',3=>'Rock/Alt-Rock/Indie',4=>'Country/Americana/Bluegrass', nil=>'No answer'}
+       genreShort= {0=>'Others',1=>'Classical',2=>'Jazz',3=>'Rock...',4=>'Country...', nil=>'Unknown'}
+       genreCounts=@sample.group(:genre_group_1).count()
+       @GenreSeries = [1,2,3,4,0,nil].map { |e| { :name=>genreLong[e].to_s, :y=>genreCounts[e], :short=>genreShort[e].to_s } }
+     end
+   
      #
      # OtherIncome calculation 
      #

@@ -7,8 +7,14 @@
 	</script>
 <% end %>
 
+<% if (!@genre_bar_on) %>
+	<script>
+		$("#genresingroup").slideUp();
+	</script>
+<% end %>
+
 <script>
-var standardBarWidth=12;
+	var standardBarWidth=12;
 //GEO MAP OF MUSICIANS BY COUNTY
 $ (function () {  
   Highcharts.setOptions({       
