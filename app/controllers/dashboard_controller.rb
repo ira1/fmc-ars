@@ -394,10 +394,9 @@ class DashboardController < ApplicationController
     #
     #  TODO Refactor into FTClaim method & Model
     #
-    @sample_size = @sample.count()
-    numerator = @sample.where(:full_time => true).count()
-    if @sample_size != 0 
-      @pctfulltime = 100 * numerator / @sample_size
+    if @NCount != 0 
+      numerator = @sample.where(:full_time => true).count()
+      @pctfulltime = 100 * numerator / @NCount
     else
       @pctfulltime = 0
     end
@@ -408,7 +407,7 @@ class DashboardController < ApplicationController
     #  TODO use NULLIF to prevent div by 0 in SQL
     #
     # experience_group should have no nulls
-     @AboutPctExperienced = (0<@sample_size) ? 100*@sample.where("experience_group > 3").count/@sample_size : 0
+     @AboutPctExperienced = (0<@NCount) ? 100*@sample.where("experience_group > 3").count/@NCount : 0
      #
      @AboutCompositionsNCount = @sample.count(:credits_compositions_life)
      @AboutCompositionsPctAnswered = (0==@NCount) ? 0 : (100 * @AboutCompositionsNCount / @NCount)
