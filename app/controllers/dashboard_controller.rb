@@ -433,13 +433,13 @@ class DashboardController < ApplicationController
      #
      # Roles chart
      #
-     roleCounts = @sample.select("count(case when role_composer then true end) as composers, count(case when role_recording then true end) as recordingartists,count(case when role_salaried then true end) as salarieds, count(case when role_performer then true end) as performers, count(case when role_session then true end) as sessionplayers, count(case when role_teacher then true end) as teachers").order('1').first
-     @Composers = roleCounts.composers
-     @RecordingArtists = roleCounts.recordingartists
-     @Salarieds = roleCounts.salarieds
-     @Performers = roleCounts.performers
-     @SessionPlayers = roleCounts.sessionplayers
-     @Teachers = roleCounts.teachers
+     role_counts = @sample.select("count(case when role_composer then true end) as composers, count(case when role_recording then true end) as recordingartists,count(case when role_salaried then true end) as salarieds, count(case when role_performer then true end) as performers, count(case when role_session then true end) as sessionplayers, count(case when role_teacher then true end) as teachers")[0]
+     @Composers = role_counts.composers
+     @RecordingArtists = role_counts.recordingartists
+     @Salarieds = role_counts.salarieds
+     @Performers = role_counts.performers
+     @SessionPlayers = role_counts.sessionplayers
+     @Teachers = role_counts.teachers
      
      #
      # Genre Bar Chart
