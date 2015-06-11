@@ -392,7 +392,7 @@ class DashboardController < ApplicationController
     end
 
     #
-    #  TODO Refactor into FTClaim method & Model
+    #  FTClaim  (Full Time)
     #
     if @NCount != 0 
       numerator = @sample.where(:full_time => true).count()
@@ -402,10 +402,9 @@ class DashboardController < ApplicationController
     end
     
     #
-    #  TODO Refactor into AboutGroupClaim method
-    #
     #  TODO use NULLIF to prevent div by 0 in SQL
     #
+    # 
     # experience_group should have no nulls
      @AboutPctExperienced = (0<@NCount) ? 100*@sample.where("experience_group > 3").count/@NCount : 0
      #
