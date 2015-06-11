@@ -34,7 +34,8 @@
 	</tr><% end %>
 </table>
 <p>
-	… although <strong>fewer than 5%</strong> of this group earned any money from <%  sep=""
+ <h3>Less than 5% of this group earned any money from...</h3>
+  <p><%  sep=""
 							 @other_income_dist.select { |k,v| v<5 }.sort_by { |k,v| -1.0*v}.each do |e| 
 								 outp=(sep ? sep : "")+otherIncomeLabels[e[0]]
 								 %><%= outp 
