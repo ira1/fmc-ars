@@ -392,6 +392,8 @@ class DashboardController < ApplicationController
     end
 
     #
+    #  About This Group 
+    #  and
     #  FTClaim  (Full Time)
     #
     if @NCount != 0 
@@ -400,25 +402,33 @@ class DashboardController < ApplicationController
     else
       @pctfulltime = 0
     end
+    # experience_group should have no nulls
+    @AboutPctExperienced = (0<@NCount) ? 100*@sample.where("experience_group > 3").count/@NCount : 0
     
     #
-    #  TODO use NULLIF to prevent div by 0 in SQL
+    #    Credits and Activity
     #
-    # 
-    # experience_group should have no nulls
-     @AboutPctExperienced = (0<@NCount) ? 100*@sample.where("experience_group > 3").count/@NCount : 0
-     #
-     @AboutCompositionsNCount = @sample.count(:credits_compositions_life)
-     @AboutCompositionsPctAnswered = (0==@NCount) ? 0 : (100 * @AboutCompositionsNCount / @NCount)
-     @AboutPctOver50Compositions = (0==@AboutCompositionsNCount) ? 0 :100*@sample.where("credits_compositions_life > 1").count/@AboutCompositionsNCount
-     #
-     @AboutRecordingsNCount = @sample.count(:credits_recordings_life)
-     @AboutRecordingsPctAnswered = (0==@NCount) ? 0 : (100 * @AboutRecordingsNCount / @NCount)
-     @AboutPctOver50Recordings = (0==@AboutRecordingsNCount) ? 0 : 100*@sample.where("credits_recordings_life > 1").count/@AboutRecordingsNCount
-     #
-     @AboutShowsNCount = @sample.count(:shows_last_year)
-     @AboutShowsPctAnswered = (0==@NCount) ? 0 : (100 * @AboutShowsNCount / @NCount)
-     @AboutPctOver50Shows = (0==@AboutShowsNCount) ? 0 : 100*@sample.where("shows_last_year > 1").count/@AboutShowsNCount
+    colexpr = "count(credits_compositions_life) as composing_ncount, 
+    count( (credits_compositions_life > 1) OR NULL) as artists_over_50_compositions, 
+    count( credits_recordings_life) as recording_artist_ncount, 
+    count( (credits_recordings_life > 1) OR NULL) as artists_over_50_recordings, 
+    count( shows_last_year) as show_performer_ncount, 
+    count( (shows_last_year > 1) OR NULL) as artists_over_50_shows"
+    
+    @credits_and_activity = @sample.select(colexpr)[0]
+
+    @credits_composing_ncount = @credits_and_activity.composing_ncount
+    @credits_pct_answered_composing = (0==@NCount) ? 0 : (100 *@credits_composing_ncount / @NCount)
+    @credits_pct_over_50_compositions = (0==@credits_composing_ncount) ? 0 :  100*@credits_and_activity.artists_over_50_compositions/@credits_composing_ncount
+    #
+    @credits_recording_artist_ncount = @credits_and_activity.recording_artist_ncount
+    @credits_pct_answered_recording = (0==@NCount) ? 0 : (100 * @credits_recording_artist_ncount / @NCount)
+    @credits_pct_over_50_recordings = (0==@credits_recording_artist_ncount) ? 0 : 100*@credits_and_activity.artists_over_50_recordings/@credits_recording_artist_ncount
+    #
+    @credits_show_performer_ncount = @credits_and_activity.show_performer_ncount
+    #@credits_show_performer_ncount = @sample.count(:shows_last_year)
+    @credits_pct_answered_shows = (0==@NCount) ? 0 : (100 * @credits_show_performer_ncount / @NCount)
+    @credits_pct_over_50_shows = (0==@credits_show_performer_ncount) ? 0 : 100*@credits_and_activity.artists_over_50_shows/@credits_show_performer_ncount
      
      #
      # Roles chart
