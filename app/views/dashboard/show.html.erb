@@ -39,7 +39,7 @@ outputheight='200px'
   		%>
   			<div class="output">
   				<h2>Avg. Annual Income from Music: <span id="aveannincheader" class=" special"  title="<%= @emi_pct_answered %>% of respondents in filtered sample provided EMI"><%= number_to_currency(@avg_emi, :precision=>0) %></span>&hellip;</h2>
-  				<p class="subtitle">This is the average annual gross Estimated Music Income (EMI) for this group of <span id="aveannincncount"><%= number_with_delimiter(@emi_ncount, :delimiter => ',') %></span> musicians. Musicians may have had non-music income too (see Music vs. non-Music Income by Age chart). Here's how this group allocated their music-related income over a 12-month period:</p>
+  				<p class="subtitle">This is the average annual gross Estimated Music Income (EMI) for this group. Musicians may have had non-music income too (see Music vs. non-Music Income by Age chart). The chart reflects how this group allocated their music-related income over a 12-month period. <%if @emi_ncount!=@NCount%> <span class="error">Note: <%=@NCount-@emi_ncount%> / <%=@NCount%> respondents in this group did not answer this question.</span> <%end%></p>
     			<div id="annincbycat"  class="has_highchart" style="height: 280px; "></div>
   			</div>
 <% if false %>				

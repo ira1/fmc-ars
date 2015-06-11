@@ -21,15 +21,17 @@
 ""=>""}
 %>
 <table>
-	<%  @other_income_dist.select { |k,v| 5.0<=v }.sort_by { |k,v| -1.0*v}.each do |e|  %>
+	<%  @other_income_dist.select { |k,v| 5.0<=v }.sort_by { |k,v| -1.0*v}.each_with_index do |e,i|  %>
 	<tr>
 		<td>
 			<strong><%=number_with_precision(e[1],:precision=>0, :significant=>false)%>%</strong>
 		</td>
 		<td>
+			
 			<div>
-				… of respondents earned some $ from
-			</div><strong class="special2"><%=otherIncomeLabels[e[0]]%></strong>
+				<% if i==0 %>… of this group earned some $ from<%else%>earned some<%end%>
+			</div>
+			<strong class="special2"><%=otherIncomeLabels[e[0]]%></strong>
 		</td>
 	</tr><% end %>
 </table>

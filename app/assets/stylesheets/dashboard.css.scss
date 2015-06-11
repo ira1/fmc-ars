@@ -318,14 +318,6 @@ html body {
     form > div {
       padding: .5em;
     }  
-    .reset_link {
-      margin: .5em .5em 0 0;   
-      padding: 1em;
-      font-size: .75em;
-      .tip {
-        display: inline;
-      }
-    }
   }
   .left-stripe {
     border-left: 1px solid #00748F;
@@ -619,11 +611,35 @@ html body {
       display: block;
       margin-top: 0;
       form {
+        .current_group {
+          margin: .75em 0 .5em .75em; 
+          font-size: .75em;
+          text-align: left;
+          
+        }
+        > h5 {
+          background: #eee;
+          color:#999;
+          text-align: left; 
+          padding: .5em 0 .5em .5em;
+          display: block;
+          margin-bottom: 0;
+          a {
+            color: inherit;
+            margin-left: 1em;
+            font-weight: normal !important;
+            float: right;
+            margin-right: .5em;
+          }
+        } 
         h6 {
           margin-bottom: .75em;
         }
         span.tip {
-          display: none;
+          visibility: hidden;
+ 
+            position: relative;
+            top: .2em;
         }
         label {
           margin-bottom: .5em;
@@ -632,14 +648,14 @@ html body {
         }
         label:hover, h6:hover { 
           span.tip {
-            display: inline;
+            visibility: visible;
           }
         }
         label.checkbox {
           padding-left: 1.6em;
           margin-bottom: .5em;
           input {
-            top: 0;
+            top: .1em;
           }
         }
       }
