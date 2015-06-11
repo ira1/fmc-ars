@@ -384,7 +384,7 @@ $('#anninctrend').highcharts({
     },
     series: [{
       name: 'Non-<%= genre_text[params[:mgenre].to_i] %> Genres',
-      emi: '<%= number_to_currency(@AvgEMI_antigenre, :precision=>0) %>',
+      emi: '<%= number_to_currency(@antigenre_avg_emi, :precision=>0) %>',
       color: '#FF7D2C',
       data: <%= if @AntiGenrePcts then @AntiGenrePcts.map {|x| number_with_precision(x,:precision=>2,:significant=>true).to_f}.to_json.html_safe else [] end %>
 	
