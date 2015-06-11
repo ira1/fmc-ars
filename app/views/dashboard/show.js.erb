@@ -19,15 +19,14 @@ if ("true"==="<%= escape_javascript ( @genre_bar_on.to_s) %>") {
   //$('#concentrationmap').highcharts().setData([] , true);
   //$('#annincbycat').highcharts().series[0].setData([]);
 
-// Textual Outputs 
 // % of sample output
-// TODO add easing to progress bar
 $('.total_n_count_from_ajax').html("<%= number_with_delimiter(@NCount, :delimiter => ',') %>");
 $('.total_pct_from_ajax').html("<%= @NCount_pct %>");
 $('#sample_size_progressbar').animate({width: "<%= @NCount_pct %>%"});
+
 // % of this group have 16+ years of experience
-$('#aboutpctexperiencedtxt').html("66");
-$('#pctfulltimetxt').html("66");
+$('#aboutpctexperiencedtxt').html("<%= @AboutPctExperienced %>");
+$('#pctfulltimetxt').html("<%= @pctfulltime %>");
 // Avg Ann Income from music/ EMI
 $('#aveannincheader').html("$99,999"); <%# avg ann inc for sample %>
 $('#aveannincheader').attr("title","66% of respondents in filtered sample provided EMI");
