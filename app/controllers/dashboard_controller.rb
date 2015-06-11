@@ -368,7 +368,7 @@ class DashboardController < ApplicationController
       @antigenre_ncount = @antigenre_inc_results.ncount
       @antigenre_avg_emi = sigfig_to_s(@antigenre_inc_results.avg_emi.to_f,3).to_f
       
-      @GenrePcts = @genre_inc_results.attributes.select { |k,v| k['avg_pct']}.map {|k,v| v.to_f.round(1)}
+      @genre_pcts = @genre_inc_results.attributes.select { |k,v| k['avg_pct']}.map {|k,v| v.to_f.round(1)}
       @AntiGenrePcts = @antigenre_inc_results.attributes.select { |k,v| k['avg_pct']}.map {|k,v| v.to_f.round(1) }
       
      # @EMISampleSize = @sample.count(:emi)
