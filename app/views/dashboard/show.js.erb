@@ -4,21 +4,27 @@
 $('#annincbycat').highcharts().series[0].setData([1,2,3,4,5,6,7,8], true);
 // Show & Hide GenreIncome Output based on controller's visibility indicator
 if ("true"==="<%= escape_javascript ( @genre_income_on.to_s) %>") {
-  $("#genreincome").slideDown();
+  $("#genreincome").slideDown(); // anti-genre =0, genre = 1
+  $('#genreincomechart').highcharts().series[0].setData([8,7,6,5,4,3,2,1], true);
+  $('#genreincomechart').highcharts().series[1].setData([18,17,16,15,14,13,12,11], true);
 } else {
   $("#genreincome").slideUp();
 }
 if ("true"==="<%= escape_javascript ( @genre_bar_on.to_s) %>") {
   $('#genresingroup').slideDown();
-	$('#genresingroupchart').highcharts().series[0].setData([10,5,4,3,2,1], true);
+	$('#genresingroupchart').highcharts().series[0].setData(<%= @GenreSeries.to_json.html_safe %>, true);
 } else {
   $("#genresingroup").slideUp();
 }
-
-
+  //$('#concentrationmap').highcharts().setData([] , true);
+  //$('#annincbycat').highcharts().series[0].setData([]);
 
 // Textual Outputs 
-$('.total_n_count_from_ajax').html("123,123,123");
+// % of sample output
+// TODO add easing to progress bar
+$('.total_n_count_from_ajax').html("<%= number_with_delimiter(@NCount, :delimiter => ',') %>");
+$('.total_pct_from_ajax').html("<%= @NCount_pct %>");
+$('#sample_size_progressbar').animate({width: "<%= @NCount_pct %>%"});
 // % of this group have 16+ years of experience
 $('#aboutpctexperiencedtxt').html("66");
 $('#pctfulltimetxt').html("66");

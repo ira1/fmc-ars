@@ -483,7 +483,7 @@ class DashboardController < ApplicationController
      #     Concentration Map
      #
      colexpr = "countyfips as fips, count(*) as value"
-     @MusiciansByCounties = @sample.where("countyfips is not null").group(:countyfips).select(colexpr).order("1")
+     @musicians_by_counties = @sample.where("countyfips is not null").group(:countyfips).select(colexpr)
 
      respond_to do |format|
        format.html

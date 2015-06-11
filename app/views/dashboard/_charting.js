@@ -43,7 +43,7 @@ $ (function () {
     }
          
   });
-  var data = <%= @MusiciansByCounties.to_json.html_safe %>,
+  var data = <%= @musicians_by_counties.to_json.html_safe %>,
   countiesMap = Highcharts.geojson(Highcharts.maps['countries/us/us-all-all']),
   lines = Highcharts.geojson(Highcharts.maps['countries/us/us-all-all'], 'mapline'),
   options;
