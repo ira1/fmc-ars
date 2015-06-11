@@ -365,7 +365,7 @@ class DashboardController < ApplicationController
       
       @genre_inc_results = @sample.select(genreColExpr)[0]
       @antigenre_inc_results = @sample_antigenre.select(genreColExpr)[0]
-      @ncount_antigenre = @antigenre_inc_results.ncount
+      @antigenre_ncount = @antigenre_inc_results.ncount
       @AvgEMI_antigenre = sigfig_to_s(@antigenre_inc_results.avg_emi.to_f,3).to_f
       
       @GenrePcts = @genre_inc_results.attributes.select { |k,v| k['avg_pct']}.map {|k,v| v.to_f.round(1)}
