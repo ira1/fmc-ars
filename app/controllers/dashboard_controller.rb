@@ -452,9 +452,14 @@ class DashboardController < ApplicationController
      #
      if @genre_bar_on
        genreLong= {0=>'All others',1=>'Classical',2=>'Jazz',3=>'Rock/Alt-Rock/Indie',4=>'Country/Americana/Bluegrass', nil=>'No answer'}
-       genreShort= {0=>'Others',1=>'Classical',2=>'Jazz',3=>'Rock...',4=>'Country...', nil=>'Unknown'}
+       genreShort= {0=>'Others',1=>'Classical',2=>'Jazz',3=>'Rock',4=>'Country', nil=>'Unknown'}
        genreCounts=@sample.group(:genre_group_1).count()
-       @GenreSeries = [1,2,3,4,0,nil].map { |e| { :name=>genreLong[e].to_s, :y=>genreCounts[e], :short=>genreShort[e].to_s } }
+       @GenreSeries=[]
+       @genre_counts=[]
+       for e in [1,2,3,4,0,nil] do
+         @GenreSeries << { :name=>genreLong[e].to_s, :y=>genreCounts[e], :short=>genreShort[e].to_s } 
+         @genre_counts<< genreCounts[e]
+       end
      end
    
      #

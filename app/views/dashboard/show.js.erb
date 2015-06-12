@@ -14,12 +14,15 @@ if ("true"==="<%= @genre_income_on.to_s -%>") {
 } else {
   $("#genreincome").slideUp();
 }
+
+// Genres in group
 if ("true"==="<%= escape_javascript ( @genre_bar_on.to_s) %>") {
   $('#genresingroup').slideDown();
-	$('#genresingroupchart').highcharts().series[0].setData(<%= @GenreSeries.to_json.html_safe %>, true);
+	$('#genresingroupchart').highcharts().series[0].setData(<%= @genre_counts.to_json %>, true);
 } else {
   $("#genresingroup").slideUp();
 }
+
   //$('#concentrationmap').highcharts().setData([] , true);
   //$('#annincbycat').highcharts().series[0].setData([]);
 
