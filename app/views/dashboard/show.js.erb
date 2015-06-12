@@ -1,16 +1,16 @@
+<% logger.info("show.js.erb is running") %>
 
-<%= logger.info("show.js.erb is running") %>
 // Highcharts Outputs
 
 // Show & Hide GenreIncome Output based on controller's visibility indicator
-if ("true"==="<%= escape_javascript ( @genre_income_on.to_s) %>") {
+if ("true"==="<%= @genre_income_on.to_s -%>") {
   $("#genreincome").slideDown(); // anti-genre =0, genre = 1
   $('#genreincomechart').highcharts().series[0].setData(
-			<%= if @antigenre_pcts then @antigenre_pcts.map {|x| number_with_precision(x,:precision=>2,:significant=>true).to_f}.to_json.html_safe else [] end %>,
+		<%= if @antigenre_pcts then @antigenre_pcts.map {|x| number_with_precision(x,:precision=>2,:significant=>true).to_f}.to_json.html_safe else [] end %>,
 		 true);
-  $('#genreincomechart').highcharts().series[1].setData(
-		<%= if @genre_pcts then @genre_pcts.map {|x| number_with_precision(x,:precision=>2,:significant=>true).to_f}.to_json.html_safe else [] end  %>
-		, true);
+	$('#genreincomechart').highcharts().series[1].setData(
+		<%= if @genre_pcts then @genre_pcts.map {|x| number_with_precision(x,:precision=>2,:significant=>true).to_f}.to_json.html_safe else [] end  %>,
+		true);
 } else {
   $("#genreincome").slideUp();
 }
