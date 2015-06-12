@@ -133,7 +133,7 @@ $('#annincbycat').highcharts({
       categories: ['Live performance', 'Teaching', 'Salaried orch. player', 'Session work', 'Compositions', 'Sound recordings', 'Merch', 'Other']
     },
     yAxis: {
-      maxPadding: .15,
+      maxPadding: .1,
       title: {
         text: 'Ave % of Income'
       },
@@ -568,7 +568,7 @@ function count_number_of_roles() {
       $('.roles_selected_phrase').text('this 1 role');
     } else {
       //if 2-4 boxes checked
-      $('.roles_selected_phrase').text('at least one of these '+cnt+' checked roles');
+      $('.roles_selected_phrase').text('these '+cnt+' roles');
     } 
     showRegularMatchOptionIfHidden();
   }
