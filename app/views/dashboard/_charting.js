@@ -303,6 +303,7 @@ $('#anninctrend').highcharts({
 				}
 			},
 			plotLines: [{
+				id: 'ageincomeplotline',
         color: '#FF7D2C', // Color value
         dashStyle: 'Dash', // Style of the plot line. Default to solid
         value: <%= @avg_emi %>, // Value of where the line will appear
@@ -419,16 +420,21 @@ $('#anninctrend').highcharts({
 			text: null
 		},
     tooltip: {
-      headerFormat: "<strong>{point.y}</strong> selected {point.key} as their primary genre."
+      headerFormat: "<strong>{point.y}</strong> musicians spend most of their <strong>time</strong> on {point.key}.",
+      <% if FilterProfileName()=='All Musicians' %>
+      pointFormat: ""
+      <%else%> 
+      pointFormat: '<br />...although they earn most of their <strong>income</strong> as<br /> <% if FilterProfileName()=='Other musicians' %>all-other-genres<% else %><%=FilterProfileName().downcase%><%end%>'
+      <% end %>  
     },
     xAxis: {
       categories: ['Classical','Jazz','Rock','Country','All others','No answer'],
-      title: {text: "My primary genre is"}
+      title: {text: "I spend most of my time on..."}
 		},
 		yAxis: {
       maxPadding: .08,
 			title: {
-				text: '# of Musicians '
+				text: '# of musicians '
 		  }
 		},
 		legend: {

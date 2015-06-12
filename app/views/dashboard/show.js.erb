@@ -34,8 +34,33 @@ $('#aveannincheader').attr("title","<%= @emi_pct_answered %>% of respondents in 
 $('#aveannincncount').html("<%= number_with_delimiter(@emi_ncount, :delimiter => ',') %>");  <%# N for this output %>
 $('#annincbycat').highcharts().series[0].setData(<%= @avg_pct_incomes.to_json.html_safe %>, true);
 
+// Income by Age
+$('#ageincomechart').highcharts().series[0].setData(<%= @nonmusic_inc_by_age.as_json %>, true);
+$('#ageincomechart').highcharts().yAxis[0].removePlotLine('ageincomeplotline');
+$('#ageincomechart').highcharts().yAxis[0].addPlotLine({
+	id: 'ageincomeplotline',
+  color: '#FF7D2C', 
+  dashStyle: 'Dash',
+  value: <%= @avg_emi %>,
+  width: '2', 
+  label: {
+    text: 'Avg. EMI: <%= number_to_currency(@avg_emi, :precision=>0) %>',
+    rotation: '0',
+    verticalAlign: 'bottom',
+    style: {
+      textAlign: 'left',
+      marginTop: '-1em',
+      color: '#FF7D2C',
+      fontSize: '.917em',
+      fontWeight: 'bold'
+    }
+  }
+});
+$('#ageincomechart').highcharts().series[1].setData(<%= @music_inc_by_age.as_json %>, true);
+
 // Income Trend
-$('#emincount').html("123,123,123");
+//$('#emincount').html("123,123,123");
+
 //Other Music Income Sources
 htmlstring ="<%= escape_javascript( render :partial => 'otherincbody') %>";
 $('#otherincomebody').html(htmlstring);
