@@ -225,7 +225,7 @@ class DashboardController < ApplicationController
     if genderclause.length > 0 then
       @sample = @sample.where(genderclause)
       @sample_antigenre = @sample_antigenre.where(genderclause) if @genre_income_on
-    else
+    elsif params.has_key?(:gender_male) && "false"==params[:gender_male]
       @sample = @sample.where("gender_group != 'M' AND gender_group != 'F' AND gender_group != 'T' AND gender_group is not null AND gender_group !='' ")
       if @genre_income_on
         @sample_antigenre = @sample_antigenre.where("gender_group != 'M' AND gender_group != 'F' AND gender_group != 'T' AND gender_group is not null AND gender_group !='' ") 
