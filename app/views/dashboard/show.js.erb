@@ -1,10 +1,51 @@
 <% logger.info("show.js.erb is running") %>
 
-// Highcharts Outputs
+var sample_ncount='<%= @NCount -%>';
+var sample_pct='<%= @NCount_pct -%>';
+
+// Outputs
+
+SampleSizeMode = function (ncount, sample_pct) {
+
+	htmlstring='This is <span class="total_pct_from_ajax">'+sample_pct+'</span>% of our 4,453 respondents';
+  mode = 'ok';
+	if (ncount <401 && ncount>100 ) {
+    mode = 'warn';
+		htmlstring='<strong>'+htmlstring+' and a statistically small sample size from which to draw conclusions: </strong>';
+	} else if (ncount<101) {
+		htmlstring='Forget about it! ';
+    mode = 'alert';
+  } 
+	return  { "mode":mode , "htmlstring":htmlstring } ;
+}
+
+
+// % of sample output/warning of low sample size
+// TODO maybe create a utility method that returns the desired htmlstring and mode (ok, warn, alert) based on sample_ncount
+$('.total_n_count_from_ajax').html("<%= number_with_delimiter(@NCount, :delimiter => ',') %>");
+$('.total_pct_from_ajax').html("<%= @NCount_pct %>");
+
+ss = SampleSizeMode(sample_ncount,sample_pct);
+if ('warn'==ss.mode) {
+	$('#sample_size_message').parent().addClass('very_low');	
+  $('#sample_size_message').html(ss.htmlstring);
+} else if ("alert"===ss.mode) {
+	$('#sample_size_message').parent().addClass('very_low');	
+  $('#sample_size_message').html(ss.htmlstring);	
+} else {
+  $('#sample_size_message').parent().removeClass('very_low');
+  $('#sample_size_message').html(ss.mode);
+}
+
+if (sample_ncount<401 && sample_ncount > 100) {
+} else if (sample_ncount < 101 ) {
+}
+$('#sample_size_message').html(htmlstring);
+$('#sample_size_progressbar').animate({width: "<%= @NCount_pct %>%"});
 
 // Show & Hide GenreIncome Output based on controller's visibility indicator
 if ("true"==="<%= @genre_income_on.to_s -%>") {
-  $("#genreincome").slideDown('fast','linear',function () {$('#genreincomechart').highcharts().redraw(); }); // anti-genre =0, genre = 1
+  $("#genreincome").fadeIn(0,function () {$('#genreincomechart').highcharts().reflow(); }); // anti-genre =0, genre = 1
   var chart = $('#genreincomechart').highcharts();
 	chart.series[0].setData(
 		<%= if @antigenre_pcts then @antigenre_pcts.map {|x| number_with_precision(x,:precision=>2,:significant=>true).to_f}.to_json.html_safe else [] end %>,
@@ -14,25 +55,20 @@ if ("true"==="<%= @genre_income_on.to_s -%>") {
 		false);
 	chart.redraw();
 } else {
-  $("#genreincome").slideUp();
+  $("#genreincome").fadeOut();
 }
 
 // Genres in group
 if ("true"==="<%=@genre_bar_on.to_s-%>") {
-  $('#genresingroup').slideDown('fast','linear', function () { $('#genresingroupchart').highcharts().redraw(); });
+  $('#genresingroup').show(0, function () { $('#genresingroupchart').highcharts().reflow(); });
 	$('#genresingroupchart').highcharts().series[0].setData(<%= @genre_counts.to_json %>, false);
 	$('#genresingroupchart').highcharts().redraw();
 } else {
-  $("#genresingroup").slideUp();
+  $("#genresingroup").fadeOut();
 }
 
   //$('#concentrationmap').highcharts().setData([] , true);
   //$('#annincbycat').highcharts().series[0].setData([]);
-
-// % of sample output
-$('.total_n_count_from_ajax').html("<%= number_with_delimiter(@NCount, :delimiter => ',') %>");
-$('.total_pct_from_ajax').html("<%= @NCount_pct %>");
-$('#sample_size_progressbar').animate({width: "<%= @NCount_pct %>%"});
 
 // % of this group have 16+ years of experience
 $('#aboutpctexperiencedtxt').html("<%= @AboutPctExperienced %>");
@@ -76,3 +112,6 @@ htmlstring ="<%= escape_javascript( render :partial => 'otherincbody') %>";
 $('#otherincomebody').html(htmlstring);
 htmlstring = "<%= escape_javascript( render :partial => 'abouthisgroup_body') %>";
 $('#aboutthisgroup > span').html(htmlstring);
+
+
+

@@ -6,12 +6,6 @@ Rails.application.routes.draw do
   get 'dashboard/show'
 
   post 'dashboard/show'
-
-  get 'ftclaim/Output'
-
-  get 'ftclaim/show'
-
-  post 'ftclaim/show'
   
   resources :surveys
 
