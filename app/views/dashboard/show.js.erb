@@ -27,24 +27,27 @@ $('.total_pct_from_ajax').html("<%= @NCount_pct %>");
 
 ss = SampleSizeMode(sample_ncount,sample_pct);
 if ('warn'==ss.mode) {
+	$('#outputs').addClass("twelve");
+	$('#outputs').removeClass("toolow seven");
 	$('#sample_size_message').parent().addClass('very_low');	
   $('#sample_size_message').html(ss.htmlstring);
+	$('#sample_size_progressbar').animate({width: "<%= @NCount_pct %>%"});
 } else if ("alert"===ss.mode) {
-	$('#sample_size_message').parent().addClass('very_low');	
-  $('#sample_size_message').html(ss.htmlstring);	
+	//$('#sample_size_message').parent().addClass('very_low');	
+  //$('#sample_size_message').html(ss.htmlstring);	
+	$('#outputs').removeClass("twelve");
+	$('#outputs').addClass("toolow seven");
 } else {
+	$('#outputs').addClass("twelve");
+	$('#outputs').removeClass("toolow seven");
   $('#sample_size_message').parent().removeClass('very_low');
-  $('#sample_size_message').html(ss.mode);
+  $('#sample_size_message').html(ss.htmlstring);
+	$('#sample_size_progressbar').animate({width: "<%= @NCount_pct %>%"});
 }
 
-if (sample_ncount<401 && sample_ncount > 100) {
-} else if (sample_ncount < 101 ) {
-}
-$('#sample_size_message').html(htmlstring);
-$('#sample_size_progressbar').animate({width: "<%= @NCount_pct %>%"});
 
 // Show & Hide GenreIncome Output based on controller's visibility indicator
-if ("true"==="<%= @genre_income_on.to_s -%>") {
+if ("true"==="<%= @genre_income_on.to_s -%>" && "alert"!=ss.mode) {
   $("#genreincome").fadeIn(0,function () {$('#genreincomechart').highcharts().reflow(); }); // anti-genre =0, genre = 1
   var chart = $('#genreincomechart').highcharts();
 	chart.series[0].setData(
@@ -59,7 +62,7 @@ if ("true"==="<%= @genre_income_on.to_s -%>") {
 }
 
 // Genres in group
-if ("true"==="<%=@genre_bar_on.to_s-%>") {
+if ("true"==="<%=@genre_bar_on.to_s-%>" && "alert"!=ss.mode) {
   $('#genresingroup').show(0, function () { $('#genresingroupchart').highcharts().reflow(); });
 	$('#genresingroupchart').highcharts().series[0].setData(<%= @genre_counts.to_json %>, false);
 	$('#genresingroupchart').highcharts().redraw();
