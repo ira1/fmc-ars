@@ -213,27 +213,23 @@ class DashboardController < ApplicationController
       genderclause << "gender_group = 'M'"
     end
     if params.has_key?(:gender_female) && "true"==params[:gender_female] then
-      if genderclause.length > 0 then
-        genderclause << " OR "
-      end
-      genderclause << "gender_group = 'F'"
+      genderclause << "#{ (0==genderclause.length) ? "" : " OR " } gender_group = 'F'"
     end
     if params.has_key?(:gender_transgender) && "true"==params[:gender_transgender] then
-      if genderclause.length > 0 then
-        genderclause << " OR "
-      end
-      genderclause << "gender_group = 'T'"
+      genderclause << "#{ (0==genderclause.length) ? "" : " OR " } gender_group = 'T'"
     end
     if params.has_key?(:gender_unanswered) && "true"==params[:gender_unanswered] then
-      if genderclause.length > 0 then
-        genderclause << " OR "
-      end
-      genderclause << "gender_group is null or gender_group =''"
+      genderclause << "#{ (0==genderclause.length) ? "" : " OR " } gender_group is null or gender_group =''"
     end
-    
+
     if genderclause.length > 0 then
       @sample = @sample.where(genderclause)
       @sample_antigenre = @sample_antigenre.where(genderclause) if @genre_income_on
+    else
+      @sample = @sample.where("gender_group != 'M' AND gender_group != 'F' AND gender_group != 'T' AND gender_group is not null AND gender_group !='' ")
+      if @genre_income_on
+        @sample_antigenre = @sample_antigenre.where("gender_group != 'M' AND gender_group != 'F' AND gender_group != 'T' AND gender_group is not null AND gender_group !='' ") 
+      end
     end
     
     #
