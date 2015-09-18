@@ -568,7 +568,10 @@ function count_number_of_roles() {
       $('.roles_selected_phrase').text('this 1 role');
     } else {
       //if 2-4 boxes checked
-      $('.roles_selected_phrase').text('these '+cnt+' roles');
+      $('.roles_selected_phrase').text('at least one of these '+cnt+' checked roles');
+      $('.role_selected_phrase_exact').text('these '+cnt+' checked roles');
+      
+      
     } 
     showRegularMatchOptionIfHidden();
   }
