@@ -382,6 +382,9 @@ html body {
         text-align: center; 
       }
     }
+    #aboutthisgroup h2 {
+      text-align: left;
+    }
     .output:not(.textual_output) h2 {
         @extend .left-stripe;
         margin-bottom: 0;
