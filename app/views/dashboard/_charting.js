@@ -123,7 +123,7 @@ $('#annincbycat').highcharts({
       type: 'bar'
     },
     title: {
-      text:'Income by Category',
+      text:'Income Allocation',
         style: {
           fontSize:'1em'
         }
@@ -135,7 +135,7 @@ $('#annincbycat').highcharts({
     yAxis: {
       maxPadding: .1,
       title: {
-        text: 'Ave % of Income'
+        text: 'Avg. % of Income'
       },
       labels: {
         enabled: true
