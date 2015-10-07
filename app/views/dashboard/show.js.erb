@@ -85,10 +85,9 @@ $('#sample_size_progressbar').animate({width: "<%= @NCount_pct %>%"});
   $('.low_n_size_message').html("");
 <%end%>
 // % of this group have 16+ years of experience
-$('#aboutpctexperiencedtxt').html("<%= @AboutPctExperienced %>");
-$('#AboutPctExperienced_progressbar').html("<%= @AboutPctExperienced %>");
+$('#aboutpctexperiencedtxt').html("<%= @AboutPctExperienced  == 0 ? '<1' : @AboutPctExperienced %>%");
 $('#pctfulltime_progressbar').animate({width: "<%= @pctfulltime %>%"});
-$('#pctfulltimetxt').html("<%= @pctfulltime %>");
+$('#pctfulltimetxt').html("<%= @pctfulltime  == 0 ? '<1' : @pctfulltime %>%");
 
 // Avg Ann Income from music/ EMI
 $('#aveannincheader').html("<%= number_to_currency(@avg_emi, :precision=>0) %>"); <%# avg ann inc for sample %>

@@ -8,27 +8,13 @@
   </div>
   <p>Within this group of <span class="total_n_count_from_ajax"><%= number_with_delimiter(@NCount, :delimiter => ',') %></span>:</p>
 </div> 
-<table class="big">
-  <thead>
-    <tr>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong><span id="aboutpctexperiencedtxt"><%= @AboutPctExperienced %></span>%</strong></td>
-      <td>&hellip;have 16+ years experience
-          <div class="progressbar">
-            <div id="AboutPctExperienced_progressbar" style="width:<%= @AboutPctExperienced %>%"></div>
-          </div>
-      </td>
-    </tr>
-    <tr class="secondary">
-      <td><strong><span id="pctfulltimetxt"><%= @pctfulltime %></span>%</strong></td>
-      <td>&hellip;are full-time musicians <%=makeHelpTip("We defined full-time as 75%+ of their income coming from music, and spending a min. of 36 hrs/wk on music")%>
-          <div class="progressbar">
-            <div id="pctfulltime_progressbar" style="width:<%= @pctfulltime %>%"></div>
-          </div>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="flex">
+  <div class="giant_stat">
+    <p><strong><span id="aboutpctexperiencedtxt"><%= @AboutPctExperienced %>%</span></strong> 
+    have 16+ years experience</p>
+  </div>
+  <div class="giant_stat">
+    <p><strong><span id="pctfulltimetxt"><%= @pctfulltime %>%</span></strong>
+    are considered full-time musicians <%=makeHelpTip("We defined full-time as 75%+ of their income coming from music, and spending a min. of 36 hrs/wk on music")%></p>
+  </div>
+</div>

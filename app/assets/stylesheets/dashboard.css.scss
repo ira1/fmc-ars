@@ -357,9 +357,28 @@ html body {
       @extend .left-stripe;
       background: #fff;
     }
-    #low_warn img {
-      height: 1em;
-      margin-right: 4px;
+    #ftclaim {
+      img {
+        height: 1em;
+        margin-right: 4px;
+      }
+      .giant_stat {
+        width: 40%;
+        p {
+          text-align: center;
+        }
+        &:first-child strong {
+          color: $blue;
+        }
+        &:last-child strong {
+          color: $orange;
+        }
+        strong span {
+          font-size: 2rem;
+          display: block;
+          margin-bottom: .5rem;
+        }  
+      }
     }
     .subtitle {
       @extend .headerstyle;
@@ -426,8 +445,8 @@ html body {
       }
       .current_n_size {
         width: 88%;
-        margin: 0 auto;
-        h6,p {
+        margin: 0 auto 1rem auto;
+        h6,p:first-child {
           margin-bottom: 0;
         }
         p {
@@ -691,6 +710,14 @@ html body {
       } 
       .has_highchart {
         width: 98%;
+      }
+      .flex {
+        -webkit-flex: flex;
+        display: flex;
+        -webkit-flex-direction: row /* works with row or column */;
+        flex-direction: row;
+       -webkit-justify-content: center;
+       justify-content: center;
       }
     }
     #section-sub-footer {
