@@ -330,25 +330,15 @@ html body {
   /*if results too low < 100, do this:*/
   #toolow_warning {
     display: none;
-  }
-  .toolow {
-    .output {
-      display: none;
+    text-align: center;
+    font: "LatoLatinBold" !important;
+    > * {
+      margin-bottom: 1rem;
+      max-width: 24rem;
     }
-    #toolow_warning {
-      display: block;
-      p strong {
-        display: block;
-        line-height: 1.5em;
-        color: $red;
-        font: "LatoLatinBold" !important;
-        max-width: 50em;
-      }
-      img {
-        width: 2.5em;
-        height: 2.5em;
-        margin-right: 1em;
-      }
+    img {
+      max-height: 64px;
+      max-width: 64px;
     }
   }
   #outputs {

@@ -10,17 +10,16 @@ outputheight='200px'
     <a href="/dashboard/show/">Reset</a>
   </div> 
 </div>
-<div id="facets" class="four columns alpha" style="margin-bottom: 6px;">
+<div id="facets" class="four columns alpha">
 	  <%=render "facet_stack.html.erb" %>
 </div>
 <div id="outputs" class=" columns omega<%= if @NCount<=100 then " toolow seven" else " twelve" end %>" style="position:relative;">
   <main>
     <%# TOO LOW %>
-    <div id="toolow_warning" class="textual_output output" >
-      <div>
-      <%= image_tag "caution.png" %>
-      <p><strong>There weren't enough musicians matching your filter criteria to display accurate results. Please broaden your search filters.</strong></p>
-      </div>
+    <div id="toolow_warning">   
+      <p><%= image_tag "caution.png" %></p>
+      <h2>Not enough respondents, sorry!</h2>
+      <p>There weren't enough musicians matching your filter criteria to display accurate results. Please broaden your search filters.</p>
     </div> 
   	<div id="leftoutputs" class="six columns alpha">
       <!-- About this group -->

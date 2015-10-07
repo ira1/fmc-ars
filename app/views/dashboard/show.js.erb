@@ -127,6 +127,12 @@ htmlstring ="<%= escape_javascript( render :partial => 'otherincbody') %>";
 $('#otherincomebody').html(htmlstring);
 htmlstring = "<%= escape_javascript( render :partial => 'abouthisgroup_body') %>";
 $('#aboutthisgroup > span').html(htmlstring);
-
-
-
+<% if @NCount < 101 then  %>
+  $('#toolow_warning').show();
+  $('#rightoutputs').hide();
+  $('#leftoutputs').hide();
+<%else%>
+  $('#toolow_warning').hide();
+  $('#rightoutputs').show();
+  $('#leftoutputs').show();
+<% end %>
