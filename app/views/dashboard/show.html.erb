@@ -24,15 +24,8 @@ outputheight='200px'
     </div> 
   	<div id="leftoutputs" class="six columns alpha">
       <!-- About this group -->
-    	<div id="low_warn"  class="textual_output output">
-      	<%=render "sample_size_output"%>
-      </div>
-      <div class="output textual_output">
-        <h2><span id="aboutpctexperiencedtxt"><%= @AboutPctExperienced %></span>% of this group&hellip;</h2>
-        <ul>
-          <li>&hellip;have 16+ years of experience </li>
-          <li><span id="pctfulltimetxt"><%= @pctfulltime %></span>%  are full-time musicians</li>
-        </ul>
+    	<div id="ftclaim"  class="textual_output output">
+      	<%=render "sample_size_output"%>         
       </div>
   		<%# Percent who perceive increase in [category] income over prior 5 years: xx%
   				Annual Income by Cat Chart
@@ -42,7 +35,7 @@ outputheight='200px'
   				<p class="subtitle">This is the average annual gross Estimated Music Income (EMI) for this group. Musicians may have had non-music income too (see Music vs. non-Music Income by Age chart). The chart reflects how this group allocated their music-related income over a 12-month period. <%if @emi_ncount!=@NCount%> <span class="error">Note: <%=@NCount-@emi_ncount%> / <%=@NCount%> respondents in this group did not answer this question.</span> <%end%></p>
     			<div id="annincbycat"  class="has_highchart" style="height: 280px; "></div>
   			</div>
-<% if false %>				
+ 				
   			<div class="output">
   				<h2>Income Trend <%=makeHelpTip("Trend displays the number of musicians who perceived, over the prior 5 years, either an increase or decrease in income for the respective category of work. The percent difference is also displayed.")%></h2>
   				<p class="subtitle">Perceived changes in income over prior 5 years. <span class="ncount">(N=<span id="emincount"><%= number_with_delimiter(@EMISampleSize, :delimiter => ',') %></span>)</span></p>
@@ -94,7 +87,7 @@ outputheight='200px'
       		    </tr>
     		  </table>
   		  </div>
-<% end %>
+ 
   		<%#
   				Other Income Text Box
   		%>

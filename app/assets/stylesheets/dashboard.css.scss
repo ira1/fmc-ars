@@ -391,14 +391,27 @@ html body {
     }
     .output {
       margin-bottom: 1em;
-      table:not(.has_barcharts) {
+      table:not(.income_trend) {
         margin-left:  auto ;
         margin-right: auto;
-        tr td:first-child {
-          background: $blue;
-          text-align: right;
-          strong {
-            color: #fff;
+        tr { 
+          td:first-child {
+            background: $blue;
+            text-align: right;
+            strong {
+              color: #fff;
+            }
+          }
+          &.secondary {
+            td .progressbar > div {
+              background-color: $orange;
+            }
+            td:first-child {
+              background: $orange;
+              strong {
+                color: #000;
+              }
+            }
           }
         }
         td {
@@ -420,6 +433,9 @@ html body {
         p {
           margin-top:1em;
         }
+        p:last-child {
+          text-align: center;
+        }
       }
       h2 {
         @extend .headerstyle;  
@@ -430,8 +446,11 @@ html body {
       }     
  
       .very_low {
-        > p:first-child strong, h2  {
+        > p:first-child, h2  {
           color: $red !important;
+        }
+        .total_n_count_from_ajax {
+          font-weight: bold;
         }
         .progressbar > div {
           background: $red;
@@ -463,7 +482,7 @@ html body {
       background: #ccc;
     }
   }
-  .has_barcharts {
+  .income_trend {
     .progressbar {
       border: none;
     }
