@@ -562,6 +562,7 @@ function count_number_of_roles() {
   //if all boxes checked:
   if (cnt==$('#role_facet input[type=checkbox]').length) {
     $('#exact_role_facet').slideUp();
+    $('#roles_exact_false').prop('checked',true);
   } else {
     //if one box checked
     if (cnt==1) {
