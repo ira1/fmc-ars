@@ -20,7 +20,7 @@ module MyCustomHelper
   end
   
   def makeHelpTip(str)
-    data="<span class='tip' title='#{str}'>#{image_tag "help_icon.png", :size => "16x16"}</span>"
+    data="<abbr class='tip' title='#{str}'>#{image_tag "help_icon.png" }</abbr>"
     data=data.html_safe
   end
   

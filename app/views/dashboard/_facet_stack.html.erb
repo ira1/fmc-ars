@@ -1,6 +1,16 @@
 <%= form_tag '/dashboard/show', authenticity_token: false, method: :get, class: "f_facets", remote: true do %>		
   <h5>Select a group: <a href="/dashboard/show/">Reset</a></h5>
-  <p class="current_group"><span class="ncount">Current group size <strong>(N) = <span class="total_n_count_from_ajax"><%= number_with_delimiter(@NCount, :delimiter => ',') %></span></strong>  </span><%=makeHelpTip("The abbreviation (N) means the number of respondents (musicians). Within any given filtered group, not all musicians in that group may have answered all questions.")%> </p>
+  <p class="current_group">
+    <span class="has_tip">
+      <span>
+        <span class="ncount">
+          Current group size
+          <strong>(N) = <span class="total_n_count_from_ajax"><%= number_with_delimiter(@NCount, :delimiter => ',') %></span></strong>
+        </span>
+      </span>
+      <%=makeHelpTip("The abbreviation (N) means the number of respondents (musicians). Within any given filtered group, not all musicians in that group may have answered all questions.")%>
+    </span>
+  </p>
   
 	<div id="genre_facet">
  		<h6>Main $-Generating Genre</h6>
@@ -14,14 +24,22 @@
 		  <%= radio_button_tag("mgenre", 2, (params[:mgenre] == "2")) %> Jazz
 		</label>
 		<label>
-		  <%= radio_button_tag("mgenre", 3, (params[:mgenre] == "3")) %> Rock <%=makeHelpTip("Includes rock, alt-rock, indie, punk and metal.")%></span><br/>
+		  <div class="has_tip">
+  		  <span><%= radio_button_tag("mgenre", 3, (params[:mgenre] == "3")) %> Rock</span>
+  		  <%=makeHelpTip("Includes rock, alt-rock, indie, punk and metal.")%>
+  		</div>
 		</label>
 		<label>
-		  <%= radio_button_tag("mgenre", 4, (params[:mgenre] == "4")) %> Country
-		  <%=makeHelpTip("Includes country, Americana, bluegrass, folk and singer-songwriter.")%>
+		  <div class="has_tip">
+		    <span><%= radio_button_tag("mgenre", 4, (params[:mgenre] == "4")) %> Country</span>
+		    <%=makeHelpTip("Includes country, Americana, bluegrass, folk and singer-songwriter.")%>
+		  </div>
 		</label>
 		<label>
-		  <%= radio_button_tag("mgenre", 0, (params[:mgenre] == "0") ) %> All other genres <%=makeHelpTip("This includes: A Capella, Avant Garde, Blues, Celtic, Childrens, Christian, Composer, DJ, Electronic, Experimental, Funk, Gospel, Hawaiian, Not applicable, Pop, R&B, Rap/Hip-Hop, Reggae, Religious, Soul, Vernacular/Traditional, World")%>
+		  <div class="has_tip">
+		    <span><%= radio_button_tag("mgenre", 0, (params[:mgenre] == "0") ) %> All other genres</span>
+		    <%=makeHelpTip("This includes: A Capella, Avant Garde, Blues, Celtic, Childrens, Christian, Composer, DJ, Electronic, Experimental, Funk, Gospel, Hawaiian, Not applicable, Pop, R&B, Rap/Hip-Hop, Reggae, Religious, Soul, Vernacular/Traditional, World")%>
+		  </div>
 		</label>
 	</div>
   <div id="role_facet">
@@ -29,41 +47,69 @@
     <%# <%= check_box_tag("role", "ALL", (@role == "ALL" )) All types %>
 	  <label class="checkbox">
 	  	<%= hidden_field_tag :role_composer, "false", :id => "dummy1" %>
-		  <%= check_box_tag(:role_composer, :true, "false"!=params[:role_composer]) %> Composes music and/or lyrics <br />
-		  <span class="ncount">(<%=@Composers%>)</span>
-  		<%=makeHelpTip("Composes music and/or lyrics. Earns money from mechanicals, performance royalties, commissions, synch licenses.")%>
+		  <div class="has_tip">
+  		  <span>
+  		    <%= check_box_tag(:role_composer, :true, "false"!=params[:role_composer]) %>
+  		    Composes music and/or lyrics <br />
+  		    <span class="ncount">(<%=@Composers%>)</span>
+  		  </span>
+  		  <%=makeHelpTip("Composes music and/or lyrics. Earns money from mechanicals, performance royalties, commissions, synch licenses.")%>
+		  </div>
     </label>
     <label class="checkbox">  
   		<%= hidden_field_tag :role_recording, "false", :id => "dummy2" %>
-  		<%= check_box_tag(:role_recording, :true, "false"!=params[:role_recording]) %> Records music/recording artist<br />
-		  <span class="ncount">(<%=@RecordingArtists%>)</span>
-  		<%=makeHelpTip("Records music they wrote, or covers of other composers' music. Earns money from record label support, recorded music sales, sound recording performance royalties, synch licenses.")%>    
+  		<div class="has_tip">
+  		  <span>
+  		    <%= check_box_tag(:role_recording, :true, "false"!=params[:role_recording]) %>
+  		    Records music/recording artist<br />
+		      <span class="ncount">(<%=@RecordingArtists%>)</span>
+     		</span>
+     		<%=makeHelpTip("Records music they wrote, or covers of other composers' music. Earns money from record label support, recorded music sales, sound recording performance royalties, synch licenses.")%>    
+  		</div>
 		</label>
     <label class="checkbox"> 
   		<%= hidden_field_tag :role_salaried, "false", :id => "dummy3" %>
-  		<%= check_box_tag(:role_salaried, :true, "false"!=params[:role_salaried]) %> Salaried orchestra player<br />
-		  <span class="ncount">(<%=@Salarieds%>)</span>
-  		<%=makeHelpTip("Paid a regular salary to perform as part of a band, ensemble or orchestra.")%>
+  		<div class="has_tip">
+  		  <span>
+  		    <%= check_box_tag(:role_salaried, :true, "false"!=params[:role_salaried]) %>
+  		    Salaried orchestra player<br />
+		      <span class="ncount">(<%=@Salarieds%>)</span>
+		    </span>
+  		  <%=makeHelpTip("Paid a regular salary to perform as part of a band, ensemble or orchestra.")%>
+  		</div>
     </label>
     <label class="checkbox"> 
   		<%= hidden_field_tag :role_performer, "false", :id => "dummy4" %>
-  		<%= check_box_tag(:role_performer, :true, "false" !=params[:role_performer]) %>
-  		Performer<br />
-		  <span class="ncount">(<%=@Performers%>)</span>
+  		<div class="has_tip">
+  		  <span>
+  		    <%= check_box_tag(:role_performer, :true, "false" !=params[:role_performer]) %>
+  		    Performer<br />
+		      <span class="ncount">(<%=@Performers%>)</span>
+		    </span>
   		<%=makeHelpTip("Performs their music or other composers' music in a live setting. Includes concerts/gigs, broadcast TV or radio, orchestra or chamber music performance. Includes DJs and live remixers.")%>
+  		</div>
     </label>
     <label class="checkbox"> 
   		<%= hidden_field_tag :role_session, "false", :id => "dummy5" %>
-  		<%= check_box_tag(:role_session, :true, "false"!=params[:role_session]) %>
-  		Session musician/freelancer<br />
-		  <span class="ncount">(<%=@SessionPlayers%>)</span>
+  		<div class="has_tip">
+  		  <span>
+  		    <%= check_box_tag(:role_session, :true, "false"!=params[:role_session]) %>
+  		    Session musician/freelancer<br />
+		      <span class="ncount">(<%=@SessionPlayers%>)</span>
+		    </span>
   		<%=makeHelpTip("Hired by other musicians/producers/record labels to play or sing in the studio or in a live setting.")%>
+  		</div>
     </label>
     <label class="checkbox"> 
   		<%= hidden_field_tag :role_teacher, "false", :id => "dummy6" %>
-  		<%= check_box_tag(:role_teacher, :true, "false"!=params[:role_teacher]) %> Teacher<br />
-		  <span class="ncount">(<%=@Teachers%>)</span>
+  		<div class="has_tip">
+  		  <span>
+  		    <%= check_box_tag(:role_teacher, :true, "false"!=params[:role_teacher]) %>
+  		    Teacher<br />
+		      <span class="ncount">(<%=@Teachers%>)</span>
+		    </span>
   		<%=makeHelpTip("Hired to teach music performance or craft to individuals or in a group setting.")%>
+  		</div>
     </label>
     <%# multi-line comment: %>
 		<% if false %>
@@ -97,7 +143,10 @@
 		<h6>Music-Only Career</h6>
 		<label class="checkbox">
   		<%= hidden_field_tag :ft, "false", :id => "ft1" %>
-  		<%= check_box_tag(:ft, "true", "true" == params[:ft]) %> Limit to full-time musicians only: those with 75%+ of their income coming from music, and spending a min. of 36 hrs/wk on music <%=makeHelpTip("FYI: Only 33% (1,736) in the survey met these requirements for full-time status.")%> 
+  		<div class="has_tip">
+    		<span><%= check_box_tag(:ft, "true", "true" == params[:ft]) %> Limit to full-time musicians only: those with 75%+ of their income coming from music, and spending a min. of 36 hrs/wk on music</span>
+    		<%=makeHelpTip("FYI: Only 33% (1,736) in the survey met these requirements for full-time status.")%> 
+  		</div>
 		</label>
 	</div>
 	<div id="career_facet">
@@ -116,7 +165,7 @@
 		</label>
 	</div>
 	<div id="emi_facet">
-		<h6>Gross Estimated Music Income  <%=makeHelpTip("EMI, or Estimated Music Income = (personal gross income) x (percent of income derived from music). See [definitions page] for details.")%></h6>
+		<h6><div class="has_tip"><span>Gross Estimated Music Income</span><%=makeHelpTip("EMI, or Estimated Music Income = (personal gross income) x (percent of income derived from music). See [definitions page] for details.")%></div></h6>
     <label class="all">		
       <%= radio_button_tag("emigroup", "ALL", true) %> All income levels
     </label>
