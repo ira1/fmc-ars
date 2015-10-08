@@ -641,7 +641,7 @@ and (max-width: 960) {
   .navigation ul.sf-menu { display: none;} 
   
   #section-tophat span.subscribe, #section-tophat span.tagline,
-  ##section-sub-footer span.copyright, #section-sub-footer span.colophon,
+  #section-sub-footer span.copyright, #section-sub-footer span.colophon,
   {float: none; text-align: center;}
   
   header .navigation{margin-top: 10px;}
