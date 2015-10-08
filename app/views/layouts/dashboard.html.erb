@@ -4,12 +4,15 @@
   <title>Future of Music Coalition -- Artists Revenue Portal</title>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <meta property="fb:admins" content="17142454820" />
   <meta property="og:image" content="<%= image_url("fbimg.png") %>"/>
   <meta property="og:type" content="website"/>
   <meta property="ob:url" content="<%=request.original_url%>" />
-  <meta property="og:title" content="Artist Revenue Streams Data Portal"/>
-  <meta property="og:site_name" content="Future of Music Coalition&#39;s Artists Revenue Portal"/>
-  <meta property="og:description" content="Users can explore, chart and map musicians and their incomes from the Future of Music Coalition&#39;s ground breaking survey of over 5000 musicians from around the USA."/>
+  <meta property="og:site_name" content="Future of Music Coalition&#39;s Artists Revenue Streams Project"/>
+  <meta property="og:title" content="Money from Music Survey Data Portal"/>
+  <meta property="og:description" content="View aggregated survey data from over 5,000 US-based musicians showing income sources by role, musical genre, career length, and educational training."/>
+  <meta name="description" content="View aggregated survey data from over 5,000 US-based musicians showing income sources by role, musical genre, career length, and educational training."/>
+  <meta name="keywords" content="musician incomes, musician earnings, copyright, royalties, compositions, sound recordings, digital download revenue, streaming revenue, live performance income" />
 	<meta charset="utf-8">	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
   <script src="http://code.highcharts.com/highcharts.js"></script>
@@ -17,12 +20,10 @@
   <script src="http://code.highcharts.com/maps/modules/exporting.js"></script>
   <script src="http://code.highcharts.com/mapdata/countries/us/us-all.js"></script>
   <!-- money.fom.org specific headers follow -->
-  <title>Artist Revenue Streams Data Portal | a multi-method, cross-genre examination of how US based musicians and composers are earning a living.</title>
+  <title>Artist Revenue Streams: Money from Music Survey Data Portal - a multi-method, cross-genre examination of how US based musicians and composers are earning a living.</title>
 	<link rel="alternate" type="application/rss+xml" title="Artist Revenue Streams &raquo; Feed" href="http://money.futureofmusic.org/feed/" />
   <link rel="alternate" type="application/rss+xml" title="Artist Revenue Streams &raquo; Comments Feed" href="http://money.futureofmusic.org/comments/feed/" />
-  <!-- TODO: google analytics code removed from dev version -->			
-  <link rel='stylesheet' id='columns-css'  href='http://money.futureofmusic.org/wordpress/wp-content/plugins/columns/columns.css?ver=3.7.4' type='text/css' media='all' />
-  <link rel='stylesheet' id='collapseomatic-css-css'  href='http://money.futureofmusic.org/wordpress/wp-content/plugins/jquery-collapse-o-matic/light_style.css?ver=1.5.7' type='text/css' media='all' />
+  <!-- WP plugin for columns.css version was 3.7.4 ; jquery-collapse-o-matic/light_style.css?ver=1.5.7'	-->
   <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://money.futureofmusic.org/wordpress/xmlrpc.php?rsd" />
   <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://money.futureofmusic.org/wordpress/wp-includes/wlwmanifest.xml" /> 
 	<link rel="profile" href="http://gmpg.org/xfn/11" />
@@ -30,18 +31,6 @@
 	<link rel="alternate" type="text/xml" title="RSS .92" href="http://money.futureofmusic.org/feed/rss/" />
 	<link rel="alternate" type="application/atom+xml" title="Atom 0.3" href="http://money.futureofmusic.org/feed/atom/" />
 	<link rel="pingback" href="http://money.futureofmusic.org/wordpress/xmlrpc.php" />
-
-	<!-- CSS
-  	================================================== -->
-  	<!-- Load the basic skeleton and plugin CSS, then the main theme stylesheet -->   
-    <link rel="stylesheet" type="text/css" media="all" href="http://money.futureofmusic.org/wordpress/wp-content/themes/super-skeleton/assets/stylesheets/base.css" />
-	<link rel="stylesheet" type="text/css" media="all" href="http://money.futureofmusic.org/wordpress/wp-content/themes/super-skeleton/assets/stylesheets/skeleton.css" />
-	<link rel="stylesheet" type="text/css" media="all" href="http://money.futureofmusic.org/wordpress/wp-content/themes/super-skeleton/assets/stylesheets/comments.css" />
-	<link rel="stylesheet" type="text/css" media="all" href="http://money.futureofmusic.org/wordpress/wp-content/themes/super-skeleton/assets/stylesheets/buttons.css" />
-	<link rel="stylesheet" type="text/css" media="all" href="http://money.futureofmusic.org/wordpress/wp-content/themes/super-skeleton/assets/stylesheets/superfish.css" />
-	<link rel="stylesheet" type="text/css" media="all" href="http://money.futureofmusic.org/wordpress/wp-content/themes/super-skeleton/assets/stylesheets/flexslider.css" />
-	<link rel="stylesheet" type="text/css" media="all" href="http://money.futureofmusic.org/wordpress/wp-content/themes/super-skeleton/assets/javascripts/chosen/chosen.css" />
-	<link rel="stylesheet" type="text/css" media="all" href="http://money.futureofmusic.org/wordpress/wp-content/themes/super-skeleton/assets/stylesheets/styles.css" />
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 	<!-- Favicons, StyleLoader, and basic WP stuff
 	================================================== -->
