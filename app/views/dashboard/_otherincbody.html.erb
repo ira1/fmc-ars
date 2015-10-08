@@ -27,10 +27,7 @@
 			<strong><%=number_with_precision(e[1],:precision=>0, :significant=>false)%>%</strong>
 		</td>
 		<td>
-			
-			<div>
-				<% if i==0 %>… of this group earned some $ from<%else%>earned some<%end%>
-			</div>
+			<div>&hellip;of this group earned some $ from</div>
 			<strong class="special2"><%=otherIncomeLabels[e[0]]%></strong>
 		</td>
 	</tr><% end %>
