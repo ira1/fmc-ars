@@ -347,6 +347,13 @@ html body {
       @extend .left-stripe;
       background: #fff;
     }
+    .giant_stat_container {
+      @extend .flex;
+      -webkit-flex-direction: row /* works with row or column */;
+      flex-direction: row;
+      -webkit-justify-content: center;
+      justify-content: center;
+    }
     #ftclaim {
       img {
         height: 1em;
@@ -354,6 +361,8 @@ html body {
       }
       .giant_stat {
         width: 40%;
+        padding-right: .5rem;
+        padding-left: .5rem;
         p {
           text-align: center;
         }
@@ -542,6 +551,10 @@ html body {
     }
   }
 }
+.flex {
+  -webkit-flex: flex;
+  display: flex;
+}
 .none {
   display: none;
 }
@@ -700,14 +713,6 @@ html body {
       } 
       .has_highchart {
         width: 98%;
-      }
-      .flex {
-        -webkit-flex: flex;
-        display: flex;
-        -webkit-flex-direction: row /* works with row or column */;
-        flex-direction: row;
-       -webkit-justify-content: center;
-       justify-content: center;
       }
     }
     #section-sub-footer {

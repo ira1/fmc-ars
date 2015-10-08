@@ -1,14 +1,14 @@
 <h2 class=""><%= image_tag("person_icon.png")%> <span class="special2">How Many Musicians This Group?</span></h2>
 <div class="current_n_size">
   <p>
-    <span class="total_n_count_from_ajax"><%= number_with_delimiter(@NCount, :delimiter => ',') %></span>, which is <span class="total_pct_from_ajax"><%= @NCount_pct %></span>% of our 4,453 respondents <span class="low_n_size_message"></span>:
+    <span class="total_n_count_from_ajax"><%= number_with_delimiter(@NCount, :delimiter => ',') %></span>, or <span class="total_pct_from_ajax"><%= @NCount_pct %></span>% of our 4,453 respondents <span class="low_n_size_message"></span>:
   </p>
   <div class="progressbar">
     <div id="sample_size_progressbar" style="width:<%= @NCount_pct %>%"></div>
   </div>
   <p>Within this group of <span class="total_n_count_from_ajax"><%= number_with_delimiter(@NCount, :delimiter => ',') %></span>:</p>
 </div> 
-<div class="flex">
+<div class="giant_stat_container">
   <div class="giant_stat">
     <p><strong><span id="aboutpctexperiencedtxt"><%= @AboutPctExperienced %>%</span></strong> 
     have 16+ years experience</p>
