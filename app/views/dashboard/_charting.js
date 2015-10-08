@@ -277,19 +277,20 @@ $('#anninctrend').highcharts({
 	    }
     },
     series: [{
-			name: 'Non-music income',
-			color: '#CCCCCC',
-			borderWidth: 0,
-			type: 'column',
-      data: <%= @nonmusic_inc_by_age.as_json %>
-    },{
 			name: 'Income direct from music',
 			color: '#00748F',
 			borderWidth: 0,
 			type: 'column',
 			data: <%= @music_inc_by_age.as_json %>
+    },{
+			name: 'Non-music income',
+			color: '#CCCCCC',
+			borderWidth: 0,
+			type: 'column',
+      data: <%= @nonmusic_inc_by_age.as_json %>
     }],
 		yAxis: {
+      reversedStacks: false,
       maxPadding: .3,
   		offset: 10,
 			title: {
