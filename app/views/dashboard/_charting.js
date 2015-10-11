@@ -519,6 +519,7 @@ $('#anninctrend').highcharts({
 $('form.f_facets input').change(function(){
   gray_out_facets();
   count_number_of_roles();
+  count_number_of_genders();
   $('form.f_facets').submit();
 });
 //Mobile nav toggle to hide and show filters on mobile
@@ -578,8 +579,19 @@ function count_number_of_roles() {
     showRegularMatchOptionIfHidden();
   }
 }
+
+function count_number_of_genders() {
+  //in case it was hidden
+  var cnt=$('#gender_facet input:checked').length;
+  //if no boxes checked, check them all:
+  if (cnt==0) {
+    $('#gender_facet input[type=checkbox]').prop('checked',true);
+    cnt=$('#gender_facet input:checked').length;
+  } 
+}
 //Run on page load:
 count_number_of_roles();
+count_number_of_genders();
  
 //tooltips
 

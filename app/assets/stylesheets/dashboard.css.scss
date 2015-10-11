@@ -99,6 +99,22 @@ html body {
   .quiet, .ncount {
     color: #666;
   }
+  .current_filter_state {
+    margin-bottom: .6rem;
+    text-align: center;
+  }
+  span.label {
+    background: #eee none repeat scroll 0 0;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    color: #666;
+    display: inline-block;
+    font-size: 0.6rem;
+    line-height: 1rem;
+    margin-bottom: 0.4rem;
+    margin-right: 0.4rem;
+    padding: 0.1rem 0.4rem;
+  }
   th.quiet {
     color: #999;
   }
@@ -126,7 +142,7 @@ html body {
     line-height: 1em;
   }
   div {
-    h3,h4,h5,h6,li,address,p,td,th,label,legend  {
+    h3,h4,h5,h6,li,address,p,td,th,label,legend,.facets_on,.current_filter_state  {
       font-size: .75em;
     }
     li,address,p,td,th,label,legend {
@@ -340,12 +356,17 @@ html body {
   }
   /*if results too low < 100, do this:*/
   #toolow_warning {
+    h2 {
+      text-align: center;
+    }
     display: none;
     text-align: center;
     font: "LatoLatinBold" !important;
     > * {
       margin-bottom: 1rem;
-      max-width: 24rem;
+      max-width: 20rem;
+      margin-right: auto;
+      margin-left: auto;
     }
     img {
       max-height: 64px;
@@ -768,6 +789,9 @@ html body {
           }
         }
       }
+    }
+    .current_filter_state {
+      display: none;
     }
     #outputs {
       .output {

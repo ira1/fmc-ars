@@ -15,11 +15,13 @@ outputheight='200px'
 </div>
 <div id="outputs" class=" columns omega<%= if @NCount<=100 then " toolow seven" else " twelve" end %>" style="position:relative;">
   <main>
+    <div class="current_filter_state"></div>
     <%# TOO LOW %>
     <div id="toolow_warning">   
       <p><%= image_tag "caution.png" %></p>
       <h2>Not enough respondents, sorry!</h2>
-      <p>There weren't enough musicians matching your filter criteria to display accurate results. Please broaden your search filters.</p>
+      <p>There weren't enough musicians matching your filter criteria to display accurate results. </p>
+      <p>Please broaden your search filters.</p>
     </div> 
   	<div id="leftoutputs" class="six columns alpha">
       <!-- About this group -->
