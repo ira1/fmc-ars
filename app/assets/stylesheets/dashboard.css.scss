@@ -160,25 +160,31 @@ html body {
     opacity: .2;
   }
   table {
-    tr th {
-      color: #666;
-      text-transform: none;
-      background: #fff;
-      border-bottom: #ccc;
-      font-family: "LatoLatinBold";
-      vertical-align: bottom;
-    }
     width: auto;
     margin: 1em 0;
     font-size: inherit;
-    td {
-      background: #fff;
-      border-top-color: #eee;
-      padding: .5em;
-      vertical-align: middle;
-    }
-    tr:hover td {
-      background: #fff;
+    tr {
+      &:hover td {
+        background: #fff;
+      }
+      th {
+        color: #666;
+        text-transform: none;
+        background: #fff;
+        border-bottom: #ccc;
+        font-family: "LatoLatinBold";
+        vertical-align: bottom;
+      }
+      td {
+        border: none;
+        background: #fff;
+        border-top: 1px solid #eee;
+        padding: .5em;
+        vertical-align: middle;
+      }
+      &:first-child td {
+        border-top: none;
+      }
     }
   }
   p {
@@ -446,6 +452,8 @@ html body {
             text-align: right;
             strong {
               color: #fff;
+              line-height: 1;
+              font-size: 1rem;
             }
           }
           &.secondary {
