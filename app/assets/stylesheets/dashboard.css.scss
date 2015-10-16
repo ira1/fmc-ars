@@ -566,7 +566,7 @@ html body {
       color: #aaa;
     }
     address {
-      color: #fff;
+      * {color: #fff;text-decoration: none;}
       margin: 2.5em auto;
       span {
         display: block;
