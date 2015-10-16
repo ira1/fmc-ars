@@ -131,8 +131,10 @@ $('#aboutthisgroup > span').html(htmlstring);
   $('#toolow_warning').show();
   $('#rightoutputs').hide();
   $('#leftoutputs').hide();
+  $('.hide_exit_filtering_affordance').addClass('toolow');
 <%else%>
   $('#toolow_warning').hide();
   $('#rightoutputs').show();
   $('#leftoutputs').show();
+  $('.hide_exit_filtering_affordance').removeClass('toolow');
 <% end %>
