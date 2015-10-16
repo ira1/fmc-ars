@@ -256,6 +256,12 @@ html body {
       padding: .5em;
     }
     form {
+      #exact_role_facet {
+        padding-left: 1em;
+        h6 {
+          color: #888;
+        }
+      }
       h6 {
         margin-bottom: 1em;
       }
