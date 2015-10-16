@@ -426,9 +426,12 @@ html body {
       @include left_stripe;
       margin-bottom: 0;
     }
-    h6.subtitle {
+    .output h6 {
       color: $orange;
       font-family: $fontsblack;
+      &.subtitle {
+        padding-bottom: 0;
+      }
     }
     .textual_output {  
       @include headerstyle;  
