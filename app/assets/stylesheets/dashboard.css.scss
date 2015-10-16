@@ -138,7 +138,6 @@ html body {
     line-height: 1.5;
     font-family: $fonts;
     color: #444;
-    text-shadow: 0 1px 0 #fff;
     margin-bottom: 0 !important;
   }
   h2,label span {
@@ -695,13 +694,14 @@ html body {
       h1 {
         font-size: 2.5rem;
         font-family: $fontslight;
-        color: $blue;
+        color: #fff;
       }
       .page-title-container {
+        background: $orange;
         @include display_flex;
         -webkit-align-items: flex-end;
         align-items:flex-end;
-        margin-bottom: .5rem;
+        padding: .8rem .8rem .8rem .5rem;
         > div:first-child {
           flex:2 0 0;
         }
@@ -729,7 +729,8 @@ html body {
             -moz-border-radius: 13px;
             background: $black;
             &.active {
-              background-color: $yellow;
+              background-color: $orange;
+              strong {color: #fff;}
             }
             a, a:visited {
               color: #eee;
@@ -747,7 +748,7 @@ html body {
       }
       .social_links {
         .fa {
-          color: #ddd;
+          color: #fff;
         }
         padding: 0;
         img {
@@ -778,14 +779,14 @@ html body {
           }
         }
         > h5 {
-          background: #eee;
-          color:#999;
+          background: $orange;
+          color:#fff;
           text-align: left; 
           padding: .5em 0 .5em .5em;
           display: block;
           margin-bottom: 0;
           a {
-            color: #aaa;
+            color: #eee;
             text-decoration: none;
             margin-left: 1em;
             font-weight: normal !important;
@@ -823,6 +824,12 @@ html body {
     }
     .current_filter_state {
       display: none;
+    }
+    #toolow_warning {
+      padding-top: 1.5rem;
+    }
+    #leftoutputs, #rightoutputs {
+      padding-top:1.5rem;
     }
     #outputs {
       .output {
