@@ -91,7 +91,7 @@
   		    Performer<br />
 		      <span class="ncount">(<%=@Performers%>)</span>
 		    </span>
-  		<%=makeHelpTip("Performs their music or other composers' music in a live setting. Includes concerts/gigs, broadcast TV or radio, orchestra or chamber music performance. Includes DJs and live remixers.")%>
+  		<%=makeHelpTip("Performs their music or other composers' music in a live setting.")%>
   		</div>
     </label>
     <label class="checkbox"> 
@@ -150,7 +150,7 @@
   		<%= hidden_field_tag :ft, "false", :id => "ft1" %>
   		<div class="has_tip">
     		<span><%= check_box_tag(:ft, "true", "true" == params[:ft]) %> Limit to full-time musicians only: those with 75%+ of their income coming from music, and spending a min. of 36 hrs/wk on music</span>
-    		<%=makeHelpTip("FYI: Only 33% (1,736) in the survey met these requirements for full-time status.")%> 
+    		<%=makeHelpTip("Note: 33% (1,736) of survey respondents met the criteria for full-time status.")%> 
   		</div>
 		</label>
 	</div>
@@ -170,7 +170,7 @@
 		</label>
 	</div>
 	<div id="emi_facet">
-		<h6><div class="has_tip"><span>Gross Estimated Music Income</span><%=makeHelpTip("EMI, or Estimated Music Income = (personal gross income) x (percent of income derived from music). See [definitions page] for details.")%></div></h6>
+		<h6><div class="has_tip"><span>Gross Estimated Music Income</span><%=makeHelpTip("EMI, or Estimated Music Income = (personal gross income) x (percent of income derived from music). See definitions page for details.")%></div></h6>
     <label class="all">		
       <%= radio_button_tag("emigroup", "ALL", true) %> All income levels
     </label>
