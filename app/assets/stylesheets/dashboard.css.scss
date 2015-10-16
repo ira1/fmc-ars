@@ -57,7 +57,7 @@ $fontslight: "LatoLatinLight", "Helvetica","Arial",sans-serif !important;
   display: flex;
 }
 @mixin left_stripe {
-  border-left: 1px solid #00748F;
+  border-left: 1px solid #ddd;
   padding-left: .5em;
 }
 @mixin headerstyle {
@@ -741,7 +741,7 @@ html body {
             }
             text-transform:uppercase;
             text-align: center;
-            padding: .4em 1.2em; 
+            padding: .4em 1em; 
             margin-bottom: 0;
             border-radius: 13px;
             -moz-border-radius: 13px;
@@ -780,7 +780,6 @@ html body {
     }
     #facets {
       background:#f6f6f6;
-      border-right: 1px solid #e4e4e4;
       display: block;
       margin-top: 0;
       .has_tip {            
