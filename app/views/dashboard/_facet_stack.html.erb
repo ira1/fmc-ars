@@ -43,7 +43,12 @@
 		</label>
 	</div>
   <div id="role_facet">
-		<h6>Musician Roles <%=makeHelpTip("Musicians were asked to check all roles they spent time on (regardless of income). Most musicians selected several roles. ")%></h6>
+		<h6>
+  		<span class="has_tip">
+    		<span>Musician Roles</span>
+    		<%=makeHelpTip("Musicians were asked to check all roles they spent time on (regardless of income). Most musicians selected several roles. ")%>
+  		</span>
+    </h6>
     <%# <%= check_box_tag("role", "ALL", (@role == "ALL" )) All types %>
 	  <label class="checkbox">
 	  	<%= hidden_field_tag :role_composer, "false", :id => "dummy1" %>

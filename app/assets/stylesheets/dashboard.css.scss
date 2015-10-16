@@ -9,6 +9,8 @@ $red: #c81c1f;
 $green: #649E1E;
 $black: #222;
 $fonts: "LatoLatin", "Helvetica","Arial",sans-serif !important;
+$fontsbold: "LatoLatinBold", "Helvetica","Arial",sans-serif !important;
+$fontsblack: "LatoLatinBlack", "Helvetica","Arial",sans-serif !important;
 @font-face {
     font-family: 'LatoLatin';
     src:font-url('LatoLatin/LatoLatin-Regular.eot'); /* IE9 Compat Modes */
@@ -30,37 +32,6 @@ $fonts: "LatoLatin", "Helvetica","Arial",sans-serif !important;
     text-rendering: optimizeLegibility;
 }
 @font-face {
-    font-family: 'LatoLatinBoldItalic';
-    src:font-url('LatoLatin/LatoLatin-BoldItalic.eot'); /* IE9 Compat Modes */
-    src:font-url('LatoLatin/LatoLatin-BoldItalic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-         font-url('LatoLatin/LatoLatin-BoldItalic.woff') format('woff'), /* Modern Browsers */
-         font-url('LatoLatin/LatoLatin-BoldItalic.ttf') format('truetype'); 
-    font-style: italic;
-    font-weight: bold;
-    text-rendering: optimizeLegibility;
-}
-
-@font-face {
-    font-family: 'LatoLatinMed';
-    src:font-url('LatoLatin/LatoLatinMed-Regular.eot'); /* IE9 Compat Modes */
-    src:font-url('LatoLatin/LatoLatinMed-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-         font-url('LatoLatin/LatoLatinMed-Regular.woff') format('woff'), /* Modern Browsers */
-         font-url('LatoLatin/LatoLatinMed-Regular.ttf') format('truetype'); 
-    font-style: normal;
-    font-weight: normal;
-    text-rendering: optimizeLegibility;
-}
-@font-face {
-      font-family: 'LatoLatinBold';
-    src:font-url('LatoLatin/LatoLatin-Bold.eot'); /* IE9 Compat Modes */
-    src:font-url('LatoLatin/LatoLatin-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-         font-url('LatoLatin/LatoLatin-Bold.woff') format('woff'), /* Modern Browsers */
-         font-url('LatoLatin/LatoLatin-Bold.ttf') format('truetype'); 
-    font-style: normal;
-    font-weight: normal;
-    text-rendering: optimizeLegibility;
-}
-@font-face {
       font-family: 'LatoLatinBlack';
     src:font-url('LatoLatin/LatoLatinBlack-Regular.eot'); /* IE9 Compat Modes */
     src:font-url('LatoLatin/LatoLatinBlack-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
@@ -69,6 +40,27 @@ $fonts: "LatoLatin", "Helvetica","Arial",sans-serif !important;
     font-style: normal;
     font-weight: normal;
     text-rendering: optimizeLegibility;
+}
+@mixin display_flex {
+  -webkit-flex: flex;
+  display: flex;
+}
+@mixin left_stripe {
+  border-left: 1px solid #00748F;
+  padding-left: .5em;
+}
+@mixin headerstyle {
+  background: #f1f1f1;
+  padding: .5em;
+}
+@mixin facets_on {
+  background: $yellow;
+  text-decoration: none;
+  color: #000;
+  text-align: center;
+  display: block;
+  padding: .5em;
+  margin-bottom: 1em;
 }
 html body {
   font-family: $fonts;
@@ -85,6 +77,9 @@ html body {
       max-height: 70px;
       max-width:940px;
     }
+  }
+  .fa-exclamation-triangle {
+    color: $red;
   }
   .increased {
     color:  $green;
@@ -115,19 +110,22 @@ html body {
     margin-right: 0.4rem;
     padding: 0.1rem 0.4rem;
   }
+  .tip .fa {
+    color: $yellow;
+  }
   th.quiet {
     color: #999;
   }
   h2,h3,h4,h5,h6,strong {
-    font-family: 'LatoLatinBold';
+    font-family: $fontsbold;
   }
   svg,h1 { 
     font-family: $fonts;
   }
   h1 {
     font-size: 2.5em;
-    margin-bottom: 2em;
     color: $blue;
+    margin-bottom: 0 !important;
   }
   h2,label span {
     font-size: 1em;
@@ -172,7 +170,7 @@ html body {
         text-transform: none;
         background: #fff;
         border-bottom: #ccc;
-        font-family: "LatoLatinBold";
+        font-family: $fontsbold;
         vertical-align: bottom;
       }
       td {
@@ -205,8 +203,15 @@ html body {
     nav {
       display: none;
     }
-    .social_links   {      
-      display: none;
+    .social_links {
+      padding: .8rem 0;
+      text-align: center;
+      .fa {
+        color: #ddd;
+      }
+      a:first-child span {
+        margin-right: .8rem;
+      }
     }
     h1 {
       text-align: center;
@@ -215,24 +220,13 @@ html body {
         font-weight: normal;
       }
     }
-    h6 {
-      color: #666;
-      font-family: "LatoLatin";
-      text-align: center;
-      a {
-        color: inherit;
-      }
-      a:hover {
-        background: none;
-      }
-    }
   }     
   #facets {
     display: none;
     margin-top: 4em;
     h6 {
       color: $orange;
-      font-family: "LatoLatinBlack";
+      font-family: $fontsblack;
     }
     .has_disabled_input, 
     .has_disabled_input * {
@@ -270,7 +264,7 @@ html body {
       input[type=submit] {
         padding: .5em 1em !important;
         font: inherit;
-        font-family: "LatoLatinBlack";
+        font-family: $fontsblack;
         font-size: inherit;
       }
       label {
@@ -339,10 +333,10 @@ html body {
       margin-top: 0;
       a {
         text-decoration: none;
+        margin-right: 1rem;
       }
-      img {
-        position: relative;
-        top:.5em;
+      .fa {
+        color: $purple;
       }
     }
     .current_n_size {
@@ -352,22 +346,15 @@ html body {
       padding: .5em;
     }  
   }
-  .left-stripe {
-    border-left: 1px solid #00748F;
-    padding-left: .5em;
-  }
-  .headerstyle {
-      background: #f1f1f1;
-      padding: .5em;
-  }
   /*if results too low < 100, do this:*/
   #toolow_warning {
     h2 {
       text-align: center;
+      color: $red;
     }
     display: none;
     text-align: center;
-    font: "LatoLatinBold" !important;
+    font-family: $fontsbold;
     > * {
       margin-bottom: 1rem;
       max-width: 20rem;
@@ -382,18 +369,16 @@ html body {
   #outputs {
     .has_highchart {
       width: 98%;
-      @extend .left-stripe;
       background: #fff;
     }
     .giant_stat_container {
-      @extend .flex;
+     @include display_flex;
       -webkit-flex-direction: row /* works with row or column */;
       flex-direction: row;
       -webkit-justify-content: center;
       justify-content: center;
     }
     #ftclaim {
-      h2 {text-align: center;}
       .giant_stat {
         width: 40%;
         padding-right: .5rem;
@@ -415,13 +400,13 @@ html body {
       }
     }
     .subtitle {
-      @extend .headerstyle;
-      @extend .left-stripe;
+      @include headerstyle;
+      @include left_stripe;
       margin-bottom: 0;
     }
     .textual_output {  
-      @extend .headerstyle;  
-      @extend .left-stripe;
+      @include headerstyle;  
+      @include left_stripe;
       ul {
         margin: 0  ;
         padding: 0;
@@ -438,7 +423,7 @@ html body {
       text-align: left;
     }
     .output:not(.textual_output) h2 {
-        @extend .left-stripe;
+        @include left_stripe;
         margin-bottom: 0;
     }
     .output {
@@ -492,7 +477,8 @@ html body {
         }
       }
       h2 {
-        @extend .headerstyle;  
+        @include headerstyle; 
+        padding-left: 0; 
         line-height: 1.5em !important;
       }
       > p:last-child {
@@ -513,7 +499,7 @@ html body {
     } 
   }
   .has_tip {
-    @extend .flex;
+   @include display_flex;
    -webkit-align-items: center;
    align-items: center;
    span:first-child {
@@ -573,6 +559,7 @@ html body {
     }    
     p.made_possible {
       color: $yellow; 
+      font-size: .65rem;
     }
     div {
       text-align: center;
@@ -592,6 +579,10 @@ html body {
       float: none;
       text-align: center;
       margin: 0 0 2em 0 !important;
+      .fa {
+        color: #eee;
+        font-size: 2rem;
+      }
     }
   }
   #page div.container {
@@ -628,25 +619,15 @@ html body {
     }
   }
 }
-.flex {
-  -webkit-flex: flex;
-  display: flex;
-}
 .none {
   display: none;
 }
 #mobile_menu_toggle {
   .facets_on {
-    background: $yellow;
-    text-decoration: none;
-    color: #000;
-    text-align: center;
-    display: block;
-    padding: .5em;
-    margin-bottom: 1em;
+    @include facets_on;
   }
   a.facets_off {
-    @extend .facets_on;
+    @include facets_on;
     padding: .5em 1em;
     display: inline-block;
     margin-right: 1em;
@@ -690,44 +671,56 @@ html body {
       h6,h1 {
         text-align: left;
       }
+      .page-title-container {
+        @include display_flex;
+        -webkit-align-items: flex-end;
+        align-items:flex-end;
+        margin-bottom: .5rem;
+        > div:first-child {
+          flex:2 0 0;
+        }
+        
+      }
       nav {
         display: block;
-        background: #fff;
-        margin-bottom: 1em;
-        border: 1px solid #eee;
+        margin-bottom: 2rem;
+        margin-top: 2rem;
         border-top: none;
         ul {
           text-align: center;
-          margin: 0 auto;
-        }        
-        li.active {      
-          border-right: 1px solid #eee;
-          border-left: 1px solid #eee;    
-        }
-
-        li {
-          display: inline-block;
-          font-weight: bold;
-          font: "LatoLatinBold";
-          text-align: center;
-          margin-right: 1em;
-          padding: 1em 1em; 
-          margin-bottom: 0;
-          a, a:visited {
-            color: #333;
-            font-size: 1em;
-            text-decoration: none;
-          line-height: 300%;
-          }
-          strong,
-          a:hover {
-            color: $purple;
+          @include display_flex;
+          -webkit-justify-content: center;
+          justify-content: center;
+          li {
+            &:not(:last-child) {
+              margin-right: 1em;
+            }
+            text-transform:uppercase;
+            text-align: center;
+            padding: .4em 1.2em; 
+            margin-bottom: 0;
+            border-radius: 13px;
+            -moz-border-radius: 13px;
+            background: $black;
+            &.active {
+              background-color: $yellow;
+            }
+            a, a:visited {
+              color: #eee;
+              font-size: 1em;
+              text-decoration: none;
+            }
+            &:not(.active):hover {
+              background-color: #eee;
+              a {
+                color: $purple;
+              }
+            }
           }
         }
       }
       .social_links {
-        float: right;
-        margin-top: -32px;
+        padding: 0;
         img {
           min-width: intrinsic;
           min-height: intrinsic;
@@ -763,7 +756,8 @@ html body {
           display: block;
           margin-bottom: 0;
           a {
-            color: inherit;
+            color: #aaa;
+            text-decoration: none;
             margin-left: 1em;
             font-weight: normal !important;
             float: right;
@@ -806,7 +800,7 @@ html body {
         margin-bottom: 2em;
       }
       .highcharts-container {        
-        @extend .left-stripe;
+        @include left_stripe;
       } 
       .has_highchart {
         width: 98%;
@@ -830,7 +824,10 @@ html body {
       ul.social {
         padding-top: 1em;
         li {
-          padding: 0 1em 0 0;
+          padding: 0 0 0 0;
+          &:not(:last-child) {
+            margin-right: 1rem;
+          }
         }
       }
       div {

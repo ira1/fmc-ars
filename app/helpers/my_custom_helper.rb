@@ -20,7 +20,7 @@ module MyCustomHelper
   end
   
   def makeHelpTip(str)
-    data="<abbr class='tip' title='#{str}'>#{image_tag "help_icon.png" }</abbr>"
+    data="<abbr class='tip' title='#{str}'><span class='fa fa-question-circle'></span></abbr>"
     data=data.html_safe
   end
   
