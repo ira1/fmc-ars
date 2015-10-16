@@ -657,6 +657,9 @@ html body {
     display: none;
   } 
   .hide_exit_filtering_affordance {
+    .fa-exclamation-triangle {
+      display: none;
+    }
     padding-top:.5em;
     padding-left: .5em;
     text-align: left;
@@ -670,6 +673,21 @@ html body {
     a:not(.facets_off),
     > span {
       font-size: .75em;
+    }
+    &.toolow {
+      .ncount {
+        color: $red;
+      }
+      a.facets_off {
+        background-color: $red;
+      }
+      .fa-exclamation-triangle {
+        display: inherit;
+        color: #fff;
+      }
+      .fa-caret-left {
+        display: none;
+      }
     }
   }
 }
