@@ -21,7 +21,7 @@ $ (function () {
       legend: {
           itemStyle: {
               fontWeight: 'normal',
-              fontSize: '.917em'
+              fontSize: '.75rem'
           }
       },
       lang: {

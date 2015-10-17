@@ -65,13 +65,20 @@ $fontslight: "LatoLatinLight", "Helvetica","Arial",sans-serif !important;
   padding: .5em;
 }
 @mixin facets_on {
-  background: $yellow;
+  background: $orange;
   text-decoration: none;
-  color: #000;
+  color: #fff;
   text-align: center;
-  display: block;
-  padding: .5em;
+  padding: .8rem;
   margin-bottom: 1em;
+  @include display_flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+   -webkit-align-items: center;
+   align-items: center;
+   .fa {
+     margin-right: .5rem;
+   }
 }
 html body {
   font-family: $fonts;
@@ -115,14 +122,17 @@ html body {
     -moz-border-radius: 3px;
     color: #666;
     display: inline-block;
-    font-size: 0.6rem;
     line-height: 1rem;
     margin-bottom: 0.4rem;
     margin-right: 0.4rem;
-    padding: 0.1rem 0.4rem;
+    padding: 0.4rem 0.4rem;
   }
   .tip .fa {
-    color: $yellow;
+    //help icon color
+    color: #ddd;
+  }
+  .output .tip .fa {
+    color: #ccc;
   }
   th.quiet {
     color: #999;
@@ -134,10 +144,10 @@ html body {
     font-family: $fonts;
   }
   h1 {
-    font-size: 2rem;
-    line-height: 1.5;
-    font-family: $fonts;
-    color: #444;
+    font-size: 2.5rem;
+    line-height: 1.25 !important;
+    font-family: $fontslight;
+    color: $orange;
     margin-bottom: 0 !important;
   }
   h2,label span {
@@ -153,8 +163,8 @@ html body {
     line-height: 1em;
   }
   div {
-    h3,h4,h5,h6,li,address,p,td,th,label,legend,.facets_on,.current_filter_state  {
-      font-size: .75em;
+    h3,h4,h5,h6,li,address,p,td,th,label,legend,.current_filter_state, .facets_on, span.label  {
+      font-size: 1rem;
     }
     li,address,p,td,th,label,legend {
       line-height: 150%;
@@ -165,10 +175,13 @@ html body {
     margin-bottom: .35em;
     padding: 0;
   }
-  #page .container abbr img {
-    max-height: none;
-    max-width: none;
-    opacity: .2;
+  #page div.container {
+    width: 96% !important;
+    padding-right: 2%;
+    padding-left: 2%;
+    abbr .fa {
+      font-size: 2rem;
+    }
   }
   table {
     width: auto;
@@ -220,13 +233,14 @@ html body {
       padding: .8rem 0;
       text-align: center;
       .fa {
-        color: $yellow;
+        font-size: 2.4rem;
+        color: #ccc;
         &:hover {
           color: $purple;
         }
       }
       a:first-child span {
-        margin-right: .8rem;
+        margin-right: 1.2rem;
       }
     }
     h1 {
@@ -383,10 +397,6 @@ html body {
       margin-right: auto;
       margin-left: auto;
     }
-    img {
-      max-height: 64px;
-      max-width: 64px;
-    }
   }
   #outputs {
     .has_highchart {
@@ -405,6 +415,9 @@ html body {
         width: 40%;
         padding-right: .5rem;
         padding-left: .5rem;
+        .tip {
+          display: block;
+        }
         p {
           text-align: center;
         }
@@ -615,14 +628,23 @@ html body {
     }
   }
   #page div.container {
+    //main layout
+    .four.columns,
+    .sixteen.columns,
+    .twelve.columns,
+    .six.columns {
+      width: 100%;
+    }
+    padding: 0;
+    width: 960px; 
     #outputs, #facets { 
       span.tooltip {
         position:absolute;
         background-color:#fafafa;
-        border: 1px solid $blue;
+        border: 1px solid #ccc;
         border-radius: 3px;
         font-size: .75rem !important; 
-        line-height: 1.2rem !important;
+        line-height: 1.4 !important;
         font-weight: normal !important;
         color: $black; 
         font-family: "LatoLatin";
@@ -657,10 +679,14 @@ html body {
   }
   a.facets_off {
     @include facets_on;
-    padding: .5em 1em;
+    padding: .75em 1em;
     display: inline-block;
     margin-right: 1em;
     margin-bottom: .5em;
+    .fa-chevron-left {
+      position: relative;
+      left: .15rem;
+    }
   }
   a.hide_filtering_affordance {
     display: none;
@@ -705,10 +731,33 @@ html body {
     #mobile_menu_toggle a.facets_on {
       display: none;
     }
-    #page .container abbr img {
-      width: 16px;
-      height: 15px;
-      opacity: 1;
+    div {
+      h3,h4,h5,h6,li,address,p,td,th,label,legend,.current_filter_state, .facets_on, span.label  {
+        font-size: .75rem;
+      }
+    }
+    #page div.container {
+      //main layout
+      .sixteen.columns { 
+        width: 940px;
+      }
+      .twelve.columns { 
+        width: 700px;
+      }
+      .six.columns {
+        width: 300px;
+      }
+      .four.columns {
+        width: 220px;
+      }
+      padding: 0;
+      width: 960px;  
+      #outputs, #facets {
+        span.tooltip { border-color: $blue; }
+      }
+      abbr .fa {
+        font-size: 1rem;
+      }
     }
     #masthead {
       margin-bottom: 0;
@@ -755,13 +804,13 @@ html body {
             border-radius: 13px;
             -moz-border-radius: 13px;
             background: $black;
+            font-size: .6rem;
             &.active {
               background-color: $orange;
               strong {color: #fff;}
             }
             a, a:visited {
               color: #eee;
-              font-size: 1em;
               text-decoration: none;
             }
             &:not(.active):hover {
@@ -778,10 +827,6 @@ html body {
           color: #fff;
         }
         padding: 0;
-        img {
-          min-width: intrinsic;
-          min-height: intrinsic;
-        }
       }
     }
     .fixed_n_count  {
