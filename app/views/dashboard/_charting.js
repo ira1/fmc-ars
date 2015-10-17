@@ -707,7 +707,7 @@ $('abbr').mouseover(function() {
 	// first remove all existing abbreviation tooltips
 	$('abbr').next('.tooltip').remove();
 	// create the tooltip
-	$(this).after('<span class="tooltip">' + $(this).data('title') + '</span>');
+	$(this).after('<span class="tooltip"><span><span>' + $(this).data('title') + '</span><span class="fa fa-close fa-2x"></span></span></span>');
 
 	// position the tooltip 4 pixels above and 4 pixels to the left of the abbreviation
 	if ($("a.facets_on").is(':visible') || $('.hide_exit_filtering_affordance').is(':visible')) {
