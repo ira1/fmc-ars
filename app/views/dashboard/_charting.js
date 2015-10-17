@@ -594,7 +594,14 @@ function setLabels() {
   $('.current_filter_state').html(genre_html + roles_html + role_matching_html + ft_html + careerexp_html + emigroup_html + trained_html + genders_html);
   $('title').text(title_text);
 }
+//end set labels
 
+function setScrollPositionAfterSubmit() { 
+    //the mobile facet menu and back button is visible, therefore return user to top of screen:
+    $('body').animate({
+        scrollTop: ($("#mobile_menu_toggle").offset().top - 5)
+    }, 250);  
+}
 // Automatic form submission
 $('form.f_facets input').change(function(){
   gray_out_facets();
@@ -618,6 +625,7 @@ $("#mobile_menu_toggle a.facets_off").on("click",function(e) {
   $("#outputs, .about_survey, #masthead, header, footer, .reset_link, .reset_link, #facets form > h5").show()
   $("a.facets_on").removeClass('hide_filtering_affordance');
   $(".hide_exit_filtering_affordance").addClass('none');
+  setScrollPositionAfterSubmit();
 });
 //slightly gray out facets values not currently selected
 function gray_out_facets() {
