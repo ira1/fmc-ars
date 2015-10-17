@@ -675,6 +675,9 @@ html body {
           top: 0;
           font-size: 1rem !important;
           line-height: 1.4rem;
+          -webkit-box-shadow: 4px 4px 23px 0px rgba(148,148,148,0.9);
+          -moz-box-shadow: 4px 4px 23px 0px rgba(148,148,148,0.9);
+          box-shadow: 4px 4px 23px 0px rgba(148,148,148,0.9);
         }
       }
     }
