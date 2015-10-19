@@ -130,7 +130,7 @@ $('#annincbycat').highcharts({
     },
     subtitle: null,
     xAxis: {
-      categories: ['Live performance', 'Teaching', 'Salaried orch. player', 'Session work', 'Compositions', 'Sound recordings', 'Merch', 'Other']
+      categories: ['Live performance', 'Teaching', 'Salaried player', 'Session work', 'Compositions', 'Sound recordings', 'Merch', 'Other']
     },
     yAxis: {
       maxPadding: .1,
