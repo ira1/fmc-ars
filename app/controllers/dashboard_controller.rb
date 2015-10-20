@@ -276,8 +276,8 @@ class DashboardController < ApplicationController
 #
 
       #AppendClauseOr(roleclause, "(role_composer is null and role_recording is null and role_salaried is null and role_performer is null and role_session is null and role_teacher is null)")
-      @exact = @sample.where(6==checkedroles ? "" : exactclause)
-      @loose = @sample.where(6==checkedroles ? "" : looseclause)
+      @exact = @sample.where( exactclause)
+      @loose = @sample.where( looseclause)
     if 6>checkedroles then 
       @sample = @sample.where(roles_exact ? exactclause : looseclause)
       @sample_antigenre = @sample_antigenre.where( roles_exact ? exactclause : looseclause ) if @genre_income_on
@@ -294,8 +294,8 @@ class DashboardController < ApplicationController
     logger.info("counting records now")
     
     @NCount = @sample.count
-    @loose_count = @loose.count
-    @exact_count = @exact.count
+    @loose_count = @loose.count.to_i
+    @exact_count = @exact.count.to_i
     @NCount_pct = (100*@NCount/4453).to_i
     logger.info("done counting records now")
     

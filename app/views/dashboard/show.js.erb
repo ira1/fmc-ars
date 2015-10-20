@@ -22,6 +22,8 @@ SampleSizeMode = function (ncount, sample_pct) {
 
 // % of sample output/warning of low sample size
 // TODO maybe create a utility method that returns the desired htmlstring and mode (ok, warn, alert) based on sample_ncount
+$('.loose_count_from_ajax').html("<%= number_with_delimiter(@loose_count, :delimiter => ',') %>");
+$('.exact_count_from_ajax').html("<%= number_with_delimiter(@exact_count, :delimiter => ',') %>");
 $('.total_n_count_from_ajax').html("<%= number_with_delimiter(@NCount, :delimiter => ',') %>");
 $('.total_pct_from_ajax').html("<%= @NCount_pct %>");
 
