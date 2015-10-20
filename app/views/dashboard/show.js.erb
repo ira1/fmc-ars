@@ -11,7 +11,7 @@ SampleSizeMode = function (ncount, sample_pct) {
   mode = 'ok';
 	if (ncount <401 && ncount>100 ) {
     mode = 'warn';
-		htmlstring='<strong>'+htmlstring+' and a statistically small sample size from which to draw conclusions: </strong>';
+		htmlstring='<strong>'+htmlstring+'and is a statistically small sample size from which to draw conclusions: </strong>';
 	} else if (ncount<101) {
 		htmlstring='Forget about it! ';
     mode = 'alert';
@@ -80,7 +80,7 @@ $('.total_n_count_from_ajax').html("<%= number_with_delimiter(@NCount, :delimite
 $('.total_pct_from_ajax').html("<%= @NCount_pct == 0 ? '<1' : @NCount_pct   %>");
 $('#sample_size_progressbar').animate({width: "<%= @NCount_pct %>%"});
 <% if @NCount <401 && @NCount > 100 then  %>
-  $('.low_n_size_message').html("and a statistically small sample size from which to draw conclusions");
+  $('.low_n_size_message').html("and is a statistically small sample size from which to draw conclusions");
   $('.current_n_size').addClass('very_low');
 <% else %>
   $('.current_n_size').removeClass('very_low');
