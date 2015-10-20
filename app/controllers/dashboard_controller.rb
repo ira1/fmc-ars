@@ -38,7 +38,7 @@ class DashboardController < ApplicationController
     #
     # TODO Test for version=1.0 & changenum
     #
-    
+    #   roles_exact=true or false
     
     ################### FILTERS ###################
     
@@ -66,6 +66,17 @@ class DashboardController < ApplicationController
       end    
     end
     
+    
+    #
+    #  Setup for role filter type
+    #
+    if params.has_key?(:roles_exact) && params[:roles_exact].downcase=="true" then
+      roles_exact=true
+    else
+      roles_exact=false
+    end
+    
+    
     #
     # Main-$ genre facet (MGenre)
     #
@@ -87,87 +98,92 @@ class DashboardController < ApplicationController
     #
     #  Process Role parameters 
     #
-    optionalclause=""
-    mandatoryclause=""
+    #optionalclause=""
+    #mandatoryclause=""
+    roleclause=""
+    checkedroles=0
     #if ("true"==params[:role_missing]) then 
     #     roleclause = "(role_composer is null AND role_recording is null AND role_salaried is null AND role_performer is null AND role_session is null)"
     #     facetroles+=1
     #end
     # if time permits, change this to ["role_composer","role..."].each iterator
     #
-    if params.has_key?(:role_composer) then
-      if "true"==params[:role_composer].downcase  then 
-        AppendClauseOr(optionalclause,"role_composer=true")
-      else
-        AppendClauseAnd(mandatoryclause,"role_composer!=true")
+      if params.has_key?(:role_composer) then
+        if "true"==params[:role_composer].downcase  then 
+          #AppendClauseOr(optionalclause,"role_composer = true")
+          true == roles_exact ? AppendClauseAnd(roleclause,"role_composer=true") : AppendClauseOr(roleclause,"role_composer=true")
+          checkedroles+=1
+        else
+          AppendClauseAnd(roleclause,"role_composer!=true") if roles_exact
+        end
       end
-    end
 
-    if params.has_key?(:role_recording) then
-      if "true"==params[:role_recording].downcase then
-        AppendClauseOr(optionalclause, "role_recording=true")
-      else
-        AppendClauseAnd(mandatoryclause,"role_recording!=true")
+      if params.has_key?(:role_recording) then
+        if "true"==params[:role_recording].downcase then
+          #AppendClauseOr(optionalclause, "role_recording=true")
+          true == roles_exact ? AppendClauseAnd(roleclause, "role_recording=true"): AppendClauseOr(roleclause, "role_recording=true")
+          checkedroles+=1
+        else
+          AppendClauseAnd(roleclause,"role_recording!=true") if roles_exact
+        end
       end
-    end
 
-    if params.has_key?(:role_salaried)
-      if "true"==params[:role_salaried].downcase  then 
-        AppendClauseOr(optionalclause, "role_salaried=true") 
-      else        
-        AppendClauseAnd(mandatoryclause, "role_salaried!=true") 
+      if params.has_key?(:role_salaried)
+        if "true"==params[:role_salaried].downcase  then 
+          #AppendClauseOr(optionalclause, "role_salaried=true") 
+          true == roles_exact ? AppendClauseAnd(roleclause, "role_salaried=true") : AppendClauseOr(roleclause, "role_salaried=true") 
+          checkedroles+=1
+        else        
+          AppendClauseAnd(roleclause, "role_salaried!=true") if roles_exact
+        end
       end
-    end
 
-    if params.has_key?(:role_performer)
-      if "true"==params[:role_performer].downcase  then 
-        AppendClauseOr(optionalclause, "role_performer=true")
-      else        
-        AppendClauseAnd(mandatoryclause, "role_performer!=true")
+      if params.has_key?(:role_performer)
+        if "true"==params[:role_performer].downcase  then 
+          true == roles_exact ? AppendClauseAnd(roleclause, "role_performer=true") : AppendClauseOr(roleclause, "role_performer=true")
+          checkedroles+=1
+        else        
+          AppendClauseAnd(roleclause, "role_performer!=true") if roles_exact
+        end
       end
-    end
 
-    if params.has_key?(:role_session)
-      if "true"==params[:role_session].downcase then 
-        AppendClauseOr(optionalclause, "role_session=true")
-      else
-        AppendClauseAnd(mandatoryclause, "role_session!=true")
+      if params.has_key?(:role_session)
+        if "true"==params[:role_session].downcase then 
+          true == roles_exact ? AppendClauseAnd(roleclause, "role_session=true") : AppendClauseOr(roleclause, "role_session=true")
+          checkedroles+=1
+        else
+          AppendClauseAnd(roleclause, "role_session!=true") if roles_exact
+        end
       end
-    end
 
-    if params.has_key?(:role_teacher)
-      if "true"==params[:role_teacher].downcase then 
-        AppendClauseOr(optionalclause, "role_teacher=true")
-      else        
-        AppendClauseAnd(mandatoryclause, "role_teacher!=true")
-      end
-    end      
+      if params.has_key?(:role_teacher)
+        if "true"==params[:role_teacher].downcase then 
+          true == roles_exact ? AppendClauseAnd(roleclause, "role_teacher=true") : AppendClauseOr(roleclause, "role_teacher=true")
+          checkedroles+=1
+        else        
+          AppendClauseAnd(roleclause, "role_teacher!=true") if roles_exact
+        end
+      end      
 
-    if params.has_key?(:role_other) && "true"==params[:role_other] then
-      AppendClauseOr(roleclause, "role_other=true")
-    else
-      @sample=@sample.where("role_other=false")
-      @sample_antigenre = @sample_antigenre.where("role_other=false") if @genre_income_on
-    end
-    
+#      if params.has_key?(:role_other) && "true"==params[:role_other] then
+#        AppendClauseOr(roleclause, "role_other=true")
+#        checkedroles+=1
+#      else
+#
+#  Always exclude the "Other" role (Admin)
+#
+        @sample=@sample.where("role_other!=true")
+        @sample_antigenre = @sample_antigenre.where("role_other!=true") if @genre_income_on
+#      end
+
 #
 # role_other
 #
-#    if 0<rolecount then 
-#      AppendClauseOr(roleclause, "(role_composer is null and role_recording is null and role_salaried is null and role_performer is null and role_session is null and role_teacher is null)")
-#    end 
-    if 0<optionalclause.length && 0<mandatoryclause.length then
-      roleclause= "("+optionalclause+")" 
-      AppendClauseAnd(roleclause,mandatoryclause)
-    else
-      if 0<optionalclause.length then
-        roleclause=optionalclause
-      else
-        roleclause=mandatoryclause
-      end
+    if 6>checkedroles then 
+      #AppendClauseOr(roleclause, "(role_composer is null and role_recording is null and role_salaried is null and role_performer is null and role_session is null and role_teacher is null)")
+      @sample = @sample.where(roleclause)
+      @sample_antigenre = @sample_antigenre.where(roleclause) if @genre_income_on
     end
-    @sample = @sample.where(roleclause)
-    @sample_antigenre = @sample_antigenre.where(roleclause) if @genre_income_on
     #
     
     # Career Level facet
