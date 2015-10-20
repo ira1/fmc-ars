@@ -28,7 +28,7 @@ h2.title span,
 ul.tabs li a.active{ 
 	background: #fdfdfd;
 	background: rgba(246,246,246,0.5) ;
-	background: url("/assets/noise-white.jpg") repeat ;
+	background: url(<%= asset_path ("noise-white.jpg") %>) repeat ;
 	position: relative;
 	z-index: 1;
 } 
@@ -37,7 +37,7 @@ body:after,
 /* h2.title span:after, */
 ul.tabs li a.active:after{  
 	content: "";
-	background: transparent url("/assets/pattern_diagonal_white.png") repeat;
+	background: transparent url(<%= asset_path ("pattern_diagonal_white.png") %>) repeat;
 	position:absolute; 
 	z-index:99; 
 	left:0; 
@@ -151,7 +151,7 @@ pre, code, address{
 pre{
 	padding: 15px;
 	line-height: 200%;
-	background: url('/assets/pattern_diagonal_white.png') scroll center bottom rgba(144, 144, 144, 0.1);
+	background: url(<%= asset_path ("pattern_diagonal_white.png")%>) scroll center bottom rgba(144, 144, 144, 0.1);
 }
 
 p.social{margin-top: 20px;text-align: center;}
@@ -201,7 +201,7 @@ table tbody tr:hover td {
 
 /* WP Required Styles */
 .wp-caption{
-	background: url("/assets/pattern_diagonal_white.png") repeat scroll center bottom rgba(0, 0, 0, 0.05);
+	background: url(<%= asset_path ("pattern_diagonal_white.png")%>) repeat scroll center bottom rgba(0, 0, 0, 0.05);
     border: 0 solid transparent;
     max-width: 100%;
     padding: 0 0 7px;
@@ -291,12 +291,12 @@ p img{margin-bottom: 0;}
 /* #TOPHAT */ 
 #section-tophat{
 	border-bottom: 2px solid #ddd;
-	background: transparent url("/assets/noise-grey.jpg") repeat;
+	background: transparent url(<%= asset_path ("noise-grey.jpg")%>) repeat;
 }
 
 #section-tophat:after, #section-footer:after{
 	content: "";
-	background: transparent url("/assets/pattern_diagonal_medium.png") repeat;
+	background: transparent url(<%= asset_path ("pattern_diagonal_medium.png") %>) repeat;
 	position:absolute; 
 	z-index:99; 
 	left:0; 
@@ -375,7 +375,7 @@ ul.social li:hover{
 
 /* #FOOTER */
 #section-footer{
-	background: transparent url("/assets/noise-grey.jpg") repeat;
+	background: transparent url(<%= asset_path ("noise-grey.jpg") %>) repeat;
 	margin-top: 40px;
 	border-top: 2px solid #ddd;
 	padding: 40px 0;
@@ -392,7 +392,7 @@ ul.social li:hover{
 	content: "";
 	z-index: -1;
 	position: absolute;
-	background: url("/assets/pattern_diagonal_dark.png") repeat transparent;
+	background: url(<%= asset_path ("pattern_diagonal_dark.png") %>) repeat transparent;
 	left: 0; top: 0; right: 0; bottom: 0;
 }
  
@@ -447,12 +447,12 @@ ul.social li:hover{
 
 /* #SUBFOOTER */
 #section-sub-footer{
-	background: url("/assets/noise-black.jpg") repeat transparent;
+	background: url(<%= asset_path ("noise-black.jpg")%>) repeat transparent;
 }
 
 #section-sub-footer:after {
 	content: "";
-	background: transparent url("/assets/pattern_diagonal_dark.png") repeat;
+	background: transparent url(<%= asset_path ("pattern_diagonal_dark.png") %>) repeat;
 	position:absolute; 
 	z-index:99; 
 	left:0; 
