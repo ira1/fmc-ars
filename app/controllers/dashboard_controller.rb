@@ -198,7 +198,7 @@ class DashboardController < ApplicationController
           AppendClauseOr(looseclause,"role_composer=true")
           checkedroles+=1
         else
-          AppendClauseAnd(exactclause,"role_composer!=true")
+          #AppendClauseAnd(exactclause,"role_composer!=true")
           # NOP ... loose does not filter on unchecked roles
         end
       end
@@ -210,7 +210,7 @@ class DashboardController < ApplicationController
           AppendClauseOr(looseclause, "role_recording=true")
           checkedroles+=1
         else
-          AppendClauseAnd(exactclause,"role_recording!=true")
+          #AppendClauseAnd(exactclause,"role_recording!=true")
           # NOP ... loose does not filter on unchecked roles
         end
       end
@@ -222,7 +222,7 @@ class DashboardController < ApplicationController
           AppendClauseOr(looseclause, "role_salaried=true") 
           checkedroles+=1
         else        
-          AppendClauseAnd(exactclause, "role_salaried!=true")
+          #AppendClauseAnd(exactclause, "role_salaried!=true")
           # NOP ... loose does not filter on unchecked roles
         end
       end
@@ -233,7 +233,7 @@ class DashboardController < ApplicationController
           AppendClauseOr(looseclause, "role_performer=true")
           checkedroles+=1
         else        
-          AppendClauseAnd(exactclause, "role_performer!=true")
+          #AppendClauseAnd(exactclause, "role_performer!=true")
           # NOP ... loose does not filter on unchecked roles
         end
       end
@@ -244,7 +244,7 @@ class DashboardController < ApplicationController
           AppendClauseOr(looseclause, "role_session=true")
           checkedroles+=1
         else
-          AppendClauseAnd(exactclause, "role_session!=true")
+          #AppendClauseAnd(exactclause, "role_session!=true")
           # NOP ... loose does not filter on unchecked roles
         end
       end
@@ -255,7 +255,7 @@ class DashboardController < ApplicationController
           AppendClauseOr(looseclause, "role_teacher=true")
           checkedroles+=1
         else        
-          AppendClauseAnd(exactclause, "role_teacher!=true")
+          #AppendClauseAnd(exactclause, "role_teacher!=true")
           # NOP ... loose does not filter on unchecked roles
         end
       end      
