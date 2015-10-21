@@ -262,6 +262,10 @@ html body {
     .unselected_filter {
       color: #444;
     }
+    label.disabled,
+    label.disabled * {
+      color: #ccc;
+    }
     p.footnote {
       color: #666;
       padding: .5em;

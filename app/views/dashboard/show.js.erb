@@ -26,26 +26,39 @@ $('.loose_count_from_ajax').html("<%= number_with_delimiter(@loose_count, :delim
 $('.exact_count_from_ajax').html("<%= number_with_delimiter(@exact_count, :delimiter => ',') %>");
 $('.total_n_count_from_ajax').html("<%= number_with_delimiter(@NCount, :delimiter => ',') %>");
 $('.total_pct_from_ajax').html("<%= @NCount_pct %>");
-
 ss = SampleSizeMode(sample_ncount,sample_pct);
 if ('warn'==ss.mode) {
 	$('#outputs').addClass("twelve");
 	$('#outputs').removeClass("toolow seven");
-	$('#sample_size_message').parent().addClass('very_low');	
-  $('#sample_size_message').html(ss.htmlstring);
 	$('#sample_size_progressbar').animate({width: "<%= @NCount_pct %>%"});
+	$('.low_n_size_message').html("and is a statistically small sample size from which to draw conclusions");
+  $('.current_n_size').addClass('very_low');
 } else if ("alert"===ss.mode) {
 	//$('#sample_size_message').parent().addClass('very_low');	
   //$('#sample_size_message').html(ss.htmlstring);	
 	$('#outputs').removeClass("twelve");
 	$('#outputs').addClass("toolow seven");
+	$('.current_n_size').removeClass('very_low');
+  $('.low_n_size_message').html("");
 } else {
 	$('#outputs').addClass("twelve");
 	$('#outputs').removeClass("toolow seven");
-  $('#sample_size_message').parent().removeClass('very_low');
-  $('#sample_size_message').html(ss.htmlstring);
 	$('#sample_size_progressbar').animate({width: "<%= @NCount_pct %>%"});
-}
+	$('.current_n_size').removeClass('very_low');
+  $('.low_n_size_message').html("");
+} 
+
+//HANDLE EXACT COUNT
+//reset this to be displayed:
+$('#roles_exact_true').closest('label').slideDown(100,function() {
+  <% if @exact_count < 101 %>
+  $('#roles_exact_true').closest('label').addClass('disabled');
+  $('#roles_exact_true').attr('disabled',true);
+  <%else%>
+  $('#roles_exact_true').closest('label').removeClass('disabled');
+  $('#roles_exact_true').attr('disabled',false);
+  <%end%>
+});
 
 
 // Show & Hide GenreIncome Output based on controller's visibility indicator
@@ -79,13 +92,6 @@ if ("true"==="<%=@genre_bar_on.to_s-%>" && "alert"!=ss.mode) {
 $('.total_n_count_from_ajax').html("<%= number_with_delimiter(@NCount, :delimiter => ',') %>");
 $('.total_pct_from_ajax').html("<%= @NCount_pct == 0 ? '<1' : @NCount_pct   %>");
 $('#sample_size_progressbar').animate({width: "<%= @NCount_pct %>%"});
-<% if @NCount <401 && @NCount > 100 then  %>
-  $('.low_n_size_message').html("and is a statistically small sample size from which to draw conclusions");
-  $('.current_n_size').addClass('very_low');
-<% else %>
-  $('.current_n_size').removeClass('very_low');
-  $('.low_n_size_message').html("");
-<%end%>
 // % of this group have 16+ years of experience
 $('#aboutpctexperiencedtxt').html("<%= @AboutPctExperienced  == 0 ? '<1' : @AboutPctExperienced %>%");
 $('#pctfulltime_progressbar').animate({width: "<%= @pctfulltime %>%"});

@@ -634,38 +634,12 @@ function gray_out_facets() {
 }
 gray_out_facets();
 //Display the number of selected role checkboxes dynmamically
-function showRegularMatchOptionIfHidden() {
-  if ($('#exact_role_facet').not(':visible')) {
-    $('#exact_role_facet').slideDown();
-  }
-  if ($('#roles_exact_false').parent().not(':visible')) {
-    $('#roles_exact_false').prop('disabled',false).parent('label').removeClass('has_disabled_input');
-  }
-}
 function count_number_of_roles() {
   //in case it was hidden
-  var cnt=$('#role_facet input:checked').length;
-  //if no boxes checked, check them all:
-  if (cnt==0) {
-    $('#role_facet input[type=checkbox]').prop('checked',true);
-    cnt=$('#role_facet input:checked').length;
-  }  
-  //if all boxes checked:
-  if (cnt==$('#role_facet input[type=checkbox]').length) {
-    $('#exact_role_facet').slideUp();
-    $('#roles_exact_false').prop('checked',true);
-  } else {
-    //if one box checked
-    if (cnt==1) {
-      $('.roles_selected_phrase').text('this 1 role');
-    } else {
-      //if 2-4 boxes checked
-      $('.roles_selected_phrase').text('at least one of these '+cnt+' checked roles');
-      $('.role_selected_phrase_exact').text('all '+cnt+' of the checked roles');
-      
-      
-    } 
-    showRegularMatchOptionIfHidden();
+  var cntChecked=$('#role_facet input[type=checkbox]:checked').length;
+  var cntAll=$('#role_facet input[type=checkbox]').length;
+  if (cntChecked==cntAll) {
+    $('#role_facet input[type=checkbox]').attr('checked',false);
   }
 }
 
