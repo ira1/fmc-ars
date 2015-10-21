@@ -635,12 +635,36 @@ function gray_out_facets() {
 gray_out_facets();
 //Display the number of selected role checkboxes dynmamically
 function count_number_of_roles() {
+  function showRadios() {
+    if ($('#exact_role_facet').hasClass('none')==true) {
+      $('#exact_role_facet').slideDown(500,function() {
+        $(this).removeClass('none');
+      });
+    }
+  }
+  function hideRadios() {
+    if ($('#exact_role_facet').hasClass('none')==false) {
+      $('#exact_role_facet').slideUp(500,function() {
+        $(this).addClass('none');
+      });
+    }
+  }
   //in case it was hidden
   var cntChecked=$('#role_facet input[type=checkbox]:checked').length;
   var cntAll=$('#role_facet input[type=checkbox]').length;
   if (cntChecked==cntAll) {
     $('#role_facet input[type=checkbox]').attr('checked',false);
-  }
+  } else if (cntChecked==1) {
+    $('.roles_selected_phrase').text('this 1 role');
+    hideRadios();
+  } else if (cntChecked==0) {
+    hideRadios();
+  } else {
+    //if 2-4 boxes checked
+    $('.roles_selected_phrase').text('a minimum of 1 of these '+cntChecked+' checked roles');
+    $('.role_selected_phrase_exact').text(cntChecked+' of the checked roles');    
+    showRadios();
+  } 
 }
 
 function count_number_of_genders() {
@@ -653,7 +677,6 @@ function count_number_of_genders() {
   } 
 }
 //Run on page load:
-count_number_of_roles();
 count_number_of_genders();
 setLabels(); 
 //tooltips
