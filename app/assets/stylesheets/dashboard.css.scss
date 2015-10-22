@@ -706,13 +706,16 @@ html body {
           @include display_flex;
           flex-direction: column;
           span:first-child {
-            flex: 2 0 0;
+            flex-grow:5;
             text-align: left;
-          }
+          } 
           span.fa {
-            padding-top:2rem;
+            position: absolute;
+            bottom:5rem;
+            left:46%;
             color: #ddd;
             text-align: center;
+            font-size: 4rem;
           }
         }
         position:absolute;
@@ -727,9 +730,9 @@ html body {
         text-align: left;
         padding:.5rem;
         width: 10rem;
-        box-shadow: 0 30px 10px #fff;
-        -moz-box-shadow: 0 30px 10px #fff;
-        -webkit-box-shadow: 0 30px 10px #fff;
+        box-shadow: 0 0 20px #fff;
+        -moz-box-shadow: 0 0 20px #fff;
+        -webkit-box-shadow: 0 0 20px #fff;
         z-index:20;
         &.mobileTooltip {
           position: fixed;
@@ -741,9 +744,9 @@ html body {
           top: 0;
           font-size: 1rem !important;
           line-height: 1.4rem;
-          -webkit-box-shadow: 4px 4px 23px 0px rgba(148,148,148,0.9);
-          -moz-box-shadow: 4px 4px 23px 0px rgba(148,148,148,0.9);
-          box-shadow: 4px 4px 23px 0px rgba(148,148,148,0.9);
+          -webkit-box-shadow: 0 0 23px 0px rgba(148,148,148,0.9);
+          -moz-box-shadow: 0 0 23px 0px rgba(148,148,148,0.9);
+          box-shadow: 0 0 23px 0px rgba(148,148,148,0.9);
         }
       }
     }
