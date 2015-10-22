@@ -5,8 +5,10 @@
       		  <td><strong class="special2"><%=number_with_precision(@credits_pct_over_50_compositions,:precision=>0, :significant=>false)%>%</strong></td>
 	  <td><div>&hellip; of this group had more than </div>
       			   50 <strong class="special2">composing credits</strong>
-		  <span title="Only <%= @credits_pct_answered_composing %>% of respondents in filtered sample answered this question" class="ncount">(N=<%= @credits_composing_ncount %>)</span>
+		  <span title="Only <%= @credits_pct_answered_composing %>% of respondents in filtered sample answered this question" class="ncount">(N=<%= @credits_composing_ncount %>)</span> 
+		  
       		  </td>
+      		  <td><span class="special2 fa fa-icon fa-2x fa-pencil"></span></td>
       		</tr>
 	<tr>
       			<td><strong class="special2"><%=number_with_precision(@credits_pct_over_50_recordings,:precision=>0, :significant=>false)%>%</strong></td>
@@ -14,6 +16,7 @@
       			   50 <strong class="special2">recording credits </strong>
       			  <span class="ncount" title="Only <%= @credits_pct_answered_recording %>% of respondents in filtered sample answered this question">(N=<%= @credits_recording_artist_ncount %>)</span>
 	  </td>
+      		  <td><span class="special2 fa fa-icon fa-2x fa-headphones"></span></td>
   </tr>
     <%#>			<li>[xx%] had >  50 session credits</li> %>
 	<tr>
@@ -22,6 +25,7 @@
       			   50 <strong class="special2">performances</strong> in the prior 12 months 
       			  <span class="ncount" title="Only <%= @credits_pct_answered_shows %>% of respondents in filtered sample answered this question"> (N=<%=@credits_show_performer_ncount%>)</span>
 	  </td>
+      		  <td><span class="special2 fa fa-icon fa-2x fa-music"></span></td>
           </tr>
 </table>
 
