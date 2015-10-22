@@ -104,7 +104,7 @@ $('#aveannincncount').html("<%= number_with_delimiter(@emi_ncount, :delimiter =>
 $('#annincbycat').highcharts().series[0].setData(<%= @avg_pct_incomes.to_json.html_safe %>, true);
 
 // Income by Age
-$('#ageincomechart').highcharts().series[0].setData(<%= @nonmusic_inc_by_age.as_json %>, true);
+$('#ageincomechart').highcharts().series[0].setData(<%= @music_inc_by_age.as_json %>, true);
 $('#ageincomechart').highcharts().yAxis[0].removePlotLine('ageincomeplotline');
 $('#ageincomechart').highcharts().yAxis[0].addPlotLine({
 	id: 'ageincomeplotline',
@@ -125,7 +125,7 @@ $('#ageincomechart').highcharts().yAxis[0].addPlotLine({
     }
   }
 });
-$('#ageincomechart').highcharts().series[1].setData(<%= @music_inc_by_age.as_json %>, true);
+$('#ageincomechart').highcharts().series[1].setData(<%= @nonmusic_inc_by_age.as_json %>, true);
 
 // Income Trend
 //$('#emincount').html("123,123,123");
