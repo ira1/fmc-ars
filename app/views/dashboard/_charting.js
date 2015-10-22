@@ -677,9 +677,24 @@ function count_number_of_genders() {
     cnt=$('#gender_facet input:checked').length;
   } 
 }
+
+function selectRoleRadios() { 
+  $('#role_facet .toggle_radio label').removeClass('clicked');
+  $('#role_facet .toggle_radio input:checked').each(function() {
+    var theClassName=$(this).attr('class').replace('toggle_option','').replace(' ','');
+    console.log(theClassName);
+    var labelTag='label.'+theClassName;
+    $(this).closest('tr').find(labelTag).addClass('clicked'); 
+  });
+}
+$('#role_facet .toggle_radio label').on('click',function(){
+  $(this).closest('tr').find('label').removeClass('clicked');
+  $(this).addClass('clicked'); 
+});
 //Run on page load:
 count_number_of_genders();
 setLabels(); 
+selectRoleRadios();
 //tooltips
 
 /**
@@ -758,6 +773,7 @@ $('abbr').mouseout(function(){
 	$(this).next('.tooltip').remove();				
 
 });	
+//END TOOLTIPS
 
 
 
