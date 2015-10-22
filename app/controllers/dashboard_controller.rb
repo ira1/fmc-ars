@@ -183,7 +183,7 @@ class DashboardController < ApplicationController
     #optionalclause=""
     #mandatoryclause=""
     exactclause=""
-    looseclause=""
+    #looseclause=""
     checkedroles=0
     #if ("true"==params[:role_missing]) then 
     #     roleclause = "(role_composer is null AND role_recording is null AND role_salaried is null AND role_performer is null AND role_session is null)"
@@ -192,70 +192,70 @@ class DashboardController < ApplicationController
     # if time permits, change this to ["role_composer","role..."].each iterator
     #
       if params.has_key?(:role_composer) then
-        if "true"==params[:role_composer].downcase  then 
+        if "require"==params[:role_composer].downcase  then 
           #AppendClauseOr(optionalclause,"role_composer = true")
           AppendClauseAnd(exactclause,"role_composer=true")
-          AppendClauseOr(looseclause,"role_composer=true")
+          #AppendClauseOr(looseclause,"role_composer=true")
           checkedroles+=1
-        else
-          #AppendClauseAnd(exactclause,"role_composer!=true")
+        elsif "exclude"==params[:role_composer].downcase  then 
+          AppendClauseAnd(exactclause,"role_composer!=true")
           # NOP ... loose does not filter on unchecked roles
         end
       end
 
       if params.has_key?(:role_recording) then
-        if "true"==params[:role_recording].downcase then
+        if "require"==params[:role_recording].downcase then
           #AppendClauseOr(optionalclause, "role_recording=true")
           AppendClauseAnd(exactclause, "role_recording=true")
-          AppendClauseOr(looseclause, "role_recording=true")
+          #AppendClauseOr(looseclause, "role_recording=true")
           checkedroles+=1
-        else
-          #AppendClauseAnd(exactclause,"role_recording!=true")
+        elsif "exclude"==params[:role_recording].downcase then
+          AppendClauseAnd(exactclause,"role_recording!=true")
           # NOP ... loose does not filter on unchecked roles
         end
       end
 
       if params.has_key?(:role_salaried)
-        if "true"==params[:role_salaried].downcase  then 
+        if "require"==params[:role_salaried].downcase  then 
           #AppendClauseOr(optionalclause, "role_salaried=true") 
           AppendClauseAnd(exactclause, "role_salaried=true")
-          AppendClauseOr(looseclause, "role_salaried=true") 
+          #AppendClauseOr(looseclause, "role_salaried=true") 
           checkedroles+=1
-        else        
-          #AppendClauseAnd(exactclause, "role_salaried!=true")
+        elsif "exclude"==params[:role_salaried].downcase  then
+          AppendClauseAnd(exactclause, "role_salaried!=true")
           # NOP ... loose does not filter on unchecked roles
         end
       end
 
       if params.has_key?(:role_performer)
-        if "true"==params[:role_performer].downcase  then 
+        if "require"==params[:role_performer].downcase  then 
           AppendClauseAnd(exactclause, "role_performer=true")
-          AppendClauseOr(looseclause, "role_performer=true")
+          #AppendClauseOr(looseclause, "role_performer=true")
           checkedroles+=1
-        else        
-          #AppendClauseAnd(exactclause, "role_performer!=true")
+        elsif "exclude"==params[:role_performer].downcase  then 
+          AppendClauseAnd(exactclause, "role_performer!=true")
           # NOP ... loose does not filter on unchecked roles
         end
       end
 
       if params.has_key?(:role_session)
-        if "true"==params[:role_session].downcase then 
+        if "require"==params[:role_session].downcase then 
           AppendClauseAnd(exactclause, "role_session=true")
-          AppendClauseOr(looseclause, "role_session=true")
+          #AppendClauseOr(looseclause, "role_session=true")
           checkedroles+=1
-        else
-          #AppendClauseAnd(exactclause, "role_session!=true")
+        elsif "exclude"==params[:role_session].downcase then 
+          AppendClauseAnd(exactclause, "role_session!=true")
           # NOP ... loose does not filter on unchecked roles
         end
       end
 
       if params.has_key?(:role_teacher)
-        if "true"==params[:role_teacher].downcase then 
+        if "require"==params[:role_teacher].downcase then 
           AppendClauseAnd(exactclause, "role_teacher=true")
-          AppendClauseOr(looseclause, "role_teacher=true")
+          #AppendClauseOr(looseclause, "role_teacher=true")
           checkedroles+=1
-        else        
-          #AppendClauseAnd(exactclause, "role_teacher!=true")
+        elsif "exclude"==params[:role_teacher].downcase then 
+          AppendClauseAnd(exactclause, "role_teacher!=true")
           # NOP ... loose does not filter on unchecked roles
         end
       end      
@@ -275,12 +275,12 @@ class DashboardController < ApplicationController
 # DETERMINE THE BASE QUERIES
 #
 
-      #AppendClauseOr(roleclause, "(role_composer is null and role_recording is null and role_salaried is null and role_performer is null and role_session is null and role_teacher is null)")
-      @exact = @sample.where( exactclause)
-      @loose = @sample.where( looseclause)
-    if 6>checkedroles then 
-      @sample = @sample.where(roles_exact ? exactclause : looseclause)
-      @sample_antigenre = @sample_antigenre.where( roles_exact ? exactclause : looseclause ) if @genre_income_on
+    #AppendClauseOr(roleclause, "(role_composer is null and role_recording is null and role_salaried is null and role_performer is null and role_session is null and role_teacher is null)")
+    #@exact = @sample.where( exactclause) 
+    #@loose = @sample.where( looseclause)
+    if 0<exactclause.length then 
+      @sample = @sample.where(exactclause)
+      @sample_antigenre = @sample_antigenre.where(exactclause) if @genre_income_on
     end
     #
     
@@ -294,8 +294,8 @@ class DashboardController < ApplicationController
     logger.info("counting records now")
     
     @NCount = @sample.count
-    @loose_count = @loose.count.to_i
-    @exact_count = @exact.count.to_i
+    #@loose_count = @loose.count.to_i
+    #@exact_count = @exact.count.to_i
     @NCount_pct = (100*@NCount/4453).to_i
     logger.info("done counting records now")
     

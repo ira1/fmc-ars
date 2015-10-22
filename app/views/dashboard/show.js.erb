@@ -23,8 +23,6 @@ SampleSizeMode = function (ncount, sample_pct) {
 
 // % of sample output/warning of low sample size
 // TODO maybe create a utility method that returns the desired htmlstring and mode (ok, warn, alert) based on sample_ncount
-$('.loose_count_from_ajax').html("<%= number_with_delimiter(@loose_count, :delimiter => ',') %>");
-$('.exact_count_from_ajax').html("<%= number_with_delimiter(@exact_count, :delimiter => ',') %>");
 $('.total_n_count_from_ajax').html("<%= number_with_delimiter(@NCount, :delimiter => ',') %>");
 $('.total_pct_from_ajax').html("<%= @NCount_pct %>");
 ss = SampleSizeMode(sample_ncount,sample_pct);
@@ -49,17 +47,6 @@ if ('warn'==ss.mode) {
   $('.low_n_size_message').html("");
 } 
 
-//HANDLE EXACT COUNT
-//reset this to be displayed:
-$('#roles_exact_true').closest('label').slideDown(100,function() {
-  <% if @exact_count < 101 %>
-  $('#roles_exact_true').closest('label').addClass('disabled');
-  $('#roles_exact_true').attr('disabled',true);
-  <%else%>
-  $('#roles_exact_true').closest('label').removeClass('disabled');
-  $('#roles_exact_true').attr('disabled',false);
-  <%end%>
-});
 
 
 // Show & Hide GenreIncome Output based on controller's visibility indicator

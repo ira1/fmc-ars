@@ -7,20 +7,20 @@
     </tr>
   </thead>
   <tbody>
-    <%for i in 0..5%>
-      <tr><td colspan="3">@role_name_here_<%=i%></td></tr>
+    <%[:composer,:recording,:salaried,:peformer,:session,:teacher].each do |parm| %>
+      <tr><td colspan="3"><%=parm.slice(0).upcase+parm.slice(1..parm.length)%> </td></tr>
       <tr>
         <td><label>
-          <span class="none">Must have chosen the role: @role_name_here</span>
-          <input type="radio" name="@role_name_here_<%=i%>" value="must_have">
+          <span class="none">Must have chosen the role: <%=parm%></span>
+          <input type="radio" name="role_<%=parm%>" value="require"/>
         </label></td>
         <td><label>
           <span class="none">Don't care if this role was chosen</span>
-          <input type="radio" value="indifferent" checked="checked" name="@role_name_here_<%=i%>">
+          <input type="radio" value="indifferent" checked="checked" name="role_<%=parm%>"/>
         </label></td>
         <td><label>
           <span class="none">Must not have chosen this role</span>
-          <input type="radio" value="must_not_have" name="@role_name_here_<%=i%>">
+          <input type="radio" value="exclude" name="role_<%=parm%>"/>
         </label></td>
       </tr>
     <%end%>
