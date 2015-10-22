@@ -706,15 +706,16 @@ html body {
           @include display_flex;
           flex-direction: column;
           span:first-child {
-            flex-grow:5;
+            flex:2 0 0;
             text-align: left;
           } 
           span.fa {
-            position: absolute;
-            bottom:5rem;
-            left:46%;
             color: #ddd;
             text-align: center;
+            padding-top:2rem;
+            position: absolute;
+            bottom:5rem;
+            left:43%;
             font-size: 4rem;
           }
         }
@@ -839,6 +840,10 @@ html body {
       #outputs, #facets {
         span.tooltip { 
           border-color: $blue;
+          > span {
+            display: block;
+          }
+          //hide the close-x icon on desktop:
           span.fa {
             display: none;
           }
