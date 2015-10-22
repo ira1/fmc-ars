@@ -49,6 +49,7 @@
     		<%=makeHelpTip("Musicians were asked to check all roles they spent time on (regardless of income). Most musicians selected several roles. ")%>
   		</span>
     </h6>
+    <%if false %>
     <%# <%= check_box_tag("role", "ALL", (@role == "ALL" )) All types %>
 	  <label class="checkbox">
 	  	<%= hidden_field_tag :role_composer, "false", :id => "dummy1" %>
@@ -110,24 +111,8 @@
   		<%=makeHelpTip("Hired to teach music performance or craft to individuals or in a group setting. Out of all of the survey respondents, #{number_with_delimiter(@Teachers, :delimiter => ',')} claimed this as one of their roles.")%>
   		</div>
     </label>
-    <%# multi-line comment: %>
-		<% if false %>
-  		<label>
-    		<%= hidden_field_tag :roles_exact, "false", :id => "dummy7" %>
-    		<%= check_box_tag(:roles_exact, :true, "true"==params[:roles_exact]) %>
-    		Exactly match above choices <!-- Exclude those with additional roles -->
-  		</label>
-  		<label>
-    		<%= hidden_field_tag :role_other, "false", :id => "dummy8" %>
-    		<%= check_box_tag(:role_other, :true, "true"==params[:role_other]) %>
-    		Include other types
-  		</label>
-  		<label>
-        <%= hidden_field_tag :role_missing, "false", :id => "dummy6" %>
-    		<%= check_box_tag(:role_missing, :true, "false"!=params[:role_missing]) %>
-    		Did not answer
-  		</label>
-		<% end %>
+    <%end%>
+    <%=render :partial => 'role_radios'%>
 	</div> 
   <div id="exact_role_facet" class="none">
     <h6>Match Style for Roles</h6>

@@ -271,6 +271,55 @@ html body {
       padding: .5em;
     }
     form {
+      #role_facet table {
+        width: auto;
+          border: 1px solid #ededed;
+        margin: 0;
+        thead th {         
+          border: 1px solid #ededed;
+          background: none;
+          text-align: center;
+          &:first-child {
+            color:$green;
+          }
+          &:last-child {
+            color: $red;
+          }
+        }
+        tbody tr {
+          th {
+            border: 1px solid #eee;
+          }
+          td {
+            text-align: center;
+            border: none; 
+            background: none;      
+            &:first-child {
+              label:not(.unselected_filter) {
+                background: lighten($green,52%);
+              }
+            }         
+            &:last-child {
+              label:not(.unselected_filter) {
+                background: lighten($red,52%);
+              }
+            }
+            label {
+              display:block;
+              margin:  0;
+              padding: .25rem .25rem .5rem .25rem;
+            }
+          }
+          &:nth-child(2n+1) td {
+            background: #f1f1f1;
+            padding: .35rem;
+            border-top: 1px solid #ddd;
+          }
+          &:nth-child(2n+0) td {
+            padding: 0;
+          }
+        }
+      }
       #exact_role_facet {
         padding-left: 1em;
         h6 {
