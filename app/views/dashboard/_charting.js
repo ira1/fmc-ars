@@ -608,6 +608,7 @@ $('form.f_facets input').change(function(){
   count_number_of_roles();
   count_number_of_genders();
   setLabels();
+  $('#outputs').addClass('feedbackWhileAjaxProcessing');
   $('form.f_facets').submit();
 });
 //Mobile nav toggle to hide and show filters on mobile

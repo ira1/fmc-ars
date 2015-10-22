@@ -459,6 +459,9 @@ html body {
     }
   }
   #outputs {
+    &.feedbackWhileAjaxProcessing {
+      opacity: .5;
+    }
     .has_highchart {
       width: 98%;
       background: #fff;
