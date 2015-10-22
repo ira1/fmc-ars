@@ -279,12 +279,7 @@ html body {
           border: 1px solid #ededed;
           background: none;
           text-align: center;
-          &:first-child {
-            color:$green;
-          }
-          &:last-child {
-            color: $red;
-          }
+          color: #999;
         }
         tbody tr {
           th {
