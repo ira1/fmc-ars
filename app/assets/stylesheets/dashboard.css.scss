@@ -296,7 +296,7 @@ html body {
             background: none;      
             &:first-child {
               label:not(.unselected_filter) {
-                background: lighten($green,52%);
+                background: lighten($green,55%);
               }
             }         
             &:last-child {
