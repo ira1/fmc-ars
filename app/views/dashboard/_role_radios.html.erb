@@ -26,3 +26,19 @@
     <%end%>
   </tbody>
 </table>
+
+<%if false %>
+
+  <%=makeHelpTip("Musicians performing their own music, or that of other composers, in a live setting. Includes concerts/gigs, broadcast TV or radio, orchestra or chamber music performance. Out of all of the survey respondents, #{number_with_delimiter(@Composers, :delimiter => ',')} claimed this as one of their roles.")%>
+
+  <%=makeHelpTip("Records music they wrote, or that of other composers. Earns money from record label support, recorded music sales, sound recording performance royalties, synch licenses. Out of all of the survey respondents, #{number_with_delimiter(@RecordingArtists, :delimiter => ',')} claimed this as one of their roles.")%>    
+
+  <%=makeHelpTip("Paid a regular salary to perform as part of a band, ensemble or orchestra. Out of all of the survey respondents, #{number_with_delimiter(@Salarieds, :delimiter => ',')} claimed this as one of their roles.")%>
+
+  <%=makeHelpTip("Performs their music or that of other composers in a live setting.  Out of all of the survey respondents, #{number_with_delimiter(@Performers, :delimiter => ',')} claimed this as one of their roles.")%>
+
+  <%=makeHelpTip("Hired by other musicians/producers/record labels to play or sing in the studio or in a live setting. Out of all of the survey respondents, #{number_with_delimiter(@SessionPlayers, :delimiter => ',')} claimed this as one of their roles.")%>
+
+  <%=makeHelpTip("Hired to teach music performance or craft to individuals or in a group setting. Out of all of the survey respondents, #{number_with_delimiter(@Teachers, :delimiter => ',')} claimed this as one of their roles.")%>
+
+<%end%>
