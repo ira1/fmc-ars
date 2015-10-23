@@ -22,4 +22,8 @@ module ApplicationHelper
     data="<abbr class='tip' title='#{str}'><span class='fa fa-question-circle'></span></abbr>"
     data=data.html_safe
   end
+  
+  def init_cap(str)
+    str.slice(0).upcase+str.slice(1..str.length-1)
+  end
 end
