@@ -1,6 +1,7 @@
 // Place all the styles related to the Dashboard controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "compass";
 $purple: #482F93;
 $yellow: #FFBE41;
 $blue:#00748F;
@@ -71,7 +72,7 @@ $fontslight: "LatoLatinLight", "Helvetica","Arial",sans-serif !important;
   text-align: center;
   padding: .8rem;
   margin-bottom: 1em;
-  @include display_flex;
+ @include display-flex;
   -webkit-justify-content: center;
   justify-content: center;
    -webkit-align-items: center;
@@ -115,8 +116,7 @@ html body {
   }
   span.label {
     background: #eee none repeat scroll 0 0;
-    border-radius: 3px;
-    -moz-border-radius: 3px;
+    @include border-radius(3px); 
     color: #666;
     display: inline-block;
     line-height: 1rem;
@@ -556,7 +556,7 @@ html body {
       background: #fff;
     }
     .giant_stat_container {
-     @include display_flex;
+    @include display-flex;
       -webkit-flex-direction: row /* works with row or column */;
       flex-direction: row;
       -webkit-justify-content: center;
@@ -693,7 +693,7 @@ html body {
     } 
   }
   .has_tip {
-   @include display_flex;
+  @include display-flex;
    -webkit-align-items: center;
    align-items: center;
    span:first-child {
@@ -792,7 +792,7 @@ html body {
     #outputs, #facets { 
       span.tooltip {
         > span {
-          @include display_flex;
+         @include display-flex;
           flex-direction: column;
           span:first-child {
             flex:2 0 0;
@@ -967,7 +967,7 @@ html body {
       }
       .page-title-container {
         background: $orange;
-        @include display_flex;
+       @include display-flex;
         -webkit-align-items: flex-end;
         align-items:flex-end;
         padding: .8rem .8rem .8rem .5rem;
@@ -983,7 +983,7 @@ html body {
         border-top: none;
         ul {
           text-align: center;
-          @include display_flex;
+         @include display-flex;
           -webkit-justify-content: center;
           justify-content: center;
           li {
