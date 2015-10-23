@@ -363,8 +363,34 @@ class DashboardController < ApplicationController
     0 as DecrIncOther,
     0 as IncrIncOther"
     
-    @inc_trends = @sample.select(colexpr)[0]
-    
+    colexpr = "round(100.0*sum(case compose_inc_direction when 1 then 1.0 when -1 then -1.0 else null end) / count (nullif (compose_inc_direction, 501)),1) as composing,
+round(100.0*sum(case compose_inc_direction when 501 then null when null then null else 1 end) / count (*),1) as pct_composing,
+round(100.0*sum(case record_inc_direction when 1 then 1.0 when -1 then -1.0 else null end) / count (nullif (record_inc_direction, 501))  ,1) as recording,
+round(100.0*sum(case record_inc_direction when 501 then null when null then null else 1 end)/ count (*)  ,1) as pct_record,
+round(100.0*sum(case salary_inc_direction when 1 then 1.0 when -1 then -1.0 else null end) / count (nullif (salary_inc_direction, 501))  ,1) as salaried,
+round(100.0*sum(case salary_inc_direction when 501 then null when null then null else 1 end)/ count (*)  ,1) as pct_salary,
+round(100.0*sum(case perform_inc_direction when 1 then 1.0 when -1 then -1.0 else null end) / count (nullif (perform_inc_direction, 501)),1) as performing,
+round(100.0*sum(case perform_inc_direction when 501 then null when null then null else 1 end) / count (*) ,1) as pct_perform,
+round(100.0*sum(case session_inc_direction when 1 then 1.0 when -1 then -1.0 else null end) / count (nullif (session_inc_direction, 501)),1) as sessions,
+round(100.0*sum(case session_inc_direction when 501 then null when null then null else 1 end) / count (*) ,1) as pct_session,
+round(100.0*sum(case merch_inc_direction when 1 then 1.0 when -1 then -1.0 else null end) / count (nullif (merch_inc_direction, 501))    ,1) as merch,
+round(100.0*sum(case merch_inc_direction when 501 then null when null then null else 1 end) / count (*)   ,1) as pct_merch,
+round(100.0*sum(case teach_inc_direction when 1 then 1.0 when -1 then -1.0 else null end) / count (nullif (teach_inc_direction, 501))    ,1) as teaching,
+round(100.0*sum(case teach_inc_direction when 501 then null when null then null else 1 end) / count (*)   ,1) as pct_teach
+"
+    # Collect results as a flat array of alternating colname and value, instead of relation hash
+    inc_trends_flat = @sample.select(colexpr)[0].attributes.flatten
+    # There must be a more elegant way to do this, but too little time to massage
+    # restructure as an array of tuples, each element of the tuple corresponding to a column of the chart
+    # Pct of respondents trending, role for trend, pct of respondents who answered
+    inc_trends_up = inc_trends_down = []
+    0.step(27,4) { |i| inc_trends_flat[i+1]>0 ? inc_trends_up += [[ inc_trends_flat[i+1], inc_trends_flat[i], inc_trends_flat[i+3] ]] : inc_trends_down += [[ -1.0*inc_trends_flat[i+1], inc_trends_flat[i], inc_trends_flat[i+3] ]] }
+
+    #finally, sort out into two arrays: one with net increasing roles and one with net decreasing roles
+    # each array sorted from largest absolute net trend to smallest, net zero is excluded
+    @inc_trends_down = inc_trends_down.sort { |a,b| a[0]<=>b[0]}.reverse
+    @inc_trends_up = inc_trends_up.sort { |a,b| a[0]<=>b[0]}.reverse
+        
     #@DecrIncLive = @sample.where("perform_inc_direction = -1").count()
     #@IncrIncLive = @sample.where("perform_inc_direction = 1").count()
 

@@ -49,48 +49,9 @@ outputheight='200px'
   			<div class="output textual_output">
   				<h2><div class="has_tip"><span>Income Trend Over 5 Years</span><%=makeHelpTip("Trend displays the number of musicians who perceived, over the prior 5 years, either an increase or decrease in income for the respective category of work. The percent difference is also displayed.")%></h2>
   		    <p class="">This group of <% if FilterProfileName()=='All Musicians' %>musicians<% elsif FilterProfileName()=='Other musicians' %><strong>all-other-genres musicians</strong> <%else%><strong><%= FilterProfileName().downcase %></strong><%end%> were asked whether their income had <span class="increased">increased</span> or <span class="decreased">decreased</span> over the last five years for each activity listed (suggesting the activity was even applicable to them). Respondents could also answer "not applicable." <span class="ncount">N=&lt;%=ncountForThis&gt;</span></p>
-  		    <table class="income_trend">
-      		    <tr>
-        		    <th>Of those who answered&hellip;</th>
-        		    <th class="increased"><span class="fa fa-arrow-circle-up"></span> Income increased:</th>
-        		    <th class="quiet">% of group saying role was applicable?</th>
-      		    </tr>
-      		    <tr>
-        		    <td><div>###%</div>  more said</td>
-        		    <td class="increased">&lt;%=role&gt;</td>
-        		    <td class="quiet"><div>&lt;%=barPercent&gt;%</div><div class="progressbar"><div class="quiet" style="width: 50px "></div></div></td>
-      		    </tr>
-      		    <tr>
-        		    <td><div>###%</div>  more said</td>
-        		    <td class="increased">&lt;%=role&gt;</td>
-        		    <td class="quiet"><div>&lt;%=barPercent&gt;%</div><div class="progressbar"><div class="quiet" style="width: 50px "></div></div></td>
-      		    </tr>
-      		    <tr>
-        		    <td><div>###%</div>  more said</td>
-        		    <td class="increased">&lt;%=role&gt;</td>
-        		    <td class="quiet"><div>&lt;%=barPercent&gt;%</div><div class="progressbar"><div class="quiet" style="width: 50px "></div></div></td>
-      		    </tr>
-      		    <tr>
-        		    <th></th>
-        		    <th class="decreased"><span class="fa fa-arrow-circle-down"></span> Income decreased:</th>
-        		    <th></th>
-      		    </tr>
-      		    <tr>
-        		    <td><div>###%</div>  more said</td>
-        		    <td class="decreased">&lt;%=role&gt;</td>
-        		    <td class="quiet"><div>&lt;%=barPercent&gt;%</div><div class="progressbar"><div class="quiet" style="width: 50px "></div></div></td>
-      		    </tr>
-      		    <tr>
-        		    <td><div>###%</div>  more said</td>
-        		    <td class="decreased">&lt;%=role&gt;</td>
-        		    <td class="quiet"><div>&lt;%=barPercent&gt;%</div><div class="progressbar"><div class="quiet" style="width: 50px "></div></div></td>
-      		    </tr>
-      		    <tr>
-        		    <td><div>###%</div>  more said</td>
-        		    <td class="decreased">&lt;%=role&gt;</td>
-        		    <td class="quiet"><div>&lt;%=barPercent&gt;%</div><div class="progressbar"><div class="quiet" style="width: 50px "></div></div></td>
-      		    </tr>
-    		  </table>
+					<span id="income_trendbody">
+	  		    <%= render :partial => 'income_trend' %>
+					</span>
   		  </div>
  
   		<%#

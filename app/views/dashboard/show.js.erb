@@ -116,6 +116,8 @@ $('#ageincomechart').highcharts().yAxis[0].addPlotLine({
 $('#ageincomechart').highcharts().series[1].setData(<%= @nonmusic_inc_by_age.as_json %>, true);
 
 // Income Trend
+htmlstring ="<%= escape_javascript( render :partial => 'income_trend') %>";
+$('#income_trendbody').html(htmlstring);
 //$('#emincount').html("123,123,123");
 
 //Other Music Income Sources
