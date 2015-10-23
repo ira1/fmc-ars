@@ -44,4 +44,3 @@ gem 'rails_12factor', group: :production
 
 # Add Highcharts
 gem 'highcharts-rails', '~> 4.0.4'
-
