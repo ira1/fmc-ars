@@ -56,9 +56,14 @@ if ("true"==="<%= @genre_income_on.to_s -%>" && "alert"!=ss.mode) {
 	chart.series[0].setData(
 		<%= if @antigenre_pcts then @antigenre_pcts.map {|x| number_with_precision(x,:precision=>2,:significant=>true).to_f}.to_json.html_safe else [] end %>,
 		 false);
+		 // Note Legend.reversed=true, so indexes are reversed from chart.
+		 	chart.legend.allItems[1].update({name:'Non-<%= @genre_text[params[:mgenre].to_i] %> Genres'});
+		 	chart.legend.allItems[1].update({emi:'<%= number_to_currency(@antigenre_avg_emi, :precision=>0) %>'});
 	chart.series[1].setData(
 		<%= if @genre_pcts then @genre_pcts.map {|x| number_with_precision(x,:precision=>2,:significant=>true).to_f}.to_json.html_safe else [] end  %>,
 		false);
+			chart.legend.allItems[0].update({name:'<%= @genre_text[params[:mgenre].to_i] %> Genre'});
+			chart.legend.allItems[0].update({emi:'<%= number_to_currency(@avg_emi, :precision=>0) %>'});
 	chart.redraw();
 } else {
   $("#genreincome").fadeOut();

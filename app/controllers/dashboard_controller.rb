@@ -28,6 +28,7 @@ class DashboardController < ApplicationController
       (i == f ? i : f).to_s
     end
 
+ 
   
   def show
 
@@ -523,6 +524,7 @@ round(100.0*sum(case teach_inc_direction when 501 then null when null then null 
          @genre_counts<< genreCounts[e]
        end
      end
+     @genre_text=["All Others", "Classical", "Jazz", "Rock", "Country"]
    
      #
      # OtherIncome calculation 
