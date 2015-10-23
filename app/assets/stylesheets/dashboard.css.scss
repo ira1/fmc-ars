@@ -562,6 +562,13 @@ html body {
       -webkit-justify-content: center;
       justify-content: center;
     }
+	  #low_warn img {
+	    height: 1em;
+	    margin-right: 4px;
+	  }
+	  .special_reports ul li {
+  	  text-align: left;
+	  }
     #ftclaim {
       .giant_stat {
         width: 40%;
