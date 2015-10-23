@@ -318,7 +318,7 @@ html body {
             text-align: center;
             background: none;      
             .tip .fa {color: #eee;font-size: 1.25rem}
-            @media only screen and (min-device-width : 768px) {
+            @media only screen and (min-width : 768px) {
               .tip .fa {color: inherit; font-size: inherit;}
             }
             
@@ -327,13 +327,13 @@ html body {
             .toggle_radio {
               position: relative;
               margin: .5rem auto;
-              @media only screen and (min-device-width : 768px) {margin: .25rem auto 0 auto; }
+              @media only screen and (min-width : 768px) {margin: .25rem auto 0 auto; }
               overflow: hidden;
               padding: 0 !important;
               position: relative;
               height: 31px;
               width: 279px;
-              @media only screen and (min-device-width : 768px) {width: 180px }
+              @media only screen and (min-width : 768px) {width: 180px }
               > * {
                 float: left;
               }
@@ -342,18 +342,18 @@ html body {
                 /*position: fixed;*/  
                 &:nth-child(1):checked ~ .toggle_option_slider{
                   left: 21px;
-                  @media only screen and (min-device-width : 768px) {left: 6px;}
+                  @media only screen and (min-width : 768px) {left: 6px;}
                   //border-color: $ccc;
                 }
                 &:nth-child(2):checked ~ .toggle_option_slider{ 
                   //border-color: #ddd;
                   left: 111px;
-                  @media only screen and (min-device-width : 768px) {left: 64px;}
+                  @media only screen and (min-width : 768px) {left: 64px;}
                 }
                 &:nth-child(3):checked ~ .toggle_option_slider{
                   //border-color: $red;
                   left: 201px;
-                  @media only screen and (min-device-width : 768px) {left: 123px;}
+                  @media only screen and (min-width : 768px) {left: 123px;}
                 }
               }
               label {  
@@ -371,7 +371,7 @@ html body {
                 border-top:none;
                 padding-top:.15rem;
                 width:5.6rem;
-                @media only screen and (min-device-width : 768px) {width: 3.15rem;}  
+                @media only screen and (min-width : 768px) {width: 3.15rem;}  
                 z-index: 0;
                 display: block;
                 cursor: pointer;
@@ -386,7 +386,7 @@ html body {
                 height: 1.75rem;
                 position: absolute;
                 left: 21px;
-                @media only screen and (min-device-width : 768px) {left: 0;height: 1.25rem}
+                @media only screen and (min-width : 768px) {left: 0;height: 1.25rem}
                 
                 -webkit-border-radius: .75rem;
                 -moz-border-radius: .75rem;
@@ -901,7 +901,7 @@ html body {
   }
 }
 html body {
-  @media only screen and (min-device-width : 768px) {
+  @media only screen and (min-width : 768px) {
     #mobile_menu_toggle a.facets_on {
       display: none;
     }
