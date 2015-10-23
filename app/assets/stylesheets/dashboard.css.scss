@@ -53,10 +53,6 @@ $fontslight: "LatoLatinLight", "Helvetica","Arial",sans-serif !important;
     font-weight: normal;
     text-rendering: optimizeLegibility;
 }
-@mixin display_flex {
-  -webkit-flex: flex;
-  display: flex;
-}
 @mixin left_stripe {
   border-left: 1px solid #ddd;
   padding-left: .5em;
@@ -72,7 +68,7 @@ $fontslight: "LatoLatinLight", "Helvetica","Arial",sans-serif !important;
   text-align: center;
   padding: .8rem;
   margin-bottom: 1em;
- @include display-flex;
+  @include display-flex();
   -webkit-justify-content: center;
   justify-content: center;
    -webkit-align-items: center;
@@ -116,7 +112,7 @@ html body {
   }
   span.label {
     background: #eee none repeat scroll 0 0;
-    @include border-radius(3px); 
+    @include border-radius(3px);
     color: #666;
     display: inline-block;
     line-height: 1rem;
@@ -387,10 +383,7 @@ html body {
                 position: absolute;
                 left: 21px;
                 @media only screen and (min-width : 768px) {left: 0;height: 1.25rem}
-                
-                -webkit-border-radius: .75rem;
-                -moz-border-radius: .75rem;
-                border-radius: .75rem;
+                @include border-radius(.75rem);
                 -webkit-transition: all .4s ease;
                 -moz-transition: all .4s ease;
                 -o-transition: all .4s ease;
@@ -485,12 +478,12 @@ html body {
       padding: 0;
       width: 1.5em;
       height: 1.5em;
-      -webkit-border-radius: 0.25em;
+      @include border-radius(.25em);
       vertical-align: text-top;
       }
       
       input[type=radio] {
-      -webkit-border-radius: 2em; /* Make radios round */
+        @include border-radius(2em); /* Make radios round */
       }
       
       input[type=checkbox]:checked {
@@ -556,7 +549,8 @@ html body {
       background: #fff;
     }
     .giant_stat_container {
-    @include display-flex;
+      /*brian*/
+      @include display-flex();
       -webkit-flex-direction: row /* works with row or column */;
       flex-direction: row;
       -webkit-justify-content: center;
@@ -700,7 +694,7 @@ html body {
     } 
   }
   .has_tip {
-  @include display-flex;
+   @include display-flex();
    -webkit-align-items: center;
    align-items: center;
    span:first-child {
@@ -719,13 +713,13 @@ html body {
   .progressbar {
     background-color: #fff;
     border: 1px #ccc solid;
-    border-radius: 1px; /* (height of inner div) / 2 + padding */
+    @include border-radius(1px); /* (height of inner div) / 2 + padding */
     margin-bottom: 1em;
     > div, span {
       background-color: #00748E;
       width: 100%; /* Adjust with JavaScript */
       height: 12px;
-      border-radius: 1px;
+      @include border-radius(1px);
     }
     .quiet {
       background: #ccc;
@@ -799,7 +793,7 @@ html body {
     #outputs, #facets { 
       span.tooltip {
         > span {
-         @include display-flex;
+          @include display-flex();
           flex-direction: column;
           span:first-child {
             flex:2 0 0;
@@ -818,7 +812,7 @@ html body {
         position:absolute;
         background-color:#fafafa;
         border: 1px solid #ccc;
-        border-radius: 3px;
+        @include border-radius(3px);
         font-size: .75rem !important; 
         line-height: 1.4 !important;
         font-weight: normal !important;
@@ -974,7 +968,7 @@ html body {
       }
       .page-title-container {
         background: $orange;
-       @include display-flex;
+        @include display-flex();
         -webkit-align-items: flex-end;
         align-items:flex-end;
         padding: .8rem .8rem .8rem .5rem;
@@ -990,7 +984,7 @@ html body {
         border-top: none;
         ul {
           text-align: center;
-         @include display-flex;
+          @include display-flex();
           -webkit-justify-content: center;
           justify-content: center;
           li {
@@ -1001,8 +995,7 @@ html body {
             text-align: center;
             padding: .4em 1em; 
             margin-bottom: 0;
-            border-radius: 13px;
-            -moz-border-radius: 13px;
+            @include border-radius(13px);
             background: $black;
             font-size: .6rem;
             &.active {
