@@ -38,7 +38,7 @@ outputheight='200px'
     				
     				<h6 class="subtitle">Income Allocation</h6>
     				
-    				<p class="subtitle">The chart reflects how this group allocated their music-related income over a 12-month period. <%if @emi_ncount!=@NCount%> <span class="error">Note: <%=@NCount-@emi_ncount%> / <%=@NCount%> respondents in this group did not answer this question.</span> <%end%></p>
+    				<p class="subtitle">The chart reflects how this group allocated their music-related income over a 12-month period. <%if @emi_ncount!=@NCount%> <span class="error">Note: <%=number_with_delimiter(@NCount-@emi_ncount, :delimiter => ',')%> / <%= number_with_delimiter(@NCount, :delimiter => ',') %> survey respondents did not answer this question.</span> <%end%></p>
       			<div id="annincbycat"  class="has_highchart" style="height: 280px; "></div>
     			</div>
     			<div class="output" id="income_trend">
