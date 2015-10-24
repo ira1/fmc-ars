@@ -631,7 +631,9 @@ $("#mobile_menu_toggle a.facets_on").on("click",function(e) {
 $("#mobile_menu_toggle a.facets_off").on("click",function(e) {
   e.preventDefault();
   $('#facets').hide();
-  $("#outputs, .about_survey, #masthead, header, footer, .reset_link, .reset_link, #facets form > h5").show()
+  $("#outputs, .about_survey, #masthead, header, footer, .reset_link, .reset_link, #facets form > h5").fadeIn(200,function() {  
+    $(window).resize(); //Highcharts need to be redrawn in mobile
+  });
   $("a.facets_on").removeClass('hide_filtering_affordance');
   $(".hide_exit_filtering_affordance").addClass('none');
   setScrollPositionAfterSubmit();
