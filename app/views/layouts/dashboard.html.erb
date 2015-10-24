@@ -41,9 +41,15 @@
   
   <div id="page">
     <header> 
-      <div id="masthead"><a href="http://money.futureofmusic.org"><span><%= image_tag("recordPlayer.svg") %></span><span><%= image_tag("logo_arsnameonly_portion.svg") %></span></a></div>
+      <div id="masthead">
+        <div>
+          <span class="recordplayer"><%= image_tag("recordPlayer.svg") %></span>
+          <span class="fa fa-bars fa-2x"></span>
+          <a class="logo" href="http://money.futureofmusic.org"><%= image_tag("logo_arsnameonly_portion.svg") %></a>
+        </div>      
+      </div>
       <nav>
-        <div id="nav">
+       
           <ul>
             <li><a href="http://money.futureofmusic.org/about-the-project/">About the Project</a></li>
             <li><a href="http://money.futureofmusic.org/40-revenue-streams/">42 Revenue Streams</a></li> 
@@ -53,7 +59,7 @@
             <li><a href="http://money.futureofmusic.org/contact/">Contact</a></li>  
             <li><a href="http://futureofmusic.org/donate">Support Us</a></li>           
           </ul>
-        </div>
+     
       </nav>
       <div class="feedback">
         <a href="mailto:ars@futureofmusic.org,brian@rhythmspice.com?subject=Data Portal Website Feedback"><span class="fa fa-icon fa-envelope"></span> FMC Summit Attendees: <span>Send us your questions or feedback here</span></a>

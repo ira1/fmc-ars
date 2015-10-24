@@ -750,6 +750,10 @@ $('abbr').mouseout(function(){
 });	
 //END TOOLTIPS
 
-
+//mobile menu
+$('header .fa-bars').on('click',function(){
+  $('body').toggleClass('openedNav');
+  $('#section-sub-footer, #page > *:not(header),.feedback,.page-title-container').toggleClass('hidden');
+});
 
 </script>
