@@ -364,20 +364,20 @@ class DashboardController < ApplicationController
     0 as DecrIncOther,
     0 as IncrIncOther"
     
-    colexpr = "round(100.0*sum(case compose_inc_direction when 1 then 1.0 when -1 then -1.0 else null end) / count (nullif (compose_inc_direction, 501)),1) as composing,
-round(100.0*sum(case compose_inc_direction when 501 then null when null then null else 1 end) / count (*),1) as pct_composing,
-round(100.0*sum(case record_inc_direction when 1 then 1.0 when -1 then -1.0 else null end) / count (nullif (record_inc_direction, 501))  ,1) as recording,
-round(100.0*sum(case record_inc_direction when 501 then null when null then null else 1 end)/ count (*)  ,1) as pct_record,
-round(100.0*sum(case salary_inc_direction when 1 then 1.0 when -1 then -1.0 else null end) / count (nullif (salary_inc_direction, 501))  ,1) as salaried,
-round(100.0*sum(case salary_inc_direction when 501 then null when null then null else 1 end)/ count (*)  ,1) as pct_salary,
-round(100.0*sum(case perform_inc_direction when 1 then 1.0 when -1 then -1.0 else null end) / count (nullif (perform_inc_direction, 501)),1) as performing,
-round(100.0*sum(case perform_inc_direction when 501 then null when null then null else 1 end) / count (*) ,1) as pct_perform,
-round(100.0*sum(case session_inc_direction when 1 then 1.0 when -1 then -1.0 else null end) / count (nullif (session_inc_direction, 501)),1) as sessions,
-round(100.0*sum(case session_inc_direction when 501 then null when null then null else 1 end) / count (*) ,1) as pct_session,
-round(100.0*sum(case merch_inc_direction when 1 then 1.0 when -1 then -1.0 else null end) / count (nullif (merch_inc_direction, 501))    ,1) as merch,
-round(100.0*sum(case merch_inc_direction when 501 then null when null then null else 1 end) / count (*)   ,1) as pct_merch,
-round(100.0*sum(case teach_inc_direction when 1 then 1.0 when -1 then -1.0 else null end) / count (nullif (teach_inc_direction, 501))    ,1) as teaching,
-round(100.0*sum(case teach_inc_direction when 501 then null when null then null else 1 end) / count (*)   ,1) as pct_teach
+    colexpr = "coalesce(round(100.0*sum(case compose_inc_direction when 501 then null when 404 then null else compose_inc_direction end) / count (nullif (compose_inc_direction, 501)),1),0) as composing,
+round(100.0*count(case compose_inc_direction when 501 then null else compose_inc_direction end) / count (*),1) as pct_composing,
+coalesce(round(100.0*sum(case record_inc_direction when 501 then null when 404 then null else record_inc_direction end) / count (nullif (record_inc_direction, 501))  ,1),0) as recording,
+round(100.0*count(case record_inc_direction when 501 then null else record_inc_direction end)/ count (*)  ,1) as pct_record,
+coalesce(round(100.0*sum(case salary_inc_direction when 501 then null when 404 then null else salary_inc_direction end) / count (nullif (salary_inc_direction, 501))  ,1),0) as salaried,
+round(100.0*count(case salary_inc_direction when 501 then null else salary_inc_direction end)/ count (*)  ,1) as pct_salary,
+coalesce(round(100.0*sum(case perform_inc_direction when 501 then null when 404 then null else perform_inc_direction end) / count (nullif (perform_inc_direction, 501)),1) ,0)as performing,
+round(100.0*count(case perform_inc_direction when 501 then null else perform_inc_direction end) / count (*) ,1) as pct_perform,
+coalesce(round(100.0*sum(case session_inc_direction when 501 then null when 404 then null else session_inc_direction end) / count (nullif (session_inc_direction, 501)),1) ,0)as sessions,
+round(100.0*count(case session_inc_direction when 501 then null else session_inc_direction end) / count (*) ,1) as pct_session,
+coalesce(round(100.0*sum(case merch_inc_direction when 501 then null when 404 then null else merch_inc_direction end) / count (nullif (merch_inc_direction, 501))    ,1),0) as merch,
+round(100.0*count(case merch_inc_direction when 501 then null else merch_inc_direction end) / count (*)   ,1) as pct_merch,
+coalesce(round(100.0*sum(case teach_inc_direction when 501 then null when 404 then null else teach_inc_direction end) / count (nullif (teach_inc_direction, 501))    ,1) ,0)as teaching,
+round(100.0*count(case teach_inc_direction when 501 then null else merch_inc_direction end) / count (*)   ,1) as pct_teach
 "
     # Collect results as a flat array of alternating colname and value, instead of relation hash
     inc_trends_flat = @sample.select(colexpr)[0].attributes.flatten
