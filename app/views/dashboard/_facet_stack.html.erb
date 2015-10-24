@@ -61,12 +61,12 @@
     </label>
   </div>
 	<div id="fulltime_facet">
-		<h6>Music-Only Career</h6>
+		<h6><div class="has_tip"><span>Music-Only Career</span><%=makeHelpTip("Note: 33% (1,736) of survey respondents met the criteria for full-time status.")%></div></h6>
 		<label class="checkbox">
   		<%= hidden_field_tag :ft, "false", :id => "ft1" %>
   		<div class="has_tip">
     		<span><%= check_box_tag(:ft, "true", "true" == params[:ft]) %> Limit to full-time musicians only: those with 75%+ of their income coming from music, and spending a min. of 36 hrs/wk on music</span>
-    		<%=makeHelpTip("Note: 33% (1,736) of survey respondents met the criteria for full-time status.")%> 
+    		 
   		</div>
 		</label>
 	</div>

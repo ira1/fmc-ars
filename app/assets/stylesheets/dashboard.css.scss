@@ -86,9 +86,8 @@ $fontslight: "LatoLatinLight", "Helvetica","Arial",sans-serif !important;
   padding: .8rem;
   margin-bottom: 1em;
   @include display-flex;
-  
   justify-content: center;
-   @include align-items(center);
+  @include align-items(center);
 }
 html body {
   font-family: $fonts;
@@ -155,7 +154,7 @@ html body {
   }
   .tip .fa {
     //help icon color
-    color: #ddd;
+    color: #ddd !important;
   }
   .output .tip .fa {
     color: #ccc;
@@ -619,7 +618,6 @@ html body {
       @include display-flex;
       -webkit-flex-direction: row /* works with row or column */;
       flex-direction: row;
-      
       justify-content: center;
     }
 	  #low_warn img {
@@ -1040,8 +1038,7 @@ html body {
         border-top: none;
         ul {
           text-align: center;
-         @include display-flex;
-          
+          @include display-flex;
           justify-content: center;
           li {
             &:not(:last-child) {
