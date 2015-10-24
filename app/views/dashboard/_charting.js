@@ -133,7 +133,7 @@ $('#annincbycat').highcharts({
       categories: ['Live performance', 'Teaching', 'Salaried player', 'Session work', 'Compositions', 'Sound recordings', 'Merch', 'Other']
     },
     yAxis: {
-      maxPadding: .1,
+      maxPadding: .15,
       title: {
         text: 'Avg. % of Income'
       },
