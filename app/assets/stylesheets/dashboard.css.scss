@@ -588,10 +588,12 @@ html body {
         th.increased,
         th.decreased {
           div {
-            @include display-flex;
-            @include align-items(center);
+            @media only screen and (min-width : 768px) {
+              @include display-flex;
+              @include align-items(center);
+            }
             .fa {
-              margin-left: .5rem;
+              margin-right: .5rem !important;
             }
           }
         }
