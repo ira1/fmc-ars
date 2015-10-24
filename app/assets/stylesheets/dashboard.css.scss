@@ -86,7 +86,7 @@ $fontslight: "LatoLatinLight", "Helvetica","Arial",sans-serif !important;
   padding: .8rem;
   margin-bottom: 1em;
   @include display-flex;
-  -webkit-justify-content: center;
+  
   justify-content: center;
    @include align-items(center);
 }
@@ -619,7 +619,7 @@ html body {
       @include display-flex;
       -webkit-flex-direction: row /* works with row or column */;
       flex-direction: row;
-      -webkit-justify-content: center;
+      
       justify-content: center;
     }
 	  #low_warn img {
@@ -1041,7 +1041,7 @@ html body {
         ul {
           text-align: center;
          @include display-flex;
-          -webkit-justify-content: center;
+          
           justify-content: center;
           li {
             &:not(:last-child) {
