@@ -1,19 +1,19 @@
 <%
 outputheight='200px'
  %>  
-<div id="mobile_menu_toggle" class="twelve columns alpha omega ">
+<div id="mobile_menu_toggle" class="">
   <a href="" class="facets_on"><span class="fa fa-filter fa-2x"></span> <span>Filters (genre, roles, and more...)</span></a>
   <div class="hide_exit_filtering_affordance none">
     <a class="facets_off" href=""><span class="fa fa-chevron-left" title="back"></span><span class="fa fa-exclamation-triangle" title="Warning: too low"></span></a>
-    <span class="ncount">N=<span class="total_n_count_from_ajax"><%= number_with_delimiter(@NCount, :delimiter => ',') %></span>* based on the filters below. </span>
+    <span class="ncount">N=<span class="total_n_count_from_ajax"><%= number_with_delimiter(@NCount, :delimiter => ',') %></span>* based on your filters </span>
     <a href="/">Reset</a>
   </div> 
 </div>
-<div id="facets" class="four columns alpha">
-	  <%=render "facet_stack.html.erb" %>
-</div>
-<div id="outputs" class=" columns omega<%= if @NCount<=100 then " toolow seven" else " twelve" end %>" style="position:relative;">
-  <main>
+<div class="facets_and_outputs">
+  <div id="facets">
+  	  <%=render "facet_stack.html.erb" %>
+  </div> 
+  <main id="outputs">
     <div class="current_filter_state"></div>
     <%# TOO LOW %>
     <div id="toolow_warning">   
@@ -22,46 +22,91 @@ outputheight='200px'
       <p>There weren't enough musicians matching your filter criteria to display accurate results. </p>
       <p>Please broaden your search filters.</p>
     </div> 
-  	<div id="leftoutputs" class="six columns alpha">
       <!-- About this group -->
     	<div id="ftclaim"  class="textual_output output">
       	<%=render "sample_size_output"%>         
       </div>
-  		<%# Percent who perceive increase in [category] income over prior 5 years: xx%
-  				Annual Income by Cat Chart
-  		%>
-  			<div class="output">
-  				<h2>Avg. Annual Income from Music: <span id="aveannincheader" class=" special"  title="<%= @emi_pct_answered %>% of respondents in filtered sample provided EMI"><%= number_to_currency(@avg_emi, :precision=>0) %></span>&hellip;</h2>
-  				<p class="subtitle">This is the average annual gross Estimated Music Income (EMI) for this group. Musicians may have had non-music income too (see Music vs. non-Music Income by Age chart). </p>
-  				
-  				<h6 class="subtitle">Income Allocation</h6>
-  				
-  				<p class="subtitle">The chart reflects how this group allocated their music-related income over a 12-month period. <%if @emi_ncount!=@NCount%> <span class="error">Note: <%=@NCount-@emi_ncount%> / <%=@NCount%> respondents in this group did not answer this question.</span> <%end%></p>
-    			<div id="annincbycat"  class="has_highchart" style="height: 280px; "></div>
-  			</div>
-  			<div class="output" id="income_trend">
-  				<h2><div class="has_tip"><span>Income Trend Over 5 Years</span><%=makeHelpTip("Trend displays the number of musicians who perceived, over the prior 5 years, either an overall increase or decrease in income for the respective income stream. For example, if 20% of respondents said teaching income went up, 5% said it went down, and 70% said it was unchanged over the prior 5 years, this chart&#8217;s left hand column reports the difference between the % increase and % decrease. In this case, 20% - 5% = 15% (increase). <br /><br />
-On the survey, respondents had the option to say that an income stream was Not Applicable to them. The bars on the right display what percent of this group claimed that this revenue stream was even applicable to them. This helps to put the trend data in the other two columns in context.")%></h2>
-  		    <p class="subtitle">This group of <% if FilterProfileName()=='All Musicians' %>musicians<% elsif FilterProfileName()=='Other musicians' %><strong>all-other-genres musicians</strong> <%else%><strong><%= FilterProfileName().downcase %></strong><%end%> were asked whether their income had <span class="increased">increased</span> or <span class="decreased">decreased</span> over the last five years for each role listed. Respondents could also answer "not applicable." The chart also shows how applicable the particular role/activity was to this groups' careers.</p>
-					<div id="income_trendbody">
-	  		    <%= render :partial => 'income_trend' %>
-					</div>
-  		  </div>
- 
-  		<%#
-  				Other Income Text Box
-  		%>
-  		<div id="otherincome" class="output textual_output">
-  		  <h2><div class="has_tip"><span>Other Music Income Sources</span> <%=makeHelpTip("% of musicians who said they received any music-related income in the prior 12 months from one of these sources.")%></h2>
-				<span id="otherincomebody">
-					<%= render :partial => 'otherincbody' %>
-				</span>
-  		</div>
-  		<%#
-  				Primary Income Chart
-  		
-  				This chart displays only if at least one genre has been excluded from facets
-  		%>		
+
+    <div class="column-container">
+    	<div id="leftoutputs">
+    		<%# Percent who perceive increase in [category] income over prior 5 years: xx%
+    				Annual Income by Cat Chart
+    		%>
+    			<div class="output">
+    				<h2>Avg. Annual Income from Music: <span id="aveannincheader" class=" special"  title="<%= @emi_pct_answered %>% of respondents in filtered sample provided EMI"><%= number_to_currency(@avg_emi, :precision=>0) %></span>&hellip;</h2>
+    				<p class="subtitle">This is the average annual gross Estimated Music Income (EMI) for this group. Musicians may have had non-music income too (see Music vs. non-Music Income by Age chart). </p>
+    				
+    				<h6 class="subtitle">Income Allocation</h6>
+    				
+    				<p class="subtitle">The chart reflects how this group allocated their music-related income over a 12-month period. <%if @emi_ncount!=@NCount%> <span class="error">Note: <%=@NCount-@emi_ncount%> / <%=@NCount%> respondents in this group did not answer this question.</span> <%end%></p>
+      			<div id="annincbycat"  class="has_highchart" style="height: 280px; "></div>
+    			</div>
+    			<div class="output" id="income_trend">
+    				<h2><div class="has_tip"><span>Income Trend Over 5 Years</span><%=makeHelpTip("Trend displays the number of musicians who perceived, over the prior 5 years, either an overall increase or decrease in income for the respective income stream. For example, if 20% of respondents said teaching income went up, 5% said it went down, and 70% said it was unchanged over the prior 5 years, this chart&#8217;s left hand column reports the difference between the % increase and % decrease. In this case, 20% - 5% = 15% (increase). <br /><br />
+  On the survey, respondents had the option to say that an income stream was Not Applicable to them. The bars on the right display what percent of this group claimed that this revenue stream was even applicable to them. This helps to put the trend data in the other two columns in context.")%></h2>
+    		    <p class="subtitle">This group of <% if FilterProfileName()=='All Musicians' %>musicians<% elsif FilterProfileName()=='Other musicians' %><strong>all-other-genres musicians</strong> <%else%><strong><%= FilterProfileName().downcase %></strong><%end%> were asked whether their income had <span class="increased">increased</span> or <span class="decreased">decreased</span> over the last five years for each role listed. Respondents could also answer "not applicable." The chart also shows how applicable the particular role/activity was to this groups' careers.</p>
+  					<div id="income_trendbody">
+  	  		    <%= render :partial => 'income_trend' %>
+  					</div>
+    		  </div>
+   
+    		<%#
+    				Other Income Text Box
+    		%>
+    		<div id="otherincome" class="output textual_output">
+    		  <h2><div class="has_tip"><span>Other Music Income Sources</span> <%=makeHelpTip("% of musicians who said they received any music-related income in the prior 12 months from one of these sources.")%></h2>
+  				<span id="otherincomebody">
+  					<%= render :partial => 'otherincbody' %>
+  				</span>
+    		</div>
+    	</div> <%# leftoutputs %>
+    <%#
+    
+       RIGHT HAND OUTPUTS 
+    
+    %>
+      <div id="rightoutputs" class="">
+      	<div id="aboutthisgroup" class="output textual_output" >
+      		<h2><div class="has_tip"><span>Performances, Recordings, Composition</span> <%=makeHelpTip("Respondents who took the medium or the long path survey answered questions about their recording credits, composing credits, and number of performances. ")%></div></h2>
+  
+      		<span><%= render :partial => 'abouthisgroup_body' %></span>
+  
+      	</div>
+      	<%if false %>
+      	<div id="roles" class="output" >
+      		<h2>Other Roles This Group Fills</h2>
+      		<div id="roleschart" class="has_highchart" style="height: <%=outputheight%>;">Lovely chart goes here</div>
+      	</div> 
+      	<% end %>
+      	<div id="ageincome" class="output" >
+      		<h2>Music vs. Non-Music Income by Age</h2>
+      		<p class="subtitle">Music-related income as a total of gross income by age strata. Dashed line represents Gross Estimated Music Income (EMI) for this group.</p>
+      		<div id="ageincomechart" class="has_highchart" style="height: 270px">Lovely chart goes here</div>
+      	</div>  
+      	<div id="genresingroup" class="output" >
+          <h2>
+            <div class="has_tip">
+              <span>
+                <% if FilterProfileName()=='All Musicians' %>
+              		Primary Genres of This Group</span>
+              	<%else%>
+              	  Primary Genre for Musicians Who Make Money As <%= FilterProfileName().titlecase %></span>
+                <% end %><%=makeHelpTip("Musicians were asked to identify primary, secondary and tertiary genres in the survey. The chart below shows the primary genres of the selected group.") %>
+            </div>
+          </h2>
+          
+      		<% if FilterProfileName()=='All Musicians' %>
+      		<% else %>
+      		  <p class="subtitle">
+        		This group of <strong class="total_n_count_from_ajax"><%= number_with_delimiter(@NCount, :delimiter => ',') %></strong> musicians made most of their music income as <strong><% if FilterProfileName()=='Other musicians' %>all-other-genres musicians<% else %><%=FilterProfileName().downcase%><%end%></strong>. They were also asked, "what is your <strong>primary</strong> genre?" For some groups, the top income-making genre did not always match the primary genre response:</p>
+          <% end %>
+      				<%#
+      	Live performance	Compositions (mechanicals, PRO royalties, commissions)
+      	Teaching	Sound recordings (sales, streams, synchs, SoundExchange)
+      	Salaried player	Merchandise and branding
+      	Session/freelance work (studio and/or live)	Other %> 
+      		<div id="genresingroupchart" class="has_highchart" style="height: 220px"></div>
+      	</div> 	
     		<div id="genreincome" class=" output">
     			<div id="genreincometitle">
     				<h2><div class="has_tip"><span>Impact of Genre On This Group's Income</span> <%=makeHelpTip("Allocation of annual music-related income by category")%></div></h2>
@@ -74,79 +119,25 @@ On the survey, respondents had the option to say that an income stream was Not A
     				<div id="genreincomechart" class="has_highchart" style="height: 470px;"></div>
     			</ul>
     		</div>
-  	</div> <%# leftoutputs %>
-  <%#
-  
-     RIGHT HAND OUTPUTS 
-  
-  %>
-    <div id="rightoutputs" class="six columns omega">
-    	<div id="aboutthisgroup" class="output textual_output" >
-    		<h2><div class="has_tip"><span>Performances, Recordings, Composition</span> <%=makeHelpTip("Respondents who took the medium or the long path survey answered questions about their recording credits, composing credits, and number of performances. ")%></div></h2>
-
-    		<span><%= render :partial => 'abouthisgroup_body' %></span>
-
-    	</div>
-    	<%if false %>
-    	<div id="roles" class="output" >
-    		<h2>Other Roles This Group Fills</h2>
-    		<div id="roleschart" class="has_highchart" style="height: <%=outputheight%>;">Lovely chart goes here</div>
-    	</div> 
-    	<% end %>
-    	<div id="ageincome" class="output" >
-    		<h2>Music vs. Non-Music Income by Age</h2>
-    		<p class="subtitle">Music-related income as a total of gross income by age strata. Dashed line represents Gross Estimated Music Income (EMI) for this group.</p>
-    		<div id="ageincomechart" class="has_highchart" style="height: 270px">Lovely chart goes here</div>
-    	</div>  
-    	<div id="concentration" class="output">
-    			<h2>Where This Group Lives</h2>
-    		<div id="concentrationmap" class="has_highchart" style="height: 350px;">Nifty map goes right here! yes </div>
-    		<%#
-    			Live performance	Compositions (mechanicals, PRO royalties, commissions)
-    			Teaching	Sound recordings (sales, streams, synchs, SoundExchange)
-    			Salaried player	Merchandise and branding
-    			Session/freelance work (studio and/or live)	Other 
-    		%>
-    	</div>
-    	<div id="genresingroup" class="output" >
-        <h2>
-          <div class="has_tip">
-            <span>
-              <% if FilterProfileName()=='All Musicians' %>
-            		Primary Genres of This Group</span>
-            	<%else%>
-            	  Primary Genre for Musicians Who Make Money As <%= FilterProfileName().titlecase %></span>
-              <% end %><%=makeHelpTip("Musicians were asked to identify primary, secondary and tertiary genres in the survey. The chart below shows the primary genres of the selected group.") %>
-          </div>
-        </h2>
-        
-    		<% if FilterProfileName()=='All Musicians' %>
-    		<% else %>
-    		  <p class="subtitle">
-      		This group of <strong class="total_n_count_from_ajax"><%= number_with_delimiter(@NCount, :delimiter => ',') %></strong> musicians made most of their music income as <strong><% if FilterProfileName()=='Other musicians' %>all-other-genres musicians<% else %><%=FilterProfileName().downcase%><%end%></strong>. They were also asked, "what is your <strong>primary</strong> genre?" For some groups, the top income-making genre did not always match the primary genre response:</p>
-        <% end %>
-    				<%#
-    	Live performance	Compositions (mechanicals, PRO royalties, commissions)
-    	Teaching	Sound recordings (sales, streams, synchs, SoundExchange)
-    	Salaried player	Merchandise and branding
-    	Session/freelance work (studio and/or live)	Other %> 
-    		<div id="genresingroupchart" class="has_highchart" style="height: 220px"></div>
-    	</div>
-    	
-    	<!--more reading-->
-    	<div class="output textual_output special_reports">
-      	<h2>Special Reports &amp; Further Reading</h2>
-      	<p>Explore more specific income-related data through these reports:</p>
-      	<ul class="bullets">
-        	<li><a href="http://money.futureofmusic.org/sound-recording-income/">Off The Charts: Examining Musicians’ Income from Sound Recordings</a></li>
-        	<li><a href="http://money.futureofmusic.org/membership/">Does Organizational Membership Matter?</a></li>
-        	<li><a href="http://money.futureofmusic.org/location/">Where We Live: The Impact of Location</a></li>
-        	<li><a href="http://money.futureofmusic.org/teams/">Musicians' Teammates and their Effect on Earnings</a></li>
-        	<li><a href="http://money.futureofmusic.org/jazz-musicians/">Jazz Musicians and Money from Music</a></li>
-        	<li><a href="http://money.futureofmusic.org/findings/">Additional reports and financial case studies</a></li>
-    	</div>
-    	
-    </div> <%# rightoutputs %>
+      	<!--more reading-->
+      	<div class="output textual_output special_reports">
+        	<h2>Special Reports &amp; Further Reading</h2>
+        	<p>Explore more specific income-related data through these reports:</p>
+        	<ul class="bullets">
+          	<li><a href="http://money.futureofmusic.org/sound-recording-income/">Off The Charts: Examining Musicians’ Income from Sound Recordings</a></li>
+          	<li><a href="http://money.futureofmusic.org/membership/">Does Organizational Membership Matter?</a></li>
+          	<li><a href="http://money.futureofmusic.org/location/">Where We Live: The Impact of Location</a></li>
+          	<li><a href="http://money.futureofmusic.org/teams/">Musicians' Teammates and their Effect on Earnings</a></li>
+          	<li><a href="http://money.futureofmusic.org/jazz-musicians/">Jazz Musicians and Money from Music</a></li>
+          	<li><a href="http://money.futureofmusic.org/findings/">Additional reports and financial case studies</a></li>
+      	</div>
+      	
+      </div> <%# rightoutputs %>
+    </div> <%# end column container %>
+  	<div id="concentration" class="output">
+  			<h2>Where This Group Lives</h2>
+  		<div id="concentrationmap" class="has_highchart" style="height: 450px;">Nifty map goes right here! yes </div>
+  	</div>
   </main>
-</div> <%# outputs %>
+</div>
 <%# = debug(params) %>

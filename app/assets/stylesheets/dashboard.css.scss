@@ -59,6 +59,13 @@ $fontslight: "LatoLatinLight", "Helvetica","Arial",sans-serif !important;
   display: -webkit-flex;     /* NEW - Chrome */
   display: flex;   
 }
+@mixin flex($values) {
+  -webkit-box-flex: $values;
+  -moz-box-flex:  $values;
+  -webkit-flex:  $values;
+  -ms-flex:  $values;
+  flex:  $values;
+}
 @mixin align-items($direction) {
   -ms-flex-align: $direction;
 	-webkit-align-items: $direction;
@@ -96,13 +103,21 @@ html body {
   line-height: 1.4em;
   #masthead {
     text-align: center;
-    background: #000;
-    margin-bottom: 1rem;
-    img {
-      width: 100%;
-      height: auto;
-      max-height: 70px;
-      max-width:940px;
+    background: #000; 
+    a {
+      @include display-flex;
+      > span {
+        padding: .5rem;
+      }
+      > span:last-child {
+        text-align: right;
+        flex-grow: 2;
+      }
+      img {
+        width: auto;
+        height: 30px; 
+        
+      }
     }
   } 
   ul {
@@ -352,22 +367,20 @@ html body {
             text-align: center;
             background: none;      
             .tip .fa {color: #eee;font-size: 1.25rem}
-            @media only screen and (min-width : 768px) {
+            @media only screen and (min-width : 960px) {
               .tip .fa {color: inherit; font-size: inherit;}
             }
-            
-            
             //Slider code
             .toggle_radio {
               position: relative;
               margin: .5rem auto;
-              @media only screen and (min-width : 768px) {margin: .25rem auto 0 auto; }
+              @media only screen and (min-width : 960px) {margin: .25rem auto 0 auto; }
               overflow: hidden;
               padding: 0 !important;
               position: relative;
               height: 31px;
               width: 279px;
-              @media only screen and (min-width : 768px) {width: 180px }
+              @media only screen and (min-width : 960px) {width: 180px }
               > * {
                 float: left;
               }
@@ -376,18 +389,18 @@ html body {
                 /*position: fixed;*/  
                 &:nth-child(1):checked ~ .toggle_option_slider{
                   left: 21px;
-                  @media only screen and (min-width : 768px) {left: 6px;}
+                  @media only screen and (min-width : 960px) {left: 6px;}
                   //border-color: $ccc;
                 }
                 &:nth-child(2):checked ~ .toggle_option_slider{ 
                   //border-color: #ddd;
                   left: 111px;
-                  @media only screen and (min-width : 768px) {left: 64px;}
+                  @media only screen and (min-width : 960px) {left: 64px;}
                 }
                 &:nth-child(3):checked ~ .toggle_option_slider{
                   //border-color: $red;
                   left: 201px;
-                  @media only screen and (min-width : 768px) {left: 123px;}
+                  @media only screen and (min-width : 960px) {left: 123px;}
                 }
               }
               label {  
@@ -405,7 +418,7 @@ html body {
                 border-top:none;
                 padding-top:.15rem;
                 width:5.6rem;
-                @media only screen and (min-width : 768px) {width: 3.15rem;}  
+                @media only screen and (min-width : 960px) {width: 3.15rem;}  
                 z-index: 0;
                 display: block;
                 cursor: pointer;
@@ -420,7 +433,7 @@ html body {
                 height: 1.75rem;
                 position: absolute;
                 left: 21px;
-                @media only screen and (min-width : 768px) {left: 0;height: 1.25rem}
+                @media only screen and (min-width : 960px) {left: 0;height: 1.25rem}
                 @include border-radius(.75rem);
                 -webkit-transition: all .4s ease;
                 -moz-transition: all .4s ease;
@@ -431,11 +444,6 @@ html body {
               
             }
             //end slider code
-            
-            
-
-            
-            
           }
           //label row
           &:nth-child(2n+1) td {
@@ -555,7 +563,7 @@ html body {
     form > div {
       padding: .5em;
     }  
-  }
+  } //End facets
   /*if results too low < 100, do this:*/
   #toolow_warning {
     h2 {
@@ -588,7 +596,7 @@ html body {
         th.increased,
         th.decreased {
           div {
-            @media only screen and (min-width : 768px) {
+            @media only screen and (min-width : 960px) {
               @include display-flex;
               @include align-items(center);
             }
@@ -630,6 +638,17 @@ html body {
   	  margin-bottom: 1rem;
 	  }
     #ftclaim {
+      h2 { text-align: center; }
+      .current_n_size {
+        p { 
+          text-align: center;
+          margin-bottom: 1rem;
+          margin-right: auto;
+          margin-left: auto;
+        }
+        .progressbar > div { height: 24px; }
+      }
+      margin-top: 2rem;
       .giant_stat {
         width: 40%;
         padding-right: .5rem;
@@ -725,10 +744,9 @@ html body {
         text-align:left;
       }
       .current_n_size {
-        width: 88%;
+        max-width: 30rem;
         margin: 0 auto 1rem auto;
         h6,p:first-child {
-          margin-bottom: 0;
         }
         p {
           margin-top:1em;
@@ -763,7 +781,7 @@ html body {
     @include display-flex;
     @include align-items(center);
     span:first-child {
-      flex: 2 0 0;
+      @include flex(2 0 0);
     }
   }
   .nowrap {
@@ -798,6 +816,7 @@ html body {
       color: #aaa;
     }
     address {
+      text-align: center;
       * {color: #fff;text-decoration: none;}
       margin: 2.5em auto;
       span {
@@ -806,6 +825,9 @@ html body {
         padding: 0;
       }
     } 
+    footer > div > p {
+      text-align: center;
+    }
     p {
       margin-bottom: .5em;
     }    
@@ -813,15 +835,18 @@ html body {
       color: $yellow; 
       font-size: .65rem;
     }
-    div {
+    div.logos {
+      box-sizing: border-box;
+      padding: 2rem;
       text-align: center;
       > img {
-        margin-bottom: .5em;
-        width: 78%;
-      }
-        #create_uk { 
-          width: 50%;
+        margin-bottom: 1rem;
+        width: auto;
+        max-width: 90%;
+        &:first-child {
+          margin-top: 2rem;
         }
+      } 
     }
     .container {
       padding-top: 1em;
@@ -837,24 +862,15 @@ html body {
       }
     }
   }
-  #page div.container {
-    //main layout
-    .four.columns,
-    .seven.columns,
-    .sixteen.columns,
-    .twelve.columns,
-    .six.columns {
-      width: 100%;
-    }
-    padding: 0;
-    width: 960px; 
+  .facets_and_outputs {
+    margin: 0 5px;
     #outputs, #facets { 
       span.tooltip {
         > span {
          @include display-flex;
           flex-direction: column;
           span:first-child {
-            flex:2 0 0;
+            @include flex(2 0 0);
             text-align: left;
           } 
           span.fa {
@@ -905,6 +921,8 @@ html body {
   display: none;
 }
 #mobile_menu_toggle {
+  margin-right: 5px;
+  margin-left: 5px;
   .facets_on {
     @include facets_on;
   }
@@ -960,7 +978,13 @@ html body {
   }
 }
 html body {
-  @media only screen and (min-width : 768px) {
+  @media only screen and (min-width : 960px) {
+    @mixin wideLayout {
+      width: 100%;
+      max-width: 960px;
+      margin-right: auto;
+      margin-left: auto;
+    }
     #mobile_menu_toggle a.facets_on {
       display: none;
     }
@@ -969,23 +993,9 @@ html body {
         font-size: .75rem;
       }
     }
-    #page div.container {
-      //main layout
-      .sixteen.columns { 
-        width: 940px;
-      }
-      .twelve.columns { 
-        width: 700px;
-      }
-      .six.columns,
-      .seven.columns {
-        width: 300px;
-      }
-      .four.columns {
-        width: 220px;
-      }
-      padding: 0;
-      width: 960px;  
+    .facets_and_outputs {
+      @include display-flex;
+      @include wideLayout;
       #outputs, #facets {
         span.tooltip { 
           border-color: $blue;
@@ -1002,11 +1012,10 @@ html body {
         font-size: 1rem;
       }
     }
-    #masthead {
-      margin-bottom: 0;
-    }
     header {
-      background: #eee;
+      nav, .page-title-container, .feedback {
+        @include wideLayout;
+      }
       h6,h1 {
         text-align: left;
       }
@@ -1018,8 +1027,9 @@ html body {
       .feedback {
         background: $purple;
         border: none;
-        margin: 0;
         padding: 1rem .75rem;
+        box-sizing: border-box;
+        margin-bottom: 0;
         * {color: #fff;}
         p a {
           display: inline;
@@ -1030,8 +1040,9 @@ html body {
         @include display-flex;
         @include align-items(flex-end);
         padding: .8rem .8rem .8rem .5rem;
+        box-sizing: border-box;
         > div:first-child {
-          flex:2 0 0;
+          @include flex(2 0 0);
         }
         
       }
@@ -1082,10 +1093,13 @@ html body {
     .fixed_n_count  {
       display: none;
     }
-    #facets {
-      background:#f6f6f6;
+    #facets { 
+      max-width: 220px;
+      min-width: 220px;
       display: block;
+      background:#f6f6f6; 
       margin-top: 0;
+      margin-right: 24px;
       .has_tip {            
         @include align-items(flex-start);
       }
@@ -1150,10 +1164,13 @@ html body {
     #toolow_warning {
       padding-top: 1.5rem;
     }
-    #leftoutputs, #rightoutputs {
-      padding-top:1.5rem;
-    }
     #outputs {
+      .column-container {
+        @include display-flex;
+        > div:first-child {      
+          margin-right: 24px;
+        }
+      }
       .output {
         margin-bottom: 2em;
       }
@@ -1165,40 +1182,67 @@ html body {
       }
     }
     #section-sub-footer {
-      address  {
-        span {
-          display: inline;
-        }          
-        span:not(:last-child) {
-          margin-right:1em;
+      background: transparent url("/assets/noise-black-a59c24b99edf61a5d3a768f8678a1efa.jpg") repeat scroll 0 0;
+      footer {
+        @include wideLayout;
+        @include display-flex;
+        > * {
+          padding: 1rem;
         }
-      }
-      .colphon p {
-        text-align: left;
-      }
-      p.made_possible {
-        text-align: justify;
-      }
-      ul.social {
-        padding-top: 1em;
-        li {
-          padding: 0 0 0 0;
-          &:not(:last-child) {
-            margin-right: 1rem;
+        > div:last-child {
+          margin-right: auto;
+          margin-left: auto;
+        }
+        .logos {
+          width: 220px;
+          padding: 1rem;
+          img { 
+            max-width: none;
+            height: auto;
+            width: 78%;
+            display: block;
+            margin-right: auto;
+            margin-left: auto;
+          }
+          #create_uk { 
+            text-align: center;     
           }
         }
-      }
-      div {
-        > img { 
-          height: auto;
+        address  {
+          span {
+            display: inline;
+          }          
+          span:not(:last-child) {
+            margin-right:1em;
+          }
         }
-        #create_uk { 
-          text-align: center;     
+        .colphon p {
+          text-align: left;
         }
+        p.made_possible {
+          text-align: justify;
+        }
+        ul.social {
+          padding-top: 1em;
+          li {
+            padding: 0 0 0 0;
+            &:not(:last-child) {
+              margin-right: 1rem;
+            }
+          }
+        } 
       }
-      p.made_possible {    
-
-      } 
+    }
+    #section-sub-footer::after {
+      background: transparent url("/assets/pattern_diagonal_dark-622fd5dd29d96bec44bb65b0e3dd77b1.png") repeat scroll 0 0;
+      bottom: 0;
+      content: "";
+      height: 100%;
+      left: 0;
+      position: absolute;
+      right: 0;
+      width: 960px;
+      z-index: -1;
     }
   }
 }

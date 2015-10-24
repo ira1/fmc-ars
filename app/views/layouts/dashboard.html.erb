@@ -6,7 +6,7 @@
   <%= csrf_meta_tags %>
   <meta property="fb:admins" content="764628221" />
   <meta property="fb:admins" content="598115755" />
-  <meta property="og:image" content="<%= image_url("fbimg.png") %>"/>
+  <meta property="og:image" content="<%= image_url("screen-shot-for-sharing.png") %>"/>
   <meta property="og:type" content="website"/>
   <meta property="ob:url" content="<%=request.original_url%>" />
   <meta property="og:site_name" content="Future of Music Coalition&#39;s Artists Revenue Streams Project"/>
@@ -38,46 +38,38 @@
 	<link rel="shortcut icon"href="http://money.futureofmusic.org/wordpress/wp-content/uploads/2012/01/fmc_favicon.png" type="image/gif" />  
 </head>
 <body>
-  <div id="masthead"><a href="http://money.futureofmusic.org"><img src="http://money.futureofmusic.org/wordpress/wp-content/uploads/2012/02/ARSprojectheader940x70.png" alt="Artist Revenue Streams" /></a></div>
-  <div id="page" class="super-container full-width">
-	  <div class="container">
-      <header>
-        <div class="sixteen columns alpha omega"> 
-          <nav>
-            <div id="nav">
-              <ul>
-                <li><a href="http://money.futureofmusic.org/about-the-project/">About the Project</a></li>
-                <li><a href="http://money.futureofmusic.org/40-revenue-streams/">42 Revenue Streams</a></li> 
-                <li><a href="http://money.futureofmusic.org/findings/">Data Memos and Reports	</a></li>  
-                <li><a href="http://money.futureofmusic.org/financial-case-studies/">Financial Case Studies</a></li>  
-                <li class="active"><strong>Survey Data Portal</strong></li>
-                <li><a href="http://money.futureofmusic.org/contact/">Contact</a></li>  
-                <li><a href="http://futureofmusic.org/donate">Support Us</a></li>           
-              </ul>
-            </div>
-          </nav>
-          <div class="feedback">
-            <p><span class="fa fa-icon fa-envelope"></span> FMC Summit Attendees: <a href="mailto:ars@futureofmusic.org,brian@rhythmspice.com?subject=Data Portal Website Feedback">Send us your questions or feedback here</a></p>
-          </div>
-          <div class="page-title-container">
-            <div>
-              <h1>Artist Revenue Streams Data Portal</h1>						 
-            </div>
-            <div class="social_links">
-              <a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Ffmc%2dars%2d0.herokuapp.com%2Fdashboard%2Fshow&t=Future%20of%20Music%2dArtists%20Revenue%20Portal"><span class="fa fa-facebook-square fa-2x"></span></a>
-              <a href="https://twitter.com/intent/tweet?status=Survey data about musicians’ revenue streams, collected by @future_of_music 2011 Money from Music Survey ( design by @rhythmspice )"><span class="fa fa-twitter-square fa-2x"></span></a>
-            </div>
-          </div>
-          <!-- /DEFAULT NAVIGATION -->
-  				<!-- TODO RESPONSIVE NAVIGATION FLIP -->
-          <!-- REMOVED by Ira -->
-  				<!-- /END RESPONSIVE NAV -->
-  		  </div>
-  		  <!-- END MENU -->			
-      </header>
-      <%= yield %>
-	    </div><!-- /End 960 Container -->
-    </div><!-- /End Super Container -->
+  
+  <div id="page">
+    <header> 
+      <div id="masthead"><a href="http://money.futureofmusic.org"><span><%= image_tag("recordPlayer.svg") %></span><span><%= image_tag("logo_arsnameonly_portion.svg") %></span></a></div>
+      <nav>
+        <div id="nav">
+          <ul>
+            <li><a href="http://money.futureofmusic.org/about-the-project/">About the Project</a></li>
+            <li><a href="http://money.futureofmusic.org/40-revenue-streams/">42 Revenue Streams</a></li> 
+            <li><a href="http://money.futureofmusic.org/findings/">Data Memos and Reports	</a></li>  
+            <li><a href="http://money.futureofmusic.org/financial-case-studies/">Financial Case Studies</a></li>  
+            <li class="active"><strong>Survey Data Portal</strong></li>
+            <li><a href="http://money.futureofmusic.org/contact/">Contact</a></li>  
+            <li><a href="http://futureofmusic.org/donate">Support Us</a></li>           
+          </ul>
+        </div>
+      </nav>
+      <div class="feedback">
+        <p><span class="fa fa-icon fa-envelope"></span> FMC Summit Attendees: <a href="mailto:ars@futureofmusic.org,brian@rhythmspice.com?subject=Data Portal Website Feedback">Send us your questions or feedback here</a></p>
+      </div>
+      <div class="page-title-container">
+        <div>
+          <h1>Artist Revenue Streams Data Portal</h1>						 
+        </div>
+        <div class="social_links">
+          <a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Ffmc%2dars%2d0.herokuapp.com%2Fdashboard%2Fshow&t=Future%20of%20Music%2dArtists%20Revenue%20Portal"><span class="fa fa-facebook-square fa-2x"></span></a>
+          <a href="https://twitter.com/intent/tweet?status=Survey data about musicians’ revenue streams, collected by @future_of_music 2011 Money from Music Survey ( design by @rhythmspice )"><span class="fa fa-twitter-square fa-2x"></span></a>
+        </div>
+      </div>  	
+    </header>
+    <%= yield %>
+  </div><!-- /End Super Container -->
     <%=render 'layouts/footer' %>
   </body>
 </html>
