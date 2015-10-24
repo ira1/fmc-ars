@@ -2,8 +2,8 @@
   <tbody>
     <tr>
       <th>Of those who answered&hellip;</th>
-      <th class="increased"><span class="fa fa-arrow-circle-up"></span> Income increased:</th>
-      <th class="quiet">% of group saying role was applicable to their career?</th>
+      <th class="increased"><div><span>Income increased:</span><span class="fa fa-arrow-circle-up fa-2x"></span></div></th>
+      <th class="quiet">% saying role was applicable to their career?</th>
     </tr>
   	<% @inc_trends_up.each do |trend| %>
       <tr>
@@ -12,9 +12,9 @@
         <td class="quiet"><div><%=trend[2]%>%</div><div class="progressbar"><div class="quiet" style="width: <%=trend[2]%>px "></div></div></td>
       </tr>
   	<%end%>
-    <tr>
+    <tr class="decrease_output">
       <th></th>
-      <th class="decreased"><span class="fa fa-arrow-circle-down"></span> Income decreased:</th>
+      <th class="decreased"><div><span>Income decreased:</span><span class="fa fa-arrow-circle-down fa-2x"></span></div></th>
       <th></th>
     </tr>
   	<% @inc_trends_down.each do |trend| %>

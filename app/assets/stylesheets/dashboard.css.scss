@@ -59,6 +59,12 @@ $fontslight: "LatoLatinLight", "Helvetica","Arial",sans-serif !important;
   display: -webkit-flex;     /* NEW - Chrome */
   display: flex;   
 }
+@mixin align-items($direction) {
+  -ms-flex-align: $direction;
+	-webkit-align-items: $direction;
+	-webkit-box-align: $direction;
+	align-items: $direction;
+}
 @mixin border-radius($r) {
   -moz-border-radius: $r;
   -webkit-border-radius: $r;
@@ -82,8 +88,7 @@ $fontslight: "LatoLatinLight", "Helvetica","Arial",sans-serif !important;
   @include display-flex;
   -webkit-justify-content: center;
   justify-content: center;
-   -webkit-align-items: center;
-   align-items: center;
+   @include align-items(center);
 }
 html body {
   font-family: $fonts;
@@ -99,6 +104,23 @@ html body {
       height: auto;
       max-height: 70px;
       max-width:940px;
+    }
+  } 
+  ul {
+    font-family: $fonts;
+  }
+  ul.bullets {
+    margin-bottom: .5rem !important;
+    li {
+      text-align:left;
+      list-style: square;
+      list-style-position: outside;
+      margin-left: 1rem;
+      margin-right: 1rem;
+    }
+    a {
+      text-decoration: none;
+      color: $blue;
     }
   }
   .fa-exclamation-triangle {
@@ -552,6 +574,40 @@ html body {
     }
   }
   #outputs {
+    #income_trend {
+      p.subtitle {
+        margin-bottom: 0;
+      }
+      table.income_trend {
+        tr.decrease_output th {
+          border-top: 1px solid #eee;
+        }
+        th {
+          vertical-align: bottom;
+          padding-top:1rem;
+        }
+        th.increased,
+        th.decreased {
+          div {
+            @include display-flex;
+            @include align-items(center);
+            .fa {
+              margin-left: .5rem;
+            }
+          }
+        }
+        margin-top: 0;
+        @include left_stripe;
+        .progressbar {
+          border: none;
+          background-color: #f1f1f1;
+        }
+        tr td:first-child {
+          text-align: center;
+        }
+      }
+ 
+    }
     &.feedbackWhileAjaxProcessing {
       opacity: .5;
     }
@@ -570,8 +626,8 @@ html body {
 	    height: 1em;
 	    margin-right: 4px;
 	  }
-	  .special_reports ul li {
-  	  text-align: left;
+	  .special_reports p {
+  	  margin-bottom: 1rem;
 	  }
     #ftclaim {
       .giant_stat {
@@ -704,12 +760,11 @@ html body {
     } 
   }
   .has_tip {
-  @include display-flex;
-   -webkit-align-items: center;
-   align-items: center;
-   span:first-child {
-     flex: 2 0 0;
-   }
+    @include display-flex;
+    @include align-items(center);
+    span:first-child {
+      flex: 2 0 0;
+    }
   }
   .nowrap {
     white-space: nowrap;
@@ -733,14 +788,6 @@ html body {
     }
     .quiet {
       background: #ccc;
-    }
-  }
-  .income_trend {
-    .progressbar {
-      border: none;
-    }
-    tr td:first-child {
-      text-align: center;
     }
   }
   .logospace {
@@ -978,9 +1025,8 @@ html body {
       }
       .page-title-container {
         background: $orange;
-       @include display-flex;
-        -webkit-align-items: flex-end;
-        align-items:flex-end;
+        @include display-flex;
+        @include align-items(flex-end);
         padding: .8rem .8rem .8rem .5rem;
         > div:first-child {
           flex:2 0 0;
@@ -1040,8 +1086,7 @@ html body {
       display: block;
       margin-top: 0;
       .has_tip {            
-       -webkit-align-items: flex-start;
-       align-items:flex-start;
+        @include align-items(flex-start);
       }
       form {
         .current_group {

@@ -39,13 +39,13 @@ outputheight='200px'
   				<p class="subtitle">The chart reflects how this group allocated their music-related income over a 12-month period. <%if @emi_ncount!=@NCount%> <span class="error">Note: <%=@NCount-@emi_ncount%> / <%=@NCount%> respondents in this group did not answer this question.</span> <%end%></p>
     			<div id="annincbycat"  class="has_highchart" style="height: 280px; "></div>
   			</div>
-  			<div class="output textual_output">
+  			<div class="output" id="income_trend">
   				<h2><div class="has_tip"><span>Income Trend Over 5 Years</span><%=makeHelpTip("Trend displays the number of musicians who perceived, over the prior 5 years, either an overall increase or decrease in income for the respective income stream. For example, if 20% of respondents said teaching income went up, 5% said it went down, and 70% said it was unchanged over the prior 5 years, this chart&#8217;s left hand column reports the difference between the % increase and % decrease. In this case, 20% - 5% = 15% (increase). <br /><br />
 On the survey, respondents had the option to say that an income stream was Not Applicable to them. The bars on the right display what percent of this group claimed that this revenue stream was even applicable to them. This helps to put the trend data in the other two columns in context.")%></h2>
-  		    <p class="">This group of <% if FilterProfileName()=='All Musicians' %>musicians<% elsif FilterProfileName()=='Other musicians' %><strong>all-other-genres musicians</strong> <%else%><strong><%= FilterProfileName().downcase %></strong><%end%> were asked whether their income had <span class="increased">increased</span> or <span class="decreased">decreased</span> over the last five years for each role listed. Respondents could also answer "not applicable." The chart also shows how applicable the particular role/activity was to this groups' careers.</p>
-					<span id="income_trendbody">
+  		    <p class="subtitle">This group of <% if FilterProfileName()=='All Musicians' %>musicians<% elsif FilterProfileName()=='Other musicians' %><strong>all-other-genres musicians</strong> <%else%><strong><%= FilterProfileName().downcase %></strong><%end%> were asked whether their income had <span class="increased">increased</span> or <span class="decreased">decreased</span> over the last five years for each role listed. Respondents could also answer "not applicable." The chart also shows how applicable the particular role/activity was to this groups' careers.</p>
+					<div id="income_trendbody">
 	  		    <%= render :partial => 'income_trend' %>
-					</span>
+					</div>
   		  </div>
  
   		<%#
@@ -137,7 +137,7 @@ On the survey, respondents had the option to say that an income stream was Not A
     	<div class="output textual_output special_reports">
       	<h2>Special Reports &amp; Further Reading</h2>
       	<p>Explore more specific income-related data through these reports:</p>
-      	<ul>
+      	<ul class="bullets">
         	<li><a href="http://money.futureofmusic.org/sound-recording-income/">Off The Charts: Examining Musicians’ Income from Sound Recordings</a></li>
         	<li><a href="http://money.futureofmusic.org/membership/">Does Organizational Membership Matter?</a></li>
         	<li><a href="http://money.futureofmusic.org/location/">Where We Live: The Impact of Location</a></li>
