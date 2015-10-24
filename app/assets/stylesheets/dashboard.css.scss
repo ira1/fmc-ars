@@ -151,6 +151,12 @@ html body {
     margin-bottom: 0.4rem;
     margin-right: 0.4rem;
     padding: 0.4rem 0.4rem;
+    .fa-circle {
+      color: $green;
+    }
+    .fa-circle-o {
+      color: $red;
+    }
   }
   .tip .fa {
     //help icon color
@@ -442,12 +448,6 @@ html body {
           &:nth-child(2n+0) td {
             padding: 0 0 .15rem 0;            
           }
-        }
-      }
-      #exact_role_facet {
-        padding-left: 1em;
-        h6 {
-          color: #888;
         }
       }
       h6 {
@@ -838,6 +838,7 @@ html body {
   #page div.container {
     //main layout
     .four.columns,
+    .seven.columns,
     .sixteen.columns,
     .twelve.columns,
     .six.columns {
@@ -974,7 +975,8 @@ html body {
       .twelve.columns { 
         width: 700px;
       }
-      .six.columns {
+      .six.columns,
+      .seven.columns {
         width: 300px;
       }
       .four.columns {

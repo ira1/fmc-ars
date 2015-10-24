@@ -7,14 +7,14 @@
 %><table>
   <thead>
      <tr>
-      <th>Must have</th>
-      <th>Don't care</th>
-      <th>Must <em>not</em> have</th>
+      <th class="require">Must have</th>
+      <th class="indifferent">Don't care</th>
+      <th class="exclude">Must <em>not</em> have</th>
     </tr> 
   </thead>
   <tbody>
     <%[:composer,:recording,:salaried,:performer,:session,:teacher].each_with_index do |parm,i| %>
-      <tr><td colspan="3"><%=init_cap(parm)%> <%=makeHelpTip(tiptext[i])%></td></tr>
+      <tr><td colspan="3"><span><%=init_cap(parm)%></span> <%=makeHelpTip(tiptext[i])%></td></tr>
       <tr>
         <td colspan="3">
             <div class="toggle_radio">

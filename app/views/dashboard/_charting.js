@@ -569,29 +569,38 @@ function setLabels() {
     ft_html='<span class="label">Full Time Musicians Only</span>';
   }
   //Get ROLES
-  var roles = '';
-  var roles_html = '';
-  var role_matching = '';
-  var role_matching_html = '';
-  //Only put role in title if NOT all 5 are checked
-  if ($('#role_facet input[type=checkbox]:checked').length!=$('#role_facet input[type=checkbox]').length) {
-    //Set matching mode
-    var role_matching='[Exact Role Matching]';
-    var role_matching_html='<span class="label">'+role_matching+'</span>';
-    if ($('#roles_exact_false').prop('checked')==true) {
-      role_matching='[Loose Role Matching]';
-      roles_matching_html='<span class="label">Loose Role Matching</span>';
-    }
-    //append roles
-    $('#role_facet input[type=checkbox]:checked').each(function(){
-      if ($(this).parent().text()!='') {
-        roles=roles + '['+$(this).parent().text().replace(/\(.*?\)/g,'')+']';
-        roles_html=roles_html + '<span class="label">'+$(this).parent().text().replace(/\(.*?\)/g,'')+'</span>';
-      }
-    });
+  var requiredRoles =[];
+  var excludedRoles =[];
+  var roles =[];
+  var roles_required = '';
+  var roles_required_html = '';
+  var roles_excluded = '';
+  var roles_excluded_html = '';
+  //First, get required roles - populate an array of included and excluded, each:
+  $('.toggle_radio label.require.clicked').each(function(){
+    console.log('Included'+$(this).closest('tr').prev().find('td span:first-child').text());
+    requiredRoles.push($(this).closest('tr').prev().find('td span:first-child').text());
+  });  
+  $('.toggle_radio label.exclude.clicked').each(function(){
+    console.log('Excluded'+$(this).closest('tr').prev().find('td span:first-child').text());
+    excludedRoles.push($(this).closest('tr').prev('tr').find('td span:first-child').text());
+  });  
+  roles_required=requiredRoles.join(',');
+  if (roles_required!='') {
+    roles_required_html = '<span class="label"><span title="Required" class="fa fa-circle"></span> Roles ['+roles_required+']</span>';
+    roles_required = '[Required roles: '+roles_required+']';
   }
-  title_text = title_text + genre + roles +role_matching+ ft + careerexp + emigroup + trained + genders;
-  $('.current_filter_state').html(genre_html + roles_html + role_matching_html + ft_html + careerexp_html + emigroup_html + trained_html + genders_html);
+  roles_excluded=excludedRoles.join(',');
+  if (roles_excluded!='') {
+    roles_excluded_html = '<span class="label"><span title="Exlcuded" class="fa fa-circle-o"></span> Roles: ['+roles_excluded+']</span>';
+    roles_excluded = '[Excluded roles: '+roles_excluded+']';
+  }
+  //Empty the arrays now so refresh work
+  requiredRoles.length=0;
+  excludedRoles.length=0;
+  //Now compute the title:
+  title_text = title_text + genre + roles_required + roles_excluded + ft + careerexp + emigroup + trained + genders;
+  $('.current_filter_state').html(genre_html + roles_required_html + roles_excluded_html + ft_html + careerexp_html + emigroup_html + trained_html + genders_html);
   $('title').text(title_text);
 }
 //end set labels
@@ -605,7 +614,6 @@ function setScrollPositionAfterSubmit() {
 // Automatic form submission
 $('form.f_facets input').change(function(){
   gray_out_facets();
-  count_number_of_roles();
   count_number_of_genders();
   setLabels();
   $('#outputs').addClass('feedbackWhileAjaxProcessing');
@@ -634,39 +642,6 @@ function gray_out_facets() {
   $('#facets label input[type=checkbox]:checked, #facets label input[type=radio]:checked').parent().removeClass('unselected_filter');
 }
 gray_out_facets();
-//Display the number of selected role checkboxes dynmamically
-function count_number_of_roles() {
-  function showRadios() {
-    if ($('#exact_role_facet').hasClass('none')==true) {
-      $('#exact_role_facet').slideDown(500,function() {
-        $(this).removeClass('none');
-      });
-    }
-  }
-  function hideRadios() {
-    if ($('#exact_role_facet').hasClass('none')==false) {
-      $('#exact_role_facet').slideUp(500,function() {
-        $(this).addClass('none');
-      });
-    }
-  }
-  //in case it was hidden
-  var cntChecked=$('#role_facet input[type=checkbox]:checked').length;
-  var cntAll=$('#role_facet input[type=checkbox]').length;
-  if (cntChecked==cntAll) {
-    $('#role_facet input[type=checkbox]').attr('checked',false);
-  } else if (cntChecked==1) {
-    $('.roles_selected_phrase').text('this 1 role');
-    hideRadios();
-  } else if (cntChecked==0) {
-    hideRadios();
-  } else {
-    //if 2-4 boxes checked
-    $('.roles_selected_phrase').text('a minimum of 1 of these '+cntChecked+' checked roles');
-    $('.role_selected_phrase_exact').text(cntChecked+' of the checked roles');    
-    showRadios();
-  } 
-}
 
 function count_number_of_genders() {
   //in case it was hidden
@@ -677,12 +652,10 @@ function count_number_of_genders() {
     cnt=$('#gender_facet input:checked').length;
   } 
 }
-
 function selectRoleRadios() { 
   $('#role_facet .toggle_radio label').removeClass('clicked');
   $('#role_facet .toggle_radio input:checked').each(function() {
     var theClassName=$(this).attr('class').replace('toggle_option','').replace(' ','');
-    console.log(theClassName);
     var labelTag='label.'+theClassName;
     $(this).closest('tr').find(labelTag).addClass('clicked'); 
   });
