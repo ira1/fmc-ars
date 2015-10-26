@@ -19,7 +19,7 @@
         <td colspan="3">
             <div class="toggle_radio">
               <input type="radio" class="toggle_option require" id="role_<%=parm%>_require" name="role_<%=parm%>" value="require">
-              <input type="radio" checked class="toggle_option indifferent" id="role_<%=parm%>_indifferent" name="role_<%=parm%>" value="indifferent">
+              <input type="radio" checked="checked" class="toggle_option indifferent" id="role_<%=parm%>_indifferent" name="role_<%=parm%>" value="indifferent">
               <input type="radio" class="toggle_option exclude" id="role_<%=parm%>_exclude" name="role_<%=parm%>" value="exclude">
               <label class="require" for="role_<%=parm%>_require"><span class="fa fa-icon fa-circle"></span></label>
               <label class="indifferent clicked " for="role_<%=parm%>_indifferent"><span class="fa fa-icon fa-dot-circle-o"></span></label>
@@ -29,21 +29,6 @@
             </div>
         </td>
       </tr>
-      <!--
-      <tr>
-        <td><label>
-          <span class="none">Must have chosen the role: <%=parm%></span>
-          <input type="radio" name="role_<%=parm%>" value="require"/>
-        </label></td>
-        <td><label>
-          <span class="none">Don't care if this role was chosen</span>
-          <input type="radio" value="indifferent" checked="checked" name="role_<%=parm%>"/>
-        </label></td>
-        <td><label>
-          <span class="none">Must not have chosen this role</span>
-          <input type="radio" value="exclude" name="role_<%=parm%>"/>
-        </label></td>
-      </tr>-->
     <%end%>
   </tbody>
 </table>
