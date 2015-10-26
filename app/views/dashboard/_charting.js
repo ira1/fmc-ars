@@ -593,11 +593,9 @@ function setLabels() {
   var roles_excluded_html = '';
   //First, get required roles - populate an array of included and excluded, each:
   $('.toggle_radio label.require.clicked').each(function(){
-    console.log('Included'+$(this).closest('tr').prev().find('td span:first-child').text());
     requiredRoles.push($(this).closest('tr').prev().find('td span:first-child').text());
   });  
   $('.toggle_radio label.exclude.clicked').each(function(){
-    console.log('Excluded'+$(this).closest('tr').prev().find('td span:first-child').text());
     excludedRoles.push($(this).closest('tr').prev('tr').find('td span:first-child').text());
   });  
   roles_required=requiredRoles.join(',');
