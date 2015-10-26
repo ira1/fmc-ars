@@ -26,7 +26,6 @@ SampleSizeMode = function (ncount, sample_pct) {
 $('.total_n_count_from_ajax').html("<%= number_with_delimiter(@NCount, :delimiter => ',') %>");
 $('.total_pct_from_ajax').html("<%= @NCount_pct %>");
 ss = SampleSizeMode(sample_ncount,sample_pct);
-alert(ss.mode);
 if ('warn'==ss.mode) {
 	$('#outputs').removeClass("toolow");
 	$('#sample_size_progressbar').animate({width: "<%= @NCount_pct %>%"});
