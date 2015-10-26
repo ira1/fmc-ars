@@ -530,6 +530,35 @@ function makeURLparms() {
 	return urlparms;
 }
 
+//Set UI to reflect  NCount
+//First, hide the TOOLOW messaging, and then decide if it needs to be shown :
+$('#toolow_warning').hide();
+
+//These 2 function also fired on ajax callback potentially:
+function setSampleSizeWarn() {
+  $('#toolow_warning').hide();
+  $('#outputs').removeClass("toolow");
+	$('.low_n_size_message').html("and is a statistically small sample size from which to draw conclusions");
+  $('.current_n_size').addClass('very_low');
+  console.log('setSampleSizeWarn');
+}
+
+function setSampleSizeAlert() {
+  console.log('setSampleSizeAlert');
+  $('#toolow_warning').show();
+	$('#outputs').addClass("toolow");
+	$('.current_n_size').removeClass('very_low');
+  $('.low_n_size_message').html("");
+}
+//on page load, set UI to reflect nCount
+var serverNCount=parseInt($('#facets .total_n_count_from_ajax:first-child').text());
+console.log(serverNCount);
+if (serverNCount < 101 ) {
+  setSampleSizeAlert(); 
+} else if (serverNCount > 100 && serverNCount < 401) {
+  functionsetSampleSizeWarn();
+} 
+
 //Set title tag for SEO and bookmarking and sharing
 function setLabels() {
   //Also set the mobile label tags that display showing current filter state for all future ajax calls:

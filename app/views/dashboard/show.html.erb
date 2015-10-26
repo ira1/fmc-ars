@@ -13,20 +13,21 @@ outputheight='200px'
   <div id="facets">
   	  <%=render "facet_stack.html.erb" %>
   </div> 
-  <main id="outputs">
+  <main id="outputs" <%if (@NCount < 101 ) %>class="toolow"<%end%>>
+    <!--gray labels showing facet values only appear on mobile:-->
     <div class="current_filter_state"></div>
-    <%# TOO LOW %>
+    <%# TOO LOW mesaging%>
     <div id="toolow_warning">   
       <p><span class="fa fa-exclamation-triangle fa-2x"></span></p>
       <h2>Not enough respondents, sorry!</h2>
       <p>There weren't enough musicians matching your filter criteria to display accurate results. </p>
       <p>Please broaden your search filters.</p>
     </div> 
-      <!-- About this group -->
-    	<div id="ftclaim"  class="textual_output output">
-      	<%=render "sample_size_output"%>         
-      </div>
-
+    <!-- About this group -->
+  	<div id="ftclaim"  class="textual_output output">
+    	<%=render "sample_size_output"%>         
+    </div>
+    <!--main outputs held in two columns-->
     <div class="column-container">
     	<div id="leftoutputs">
     		<%# Percent who perceive increase in [category] income over prior 5 years: xx%

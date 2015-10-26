@@ -27,19 +27,16 @@ $('.total_n_count_from_ajax').html("<%= number_with_delimiter(@NCount, :delimite
 $('.total_pct_from_ajax').html("<%= @NCount_pct %>");
 ss = SampleSizeMode(sample_ncount,sample_pct);
 if ('warn'==ss.mode) {
-	$('#outputs').removeClass("toolow");
+	setSampleSizeWarn();
 	$('#sample_size_progressbar').animate({width: "<%= @NCount_pct %>%"});
-	$('.low_n_size_message').html("and is a statistically small sample size from which to draw conclusions");
-  $('.current_n_size').addClass('very_low');
 } else if ("alert"===ss.mode) {
-	$('#outputs').addClass("toolow");
-	$('.current_n_size').removeClass('very_low');
-  $('.low_n_size_message').html("");
+  setSampleSizeAlert();
 } else {
+  $('#toolow_warning').hide();
 	$('#outputs').removeClass("toolow");
-	$('#sample_size_progressbar').animate({width: "<%= @NCount_pct %>%"});
 	$('.current_n_size').removeClass('very_low');
   $('.low_n_size_message').html("");
+	$('#sample_size_progressbar').animate({width: "<%= @NCount_pct %>%"});
 } 
 
 
@@ -127,12 +124,10 @@ htmlstring = "<%= escape_javascript( render :partial => 'abouthisgroup_body') %>
 $('#aboutthisgroup > span').html(htmlstring);
 <% if @NCount < 101 then  %>
   $('#toolow_warning').show();
-  $('#rightoutputs').hide();
-  $('#leftoutputs').hide();
+  $('#outputs .output').hide();
   $('.hide_exit_filtering_affordance').addClass('toolow');
 <%else%>
   $('#toolow_warning').hide();
-  $('#rightoutputs').show();
-  $('#leftoutputs').show();
+  $('#outputs .output').show();
   $('.hide_exit_filtering_affordance').removeClass('toolow');
 <% end %>

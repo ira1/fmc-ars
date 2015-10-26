@@ -627,11 +627,12 @@ html body {
   } //End facets
   /*if results too low < 100, do this:*/
   #toolow_warning {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
     h2 {
       text-align: center;
       color: $red;
     }
-    display: none;
     text-align: center;
     font-family: $fontsbold;
     > * {
@@ -1268,7 +1269,9 @@ html body {
       display: none;
     }
     #toolow_warning {
-      padding-top: 1.5rem;
+      margin-right: auto;
+      margin-left: auto;
+      min-width: 40rem;
     }
     #outputs {
       .column-container {
