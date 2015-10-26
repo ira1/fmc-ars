@@ -136,7 +136,7 @@ outputheight='200px'
       </div> <%# rightoutputs %>
     </div> <%# end column container %>
   	<div id="concentration" class="output">
-  			<h2>Where This Group Lives</h2>
+  			<h2>Where This Group of <%= number_with_delimiter(@NCount, :delimiter => ',') %> Musicians Live</h2>
   		<div id="concentrationmap" class="has_highchart" style="height: 450px;">Nifty map goes right here! yes </div>
   	</div>
   </main>
