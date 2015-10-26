@@ -423,7 +423,7 @@ $('#anninctrend').highcharts({
 			text: null
 		},
     tooltip: {
-      headerFormat: "<strong>{point.y}</strong> musicians spend most of their <strong>time</strong> on {point.key}.",
+      headerFormat: "<strong>{point.y}</strong> musicians identified the primary genre they work in as {point.key}.",
       <% if FilterProfileName()=='All Musicians' %>
       pointFormat: ""
       <%else%> 
@@ -432,7 +432,7 @@ $('#anninctrend').highcharts({
     },
     xAxis: {
       categories: ['Classical','Jazz','Rock','Country','All others','No answer'],
-      title: {text: "I spend most of my time on..."}
+      title: {text: "Primary genre I work in..."}
 		},
 		yAxis: {
       maxPadding: .08,
