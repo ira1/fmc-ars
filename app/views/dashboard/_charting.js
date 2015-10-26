@@ -556,7 +556,7 @@ console.log(serverNCount);
 if (serverNCount < 101 ) {
   setSampleSizeAlert(); 
 } else if (serverNCount > 100 && serverNCount < 401) {
-  functionsetSampleSizeWarn();
+  setSampleSizeWarn();
 } 
 
 //Set title tag for SEO and bookmarking and sharing
