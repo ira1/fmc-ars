@@ -3,12 +3,14 @@
 
 <% if (!@genre_income_on) %>
 	<script>
+    console.log("**** hiding the genre income output");
 		$("#genreincome").slideUp();
 	</script>
 <% end %>
 
 <% if (!@genre_bar_on) %>
 	<script>
+		console.log("**** hiding the genres in group output");
 		$("#genresingroup").slideUp();
 	</script>
 <% end %>

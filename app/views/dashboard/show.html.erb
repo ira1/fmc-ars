@@ -86,14 +86,14 @@ outputheight='200px'
       	</div>  
       	<div id="genresingroup" class="output" >
           <h2>
-            <div class="has_tip">
+            <span class="has_tip">
               <span>
                 <% if FilterProfileName()=='All Musicians' %>
               		Primary Genres of This Group</span>
               	<%else%>
               	  Primary Genre for Musicians Who Make Money As <%= FilterProfileName().titlecase %></span>
                 <% end %><%=makeHelpTip("Musicians were asked to identify primary, secondary and tertiary genres in the survey. The chart below shows the primary genres of the selected group.") %>
-            </div>
+            </span>
           </h2>
           
       		<% if FilterProfileName()=='All Musicians' %>
@@ -110,7 +110,7 @@ outputheight='200px'
       	</div> 	
     		<div id="genreincome" class=" output">
     			<div id="genreincometitle">
-    				<h2><div class="has_tip"><span>Impact of Genre On This Group's Income</span> <%=makeHelpTip("Allocation of annual music-related income by category")%></div></h2>
+    				<h2><span class="has_tip"><span>Impact of Genre On This Group's Income</span> <%=makeHelpTip("Allocation of annual music-related income by category")%></span></h2>
     				<%#
     	Live performance	Compositions (mechanicals, PRO royalties, commissions)
     	Teaching	Sound recordings (sales, streams, synchs, SoundExchange)
