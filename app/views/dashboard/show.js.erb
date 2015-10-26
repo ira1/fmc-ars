@@ -42,7 +42,7 @@ if ('warn'==ss.mode) {
 
 
 // Show & Hide GenreIncome Output based on controller's visibility indicator
-if ("true"==="<%= @genre_income_on.to_s -%>" && "alert"!=ss.mode) {
+if ("true"=="<%= @genre_income_on.to_s -%>" && "alert"!=ss.mode) {
   $("#genreincome").fadeIn(0,function () {$('#genreincomechart').highcharts().reflow(); }); // anti-genre =0, genre = 1
   var chart = $('#genreincomechart').highcharts();
 	chart.series[0].setData(
@@ -70,6 +70,7 @@ if ("true"==="<%=@genre_bar_on.to_s-%>" && "alert"!=ss.mode) {
   $("#genresingroup").fadeOut();
 }
 
+$('#concentrationmap').highcharts().series[0].setData(<%=@musicians_by_counties.to_json.html_safe%>);
   //$('#concentrationmap').highcharts().setData([] , true);
   //$('#annincbycat').highcharts().series[0].setData([]);
 
