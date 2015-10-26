@@ -515,6 +515,21 @@ $('#anninctrend').highcharts({
   });*/
 });
 
+//Construct Parameters for URL for sharing
+function makeURLparms() {
+	var conjunct="";
+	var urlparms="/?"; 
+	$("input[name^='utf'],input:radio:checked").each( function () { 
+	 urlparms += conjunct+$(this).attr('name')+"="+$(this).val();
+	 conjunct='&';
+	});
+	$("#ft,#trained,.f_facets input[id^=gender_]").each( function () { 
+	 urlparms+=conjunct+$(this).attr('name')+"="+$(this).prop('checked');
+	 conjunct='&';
+	});
+	return urlparms;
+}
+
 //Set title tag for SEO and bookmarking and sharing
 function setLabels() {
   //Also set the mobile label tags that display showing current filter state for all future ajax calls:
@@ -617,6 +632,7 @@ $('form.f_facets input').change(function(){
   count_number_of_genders();
   setLabels();
   $('#outputs').addClass('feedbackWhileAjaxProcessing');
+	window.history.pushState( {} , 'Survey Results', makeURLparms() );
   $('form.f_facets').submit();
 });
 //Mobile nav toggle to hide and show filters on mobile
