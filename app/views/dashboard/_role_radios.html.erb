@@ -14,15 +14,27 @@
   </thead>
   <tbody>
     <%[:composer,:recording,:salaried,:performer,:session,:teacher].each_with_index do |parm,i| %>
-      <tr><td colspan="3"><span> <%=(:salaried==parm)? 'Salaried player' : init_cap(parm)%> </span> <%=makeHelpTip(tiptext[i])%></td></tr>
+      <tr><td colspan="3"><span> <%=(:salaried==parm)? 'Salaried player' : init_cap(parm.to_s)%> </span> <%=makeHelpTip(tiptext[i])%></td></tr>
       <tr>
         <td colspan="3">
+					<%reqstat=indstat=excstat=''
+					inputs_name= "role_"+parm.to_s 
+					logger.info(inputs_name)
+					logger.info(params[inputs_name])
+					if ("require"==params[inputs_name]) then
+						reqstat='checked="checked"'
+					elsif ("exclude"==params[inputs_name]) then
+						excstat='checked="checked"'
+					else
+						indstat='checked="checked"'
+					end
+					%>
             <div class="toggle_radio">
-              <input type="radio" class="toggle_option require" id="role_<%=parm%>_require" name="role_<%=parm%>" value="require">
-              <input type="radio" checked="checked" class="toggle_option indifferent" id="role_<%=parm%>_indifferent" name="role_<%=parm%>" value="indifferent">
-              <input type="radio" class="toggle_option exclude" id="role_<%=parm%>_exclude" name="role_<%=parm%>" value="exclude">
+              <input type="radio" <%=reqstat%> class="toggle_option require" id="role_<%=parm%>_require" name="role_<%=parm%>" value="require">
+              <input type="radio" <%=indstat%> class="toggle_option indifferent" id="role_<%=parm%>_indifferent" name="role_<%=parm%>" value="indifferent">
+              <input type="radio" <%=excstat%> class="toggle_option exclude" id="role_<%=parm%>_exclude" name="role_<%=parm%>" value="exclude">
               <label class="require" for="role_<%=parm%>_require"><span class="fa fa-icon fa-circle"></span></label>
-              <label class="indifferent clicked " for="role_<%=parm%>_indifferent"><span class="fa fa-icon fa-dot-circle-o"></span></label>
+              <label class="indifferent" for="role_<%=parm%>_indifferent"><span class="fa fa-icon fa-dot-circle-o"></span></label>
               <label class="exclude" for="role_<%=parm%>_exclude"><span class="fa fa-icon fa-circle-o"></span></label>
               <div class="toggle_option_slider">
               </div>
