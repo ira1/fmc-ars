@@ -551,7 +551,7 @@ function setSampleSizeAlert() {
   $('.low_n_size_message').html("");
 }
 //on page load, set UI to reflect nCount
-var serverNCount=parseInt($('#facets .total_n_count_from_ajax:first-child').text());
+var serverNCount=parseInt($('#facets .total_n_count_from_ajax:first-child').text().replace(',',''));
 console.log(serverNCount);
 if (serverNCount < 101 ) {
   setSampleSizeAlert(); 
