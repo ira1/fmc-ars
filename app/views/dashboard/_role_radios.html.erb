@@ -14,7 +14,7 @@
   </thead>
   <tbody>
     <%[:composer,:recording,:salaried,:performer,:session,:teacher].each_with_index do |parm,i| %>
-      <tr><td colspan="3"><span><%=init_cap(parm)%></span> <%=makeHelpTip(tiptext[i])%></td></tr>
+      <tr><td colspan="3"><span> <%=(:salaried==parm)? 'Salaried player' : init_cap(parm)%> </span> <%=makeHelpTip(tiptext[i])%></td></tr>
       <tr>
         <td colspan="3">
             <div class="toggle_radio">
