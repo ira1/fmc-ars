@@ -1,4 +1,4 @@
-<% logger.info("show.js.erb is running") %>
+<% logger.info("********** show.js.erb is running") %>
 
 $('#outputs').removeClass('feedbackWhileAjaxProcessing');
 var sample_ncount='<%= @NCount -%>';
@@ -42,7 +42,10 @@ if ('warn'==ss.mode) {
 
 
 // Show & Hide GenreIncome Output based on controller's visibility indicator
+console.log('******* genre income chart?');
+console.log("true"=="<%= @genre_income_on.to_s -%>");
 if ("true"=="<%= @genre_income_on.to_s -%>" && "alert"!=ss.mode) {
+	console.log('genreincome display');
   $("#genreincome").fadeIn(0,function () {$('#genreincomechart').highcharts().reflow(); }); // anti-genre =0, genre = 1
   var chart = $('#genreincomechart').highcharts();
 	chart.series[0].setData(
@@ -58,16 +61,23 @@ if ("true"=="<%= @genre_income_on.to_s -%>" && "alert"!=ss.mode) {
 			chart.legend.allItems[0].update({emi:'<%= number_to_currency(@avg_emi, :precision=>0) %>'});
 	chart.redraw();
 } else {
-  $("#genreincome").fadeOut();
+	console.log('genreincome hide');
+	document.getElementById('genreincome').style.display = "none";
+	$('#genreincome').fadeOut();
 }
 
 // Genres in group
+console.log("***** primary genres");
+console.log("true"==="<%=@genre_bar_on.to_s-%>");
 if ("true"==="<%=@genre_bar_on.to_s-%>" && "alert"!=ss.mode) {
+	console.log("display the primary genres");
   $('#genresingroup').show(0, function () { $('#genresingroupchart').highcharts().reflow(); });
 	$('#genresingroupchart').highcharts().series[0].setData(<%= @genre_counts.to_json %>, false);
 	$('#genresingroupchart').highcharts().redraw();
 } else {
-  $("#genresingroup").fadeOut();
+	console.log("HIDE the primary genres");
+  $( "#genresingroup" ).hide();
+	console.log("called hide on the primary genres");	
 }
 
 $('#concentrationmap').highcharts().series[0].setData(<%=@musicians_by_counties.to_json.html_safe%>);

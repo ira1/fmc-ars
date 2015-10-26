@@ -44,7 +44,7 @@ outputheight='200px'
     			</div>
     			<div class="output" id="income_trend">
     				<h2><div class="has_tip"><span>Income Trend Over 5 Years</span><%=makeHelpTip("Trend displays the number of musicians who perceived, over the prior 5 years, either an overall increase or decrease in income for the respective income stream. For example, if 20% of respondents said teaching income went up, 5% said it went down, and 70% said it was unchanged over the prior 5 years, this chart&#8217;s left hand column reports the difference between the % increase and % decrease. In this case, 20% - 5% = 15% (increase). <br /><br />
-  On the survey, respondents had the option to say that an income stream was Not Applicable to them. The bars on the right display what percent of this group claimed that this revenue stream was even applicable to them. This helps to put the trend data in the other two columns in context.")%></h2>
+  On the survey, respondents had the option to say that an income stream was Not Applicable to them. The bars on the right display what percent of this group claimed that this revenue stream was even applicable to them. This helps to put the trend data in the other two columns in context.")%></div></h2>
     		    <p class="subtitle">This group of <% if FilterProfileName()=='All Musicians' %>musicians<% elsif FilterProfileName()=='Other musicians' %><strong>all-other-genres musicians</strong> <%else%><strong><%= FilterProfileName().downcase %></strong><%end%> were asked whether their income had <span class="increased">increased</span> or <span class="decreased">decreased</span> over the last five years for each role listed. Respondents could also answer "not applicable." The chart also shows how applicable the particular role/activity was to this groups' careers.</p>
   					<div id="income_trendbody">
   	  		    <%= render :partial => 'income_trend' %>
@@ -55,7 +55,7 @@ outputheight='200px'
     				Other Income Text Box
     		%>
     		<div id="otherincome" class="output textual_output">
-    		  <h2><div class="has_tip"><span>Other Music Income Sources</span> <%=makeHelpTip("% of musicians who said they received any music-related income in the prior 12 months from one of these sources.")%></h2>
+    		  <h2><div class="has_tip"><span>Other Music Income Sources</span> <%=makeHelpTip("% of musicians who said they received any music-related income in the prior 12 months from one of these sources.")%></div></h2>
   				<span id="otherincomebody">
   					<%= render :partial => 'otherincbody' %>
   				</span>
@@ -118,7 +118,6 @@ outputheight='200px'
     	Session/freelance work (studio and/or live)	Other %>
     			</div>
     				<div id="genreincomechart" class="has_highchart" style="height: 470px;"></div>
-    			</ul>
     		</div>
       	<!--more reading-->
       	<div class="output textual_output special_reports">
@@ -131,6 +130,7 @@ outputheight='200px'
           	<li><a href="http://money.futureofmusic.org/teams/">Musicians' Teammates and their Effect on Earnings</a></li>
           	<li><a href="http://money.futureofmusic.org/jazz-musicians/">Jazz Musicians and Money from Music</a></li>
           	<li><a href="http://money.futureofmusic.org/findings/">Additional reports and financial case studies</a></li>
+					</ul>
       	</div>
       	
       </div> <%# rightoutputs %>
