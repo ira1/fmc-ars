@@ -26,22 +26,18 @@ SampleSizeMode = function (ncount, sample_pct) {
 $('.total_n_count_from_ajax').html("<%= number_with_delimiter(@NCount, :delimiter => ',') %>");
 $('.total_pct_from_ajax').html("<%= @NCount_pct %>");
 ss = SampleSizeMode(sample_ncount,sample_pct);
+alert(ss.mode);
 if ('warn'==ss.mode) {
-	$('#outputs').addClass("twelve");
-	$('#outputs').removeClass("toolow seven");
+	$('#outputs').removeClass("toolow");
 	$('#sample_size_progressbar').animate({width: "<%= @NCount_pct %>%"});
 	$('.low_n_size_message').html("and is a statistically small sample size from which to draw conclusions");
   $('.current_n_size').addClass('very_low');
 } else if ("alert"===ss.mode) {
-	//$('#sample_size_message').parent().addClass('very_low');	
-  //$('#sample_size_message').html(ss.htmlstring);	
-	$('#outputs').removeClass("twelve");
-	$('#outputs').addClass("toolow seven");
+	$('#outputs').addClass("toolow");
 	$('.current_n_size').removeClass('very_low');
   $('.low_n_size_message').html("");
 } else {
-	$('#outputs').addClass("twelve");
-	$('#outputs').removeClass("toolow seven");
+	$('#outputs').removeClass("toolow");
 	$('#sample_size_progressbar').animate({width: "<%= @NCount_pct %>%"});
 	$('.current_n_size').removeClass('very_low');
   $('.low_n_size_message').html("");

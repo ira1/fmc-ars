@@ -642,6 +642,11 @@ html body {
     }
   }
   #outputs {
+    &.toolow {
+      .output {
+        display: none; //hide all outputs when the NCount is too low. 
+      } 
+    }
     #income_trend {
       p.subtitle {
         margin-bottom: 0;
