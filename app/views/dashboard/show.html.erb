@@ -101,11 +101,6 @@ outputheight='200px'
       		  <p class="subtitle">
         		This group of <strong class="total_n_count_from_ajax"><%= number_with_delimiter(@NCount, :delimiter => ',') %></strong> musicians made most of their music income as <strong><% if FilterProfileName()=='Other musicians' %>all-other-genres musicians<% else %><%=FilterProfileName().downcase%><%end%></strong>. They were also asked, "what is your <strong>primary</strong> genre?" For some groups, the top income-making genre did not always match the primary genre response:</p>
           <% end %>
-      				<%#
-      	Live performance	Compositions (mechanicals, PRO royalties, commissions)
-      	Teaching	Sound recordings (sales, streams, synchs, SoundExchange)
-      	Salaried player	Merchandise and branding
-      	Session/freelance work (studio and/or live)	Other %> 
       		<div id="genresingroupchart" class="has_highchart" style="height: 220px"></div>
       	</div> 	
     		<div id="genreincome" class=" output">
