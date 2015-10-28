@@ -89,11 +89,11 @@ class DashboardController < ApplicationController
         @sample_antigenre = Survey.where.not(:money_genre_group_1 => params[:mgenre])
         @genre_income_on=true if @mgenre != "0"
     end
-    if (@mgenre != "ALL")
-      @genre_bar_on=false 
-    else
-      @genre_bar_on=true
-    end
+    #if (@mgenre != "ALL")
+      #@genre_bar_on=false 
+    #else
+    @genre_bar_on=true
+    #end
 
     
     # Career Level facet
