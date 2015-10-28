@@ -87,20 +87,14 @@ outputheight='200px'
       	<div id="genresingroup" class="output" >
           <h2>
             <span class="has_tip">
-              <span>
-                <% if FilterProfileName()=='All Musicians' %>
-              		Primary Genres of This Group</span>
-              	<%else%>
-              	  Primary Genre for Musicians Who Make Money As <%= FilterProfileName().titlecase %></span>
-                <% end %><%=makeHelpTip("Musicians were asked to identify primary, secondary and tertiary genres in the survey. The chart below shows the primary genres of the selected group.") %>
+              
+                <%=render :partial => 'primary_genres_h2' %>
+                
+                
             </span>
           </h2>
-          
-      		<% if FilterProfileName()=='All Musicians' %>
-      		<% else %>
-      		  <p class="subtitle">
-        		This group of <strong class="total_n_count_from_ajax"><%= number_with_delimiter(@NCount, :delimiter => ',') %></strong> musicians made most of their music income as <strong><% if FilterProfileName()=='Other musicians' %>all-other-genres musicians<% else %><%=FilterProfileName().downcase%><%end%></strong>. They were also asked, "what is your <strong>primary</strong> genre?" For some groups, the top income-making genre did not always match the primary genre response:</p>
-          <% end %>
+          <div class="extra_info"><%=render :partial => 'primary_genres_explanation' %></div>
+      		
       		<div id="genresingroupchart" class="has_highchart" style="height: 220px"></div>
       	</div> 	
     		<div id="genreincome" class=" output">

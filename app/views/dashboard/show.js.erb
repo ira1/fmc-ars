@@ -85,6 +85,9 @@ if ("true"==="<%=@genre_bar_on.to_s-%>" && "alert"!=ss.mode) {
 	console.log("HIDE the primary genres");
   $("#genresingroup").fadeOut();
 }
+//Be very careful with single vs. double quotes on these two lines:
+$('#genresingroup h2 .has_tip').html("<%=render :partial => 'primary_genres_h2' %>");
+$('#genresingroup .extra_info').html('<%=render :partial => "primary_genres_explanation" %>');
 
 $('#concentrationmap').highcharts().series[0].setData(<%=@musicians_by_counties.to_json.html_safe%>);
   //$('#concentrationmap').highcharts().setData([] , true);
