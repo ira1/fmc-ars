@@ -432,7 +432,7 @@ $('#anninctrend').highcharts({
     },
     xAxis: {
       categories: ['Classical','Jazz','Rock','Country','All others','No answer'],
-      title: {text: "Primary genre I work in..."}
+      title: {text: "Primary genre of focus..."}
 		},
 		yAxis: {
       maxPadding: .08,
